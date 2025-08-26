@@ -11,14 +11,8 @@ export default function Sidebar() {
         <Link to="/students" className="hover:bg-gray-700 px-3 py-2 rounded">
           Estudiantes
         </Link>
-        <Link to="/teachers" className="hover:bg-gray-700 px-3 py-2 rounded">
-          Docentes
-        </Link>
-        <Link to="/courses" className="hover:bg-gray-700 px-3 py-2 rounded">
-          Cursos
-        </Link>
-        <Link to="/reports" className="hover:bg-gray-700 px-3 py-2 rounded">
-          Reportes
+        <Link to="/admin-test" className="hover:bg-gray-700 px-3 py-2 rounded">
+          🎯 AdminLayout Test
         </Link>
       </nav>
     </aside>

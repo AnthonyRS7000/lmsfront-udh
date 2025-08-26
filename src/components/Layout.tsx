@@ -15,7 +15,7 @@ export default function Layout({ children }: LayoutProps) {
       {/* Contenido principal */}
       <div className="flex flex-col flex-1">
         <Topbar />
-        <main className="p-4">{children}</main>
+        <main className="p-4 flex-1 overflow-y-auto">{children}</main>
       </div>
     </div>
   );

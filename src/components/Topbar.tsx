@@ -9,6 +9,9 @@ export default function Topbar() {
           alt="Avatar"
           className="w-8 h-8 rounded-full"
         />
+        <a href="/admin-test" className="bg-base text-white px-3 py-1 rounded text-sm hover:bg-base/90">
+          AdminLayout Test
+        </a>
       </div>
     </header>
   );
