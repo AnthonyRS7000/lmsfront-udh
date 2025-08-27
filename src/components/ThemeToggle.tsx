@@ -84,76 +84,74 @@ export default function ThemeToggle() {
       {/* Dropdown - Fondo adaptativo: blanco en claro, gris oscuro en oscuro */}
       {isOpen && (
         <div 
-          className="fixed right-4 top-16 z-50 rounded-lg shadow-xl border"
+          className="fixed right-4 top-16 z-50 rounded-xl shadow-xl border"
           style={{
             position: 'fixed',
             top: '4rem',
             right: '3rem',
             zIndex: 9999,
             backgroundColor: document.documentElement.classList.contains('dark') ? '#374151' : '#ffffff',
-            borderColor: document.documentElement.classList.contains('dark') ? '#4b5563' : '#d1d5db'
+            borderColor: document.documentElement.classList.contains('dark') ? '#4b5563' : '#d1d5db',
+            padding: '0.25rem'
           }}
         >
-          <div className="flex p-1 rounded-lg overflow-hidden" style={{backgroundColor: 'transparent'}}>
+          <div className="flex rounded-full overflow-hidden" style={{backgroundColor: 'transparent'}}>
             {/* Claro */}
             <button
               onClick={() => handleThemeChange('light')}
-              className="flex flex-col items-center justify-center px-1.5 py-1.5 transition-all duration-200"
+              className="flex flex-col items-center justify-center gap-0.5 px-1.5 py-1 transition-all duration-200 rounded-l-full"
               style={{ 
-                minWidth: '50px',
+                minWidth: '48px',
                 backgroundColor: theme === 'light' ? '#d1d5db' : 'transparent',
                 color: document.documentElement.classList.contains('dark') ? 
                   (theme === 'light' ? '#111827' : '#f9fafb') : 
-                  (theme === 'light' ? '#111827' : '#374151'),
-                borderRadius: '8px 0 0 8px'
+                  (theme === 'light' ? '#111827' : '#374151')
               }}
             >
-              <SunIcon className="w-4 h-4 mb-0.5" />
-              <span className="text-xs font-medium" style={{ fontSize: '10px' }}>Light</span>
+              <SunIcon className="w-4 h-4" />
+              <span className="text-xs font-medium" style={{ fontSize: '11px' }}>Light</span>
             </button>
 
             {/* Oscuro */}
             <button
               onClick={() => handleThemeChange('dark')}
-              className="flex flex-col items-center justify-center px-1.5 py-1.5 transition-all duration-200"
+              className="flex flex-col items-center justify-center gap-0.5 px-1.5 py-1 transition-all duration-200"
               style={{ 
-                minWidth: '50px',
+                minWidth: '48px',
                 backgroundColor: theme === 'dark' ? '#d1d5db' : 'transparent',
                 color: document.documentElement.classList.contains('dark') ? 
                   (theme === 'dark' ? '#111827' : '#f9fafb') : 
                   (theme === 'dark' ? '#111827' : '#374151')
               }}
             >
-              <MoonIcon className="w-4 h-4 mb-0.5" />
-              <span className="text-xs font-medium" style={{ fontSize: '10px' }}>Dark</span>
+              <MoonIcon className="w-4 h-4" />
+              <span className="text-xs font-medium" style={{ fontSize: '11px' }}>Dark</span>
             </button>
 
             {/* Auto */}
             <button
               onClick={() => handleThemeChange('system')}
-              className="flex flex-col items-center justify-center px-1.5 py-1.5 transition-all duration-200"
+              className="flex flex-col items-center justify-center gap-0.5 px-1.5 py-1 transition-all duration-200 rounded-r-full"
               style={{ 
-                minWidth: '50px',
+                minWidth: '48px',
                 backgroundColor: theme === 'system' ? '#d1d5db' : 'transparent',
                 color: document.documentElement.classList.contains('dark') ? 
                   (theme === 'system' ? '#111827' : '#f9fafb') : 
-                  (theme === 'system' ? '#111827' : '#374151'),
-                borderRadius: '0 8px 8px 0'
+                  (theme === 'system' ? '#111827' : '#374151')
               }}
             >
               <svg 
-                className="w-4 h-4 mb-0.5" 
+                className="w-4 h-4" 
                 xmlns="http://www.w3.org/2000/svg" 
                 viewBox="0 0 24 24" 
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
               >
-                {/* Icono simple como el copiloto: círculo con punto central */}
                 <circle cx="12" cy="12" r="8"/>
                 <circle cx="12" cy="12" r="2" fill="currentColor"/>
               </svg>
-              <span className="text-xs font-medium" style={{ fontSize: '10px' }}>Auto</span>
+              <span className="text-xs font-medium" style={{ fontSize: '11px' }}>Auto</span>
             </button>
           </div>
         </div>
