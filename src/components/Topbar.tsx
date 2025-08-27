@@ -28,12 +28,7 @@ export default function Topbar({ onToggleSidebar }: TopbarProps) {
             <Bars3Icon style={{ width: '1.5rem', height: '1.5rem' }} />
           </button>
 
-          {/* Breadcrumb o título */}
-          <div>
-            <h1 className="topbar-title">
-              Sistema de Gestión de Tesis - UDH
-            </h1>
-          </div>
+          
         </div>
 
         {/* Lado derecho */}

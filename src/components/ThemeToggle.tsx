@@ -19,38 +19,6 @@ export default function ThemeToggle() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const getCurrentIcon = () => {
-    if (theme === 'dark') {
-      return <MoonIcon className="w-5 h-5" />;
-    } else if (theme === 'light') {
-      return <SunIcon className="w-5 h-5" />;
-    } else {
-      // System - icono giratorio pequeño
-      return (
-        <svg 
-          className="animate-spin h-5 w-5" 
-          xmlns="http://www.w3.org/2000/svg" 
-          viewBox="0 0 24 24" 
-          fill="none"
-        >
-          <circle 
-            className="opacity-25" 
-            cx="12" 
-            cy="12" 
-            r="10" 
-            stroke="currentColor" 
-            strokeWidth="4"
-          />
-          <path 
-            className="opacity-75" 
-            fill="currentColor" 
-            d="M4 12a8 8 0 0116 0 8 8 0 01-16 0z"
-          />
-        </svg>
-      );
-    }
-  };
-
   const handleThemeChange = (newTheme: 'light' | 'dark' | 'system') => {
     setTheme(newTheme);
     setIsOpen(false);
@@ -58,13 +26,51 @@ export default function ThemeToggle() {
 
   return (
     <div className="relative" ref={dropdownRef}>
-      {/* Botón principal - igual que copiloto */}
+      {/* Botón principal - exactamente como copiloto */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative z-10 flex overflow-hidden rounded-full focus:outline-none size-10 bg-gradient-to-br dark:from-gray-800 dark:to-gray-700 from-gray-100 to-gray-300 dark:text-white text-gray-900 items-center justify-center hover:shadow-md transition-shadow"
+        className="relative z-10 flex items-center justify-center overflow-hidden rounded-full focus:outline-none transition-all duration-200 hover:scale-105"
+        style={{
+          width: '40px',
+          height: '40px',
+          background: document.documentElement.classList.contains('dark') 
+            ? 'linear-gradient(135deg, #374151 0%, #111827 100%)'
+            : 'linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%)',
+          border: document.documentElement.classList.contains('dark')
+            ? '1px solid #4b5563'
+            : '1px solid #d1d5db',
+          boxShadow: document.documentElement.classList.contains('dark')
+            ? '0 2px 8px rgba(0, 0, 0, 0.3)'
+            : '0 2px 8px rgba(0, 0, 0, 0.1)',
+          color: document.documentElement.classList.contains('dark') ? '#ffffff' : '#111827'
+        }}
         title="Cambiar tema"
       >
-        {getCurrentIcon()}
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'center',
+          width: '100%',
+          height: '100%',
+          fontSize: '18px'
+        }}>
+          {theme === 'light' && (
+            <span>☀</span>
+          )}
+          {theme === 'dark' && (
+  <span style={{ 
+    display: 'inline-block',
+    color: 'currentColor',
+    transform: 'scaleX(-1)'  // invierte horizontalmente
+  }}>
+    🌙
+  </span>
+)}
+
+          {theme === 'system' && (
+            <span>⊙</span>
+          )}
+        </div>
       </button>
 
       {/* Overlay para cerrar */}
@@ -155,4 +161,5 @@ export default function ThemeToggle() {
     </div>
   );
 }
+
 
