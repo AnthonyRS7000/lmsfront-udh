@@ -5,6 +5,12 @@
   overflow: hidden;
   background-color: #f3f4f6;
   font-family: 'Roboto', 'Poppins', sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+/* Modo oscuro para layout */
+.dark .admin-layout {
+  background-color: #111827;
 }
 
 
@@ -19,8 +25,15 @@
   overflow-y: auto;
   background-color: #ffffff;
   border-right: 1px solid #e5e7eb;
-  transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, width 0.3s ease-in-out, background-color 0.3s ease;
   box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Modo oscuro para sidebar */
+.dark .admin-sidebar {
+  background-color: #1f2937;
+  border-right: 1px solid #374151;
+  box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Sidebar desktop: relative */
@@ -32,10 +45,17 @@
     background-color: #ffffff;
     border-right: 1px solid #e5e7eb;
     box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.1);
-    transition: width 0.3s ease-in-out;
+    transition: width 0.3s ease-in-out, background-color 0.3s ease;
     overflow-y: auto;
     flex-shrink: 0; /* No se contrae en el flexbox */
   }
+  
+  .dark .admin-sidebar-desktop {
+    background-color: #1f2937;
+    border-right: 1px solid #374151;
+    box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.3);
+  }
+  
   .admin-sidebar-desktop.closed {
     width: 0;
     overflow: hidden;
@@ -87,12 +107,24 @@
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   position: relative;
   z-index: 10;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.dark .admin-topbar {
+  background-color: #1f2937;
+  border-bottom: 1px solid #374151;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
 }
 
 .admin-content {
   flex: 1;
   overflow-y: auto;
   background-color: #f3f4f6;
+  transition: background-color 0.3s ease;
+}
+
+.dark .admin-content {
+  background-color: #111827;
 }
 
 /* User info section - EXACTO COMO UDH */
@@ -123,11 +155,21 @@
   color: #111827;
   margin-bottom: 0.25rem;
   line-height: 1.25;
+  transition: color 0.3s ease;
+}
+
+.dark .user-name {
+  color: #f9fafb;
 }
 
 .user-role {
   font-size: 0.75rem;
   color: #6b7280;
+  transition: color 0.3s ease;
+}
+
+.dark .user-role {
+  color: #9ca3af;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.025em;
@@ -163,6 +205,11 @@
 .nav-section-header:hover {
   background-color: #f9fafb;
   color: #111827;
+}
+
+.dark .nav-section-header:hover {
+  background-color: #374151;
+  color: #f9fafb;
 }
 
 .nav-section-header.active {
@@ -233,10 +280,19 @@
   position: relative;
 }
 
+.dark .nav-submenu-item {
+  color: #9ca3af;
+}
+
 .nav-submenu-item:hover {
   background-color: #f3f4f6;
   color: #111827;
   transform: translateX(2px);
+}
+
+.dark .nav-submenu-item:hover {
+  background-color: #374151;
+  color: #f9fafb;
 }
 
 .nav-submenu-item.active {
@@ -302,6 +358,11 @@
   background-color: #f3f4f6;
 }
 
+.dark .topbar-toggle:hover {
+  color: #f9fafb;
+  background-color: #374151;
+}
+
 .topbar-toggle:focus {
   outline: 2px solid #39B49E;
   outline-offset: 2px;
@@ -312,11 +373,21 @@
   font-weight: 600;
   color: #111827;
   margin-bottom: 0.125rem;
+  transition: color 0.3s ease;
+}
+
+.dark .topbar-title {
+  color: #f9fafb;
 }
 
 .topbar-subtitle {
   font-size: 0.875rem;
   color: #6b7280;
+  transition: color 0.3s ease;
+}
+
+.dark .topbar-subtitle {
+  color: #9ca3af;
 }
 
 .topbar-right {
@@ -344,6 +415,11 @@
   background-color: #f3f4f6;
 }
 
+.dark .topbar-notification:hover {
+  color: #f9fafb;
+  background-color: #374151;
+}
+
 .notification-dot {
   position: absolute;
   top: 0.25rem;
@@ -369,6 +445,10 @@
   background-color: #f9fafb;
 }
 
+.dark .topbar-user:hover {
+  background-color: #374151;
+}
+
 .topbar-user-avatar {
   height: 2rem;
   width: 2rem;
@@ -383,6 +463,11 @@
   font-size: 0.875rem;
   font-weight: 500;
   color: #374151;
+  transition: color 0.3s ease;
+}
+
+.dark .topbar-user-name {
+  color: #d1d5db;
 }
 
 /* Scrollbar personalizado */
@@ -400,9 +485,17 @@
   border-radius: 5px;
 }
 
+.dark .admin-sidebar::-webkit-scrollbar-thumb {
+  background: #4b5563;
+}
+
 .admin-sidebar {
   scrollbar-width: thin;
   scrollbar-color: #cccccc62 transparent;
+}
+
+.dark .admin-sidebar {
+  scrollbar-color: #4b5563 transparent;
 }
 
 /* Responsive adjustments */

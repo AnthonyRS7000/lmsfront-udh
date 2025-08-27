@@ -2,16 +2,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import DashboardPage from "./features/dashboard/DashboardPage";
 import StudentsPage from "./features/students/StudentsPage";
-import AdminTestPage from "./pages/AdminTestPage";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Ruta para probar AdminLayout */}
-        <Route path="/admin-test" element={<AdminTestPage />} />
-        
-        {/* Rutas existentes con Layout original */}
+        {/* Rutas con Layout unificado */}
         <Route path="/*" element={
           <Layout>
             <Routes>
