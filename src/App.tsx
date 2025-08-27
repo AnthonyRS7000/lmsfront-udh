@@ -3,16 +3,28 @@ import Layout from "./components/Layout";
 import DashboardPage from "./features/dashboard/DashboardPage";
 import StudentsPage from "./features/students/StudentsPage";
 
-
 function App() {
   return (
     <BrowserRouter>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<DashboardPage />} />
-          <Route path="/students" element={<StudentsPage />} />
-        </Routes>
-      </Layout>
+      <Routes>
+        {/* Rutas con Layout unificado */}
+        <Route path="/*" element={
+          <Layout>
+            <Routes>
+              <Route path="/" element={<DashboardPage />} />
+              <Route path="/students" element={<StudentsPage />} />
+              {/* Rutas para estudiante */}
+              <Route path="/estudiante/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área de Estudiante</h2><p>Aquí irán las rutas específicas del estudiante</p></div>} />
+              {/* Rutas para docente */}
+              <Route path="/docente/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área de Docente</h2><p>Aquí irán las rutas específicas del docente</p></div>} />
+              {/* Rutas para administrativo */}
+              <Route path="/admin/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área Administrativa</h2><p>Aquí irán las rutas específicas del área administrativa</p></div>} />
+              {/* Rutas para escuela */}
+              <Route path="/escuela/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área de Escuela</h2><p>Aquí irán las rutas específicas de la escuela</p></div>} />
+            </Routes>
+          </Layout>
+        } />
+      </Routes>
     </BrowserRouter>
   );
 }
