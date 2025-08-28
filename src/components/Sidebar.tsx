@@ -4,8 +4,7 @@ import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 import { 
   IconProyecto, 
   IconEjecucion, 
-  IconInforme, 
-  IconSustentacion 
+  IconInforme
 } from './icons/LmsIcons';
 import { useTheme } from '../hooks/useTheme';
 
@@ -15,20 +14,64 @@ interface SidebarProps {
   onToggle: () => void;
 }
 
-// Mock user data - EXACTO COMO UDH
-const mockUser = {
-  full_name: 'ARMANDO ROJAS LUNA',
-  role: 'Estudiante',
-  image: 'https://ui-avatars.com/api/?name=Armando+Rojas&background=39B49E&color=fff',
+// Función para detectar el rol actual basado en la ruta
+const getCurrentRole = (pathname: string): string => {
+  if (pathname.startsWith('/estudiante')) return 'estudiante';
+  if (pathname.startsWith('/docente')) return 'docente';
+  if (pathname.startsWith('/escuela')) return 'escuela';
+  if (pathname.startsWith('/facultad')) return 'facultad';
+  if (pathname.startsWith('/administrativo')) return 'administrativo';
+  return 'dashboard'; // Default para la página principal
+};
+
+// Función para obtener datos del usuario según el rol
+const getUserDataByRole = (role: string) => {
+  const users = {
+    estudiante: {
+      full_name: 'ARMANDO ROJAS LUNA',
+      role: 'Estudiante',
+      image: 'https://ui-avatars.com/api/?name=Armando+Rojas&background=39B49E&color=fff',
+    },
+    docente: {
+      full_name: 'DR. MARÍA GARCÍA',
+      role: 'Docente',
+      image: 'https://ui-avatars.com/api/?name=Maria+Garcia&background=10B981&color=fff',
+    },
+    escuela: {
+      full_name: 'ADMIN ESCUELA',
+      role: 'Escuela',
+      image: 'https://ui-avatars.com/api/?name=Admin+Escuela&background=8B5CF6&color=fff',
+    },
+    facultad: {
+      full_name: 'ADMIN FACULTAD',
+      role: 'Facultad',
+      image: 'https://ui-avatars.com/api/?name=Admin+Facultad&background=F59E0B&color=fff',
+    },
+    administrativo: {
+      full_name: 'ADMIN SISTEMA',
+      role: 'Administrativo',
+      image: 'https://ui-avatars.com/api/?name=Admin+Sistema&background=EF4444&color=fff',
+    },
+    dashboard: {
+      full_name: 'USUARIO INVITADO',
+      role: 'Seleccionar Rol',
+      image: 'https://ui-avatars.com/api/?name=Usuario+Invitado&background=6B7280&color=fff',
+    }
+  };
+  return users[role as keyof typeof users] || users.dashboard;
 };
 
 export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
   const location = useLocation();
-  const [openSections, setOpenSections] = useState<string[]>(['GestionMatricula']);
+  const [openSections, setOpenSections] = useState<string[]>([]);
   const [isDesktop, setIsDesktop] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
   const [currentTheme, setCurrentTheme] = useState<'light' | 'dark'>('light');
   const { isLoading: themeLoading } = useTheme();
+
+  // Detectar rol actual basado en la ruta
+  const currentRole = getCurrentRole(location.pathname);
+  const currentUser = getUserDataByRole(currentRole);
 
   // Detectar cambios de tema directamente en el DOM para respuesta inmediata
   useEffect(() => {
@@ -76,76 +119,107 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
     }
   }, [themeLoading]);
 
-  // Secciones de navegación - MÓDULOS REALES DEL SISTEMA
-  const sections = [
-    {
-      name: 'GestionMatricula',
-      label: 'Gestión de Matrícula',
-      icon: IconProyecto,
-      submenus: [
-        { name: 'registrarme-sistema', label: 'Registrarme al sistema', path: '/estudiante/registro' },
-        { name: 'actualizar-datos', label: 'Actualizar mis datos', path: '/estudiante/perfil' },
-        { name: 'gestion-cursos', label: 'Gestión de cursos', path: '/estudiante/cursos' },
-        { name: 'ver-cursos-semestre', label: 'Ver los cursos que llevaré en cada semestre', path: '/estudiante/cursos-semestre' },
-        { name: 'verificacion-prerequisitos', label: 'Verificación de prerrequisitos', path: '/estudiante/prerequisitos' },
-        { name: 'consulta-cupos', label: 'Consulta de cupos disponibles', path: '/estudiante/cupos' },
-        { name: 'confirmacion-matricula', label: 'Confirmación digital de matrícula', path: '/estudiante/confirmacion-matricula' },
-      ],
-    },
-    {
-      name: 'GestionRegistrosAcademicos',
-      label: 'Gestión de Registros Académicos',
-      icon: IconInforme,
-      submenus: [
-        { name: 'consulta-calificaciones', label: 'Consulta de calificaciones', path: '/estudiante/calificaciones' },
-        { name: 'historial-academico', label: 'Acceso a historial académico', path: '/estudiante/historial' },
-        { name: 'descarga-certificados', label: 'Descarga de certificados', path: '/estudiante/certificados' },
-        { name: 'solicitudes-virtuales', label: 'Solicitudes virtuales', path: '/estudiante/tramites' },
-        { name: 'reportes-academicos', label: 'Reportes académicos', path: '/estudiante/reportes' },
-      ],
-    },
-    {
-      name: 'GestionPanelVirtual',
-      label: 'Gestión del Panel Virtual',
-      icon: IconEjecucion,
-      submenus: [
-        { name: 'aula-virtual', label: 'Acceso a aulas virtuales', path: '/estudiante/aula-virtual' },
-        { name: 'clases-tiempo-real', label: 'Participación en clases en vivo', path: '/estudiante/clases-vivo' },
-        { name: 'acceso-grabaciones', label: 'Acceso a grabaciones', path: '/estudiante/grabaciones' },
-        { name: 'entrega-tareas', label: 'Entrega de tareas digitales', path: '/estudiante/tareas' },
-        { name: 'evaluaciones-automatizadas', label: 'Evaluaciones automatizadas', path: '/estudiante/evaluaciones' },
-        { name: 'participacion-foros', label: 'Participación en foros', path: '/estudiante/foros' },
-        { name: 'chat-mensajeria', label: 'Chat y mensajería interna', path: '/estudiante/mensajes' },
-        { name: 'actividades-interactivas', label: 'Actividades interactivas', path: '/estudiante/actividades' },
-      ],
-    },
-    {
-      name: 'GestionBibliotecaVirtual',
-      label: 'Gestión de Biblioteca Virtual',
-      icon: IconSustentacion,
-      submenus: [
-        { name: 'busqueda-catalogos', label: 'Búsqueda en catálogos digitales', path: '/estudiante/catalogo' },
-        { name: 'bibliotecas-externas', label: 'Acceso a bibliotecas externas', path: '/estudiante/bibliotecas-externas' },
-        { name: 'descarga-materiales', label: 'Descarga de materiales', path: '/estudiante/materiales' },
-        { name: 'reserva-materiales', label: 'Reserva de materiales digitales', path: '/estudiante/reservas' },
-        { name: 'reportes-uso', label: 'Consulta de reportes de uso', path: '/estudiante/reportes-biblioteca' },
-      ],
-    },
-    {
-      name: 'GestionPagosVirtuales',
-      label: 'Gestión de Pagos Virtuales',
-      icon: IconProyecto,
-      submenus: [
-        { name: 'pagos-linea', label: 'Pagos en línea', path: '/estudiante/pagos', badge: 2 },
-        { name: 'metodos-pago', label: 'Métodos de pago diversos', path: '/estudiante/metodos-pago' },
-        { name: 'comprobantes-automaticos', label: 'Comprobantes automáticos', path: '/estudiante/comprobantes' },
-        { name: 'historial-pagos', label: 'Historial de pagos', path: '/estudiante/historial-pagos' },
-        { name: 'alertas-vencimiento', label: 'Alertas de vencimiento', path: '/estudiante/alertas', badge: 1 },
-      ],
-    },
-  ];
+  // Función para obtener secciones según el rol
+  const getSectionsByRole = (role: string) => {
+    switch (role) {
+      case 'estudiante':
+        return [
+          {
+            name: 'GestionMatricula',
+            label: 'Gestión de Matrícula',
+            icon: IconProyecto,
+            submenus: [
+              { name: 'cursos', label: 'Mis Cursos', path: '/estudiante/cursos' },
+              { name: 'matricula', label: 'Proceso de Matrícula', path: '/estudiante/matricula' },
+            ],
+          },
+          {
+            name: 'GestionRegistros',
+            label: 'Registros Académicos',
+            icon: IconInforme,
+            submenus: [
+              { name: 'calificaciones', label: 'Mis Calificaciones', path: '/estudiante/calificaciones' },
+              { name: 'historial', label: 'Historial Académico', path: '/estudiante/historial' },
+            ],
+          },
+        ];
 
-  const toggleSection = (sectionName: string) => {
+      case 'docente':
+        return [
+          {
+            name: 'GestionCursos',
+            label: 'Gestión de Cursos',
+            icon: IconProyecto,
+            submenus: [
+              { name: 'mis-cursos', label: 'Mis Cursos', path: '/docente/cursos' },
+              { name: 'asistencia', label: 'Control de Asistencia', path: '/docente/asistencia' },
+            ],
+          },
+          {
+            name: 'Evaluaciones',
+            label: 'Evaluaciones',
+            icon: IconEjecucion,
+            submenus: [
+              { name: 'calificar', label: 'Calificar Estudiantes', path: '/docente/calificar' },
+              { name: 'reportes', label: 'Reportes de Evaluación', path: '/docente/reportes' },
+            ],
+          },
+        ];
+
+      case 'escuela':
+        return [
+          {
+            name: 'GestionEscuela',
+            label: 'Gestión de Escuela',
+            icon: IconProyecto,
+            submenus: [
+              { name: 'programas', label: 'Gestión de Programas', path: '/escuela/programas' },
+            ],
+          },
+        ];
+
+      case 'facultad':
+        return [
+          {
+            name: 'GestionFacultad',
+            label: 'Gestión de Facultad',
+            icon: IconProyecto,
+            submenus: [
+              { name: 'escuelas', label: 'Gestión de Escuelas', path: '/facultad/escuelas' },
+            ],
+          },
+        ];
+
+      case 'administrativo':
+        return [
+          {
+            name: 'GestionSistema',
+            label: 'Gestión del Sistema',
+            icon: IconProyecto,
+            submenus: [
+              { name: 'usuarios', label: 'Gestión de Usuarios', path: '/administrativo/usuarios' },
+            ],
+          },
+        ];
+
+      default:
+        return [
+          {
+            name: 'SeleccionarRol',
+            label: 'Seleccionar Rol',
+            icon: IconProyecto,
+            submenus: [
+              { name: 'dashboard', label: 'Ir al Dashboard', path: '/' },
+            ],
+          },
+        ];
+    }
+  };
+
+  // Obtener secciones dinámicas según el rol actual
+  const sections = getSectionsByRole(currentRole);
+
+  const toggleSubmenu = (sectionName: string) => {
     setOpenSections(prev => 
       prev.includes(sectionName)
         ? prev.filter(name => name !== sectionName)
@@ -226,8 +300,8 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
               {/* Avatar circular grande con sombra */}
               <div className="user-avatar-copiloto">
                 <img
-                  src={mockUser.image}
-                  alt={mockUser.full_name}
+                  src={currentUser.image}
+                  alt={currentUser.full_name}
                   className="user-avatar-image"
                 />
               </div>
@@ -235,10 +309,10 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
               {/* Información del usuario */}
               <div className="user-info-text">
                 <h2 className="user-name-copiloto">
-                  {mockUser.full_name}
+                  {currentUser.full_name}
                 </h2>
                 <p className="user-role-copiloto">
-                  {mockUser.role}
+                  {currentUser.role}
                 </p>
               </div>
             </div>
@@ -260,7 +334,7 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
                 >
                   {/* Header de la sección - ESTILO COPILOTO */}
                   <button
-                    onClick={() => toggleSection(section.name)}
+                    onClick={() => toggleSubmenu(section.name)}
                     className={`nav-section-header-copiloto group ${isSectionActive(section) ? 'active' : ''}`}
                   >
                     <div className="nav-section-content-copiloto">
@@ -299,11 +373,6 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
                             className={`nav-submenu-link-copiloto ${isActive(submenu.path) ? 'active' : ''}`}
                           >
                             <span className="nav-submenu-text">{submenu.label}</span>
-                            {submenu.badge && (
-                              <span className="nav-badge-copiloto">
-                                {submenu.badge}
-                              </span>
-                            )}
                           </Link>
                         </li>
                       ))}

@@ -69,11 +69,11 @@
 
   /* Clases utilitarias UDH */
   .main-title {
-    @apply text-4xl tracking-wide font-bold text-center text-azul dark:text-gray-400 mb-8;
+    @apply text-4xl tracking-wide font-bold text-center text-blue-600 dark:text-gray-400 mb-8;
   }
 
   .main-card {
-    @apply text-base font-Poppins text-gray-500 dark:text-gray-400;
+    @apply text-base font-sans text-gray-500 dark:text-gray-400;
   }
 
   .main-text {
@@ -93,7 +93,7 @@
   }
 
   .contenedor-principal {
-    @apply flex-1 p-6 sm:p-8 md:p-9 font-Roboto min-h-full;
+    @apply flex-1 p-6 sm:p-8 md:p-9 font-sans min-h-full;
   }
 }
 
