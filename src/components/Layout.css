@@ -5,7 +5,7 @@
   overflow: hidden;
   background-color: #f3f4f6;
   font-family: 'Roboto', 'Poppins', sans-serif;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.1s ease;
 }
 
 /* Modo oscuro para layout */
@@ -25,15 +25,28 @@
   overflow-y: auto;
   background-color: #ffffff;
   border-right: 1px solid #e5e7eb;
-  transition: transform 0.3s ease-in-out, width 0.3s ease-in-out, background-color 0.3s ease;
+  transition: transform 0.3s ease-in-out, width 0.3s ease-in-out, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
   box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Modo oscuro para sidebar */
+/* Modo oscuro para sidebar - TRANSICIÓN RÁPIDA */
 .dark .admin-sidebar {
   background-color: #1f2937;
   border-right: 1px solid #374151;
   box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* CLASES ESPECÍFICAS PARA FORZAR TEMA INMEDIATO */
+.admin-sidebar.theme-dark {
+  background-color: #1f2937 !important;
+  border-right: 1px solid #374151 !important;
+  box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+.admin-sidebar.theme-light {
+  background-color: #ffffff !important;
+  border-right: 1px solid #e5e7eb !important;
+  box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.1) !important;
 }
 
 /* Sidebar desktop: relative */
@@ -45,7 +58,7 @@
     background-color: #ffffff;
     border-right: 1px solid #e5e7eb;
     box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.1);
-    transition: width 0.3s ease-in-out, background-color 0.3s ease;
+    transition: width 0.3s ease-in-out, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
     overflow-y: auto;
     flex-shrink: 0; /* No se contrae en el flexbox */
   }
@@ -54,6 +67,19 @@
     background-color: #1f2937;
     border-right: 1px solid #374151;
     box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  /* CLASES ESPECÍFICAS PARA FORZAR TEMA INMEDIATO - DESKTOP */
+  .admin-sidebar-desktop.theme-dark {
+    background-color: #1f2937 !important;
+    border-right: 1px solid #374151 !important;
+    box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.3) !important;
+  }
+
+  .admin-sidebar-desktop.theme-light {
+    background-color: #ffffff !important;
+    border-right: 1px solid #e5e7eb !important;
+    box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.1) !important;
   }
   
   .admin-sidebar-desktop.closed {
@@ -107,7 +133,7 @@
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   position: relative;
   z-index: 10;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  transition: background-color 0.1s ease, border-color 0.1s ease, box-shadow 0.1s ease;
 }
 
 .dark .admin-topbar {
@@ -120,7 +146,7 @@
   flex: 1;
   overflow-y: auto;
   background-color: #f3f4f6;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.1s ease;
 }
 
 .dark .admin-content {
@@ -155,7 +181,7 @@
   color: #111827;
   margin-bottom: 0.25rem;
   line-height: 1.25;
-  transition: color 0.3s ease;
+  transition: color 0.1s ease;
 }
 
 .dark .user-name {
@@ -165,7 +191,7 @@
 .user-role {
   font-size: 0.75rem;
   color: #6b7280;
-  transition: color 0.3s ease;
+  transition: color 0.1s ease;
 }
 
 .dark .user-role {
@@ -373,7 +399,7 @@
   font-weight: 600;
   color: #111827;
   margin-bottom: 0.125rem;
-  transition: color 0.3s ease;
+  transition: color 0.1s ease;
 }
 
 .dark .topbar-title {
@@ -383,7 +409,7 @@
 .topbar-subtitle {
   font-size: 0.875rem;
   color: #6b7280;
-  transition: color 0.3s ease;
+  transition: color 0.1s ease;
 }
 
 .dark .topbar-subtitle {
@@ -438,7 +464,7 @@
   gap: 0.5rem;
   padding: 0.25rem 0.5rem;
   border-radius: 0.5rem;
-  transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.1s ease;
 }
 
 .topbar-user:hover {
@@ -463,14 +489,72 @@
   font-size: 0.875rem;
   font-weight: 500;
   color: #374151;
-  transition: color 0.3s ease;
+  transition: color 0.1s ease;
 }
 
 .dark .topbar-user-name {
   color: #d1d5db;
 }
 
-/* Scrollbar personalizado - ESTILO COPILOTO EXACTO */
+/* Botón de colapsar - POSICIONADO FUERA DEL SIDEBAR */
+.sidebar-collapse-button {
+  position: fixed;
+  top: 20px;
+  left: 256px; /* Ancho del sidebar (256px) */
+  z-index: 35; /* Más alto que el sidebar (z-30) */
+  
+  /* Estilos del botón */
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #374151;
+  border: 2px solid #4b5563;
+  color: white;
+  
+  /* Centrar el ícono */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Animaciones */
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+  
+  /* Hover effects */
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-collapse-button:hover {
+  background: #4b5563;
+  border-color: #6b7280;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transform: translateX(-50%) scale(1.05);
+}
+
+.sidebar-collapse-button:active {
+  transform: translateX(-50%) scale(0.95);
+}
+
+/* Responsive - ocultar en móviles */
+@media (max-width: 1024px) {
+  .sidebar-collapse-button {
+    display: none;
+  }
+}
+
+/* Tema oscuro */
+.dark .sidebar-collapse-button {
+  background: #4b5563;
+  border-color: #6b7280;
+}
+
+.dark .sidebar-collapse-button:hover {
+  background: #6b7280;
+  border-color: #9ca3af;
+}
+
+/* Scrollbar personalizado - FORZADO PARA ELIMINAR TODOS LOS ELEMENTOS */
 .admin-sidebar::-webkit-scrollbar {
   width: 4px;
 }
@@ -518,6 +602,117 @@
   background: transparent;
   border-radius: 0;
   margin: 0;
+}
+
+/* SIDEBAR LOADING SKELETON - Previene parpadeo blanco */
+.sidebar-loading {
+  padding: 1.5rem;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.skeleton-user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.skeleton-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  margin-bottom: 1rem;
+  transition: background 0.15s ease;
+}
+
+.dark .skeleton-avatar {
+  background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+  background-size: 200% 100%;
+  transition: background 0.15s ease;
+}
+
+.skeleton-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.skeleton-line {
+  height: 16px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  transition: background 0.15s ease;
+}
+
+.dark .skeleton-line {
+  background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+  background-size: 200% 100%;
+}
+
+.skeleton-line-name {
+  width: 180px;
+}
+
+.skeleton-line-role {
+  width: 100px;
+  height: 14px;
+}
+
+.skeleton-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.skeleton-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+}
+
+.skeleton-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  transition: background 0.15s ease;
+}
+
+.dark .skeleton-icon {
+  background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+  background-size: 200% 100%;
+}
+
+.skeleton-line-nav {
+  width: 140px;
+  flex: 1;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .admin-sidebar-desktop::-webkit-scrollbar-thumb {
@@ -616,7 +811,7 @@
   letter-spacing: 0.3px;
   word-break: break-words;
   color: #111827;
-  transition: color 0.3s ease;
+  transition: color 0.15s ease;
   line-height: 1.2;
 }
 
@@ -634,7 +829,7 @@
   border-bottom: 3px solid #EFB036;
   padding-bottom: 0.25rem;
   text-transform: capitalize;
-  transition: all 0.3s ease;
+  transition: color 0.15s ease, border-color 0.15s ease;
 }
 
 .dark .user-role-copiloto {
@@ -663,7 +858,7 @@
   border-radius: 0.375rem;
   border: none;
   background: transparent;
-  transition: all 0.2s ease-in-out;
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 .nav-section-header-copiloto:hover {
@@ -762,7 +957,7 @@
   font-size: 0.875rem;
   border-radius: 0.375rem;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: background-color 0.15s ease, color 0.15s ease;
   gap: 0.25rem;
   margin: 0;
   box-sizing: border-box;
