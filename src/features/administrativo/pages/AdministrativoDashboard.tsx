@@ -33,30 +33,95 @@ const adminStats = [
 
 export default function AdministrativoDashboard() {
   return (
-    <div className="contenedor-principal">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-8">
-          <h1 className="main-title">Dashboard Administrativo</h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300 text-center">
+    <div style={{
+      padding: '2rem',
+      minHeight: '100%',
+      backgroundColor: 'transparent'
+    }}>
+      <div style={{
+        maxWidth: '1200px',
+        margin: '0 auto'
+      }}>
+        <div style={{
+          marginBottom: '2rem'
+        }}>
+          <h1 style={{
+            fontSize: '2.5rem',
+            fontWeight: 'bold',
+            color: '#dc2626',
+            marginBottom: '1rem',
+            textAlign: 'center'
+          }}>
+            Dashboard Administrativo
+          </h1>
+          <p style={{
+            fontSize: '1.125rem',
+            color: '#6b7280',
+            textAlign: 'center'
+          }}>
             Configuración y monitoreo integral del sistema LMS
           </p>
         </div>
 
         {/* Estadísticas principales */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: '1.5rem',
+          marginBottom: '2rem'
+        }}>
           {adminStats.map((stat) => {
             const IconComponent = stat.icon;
+            const iconColor = stat.color === 'text-red-600' ? '#dc2626' :
+                            stat.color === 'text-blue-600' ? '#2563eb' :
+                            stat.color === 'text-green-600' ? '#16a34a' :
+                            stat.color === 'text-purple-600' ? '#9333ea' : '#6b7280';
+            
+            const bgColor = stat.bg === 'bg-red-100 dark:bg-red-900' ? '#fecaca' :
+                           stat.bg === 'bg-blue-100 dark:bg-blue-900' ? '#dbeafe' :
+                           stat.bg === 'bg-green-100 dark:bg-green-900' ? '#dcfce7' :
+                           stat.bg === 'bg-purple-100 dark:bg-purple-900' ? '#e9d5ff' : '#f3f4f6';
+            
             return (
-              <div key={stat.name} className="main-2div p-6 border border-gray-200 dark:border-gray-600">
-                <div className="flex items-center">
-                  <div className={`${stat.bg} p-3 rounded-lg`}>
-                    <IconComponent className={`w-6 h-6 ${stat.color}`} />
+              <div key={stat.name} style={{
+                backgroundColor: '#ffffff',
+                padding: '1.5rem',
+                borderRadius: '0.75rem',
+                border: '1px solid #e5e7eb',
+                boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)'
+              }}>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center'
+                }}>
+                  <div style={{
+                    backgroundColor: bgColor,
+                    padding: '0.75rem',
+                    borderRadius: '0.5rem'
+                  }}>
+                    <IconComponent style={{
+                      width: '1.5rem',
+                      height: '1.5rem',
+                      color: iconColor
+                    }} />
                   </div>
-                  <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                  <div style={{
+                    marginLeft: '1rem'
+                  }}>
+                    <p style={{
+                      fontSize: '0.875rem',
+                      fontWeight: '500',
+                      color: '#6b7280',
+                      margin: '0'
+                    }}>
                       {stat.name}
                     </p>
-                    <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                    <p style={{
+                      fontSize: '1.5rem',
+                      fontWeight: 'bold',
+                      color: '#111827',
+                      margin: '0'
+                    }}>
                       {stat.value}
                     </p>
                   </div>
@@ -67,25 +132,64 @@ export default function AdministrativoDashboard() {
         </div>
 
         {/* Secciones principales */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: '2rem'
+        }}>
           {/* Gestión de usuarios */}
-          <div className="main-2div p-6 border border-gray-200 dark:border-gray-600">
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+          <div style={{
+            backgroundColor: '#ffffff',
+            padding: '1.5rem',
+            borderRadius: '0.75rem',
+            border: '1px solid #e5e7eb',
+            boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)'
+          }}>
+            <h3 style={{
+              fontSize: '1.125rem',
+              fontWeight: 'bold',
+              color: '#111827',
+              marginBottom: '1rem'
+            }}>
               Gestión de Usuarios
             </h3>
-            <div className="space-y-3">
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.75rem'
+            }}>
               {[
                 { tipo: 'Estudiantes', cantidad: '3,850', estado: 'Activos' },
                 { tipo: 'Docentes', cantidad: '245', estado: 'Activos' },
                 { tipo: 'Administrativos', cantidad: '85', estado: 'Activos' },
                 { tipo: 'Personal TI', cantidad: '12', estado: 'Activos' }
               ].map((item, index) => (
-                <div key={index} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <div key={index} style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: '0.75rem',
+                  backgroundColor: '#f9fafb',
+                  borderRadius: '0.5rem'
+                }}>
                   <div>
-                    <span className="font-medium text-gray-900 dark:text-white block">{item.tipo}</span>
-                    <span className="text-sm text-gray-600 dark:text-gray-400">{item.estado}</span>
+                    <span style={{
+                      fontWeight: '500',
+                      color: '#111827',
+                      display: 'block'
+                    }}>{item.tipo}</span>
+                    <span style={{
+                      fontSize: '0.875rem',
+                      color: '#6b7280'
+                    }}>{item.estado}</span>
                   </div>
-                  <span className="text-sm bg-green-100 text-green-800 px-2 py-1 rounded-full">
+                  <span style={{
+                    fontSize: '0.875rem',
+                    backgroundColor: '#dcfce7',
+                    color: '#166534',
+                    padding: '0.25rem 0.5rem',
+                    borderRadius: '9999px'
+                  }}>
                     {item.cantidad}
                   </span>
                 </div>
@@ -94,23 +198,58 @@ export default function AdministrativoDashboard() {
           </div>
 
           {/* Monitoreo del sistema */}
-          <div className="main-2div p-6 border border-gray-200 dark:border-gray-600">
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+          <div style={{
+            backgroundColor: '#ffffff',
+            padding: '1.5rem',
+            borderRadius: '0.75rem',
+            border: '1px solid #e5e7eb',
+            boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)'
+          }}>
+            <h3 style={{
+              fontSize: '1.125rem',
+              fontWeight: 'bold',
+              color: '#111827',
+              marginBottom: '1rem'
+            }}>
               Estado del Sistema
             </h3>
-            <div className="space-y-3">
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.75rem'
+            }}>
               {[
                 { servicio: 'Base de Datos Principal', estado: 'Operativo', uptime: '99.9%' },
                 { servicio: 'Servidor Web', estado: 'Operativo', uptime: '99.8%' },
                 { servicio: 'Sistema de Archivos', estado: 'Operativo', uptime: '99.7%' },
                 { servicio: 'Backup Automático', estado: 'Ejecutándose', uptime: '100%' }
               ].map((item, index) => (
-                <div key={index} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <div key={index} style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: '0.75rem',
+                  backgroundColor: '#f9fafb',
+                  borderRadius: '0.5rem'
+                }}>
                   <div>
-                    <span className="font-medium text-gray-900 dark:text-white block">{item.servicio}</span>
-                    <span className="text-sm text-green-600 dark:text-green-400">{item.estado}</span>
+                    <span style={{
+                      fontWeight: '500',
+                      color: '#111827',
+                      display: 'block'
+                    }}>{item.servicio}</span>
+                    <span style={{
+                      fontSize: '0.875rem',
+                      color: '#16a34a'
+                    }}>{item.estado}</span>
                   </div>
-                  <span className="text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                  <span style={{
+                    fontSize: '0.875rem',
+                    backgroundColor: '#dbeafe',
+                    color: '#1e40af',
+                    padding: '0.25rem 0.5rem',
+                    borderRadius: '9999px'
+                  }}>
                     {item.uptime}
                   </span>
                 </div>
@@ -120,21 +259,55 @@ export default function AdministrativoDashboard() {
         </div>
 
         {/* Configuraciones y reportes */}
-        <div className="mt-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div style={{
+          marginTop: '2rem'
+        }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr 1fr',
+            gap: '2rem'
+          }}>
             {/* Configuraciones rápidas */}
-            <div className="main-2div p-6 border border-gray-200 dark:border-gray-600">
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+            <div style={{
+              backgroundColor: '#ffffff',
+              padding: '1.5rem',
+              borderRadius: '0.75rem',
+              border: '1px solid #e5e7eb',
+              boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)'
+            }}>
+              <h3 style={{
+                fontSize: '1.125rem',
+                fontWeight: 'bold',
+                color: '#111827',
+                marginBottom: '1rem'
+              }}>
                 Acciones Rápidas
               </h3>
-              <div className="space-y-2">
+              <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '0.5rem'
+              }}>
                 {[
                   'Backup Manual',
                   'Reiniciar Servicios',
                   'Limpiar Cache',
                   'Generar Reporte'
                 ].map((accion, index) => (
-                  <button key={index} className="w-full text-left p-2 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 text-sm text-gray-900 dark:text-white">
+                  <button key={index} style={{
+                    width: '100%',
+                    textAlign: 'left',
+                    padding: '0.5rem',
+                    backgroundColor: '#f9fafb',
+                    borderRadius: '0.5rem',
+                    border: 'none',
+                    fontSize: '0.875rem',
+                    color: '#111827',
+                    cursor: 'pointer',
+                    transition: 'background-color 0.2s'
+                  }}
+                  onMouseEnter={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#f3f4f6'}
+                  onMouseLeave={(e) => (e.target as HTMLButtonElement).style.backgroundColor = '#f9fafb'}>
                     {accion}
                   </button>
                 ))}
@@ -142,21 +315,40 @@ export default function AdministrativoDashboard() {
             </div>
 
             {/* Alertas del sistema */}
-            <div className="main-2div p-6 border border-gray-200 dark:border-gray-600">
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+            <div style={{
+              backgroundColor: '#ffffff',
+              padding: '1.5rem',
+              borderRadius: '0.75rem',
+              border: '1px solid #e5e7eb',
+              boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)'
+            }}>
+              <h3 style={{
+                fontSize: '1.125rem',
+                fontWeight: 'bold',
+                color: '#111827',
+                marginBottom: '1rem'
+              }}>
                 Alertas y Notificaciones
               </h3>
-              <div className="space-y-2">
+              <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '0.5rem'
+              }}>
                 {[
                   { tipo: 'Info', mensaje: 'Actualización programada esta noche' },
                   { tipo: 'Warning', mensaje: 'Espacio en disco al 75%' },
                   { tipo: 'Success', mensaje: 'Backup completado exitosamente' }
                 ].map((alerta, index) => (
-                  <div key={index} className={`p-2 rounded-lg text-sm ${
-                    alerta.tipo === 'Info' ? 'bg-blue-100 text-blue-800' :
-                    alerta.tipo === 'Warning' ? 'bg-yellow-100 text-yellow-800' :
-                    'bg-green-100 text-green-800'
-                  }`}>
+                  <div key={index} style={{
+                    padding: '0.5rem',
+                    borderRadius: '0.5rem',
+                    fontSize: '0.875rem',
+                    backgroundColor: alerta.tipo === 'Info' ? '#dbeafe' :
+                                  alerta.tipo === 'Warning' ? '#fef3c7' : '#dcfce7',
+                    color: alerta.tipo === 'Info' ? '#1e40af' :
+                          alerta.tipo === 'Warning' ? '#92400e' : '#166534'
+                  }}>
                     {alerta.mensaje}
                   </div>
                 ))}
@@ -164,26 +356,81 @@ export default function AdministrativoDashboard() {
             </div>
 
             {/* Estadísticas de uso */}
-            <div className="main-2div p-6 border border-gray-200 dark:border-gray-600">
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+            <div style={{
+              backgroundColor: '#ffffff',
+              padding: '1.5rem',
+              borderRadius: '0.75rem',
+              border: '1px solid #e5e7eb',
+              boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)'
+            }}>
+              <h3 style={{
+                fontSize: '1.125rem',
+                fontWeight: 'bold',
+                color: '#111827',
+                marginBottom: '1rem'
+              }}>
                 Uso del Sistema (Hoy)
               </h3>
-              <div className="space-y-3">
-                <div className="flex justify-between">
-                  <span className="text-sm text-gray-600 dark:text-gray-400">Logins</span>
-                  <span className="text-sm font-medium text-gray-900 dark:text-white">2,480</span>
+              <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '0.75rem'
+              }}>
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between'
+                }}>
+                  <span style={{
+                    fontSize: '0.875rem',
+                    color: '#6b7280'
+                  }}>Logins</span>
+                  <span style={{
+                    fontSize: '0.875rem',
+                    fontWeight: '500',
+                    color: '#111827'
+                  }}>2,480</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-sm text-gray-600 dark:text-gray-400">Documentos subidos</span>
-                  <span className="text-sm font-medium text-gray-900 dark:text-white">156</span>
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between'
+                }}>
+                  <span style={{
+                    fontSize: '0.875rem',
+                    color: '#6b7280'
+                  }}>Documentos subidos</span>
+                  <span style={{
+                    fontSize: '0.875rem',
+                    fontWeight: '500',
+                    color: '#111827'
+                  }}>156</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-sm text-gray-600 dark:text-gray-400">Reportes generados</span>
-                  <span className="text-sm font-medium text-gray-900 dark:text-white">24</span>
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between'
+                }}>
+                  <span style={{
+                    fontSize: '0.875rem',
+                    color: '#6b7280'
+                  }}>Reportes generados</span>
+                  <span style={{
+                    fontSize: '0.875rem',
+                    fontWeight: '500',
+                    color: '#111827'
+                  }}>24</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-sm text-gray-600 dark:text-gray-400">Errores registrados</span>
-                  <span className="text-sm font-medium text-red-600">3</span>
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between'
+                }}>
+                  <span style={{
+                    fontSize: '0.875rem',
+                    color: '#6b7280'
+                  }}>Errores registrados</span>
+                  <span style={{
+                    fontSize: '0.875rem',
+                    fontWeight: '500',
+                    color: '#dc2626'
+                  }}>3</span>
                 </div>
               </div>
             </div>

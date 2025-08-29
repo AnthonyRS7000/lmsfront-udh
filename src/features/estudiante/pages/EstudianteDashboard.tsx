@@ -33,30 +33,94 @@ const estudianteStats = [
 
 export default function EstudianteDashboard() {
   return (
-    <div className="contenedor-principal">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-8">
-          <h1 className="main-title">Dashboard del Estudiante</h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300 text-center">
+    <div style={{
+      padding: '2rem',
+      minHeight: '100%',
+      backgroundColor: 'transparent'
+    }}>
+      <div style={{
+        maxWidth: '1200px',
+        margin: '0 auto'
+      }}>
+        <div style={{
+          marginBottom: '2rem'
+        }}>
+          <h1 style={{
+            fontSize: '2.5rem',
+            fontWeight: 'bold',
+            color: '#2563eb',
+            marginBottom: '1rem',
+            textAlign: 'center'
+          }}>
+            Dashboard del Estudiante
+          </h1>
+          <p style={{
+            fontSize: '1.125rem',
+            color: '#6b7280',
+            textAlign: 'center'
+          }}>
             Bienvenido a tu panel de control académico
           </p>
         </div>
 
         {/* Estadísticas principales */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: '1.5rem',
+          marginBottom: '2rem'
+        }}>
           {estudianteStats.map((stat) => {
             const IconComponent = stat.icon;
+            const iconColor = stat.color === 'text-blue-600' ? '#2563eb' :
+                            stat.color === 'text-red-600' ? '#dc2626' :
+                            stat.color === 'text-yellow-600' ? '#d97706' :
+                            stat.color === 'text-green-600' ? '#16a34a' : '#6b7280';
+            
+            const bgColor = stat.bg === 'bg-blue-100 dark:bg-blue-900' ? '#dbeafe' :
+                          stat.bg === 'bg-red-100 dark:bg-red-900' ? '#fecaca' :
+                          stat.bg === 'bg-yellow-100 dark:bg-yellow-900' ? '#fef3c7' :
+                          stat.bg === 'bg-green-100 dark:bg-green-900' ? '#dcfce7' : '#f3f4f6';
+            
             return (
-              <div key={stat.name} className="main-2div p-6 border border-gray-200 dark:border-gray-600">
-                <div className="flex items-center">
-                  <div className={`${stat.bg} p-3 rounded-lg`}>
-                    <IconComponent className={`w-6 h-6 ${stat.color}`} />
+              <div key={stat.name} style={{
+                backgroundColor: 'white',
+                borderRadius: '1.5rem',
+                padding: '1.5rem',
+                border: '1px solid #e5e7eb',
+                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+              }}>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center'
+                }}>
+                  <div style={{
+                    backgroundColor: bgColor,
+                    padding: '0.75rem',
+                    borderRadius: '0.5rem'
+                  }}>
+                    <IconComponent style={{
+                      width: '1.5rem',
+                      height: '1.5rem',
+                      color: iconColor
+                    }} />
                   </div>
-                  <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                  <div style={{
+                    marginLeft: '1rem'
+                  }}>
+                    <p style={{
+                      fontSize: '0.875rem',
+                      fontWeight: '500',
+                      color: '#6b7280',
+                      marginBottom: '0.25rem'
+                    }}>
                       {stat.name}
                     </p>
-                    <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                    <p style={{
+                      fontSize: '1.5rem',
+                      fontWeight: 'bold',
+                      color: '#1f2937'
+                    }}>
                       {stat.value}
                     </p>
                   </div>
@@ -67,39 +131,112 @@ export default function EstudianteDashboard() {
         </div>
 
         {/* Secciones principales */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
+          gap: '2rem'
+        }}>
           {/* Cursos recientes */}
-          <div className="main-2div p-6 border border-gray-200 dark:border-gray-600">
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+          <div style={{
+            backgroundColor: 'white',
+            borderRadius: '1.5rem',
+            padding: '1.5rem',
+            border: '1px solid #e5e7eb',
+            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+          }}>
+            <h3 style={{
+              fontSize: '1.125rem',
+              fontWeight: 'bold',
+              color: '#1f2937',
+              marginBottom: '1rem'
+            }}>
               Cursos Activos
             </h3>
-            <div className="space-y-3">
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.75rem'
+            }}>
               {['Cálculo I', 'Programación Web', 'Base de Datos', 'Inglés Técnico'].map((curso, index) => (
-                <div key={index} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                  <span className="font-medium text-gray-900 dark:text-white">{curso}</span>
-                  <span className="text-sm text-blue-600 dark:text-blue-400">Ver más</span>
+                <div key={index} style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: '0.75rem',
+                  backgroundColor: '#f9fafb',
+                  borderRadius: '0.5rem'
+                }}>
+                  <span style={{
+                    fontWeight: '500',
+                    color: '#1f2937'
+                  }}>{curso}</span>
+                  <span style={{
+                    fontSize: '0.875rem',
+                    color: '#2563eb',
+                    cursor: 'pointer'
+                  }}>Ver más</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Tareas pendientes */}
-          <div className="main-2div p-6 border border-gray-200 dark:border-gray-600">
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+          <div style={{
+            backgroundColor: 'white',
+            borderRadius: '1.5rem',
+            padding: '1.5rem',
+            border: '1px solid #e5e7eb',
+            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+          }}>
+            <h3 style={{
+              fontSize: '1.125rem',
+              fontWeight: 'bold',
+              color: '#1f2937',
+              marginBottom: '1rem'
+            }}>
               Tareas Pendientes
             </h3>
-            <div className="space-y-3">
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.75rem'
+            }}>
               {[
                 { tarea: 'Ejercicios de Cálculo', fecha: 'Vence: 2 días' },
                 { tarea: 'Proyecto Web Final', fecha: 'Vence: 1 semana' },
                 { tarea: 'Ensayo de Base de Datos', fecha: 'Vence: 3 días' }
               ].map((item, index) => (
-                <div key={index} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <div key={index} style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: '0.75rem',
+                  backgroundColor: '#f9fafb',
+                  borderRadius: '0.5rem'
+                }}>
                   <div>
-                    <span className="font-medium text-gray-900 dark:text-white block">{item.tarea}</span>
-                    <span className="text-sm text-red-600 dark:text-red-400">{item.fecha}</span>
+                    <span style={{
+                      fontWeight: '500',
+                      color: '#1f2937',
+                      display: 'block'
+                    }}>{item.tarea}</span>
+                    <span style={{
+                      fontSize: '0.875rem',
+                      color: '#dc2626'
+                    }}>{item.fecha}</span>
                   </div>
-                  <button className="text-sm bg-blue-600 text-white px-3 py-1 rounded-lg hover:bg-blue-700">
+                  <button style={{
+                    fontSize: '0.875rem',
+                    backgroundColor: '#2563eb',
+                    color: 'white',
+                    padding: '0.25rem 0.75rem',
+                    borderRadius: '0.5rem',
+                    border: 'none',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1d4ed8'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#2563eb'}
+                  >
                     Ver
                   </button>
                 </div>
@@ -109,20 +246,51 @@ export default function EstudianteDashboard() {
         </div>
 
         {/* Calendario de próximos eventos */}
-        <div className="mt-8 main-2div p-6 border border-gray-200 dark:border-gray-600">
-          <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+        <div style={{
+          marginTop: '2rem',
+          backgroundColor: 'white',
+          borderRadius: '1.5rem',
+          padding: '1.5rem',
+          border: '1px solid #e5e7eb',
+          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+        }}>
+          <h3 style={{
+            fontSize: '1.125rem',
+            fontWeight: 'bold',
+            color: '#1f2937',
+            marginBottom: '1rem'
+          }}>
             Próximos Eventos
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '1rem'
+          }}>
             {[
               { evento: 'Examen de Cálculo I', fecha: '15 Marzo 2025', hora: '08:00 AM' },
               { evento: 'Presentación Proyecto Web', fecha: '18 Marzo 2025', hora: '10:00 AM' },
               { evento: 'Entrega Final BD', fecha: '20 Marzo 2025', hora: '11:59 PM' }
             ].map((evento, index) => (
-              <div key={index} className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                <h4 className="font-medium text-gray-900 dark:text-white">{evento.evento}</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{evento.fecha}</p>
-                <p className="text-sm text-blue-600 dark:text-blue-400">{evento.hora}</p>
+              <div key={index} style={{
+                padding: '1rem',
+                backgroundColor: '#f9fafb',
+                borderRadius: '0.5rem'
+              }}>
+                <h4 style={{
+                  fontWeight: '500',
+                  color: '#1f2937',
+                  marginBottom: '0.25rem'
+                }}>{evento.evento}</h4>
+                <p style={{
+                  fontSize: '0.875rem',
+                  color: '#6b7280',
+                  marginBottom: '0.25rem'
+                }}>{evento.fecha}</p>
+                <p style={{
+                  fontSize: '0.875rem',
+                  color: '#2563eb'
+                }}>{evento.hora}</p>
               </div>
             ))}
           </div>

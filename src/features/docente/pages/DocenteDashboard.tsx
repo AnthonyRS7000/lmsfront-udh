@@ -33,30 +33,94 @@ const docenteStats = [
 
 export default function DocenteDashboard() {
   return (
-    <div className="contenedor-principal">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-8">
-          <h1 className="main-title">Dashboard del Docente</h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300 text-center">
+    <div style={{
+      padding: '2rem',
+      minHeight: '100%',
+      backgroundColor: 'transparent'
+    }}>
+      <div style={{
+        maxWidth: '1200px',
+        margin: '0 auto'
+      }}>
+        <div style={{
+          marginBottom: '2rem'
+        }}>
+          <h1 style={{
+            fontSize: '2.5rem',
+            fontWeight: 'bold',
+            color: '#2563eb',
+            marginBottom: '1rem',
+            textAlign: 'center'
+          }}>
+            Dashboard del Docente
+          </h1>
+          <p style={{
+            fontSize: '1.125rem',
+            color: '#6b7280',
+            textAlign: 'center'
+          }}>
             Panel de control para gestión académica y evaluación
           </p>
         </div>
 
         {/* Estadísticas principales */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: '1.5rem',
+          marginBottom: '2rem'
+        }}>
           {docenteStats.map((stat) => {
             const IconComponent = stat.icon;
+            const iconColor = stat.color === 'text-green-600' ? '#16a34a' :
+                            stat.color === 'text-blue-600' ? '#2563eb' :
+                            stat.color === 'text-yellow-600' ? '#d97706' :
+                            stat.color === 'text-purple-600' ? '#9333ea' : '#6b7280';
+            
+            const bgColor = stat.bg === 'bg-green-100 dark:bg-green-900' ? '#dcfce7' :
+                          stat.bg === 'bg-blue-100 dark:bg-blue-900' ? '#dbeafe' :
+                          stat.bg === 'bg-yellow-100 dark:bg-yellow-900' ? '#fef3c7' :
+                          stat.bg === 'bg-purple-100 dark:bg-purple-900' ? '#f3e8ff' : '#f3f4f6';
+            
             return (
-              <div key={stat.name} className="main-2div p-6 border border-gray-200 dark:border-gray-600">
-                <div className="flex items-center">
-                  <div className={`${stat.bg} p-3 rounded-lg`}>
-                    <IconComponent className={`w-6 h-6 ${stat.color}`} />
+              <div key={stat.name} style={{
+                backgroundColor: 'white',
+                borderRadius: '1.5rem',
+                padding: '1.5rem',
+                border: '1px solid #e5e7eb',
+                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+              }}>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center'
+                }}>
+                  <div style={{
+                    backgroundColor: bgColor,
+                    padding: '0.75rem',
+                    borderRadius: '0.5rem'
+                  }}>
+                    <IconComponent style={{
+                      width: '1.5rem',
+                      height: '1.5rem',
+                      color: iconColor
+                    }} />
                   </div>
-                  <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                  <div style={{
+                    marginLeft: '1rem'
+                  }}>
+                    <p style={{
+                      fontSize: '0.875rem',
+                      fontWeight: '500',
+                      color: '#6b7280',
+                      marginBottom: '0.25rem'
+                    }}>
                       {stat.name}
                     </p>
-                    <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                    <p style={{
+                      fontSize: '1.5rem',
+                      fontWeight: 'bold',
+                      color: '#1f2937'
+                    }}>
                       {stat.value}
                     </p>
                   </div>
@@ -67,25 +131,69 @@ export default function DocenteDashboard() {
         </div>
 
         {/* Secciones principales */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
+          gap: '2rem'
+        }}>
           {/* Cursos que enseña */}
-          <div className="main-2div p-6 border border-gray-200 dark:border-gray-600">
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+          <div style={{
+            backgroundColor: 'white',
+            borderRadius: '1.5rem',
+            padding: '1.5rem',
+            border: '1px solid #e5e7eb',
+            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+          }}>
+            <h3 style={{
+              fontSize: '1.125rem',
+              fontWeight: 'bold',
+              color: '#1f2937',
+              marginBottom: '1rem'
+            }}>
               Mis Cursos
             </h3>
-            <div className="space-y-3">
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.75rem'
+            }}>
               {[
                 { curso: 'Programación Web Avanzada', estudiantes: '45' },
                 { curso: 'Base de Datos II', estudiantes: '38' },
                 { curso: 'Ingeniería de Software', estudiantes: '52' },
                 { curso: 'Sistemas Distribuidos', estudiantes: '45' }
               ].map((item, index) => (
-                <div key={index} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <div key={index} style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: '0.75rem',
+                  backgroundColor: '#f9fafb',
+                  borderRadius: '0.5rem'
+                }}>
                   <div>
-                    <span className="font-medium text-gray-900 dark:text-white block">{item.curso}</span>
-                    <span className="text-sm text-gray-600 dark:text-gray-400">{item.estudiantes} estudiantes</span>
+                    <span style={{
+                      fontWeight: '500',
+                      color: '#1f2937',
+                      display: 'block'
+                    }}>{item.curso}</span>
+                    <span style={{
+                      fontSize: '0.875rem',
+                      color: '#6b7280'
+                    }}>{item.estudiantes} estudiantes</span>
                   </div>
-                  <button className="text-sm bg-green-600 text-white px-3 py-1 rounded-lg hover:bg-green-700">
+                  <button style={{
+                    fontSize: '0.875rem',
+                    backgroundColor: '#16a34a',
+                    color: 'white',
+                    padding: '0.25rem 0.75rem',
+                    borderRadius: '0.5rem',
+                    border: 'none',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#15803d'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#16a34a'}
+                  >
                     Gestionar
                   </button>
                 </div>
@@ -94,22 +202,62 @@ export default function DocenteDashboard() {
           </div>
 
           {/* Tareas por revisar */}
-          <div className="main-2div p-6 border border-gray-200 dark:border-gray-600">
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+          <div style={{
+            backgroundColor: 'white',
+            borderRadius: '1.5rem',
+            padding: '1.5rem',
+            border: '1px solid #e5e7eb',
+            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+          }}>
+            <h3 style={{
+              fontSize: '1.125rem',
+              fontWeight: 'bold',
+              color: '#1f2937',
+              marginBottom: '1rem'
+            }}>
               Pendientes de Revisión
             </h3>
-            <div className="space-y-3">
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.75rem'
+            }}>
               {[
                 { tarea: 'Proyecto Final - Web Avanzada', cantidad: '12 entregas' },
                 { tarea: 'Examen Parcial - Base de Datos', cantidad: '8 exámenes' },
                 { tarea: 'Ensayo - Ing. Software', cantidad: '5 ensayos' }
               ].map((item, index) => (
-                <div key={index} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <div key={index} style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: '0.75rem',
+                  backgroundColor: '#f9fafb',
+                  borderRadius: '0.5rem'
+                }}>
                   <div>
-                    <span className="font-medium text-gray-900 dark:text-white block">{item.tarea}</span>
-                    <span className="text-sm text-yellow-600 dark:text-yellow-400">{item.cantidad}</span>
+                    <span style={{
+                      fontWeight: '500',
+                      color: '#1f2937',
+                      display: 'block'
+                    }}>{item.tarea}</span>
+                    <span style={{
+                      fontSize: '0.875rem',
+                      color: '#d97706'
+                    }}>{item.cantidad}</span>
                   </div>
-                  <button className="text-sm bg-yellow-600 text-white px-3 py-1 rounded-lg hover:bg-yellow-700">
+                  <button style={{
+                    fontSize: '0.875rem',
+                    backgroundColor: '#d97706',
+                    color: 'white',
+                    padding: '0.25rem 0.75rem',
+                    borderRadius: '0.5rem',
+                    border: 'none',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#b45309'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#d97706'}
+                  >
                     Revisar
                   </button>
                 </div>
@@ -119,11 +267,27 @@ export default function DocenteDashboard() {
         </div>
 
         {/* Horario de clases */}
-        <div className="mt-8 main-2div p-6 border border-gray-200 dark:border-gray-600">
-          <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+        <div style={{
+          marginTop: '2rem',
+          backgroundColor: 'white',
+          borderRadius: '1.5rem',
+          padding: '1.5rem',
+          border: '1px solid #e5e7eb',
+          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+        }}>
+          <h3 style={{
+            fontSize: '1.125rem',
+            fontWeight: 'bold',
+            color: '#1f2937',
+            marginBottom: '1rem'
+          }}>
             Horario de Clases - Esta Semana
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gap: '1rem'
+          }}>
             {[
               { dia: 'Lunes', clases: ['Web Avanzada 08:00', 'Base de Datos 14:00'] },
               { dia: 'Martes', clases: ['Ing. Software 10:00'] },
@@ -131,10 +295,22 @@ export default function DocenteDashboard() {
               { dia: 'Jueves', clases: ['Base de Datos 14:00'] },
               { dia: 'Viernes', clases: ['Ing. Software 10:00', 'Sistemas Dist. 16:00'] }
             ].map((dia, index) => (
-              <div key={index} className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                <h4 className="font-medium text-gray-900 dark:text-white mb-2">{dia.dia}</h4>
+              <div key={index} style={{
+                padding: '1rem',
+                backgroundColor: '#f9fafb',
+                borderRadius: '0.5rem'
+              }}>
+                <h4 style={{
+                  fontWeight: '500',
+                  color: '#1f2937',
+                  marginBottom: '0.5rem'
+                }}>{dia.dia}</h4>
                 {dia.clases.map((clase, idx) => (
-                  <p key={idx} className="text-sm text-gray-600 dark:text-gray-400 mb-1">{clase}</p>
+                  <p key={idx} style={{
+                    fontSize: '0.875rem',
+                    color: '#6b7280',
+                    marginBottom: '0.25rem'
+                  }}>{clase}</p>
                 ))}
               </div>
             ))}

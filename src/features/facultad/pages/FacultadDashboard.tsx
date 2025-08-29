@@ -33,30 +33,94 @@ const facultadStats = [
 
 export default function FacultadDashboard() {
   return (
-    <div className="contenedor-principal">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-8">
-          <h1 className="main-title">Dashboard de la Facultad</h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300 text-center">
+    <div style={{
+      padding: '2rem',
+      minHeight: '100%',
+      backgroundColor: 'transparent'
+    }}>
+      <div style={{
+        maxWidth: '1200px',
+        margin: '0 auto'
+      }}>
+        <div style={{
+          marginBottom: '2rem'
+        }}>
+          <h1 style={{
+            fontSize: '2.5rem',
+            fontWeight: 'bold',
+            color: '#2563eb',
+            marginBottom: '1rem',
+            textAlign: 'center'
+          }}>
+            Dashboard de la Facultad
+          </h1>
+          <p style={{
+            fontSize: '1.125rem',
+            color: '#6b7280',
+            textAlign: 'center'
+          }}>
             Gestión integral de escuelas y recursos académicos
           </p>
         </div>
 
         {/* Estadísticas principales */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: '1.5rem',
+          marginBottom: '2rem'
+        }}>
           {facultadStats.map((stat) => {
             const IconComponent = stat.icon;
+            const iconColor = stat.color === 'text-orange-600' ? '#ea580c' :
+                            stat.color === 'text-blue-600' ? '#2563eb' :
+                            stat.color === 'text-green-600' ? '#16a34a' :
+                            stat.color === 'text-purple-600' ? '#9333ea' : '#6b7280';
+            
+            const bgColor = stat.bg === 'bg-orange-100 dark:bg-orange-900' ? '#fed7aa' :
+                          stat.bg === 'bg-blue-100 dark:bg-blue-900' ? '#dbeafe' :
+                          stat.bg === 'bg-green-100 dark:bg-green-900' ? '#dcfce7' :
+                          stat.bg === 'bg-purple-100 dark:bg-purple-900' ? '#f3e8ff' : '#f3f4f6';
+            
             return (
-              <div key={stat.name} className="main-2div p-6 border border-gray-200 dark:border-gray-600">
-                <div className="flex items-center">
-                  <div className={`${stat.bg} p-3 rounded-lg`}>
-                    <IconComponent className={`w-6 h-6 ${stat.color}`} />
+              <div key={stat.name} style={{
+                backgroundColor: 'white',
+                borderRadius: '1.5rem',
+                padding: '1.5rem',
+                border: '1px solid #e5e7eb',
+                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+              }}>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center'
+                }}>
+                  <div style={{
+                    backgroundColor: bgColor,
+                    padding: '0.75rem',
+                    borderRadius: '0.5rem'
+                  }}>
+                    <IconComponent style={{
+                      width: '1.5rem',
+                      height: '1.5rem',
+                      color: iconColor
+                    }} />
                   </div>
-                  <div className="ml-4">
-                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                  <div style={{
+                    marginLeft: '1rem'
+                  }}>
+                    <p style={{
+                      fontSize: '0.875rem',
+                      fontWeight: '500',
+                      color: '#6b7280',
+                      marginBottom: '0.25rem'
+                    }}>
                       {stat.name}
                     </p>
-                    <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                    <p style={{
+                      fontSize: '1.5rem',
+                      fontWeight: 'bold',
+                      color: '#1f2937'
+                    }}>
                       {stat.value}
                     </p>
                   </div>
@@ -67,25 +131,64 @@ export default function FacultadDashboard() {
         </div>
 
         {/* Secciones principales */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
+          gap: '2rem'
+        }}>
           {/* Escuelas de la facultad */}
-          <div className="main-2div p-6 border border-gray-200 dark:border-gray-600">
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+          <div style={{
+            backgroundColor: 'white',
+            borderRadius: '1.5rem',
+            padding: '1.5rem',
+            border: '1px solid #e5e7eb',
+            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+          }}>
+            <h3 style={{
+              fontSize: '1.125rem',
+              fontWeight: 'bold',
+              color: '#1f2937',
+              marginBottom: '1rem'
+            }}>
               Escuelas de la Facultad
             </h3>
-            <div className="space-y-3">
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.75rem'
+            }}>
               {[
                 { escuela: 'Ingeniería de Sistemas', estudiantes: '1,250', presupuesto: '$650K' },
                 { escuela: 'Ingeniería Industrial', estudiantes: '980', presupuesto: '$520K' },
                 { escuela: 'Ingeniería Civil', estudiantes: '1,100', presupuesto: '$580K' },
                 { escuela: 'Arquitectura', estudiantes: '520', presupuesto: '$380K' }
               ].map((item, index) => (
-                <div key={index} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <div key={index} style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: '0.75rem',
+                  backgroundColor: '#f9fafb',
+                  borderRadius: '0.5rem'
+                }}>
                   <div>
-                    <span className="font-medium text-gray-900 dark:text-white block">{item.escuela}</span>
-                    <span className="text-sm text-gray-600 dark:text-gray-400">{item.estudiantes} estudiantes</span>
+                    <span style={{
+                      fontWeight: '500',
+                      color: '#1f2937',
+                      display: 'block'
+                    }}>{item.escuela}</span>
+                    <span style={{
+                      fontSize: '0.875rem',
+                      color: '#6b7280'
+                    }}>{item.estudiantes} estudiantes</span>
                   </div>
-                  <span className="text-sm bg-green-100 text-green-800 px-2 py-1 rounded-full">
+                  <span style={{
+                    fontSize: '0.875rem',
+                    backgroundColor: '#dcfce7',
+                    color: '#166534',
+                    padding: '0.25rem 0.5rem',
+                    borderRadius: '9999px'
+                  }}>
                     {item.presupuesto}
                   </span>
                 </div>
@@ -94,23 +197,58 @@ export default function FacultadDashboard() {
           </div>
 
           {/* Proyectos estratégicos */}
-          <div className="main-2div p-6 border border-gray-200 dark:border-gray-600">
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+          <div style={{
+            backgroundColor: 'white',
+            borderRadius: '1.5rem',
+            padding: '1.5rem',
+            border: '1px solid #e5e7eb',
+            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+          }}>
+            <h3 style={{
+              fontSize: '1.125rem',
+              fontWeight: 'bold',
+              color: '#1f2937',
+              marginBottom: '1rem'
+            }}>
               Proyectos Estratégicos
             </h3>
-            <div className="space-y-3">
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.75rem'
+            }}>
               {[
                 { proyecto: 'Modernización Laboratorios', estado: 'En Progreso', avance: '65%' },
                 { proyecto: 'Campus Digital', estado: 'Planificación', avance: '25%' },
                 { proyecto: 'Centro de Investigación', estado: 'En Progreso', avance: '80%' },
                 { proyecto: 'Programa Intercambio', estado: 'Completado', avance: '100%' }
               ].map((item, index) => (
-                <div key={index} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <div key={index} style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: '0.75rem',
+                  backgroundColor: '#f9fafb',
+                  borderRadius: '0.5rem'
+                }}>
                   <div>
-                    <span className="font-medium text-gray-900 dark:text-white block">{item.proyecto}</span>
-                    <span className="text-sm text-gray-600 dark:text-gray-400">{item.estado}</span>
+                    <span style={{
+                      fontWeight: '500',
+                      color: '#1f2937',
+                      display: 'block'
+                    }}>{item.proyecto}</span>
+                    <span style={{
+                      fontSize: '0.875rem',
+                      color: '#6b7280'
+                    }}>{item.estado}</span>
                   </div>
-                  <span className="text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                  <span style={{
+                    fontSize: '0.875rem',
+                    backgroundColor: '#dbeafe',
+                    color: '#1e40af',
+                    padding: '0.25rem 0.5rem',
+                    borderRadius: '9999px'
+                  }}>
                     {item.avance}
                   </span>
                 </div>
@@ -120,26 +258,90 @@ export default function FacultadDashboard() {
         </div>
 
         {/* Indicadores de gestión */}
-        <div className="mt-8 main-2div p-6 border border-gray-200 dark:border-gray-600">
-          <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+        <div style={{
+          marginTop: '2rem',
+          backgroundColor: 'white',
+          borderRadius: '1.5rem',
+          padding: '1.5rem',
+          border: '1px solid #e5e7eb',
+          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+        }}>
+          <h3 style={{
+            fontSize: '1.125rem',
+            fontWeight: 'bold',
+            color: '#1f2937',
+            marginBottom: '1rem'
+          }}>
             Indicadores de Gestión Anual
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div className="text-center p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
-              <h4 className="text-2xl font-bold text-orange-600">89%</h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Retención Estudiantil</p>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gap: '1.5rem'
+          }}>
+            <div style={{
+              textAlign: 'center',
+              padding: '1rem',
+              backgroundColor: '#f9fafb',
+              borderRadius: '0.5rem'
+            }}>
+              <h4 style={{
+                fontSize: '1.5rem',
+                fontWeight: 'bold',
+                color: '#ea580c'
+              }}>89%</h4>
+              <p style={{
+                fontSize: '0.875rem',
+                color: '#6b7280'
+              }}>Retención Estudiantil</p>
             </div>
-            <div className="text-center p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
-              <h4 className="text-2xl font-bold text-green-600">$2.1M</h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Ingresos Generados</p>
+            <div style={{
+              textAlign: 'center',
+              padding: '1rem',
+              backgroundColor: '#f9fafb',
+              borderRadius: '0.5rem'
+            }}>
+              <h4 style={{
+                fontSize: '1.5rem',
+                fontWeight: 'bold',
+                color: '#16a34a'
+              }}>$2.1M</h4>
+              <p style={{
+                fontSize: '0.875rem',
+                color: '#6b7280'
+              }}>Ingresos Generados</p>
             </div>
-            <div className="text-center p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
-              <h4 className="text-2xl font-bold text-blue-600">95%</h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Satisfacción Docente</p>
+            <div style={{
+              textAlign: 'center',
+              padding: '1rem',
+              backgroundColor: '#f9fafb',
+              borderRadius: '0.5rem'
+            }}>
+              <h4 style={{
+                fontSize: '1.5rem',
+                fontWeight: 'bold',
+                color: '#2563eb'
+              }}>95%</h4>
+              <p style={{
+                fontSize: '0.875rem',
+                color: '#6b7280'
+              }}>Satisfacción Docente</p>
             </div>
-            <div className="text-center p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
-              <h4 className="text-2xl font-bold text-purple-600">12</h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Nuevos Convenios</p>
+            <div style={{
+              textAlign: 'center',
+              padding: '1rem',
+              backgroundColor: '#f9fafb',
+              borderRadius: '0.5rem'
+            }}>
+              <h4 style={{
+                fontSize: '1.5rem',
+                fontWeight: 'bold',
+                color: '#9333ea'
+              }}>12</h4>
+              <p style={{
+                fontSize: '0.875rem',
+                color: '#6b7280'
+              }}>Nuevos Convenios</p>
             </div>
           </div>
         </div>
