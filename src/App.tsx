@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
+import LandingPage from "./pages/LandingPage";
 import DashboardPage from "./features/dashboard/DashboardPage";
 import StudentsPage from "./features/students/StudentsPage";
 
@@ -14,11 +15,14 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Landing Page sin Layout */}
+        <Route path="/" element={<LandingPage />} />
+        
         {/* Rutas con Layout unificado */}
         <Route path="/*" element={
           <Layout>
             <Routes>
-              <Route path="/" element={<DashboardPage />} />
+              <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/students" element={<StudentsPage />} />
               
               {/* Dashboards específicos por rol */}

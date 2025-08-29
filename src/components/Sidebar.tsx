@@ -481,7 +481,7 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
             label: 'Seleccionar Rol',
             icon: IconProyecto,
             submenus: [
-              { name: 'dashboard', label: 'Ir al Dashboard', path: '/' },
+              { name: 'dashboard', label: 'Ir al Dashboard', path: '/dashboard' },
             ],
           },
         ];
