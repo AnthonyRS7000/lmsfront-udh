@@ -1,0 +1,109 @@
+.login-container {
+  min-height: 100vh;
+  height: 100vh; 
+  width: 100vw; 
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  background: url('https://graduados.udh.edu.pe/views/img/slides/1.jpg') center/cover no-repeat;
+  overflow: hidden;
+}
+
+.login-content {
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  backdrop-filter: blur(16px);
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  padding: 2rem;
+  background: rgba(255,255,255,0.15);
+}
+
+.login-title {
+  font-size: 2rem;
+  font-family: serif;
+  text-align: center;
+  color: #059669;
+  font-weight: bold;
+}
+
+.login-subtitle {
+  text-align: center;
+  font-family: serif;
+  color: #fff;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+.login-domain {
+  font-weight: 600;
+  font-style: italic;
+}
+
+.login-google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid #fff;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  background: #fff;
+  cursor: pointer;
+}
+
+.login-google-btn:hover {
+  background: rgba(57, 51, 54, 0.62);
+}
+
+.login-google-btn:hover .login-google-text {
+  color: #fff;
+}
+
+.login-google-icon {
+  height: 20px;
+}
+
+.login-google-text {
+  font-weight: 500;
+  font-family: serif;
+  color: #059669;
+}
+
+.login-google-text:hover {
+    color: #fff
+}
+
+.login-help {
+  text-align: center;
+  font-family: serif;
+  font-size: 0.95rem;
+  color: #fff;
+  margin-top: 1.5rem;
+}
+
+.login-help-link {
+  color: #ECC138;
+  font-family: serif;
+  text-decoration: none;
+}
+
+.login-help-link:hover {
+  text-decoration: underline;
+}

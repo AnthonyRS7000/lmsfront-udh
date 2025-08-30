@@ -146,7 +146,7 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
 
       case 'docente':
         return [
-          {
+          {/*
             name: 'GestionCursos',
             label: 'Gestión de Cursos',
             icon: IconProyecto,
@@ -156,12 +156,63 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
             ],
           },
           {
+            name: 'GestionHorarios',
+            label: 'Gestión de Horarios',
+            icon: IconInforme,
+            submenus: [
+              { name: 'ver-horarios', label: 'Ver Horarios', path: '/docente/horarios' },
+              { name: 'horarios-disponibles', label: 'Asignar Mis Horas Disponibles', path: '/docente/horarios-disponibles' },
+            ],
+          },
+          {
             name: 'Evaluaciones',
             label: 'Evaluaciones',
             icon: IconEjecucion,
             submenus: [
               { name: 'calificar', label: 'Calificar Estudiantes', path: '/docente/calificar' },
               { name: 'reportes', label: 'Reportes de Evaluación', path: '/docente/reportes' },
+            ],
+          */
+            name: 'PerfilDocente',
+            label: 'Perfil Docente',
+            icon: IconProyecto,
+            submenus: [
+              { name: 'mi-perfil', label: 'Mi Perfil', path: '/docente/perfil' },
+            ],
+          },
+          {
+            name: 'GestionDocente',
+            label: 'Gestión Docente',
+            icon: IconProyecto,
+            submenus: [
+              { name: 'horas-disponible', label: 'Horas Disponibles', path: '/docente/horas_disponibles' },
+              { name: 'mis-cursos', label: 'Mis Cursos', path: '/docente/cursos' },
+              { name: 'mis-silabos', label: 'Mis Silabos', path: '/docente/silabos' },
+              { name: 'mi-horario', label: 'Mi Horario', path: '/docente/horario' },
+              { name: 'mi-desempeno', label: 'Mi Desempeño', path: '/docente/desenpeno' },
+              { name: 'reportes-acividad', label: 'Reportes de Actividad', path: '/docente/reportes' },
+            ],
+          },
+          {
+            name: 'RegistroAcademico',
+            label: 'Registro Academico',
+            icon: IconProyecto,
+            submenus: [
+              { name: 'registrar-notas', label: 'Registrar Mis Notas', path: '/docente/registrar-notas' },
+              { name: 'carpeta-pedagogica', label: 'Carpeta Pedagogica', path: '/docente/carpeta' },
+              { name: 'firma-actas', label: 'Firmar Actas', path: '/docente/firmar-actas' },
+            ],
+          },
+          {
+            name: 'AprendizajeVirtual',
+            label: 'Aprendizaje Virtual',
+            icon: IconProyecto,
+            submenus: [
+              { name: 'crear-meet', label: 'Crear Meet', path: '/docente/meet' },
+              { name: 'asistencia', label: 'Control de Asistencia', path: '/docente/asistencia' },
+              { name: 'evaluaciones', label: 'Mis Evaluaciones', path: '/docente/evaluaciones' },
+              { name: 'seguimiento-estudiante', label: 'Seguimiento de Estudiantes', path: '/docente/seguimientos' },
+              { name: 'evaluaciones', label: 'Mis Evaluaciones', path: '/docente/evaluaciones' },
             ],
           },
         ];
