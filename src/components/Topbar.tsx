@@ -3,6 +3,7 @@ import ThemeToggle from './ThemeToggle';
 
 interface TopbarProps {
   onToggleSidebar: () => void;
+  isSidebarOpen: boolean;
 }
 
 // Mock user data - EXACTO COMO UDH
@@ -13,20 +14,22 @@ const mockUser = {
   image: 'https://ui-avatars.com/api/?name=Armando+Rojas&background=39B49E&color=fff',
 };
 
-export default function Topbar({ onToggleSidebar }: TopbarProps) {
+export default function Topbar({ onToggleSidebar, isSidebarOpen }: TopbarProps) {
   return (
     <header className="admin-topbar">
       <div className="topbar-container">
         {/* Lado izquierdo */}
         <div className="topbar-left">
-          {/* Botón toggle sidebar */}
-          <button
-            onClick={onToggleSidebar}
-            className="topbar-toggle"
-            title="Alternar barra lateral"
-          >
-            <Bars3Icon style={{ width: '1.5rem', height: '1.5rem' }} />
-          </button>
+          {/* Botón toggle sidebar - SOLO visible cuando sidebar está cerrado */}
+          {!isSidebarOpen && (
+            <button
+              onClick={onToggleSidebar}
+              className="topbar-toggle"
+              title="Abrir barra lateral"
+            >
+              <Bars3Icon style={{ width: '1.5rem', height: '1.5rem' }} />
+            </button>
+          )}
 
           
         </div>
@@ -42,7 +45,7 @@ export default function Topbar({ onToggleSidebar }: TopbarProps) {
           {/* Selector de tema */}
           <ThemeToggle />
 
-          {/* Usuario */}
+          {/* Usuario - Solo foto como Copiloto */}
           <div className="topbar-user">
             <div className="topbar-user-avatar">
               <img
@@ -51,9 +54,6 @@ export default function Topbar({ onToggleSidebar }: TopbarProps) {
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
             </div>
-            <span className="topbar-user-name">
-              {mockUser.full_name.split(' ')[0]}
-            </span>
           </div>
         </div>
       </div>
