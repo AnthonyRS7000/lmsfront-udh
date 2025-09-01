@@ -78,18 +78,19 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
 
   // Secciones de navegación - MÓDULOS REALES DEL SISTEMA
   const sections = [
+  
     {
       name: 'GestionMatricula',
       label: 'Gestión de Matrícula',
       icon: IconProyecto,
       submenus: [
-        { name: 'registrarme-sistema', label: 'Registrarme al sistema', path: '/estudiante/registro' },
+        /* { name: 'registrarme-sistema', label: 'Registrarme al sistema', path: '/estudiante/registro' }, */
         { name: 'actualizar-datos', label: 'Actualizar mis datos', path: '/estudiante/perfil' },
         { name: 'gestion-cursos', label: 'Gestión de cursos', path: '/estudiante/cursos' },
-        { name: 'ver-cursos-semestre', label: 'Ver los cursos que llevaré en cada semestre', path: '/estudiante/cursos-semestre' },
-        { name: 'verificacion-prerequisitos', label: 'Verificación de prerrequisitos', path: '/estudiante/prerequisitos' },
+        { name: 'ver-cursos-semestre', label: 'Consultar cursos', path: '/estudiante/consultar_cursos' },
+        /* { name: 'verificacion-prerequisitos', label: 'Verificación de prerrequisitos', path: '/estudiante/prerequisitos' },
         { name: 'consulta-cupos', label: 'Consulta de cupos disponibles', path: '/estudiante/cupos' },
-        { name: 'confirmacion-matricula', label: 'Confirmación digital de matrícula', path: '/estudiante/confirmacion-matricula' },
+        { name: 'confirmacion-matricula', label: 'Confirmación digital de matrícula', path: '/estudiante/confirmacion-matricula' }, */
       ],
     },
     {

@@ -1,17 +1,19 @@
 import { Bars3Icon, BellIcon } from '@heroicons/react/24/outline';
 import ThemeToggle from './ThemeToggle';
 
+import UserDropdown from '../features/students/UserDropdown';
+
 interface TopbarProps {
   onToggleSidebar: () => void;
 }
 
 // Mock user data - EXACTO COMO UDH
-const mockUser = {
+/* const mockUser = {
   full_name: 'ARMANDO ROJAS LUNA',
   email: 'armando.estudiante@udh.edu.pe',
   role: 'estudiante',
   image: 'https://ui-avatars.com/api/?name=Armando+Rojas&background=39B49E&color=fff',
-};
+}; */
 
 export default function Topbar({ onToggleSidebar }: TopbarProps) {
   return (
@@ -43,7 +45,8 @@ export default function Topbar({ onToggleSidebar }: TopbarProps) {
           <ThemeToggle />
 
           {/* Usuario */}
-          <div className="topbar-user">
+          <UserDropdown />
+          {/* <div className="topbar-user">
             <div className="topbar-user-avatar">
               <img
                 src={mockUser.image}
@@ -54,7 +57,7 @@ export default function Topbar({ onToggleSidebar }: TopbarProps) {
             <span className="topbar-user-name">
               {mockUser.full_name.split(' ')[0]}
             </span>
-          </div>
+          </div> */}
         </div>
       </div>
     </header>
