@@ -91,7 +91,7 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
         /* { name: 'verificacion-prerequisitos', label: 'Verificación de prerrequisitos', path: '/estudiante/prerequisitos' },
         { name: 'consulta-cupos', label: 'Consulta de cupos disponibles', path: '/estudiante/cupos' },
         { name: 'confirmacion-matricula', label: 'Confirmación digital de matrícula', path: '/estudiante/confirmacion-matricula' }, */
-      ],
+      ], 
     },
     {
       name: 'GestionRegistrosAcademicos',
