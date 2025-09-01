@@ -159,7 +159,7 @@ export default function LandingPage() {
             gap: '1rem'
           }}>
             <button
-              onClick={() => navigate('/dashboard')}
+              onClick={() => navigate('/login')}
               style={{
                 padding: '0.5rem 1rem',
                 backgroundColor: 'transparent',

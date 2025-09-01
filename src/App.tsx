@@ -3,6 +3,7 @@ import Layout from "./components/Layout";
 import LandingPage from "./pages/LandingPage";
 import DashboardPage from "./features/dashboard/DashboardPage";
 import StudentsPage from "./features/students/StudentsPage";
+import Login from "./Login";
 
 // Importar las nuevas páginas de dashboard por rol
 import EstudianteDashboard from "./features/estudiante/pages/EstudianteDashboard";
@@ -20,6 +21,8 @@ function App() {
       <Routes>
         {/* Landing Page sin Layout */}
         <Route path="/" element={<LandingPage />} />
+
+        <Route path="/login" element={<Login />} />
         
         {/* Rutas con Layout unificado */}
         <Route path="/*" element={
