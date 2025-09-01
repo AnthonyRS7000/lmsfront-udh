@@ -5,6 +5,7 @@ import "./index.css";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+
 // Crear instancia de QueryClient
 const queryClient = new QueryClient();
 
