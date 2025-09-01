@@ -17,7 +17,11 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <div className="admin-layout">
       {/* Sidebar */}
-      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <Sidebar 
+        isOpen={sidebarOpen} 
+        onClose={() => setSidebarOpen(false)}
+        onToggle={toggleSidebar}
+      />
       
       {/* Main content area */}
       <div className={`admin-main-content ${sidebarOpen ? 'ml-64' : 'ml-0'} lg:${sidebarOpen ? 'ml-64' : 'ml-16'}`}>
