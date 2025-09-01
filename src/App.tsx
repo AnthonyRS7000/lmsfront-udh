@@ -11,9 +11,11 @@ import DocenteDashboard from "./features/docente/pages/DocenteDashboard";
 import EscuelaDashboard from "./features/escuela/pages/EscuelaDashboard";
 import FacultadDashboard from "./features/facultad/pages/FacultadDashboard";
 import AdministrativoDashboard from "./features/administrativo/pages/AdministrativoDashboard";
-import Cursos from "./features/docente/pages/Cursos";
-import Horarios from "./features/docente/pages/Horario";
-import Bienvenida from "./features/Bienvenida";
+
+import UserDropdown from "./features/students/UserDropdown";
+import ProfilePage from "./features/students/ProfilePage";
+import CursosPage from "./features/students/CursosPage";
+import ConsultaCursosPage from "./features/students/ConsultaCursosPage";
 
 function App() {
   return (
@@ -38,15 +40,18 @@ function App() {
               <Route path="/facultad" element={<FacultadDashboard />} />
               <Route path="/administrativo" element={<AdministrativoDashboard />} />
               
-              {/* Rutas anidadas para cada rol (futuras implementaciones) */}
-              <Route path="/estudiante/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Submódulos del Estudiante</h2><p>Aquí irán las rutas específicas del estudiante</p></div>} />
-              <Route path="/docente/" element={<Bienvenida/>} />
-              <Route path="/docente/perfil" element={<Cursos/>} />
-              <Route path="/docente/cursos" element={<Cursos/>} />
-              <Route path="/docente/horarios" element={<Horarios/>} />
-              <Route path="/escuela/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Submódulos de la Escuela</h2><p>Aquí irán las rutas específicas de la escuela</p></div>} />
-              <Route path="/facultad/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Submódulos de la Facultad</h2><p>Aquí irán las rutas específicas de la facultad</p></div>} />
-              <Route path="/administrativo/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Submódulos Administrativos</h2><p>Aquí irán las rutas específicas del área administrativa</p></div>} />
+              {/* Rutas específicas para estudiante - de Benya */}
+              <Route path="/perfil" element={<UserDropdown />} />
+              <Route path="/estudiante/perfil" element={<ProfilePage />} />
+              <Route path="/estudiante/cursos" element={<CursosPage />} />
+              <Route path="/estudiante/consultar_cursos" element={<ConsultaCursosPage />} />
+              
+              {/* Rutas generales fallback para cada área */}
+              <Route path="/estudiante/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área de Estudiante</h2><p>Módulo en desarrollo</p></div>} />
+              <Route path="/docente/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área de Docente</h2><p>Módulo en desarrollo</p></div>} />
+              <Route path="/escuela/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área de Escuela</h2><p>Módulo en desarrollo</p></div>} />
+              <Route path="/facultad/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área de Facultad</h2><p>Módulo en desarrollo</p></div>} />
+              <Route path="/administrativo/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área Administrativa</h2><p>Módulo en desarrollo</p></div>} />
             </Routes>
           </Layout>
         } />

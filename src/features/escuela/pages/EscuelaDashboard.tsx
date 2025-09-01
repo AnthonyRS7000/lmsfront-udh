@@ -1,4 +1,4 @@
-import { BuildingLibraryIcon, UserGroupIcon, BookOpenIcon, ChartBarIcon } from '@heroicons/react/24/outline';
+import { BuildingLibraryIcon, UserGroupIcon, ChartBarIcon } from '@heroicons/react/24/outline';
 
 const escuelaStats = [
   { 

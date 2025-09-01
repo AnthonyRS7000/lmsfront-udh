@@ -130,21 +130,19 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
             label: 'Gestión de Matrícula',
             icon: IconProyecto,
             submenus: [
-              { name: 'registrarme', label: 'Registrarme al sistema', path: '/estudiante/registrarme' },
-              { name: 'actualizar-datos', label: 'Actualizar mis datos', path: '/estudiante/actualizar-datos' },
-              { name: 'cursos', label: 'Gestión de cursos', path: '/estudiante/cursos' },
-              { name: 'inscripcion', label: 'Inscripción', path: '/estudiante/inscripcion' },
+              { name: 'actualizar-datos', label: 'Actualizar mis datos', path: '/estudiante/perfil' },
+              { name: 'gestion-cursos', label: 'Gestión de cursos', path: '/estudiante/cursos' },
+              { name: 'ver-cursos-semestre', label: 'Consultar cursos', path: '/estudiante/consultar_cursos' },
             ],
           },
           {
-            name: 'GestionRegistros',
+            name: 'GestionRegistrosAcademicos',
             label: 'Gestión de Registros Académicos',
             icon: IconInforme,
             submenus: [
-              { name: 'consulta-academica', label: 'Consulta académica', path: '/estudiante/consulta-academica' },
-              { name: 'documentos', label: 'Documentos', path: '/estudiante/documentos' },
-              { name: 'tramites', label: 'Trámites', path: '/estudiante/tramites' },
-              { name: 'reportes', label: 'Reportes', path: '/estudiante/reportes' },
+              { name: 'consulta-calificaciones', label: 'Consulta de calificaciones', path: '/estudiante/calificaciones' },
+              { name: 'historial-academico', label: 'Acceso a historial académico', path: '/estudiante/historial' },
+              { name: 'descarga-certificados', label: 'Descarga de certificados', path: '/estudiante/certificados' },
             ],
           },
           {
@@ -152,32 +150,21 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
             label: 'Gestión del Panel Virtual',
             icon: IconEjecucion,
             submenus: [
-              { name: 'aula-virtual-1', label: 'Aula virtual', path: '/estudiante/aula-virtual' },
+              { name: 'aula-virtual', label: 'Acceso a aulas virtuales', path: '/estudiante/aula-virtual' },
               { name: 'clases-tiempo-real', label: 'Clases en tiempo real', path: '/estudiante/clases-tiempo-real' },
-              { name: 'aula-virtual-2', label: 'Aula virtual', path: '/estudiante/aula-virtual-2' },
-              { name: 'actividades-1', label: 'Actividades', path: '/estudiante/actividades' },
-              { name: 'comunicacion', label: 'Comunicación', path: '/estudiante/comunicacion' },
-              { name: 'actividades-2', label: 'Actividades', path: '/estudiante/actividades-2' },
+              { name: 'actividades-evaluaciones', label: 'Actividades y evaluaciones', path: '/estudiante/actividades' },
             ],
           },
           {
-            name: 'GestionBiblioteca',
-            label: 'Gestión de Biblioteca Virtual',
-            icon: IconInforme,
-            submenus: [
-              { name: 'busqueda', label: 'Búsqueda', path: '/estudiante/busqueda' },
-              { name: 'recursos', label: 'Recursos', path: '/estudiante/recursos' },
-              { name: 'reportes-biblioteca', label: 'Reportes', path: '/estudiante/reportes-biblioteca' },
-            ],
-          },
-          {
-            name: 'GestionPagos',
+            name: 'GestionPagosVirtuales',
             label: 'Gestión de Pagos Virtuales',
             icon: IconProyecto,
             submenus: [
-              { name: 'pagos', label: 'Pagos', path: '/estudiante/pagos' },
-              { name: 'comprobantes', label: 'Comprobantes', path: '/estudiante/comprobantes' },
-              { name: 'notificaciones', label: 'Notificaciones', path: '/estudiante/notificaciones' },
+              { name: 'pagos-linea', label: 'Pagos en línea', path: '/estudiante/pagos', badge: 2 },
+              { name: 'metodos-pago', label: 'Métodos de pago diversos', path: '/estudiante/metodos-pago' },
+              { name: 'comprobantes-automaticos', label: 'Comprobantes automáticos', path: '/estudiante/comprobantes' },
+              { name: 'historial-pagos', label: 'Historial de pagos', path: '/estudiante/historial-pagos' },
+              { name: 'alertas-vencimiento', label: 'Alertas de vencimiento', path: '/estudiante/alertas', badge: 1 },
             ],
           },
         ];
@@ -189,9 +176,9 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
             label: 'Gestión Docente',
             icon: IconProyecto,
             submenus: [
-              { name: 'registro-perfil', label: 'Registro y actualización de perfil', path: '/docente/registro-perfil' },
+              { name: 'registro-actualizacion-perfil', label: 'Registro y actualización de perfil', path: '/docente/perfil' },
               { name: 'asignacion-cursos', label: 'Asignación de cursos', path: '/docente/asignacion-cursos' },
-              { name: 'gestion-horarios', label: 'Gestión de horarios', path: '/docente/gestion-horarios' },
+              { name: 'gestion-horarios', label: 'Gestión de horarios', path: '/docente/horarios' },
               { name: 'reportes-actividad', label: 'Reportes de actividad', path: '/docente/reportes-actividad' },
             ],
           },
@@ -200,9 +187,9 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
             label: 'Registro Académico',
             icon: IconInforme,
             submenus: [
-              { name: 'registro-calificaciones', label: 'Registro de calificaciones', path: '/docente/registro-calificaciones' },
-              { name: 'administracion-historial', label: 'Administración del historial académico', path: '/docente/administracion-historial' },
-              { name: 'generacion-actas', label: 'Generación automática de actas y certificados en formato electrónico', path: '/docente/generacion-actas' },
+              { name: 'registro-calificaciones', label: 'Registro de calificaciones', path: '/docente/calificaciones' },
+              { name: 'administracion-historial', label: 'Administración del historial académico', path: '/docente/historial-academico' },
+              { name: 'generacion-actas', label: 'Generación automática de actas y certificados en formato electrónico', path: '/docente/actas-certificados' },
             ],
           },
           {
@@ -210,13 +197,13 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
             label: 'Aprendizaje Virtual',
             icon: IconEjecucion,
             submenus: [
-              { name: 'gestion-cursos', label: 'Gestión de cursos', path: '/docente/gestion-cursos' },
-              { name: 'gestion-contenidos', label: 'Gestión de contenidos', path: '/docente/gestion-contenidos' },
+              { name: 'gestion-cursos', label: 'Gestión de cursos', path: '/docente/cursos' },
+              { name: 'gestion-contenidos', label: 'Gestión de contenidos', path: '/docente/contenidos' },
               { name: 'evaluaciones', label: 'Evaluaciones', path: '/docente/evaluaciones' },
-              { name: 'seguimiento-estudiantes', label: 'Seguimiento de estudiantes', path: '/docente/seguimiento-estudiantes' },
+              { name: 'seguimiento-estudiantes', label: 'Seguimiento de estudiantes', path: '/docente/seguimiento' },
               { name: 'retroalimentacion', label: 'Retroalimentación', path: '/docente/retroalimentacion' },
-              { name: 'herramientas-innovacion', label: 'Herramientas de innovación', path: '/docente/herramientas-innovacion' },
-              { name: 'comunicacion-academica', label: 'Comunicación académica', path: '/docente/comunicacion-academica' },
+              { name: 'herramientas-innovacion', label: 'Herramientas de innovación', path: '/docente/innovacion' },
+              { name: 'comunicacion-academica', label: 'Comunicación académica', path: '/docente/comunicacion' },
             ],
           },
         ];
@@ -228,14 +215,14 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
             label: 'Gestión de Matrícula',
             icon: IconProyecto,
             submenus: [
-              { name: 'registrarme', label: 'Registrarme al sistema', path: '/escuela/registrarme' },
+              { name: 'registrarme-sistema', label: 'Registrarme al sistema', path: '/escuela/registro' },
               { name: 'actualizar-datos', label: 'Actualizar mis datos', path: '/escuela/actualizar-datos' },
-              { name: 'cursos', label: 'Gestión de cursos', path: '/escuela/cursos' },
+              { name: 'gestion-cursos', label: 'Gestión de cursos', path: '/escuela/cursos' },
               { name: 'inscripcion', label: 'Inscripción', path: '/escuela/inscripcion' },
             ],
           },
           {
-            name: 'GestionRegistros',
+            name: 'GestionRegistrosAcademicos',
             label: 'Gestión de Registros Académicos',
             icon: IconInforme,
             submenus: [
@@ -250,16 +237,14 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
             label: 'Gestión del Panel Virtual',
             icon: IconEjecucion,
             submenus: [
-              { name: 'aula-virtual-1', label: 'Aula virtual', path: '/escuela/aula-virtual' },
+              { name: 'aula-virtual', label: 'Aula virtual', path: '/escuela/aula-virtual' },
               { name: 'clases-tiempo-real', label: 'Clases en tiempo real', path: '/escuela/clases-tiempo-real' },
-              { name: 'aula-virtual-2', label: 'Aula virtual', path: '/escuela/aula-virtual-2' },
-              { name: 'actividades-1', label: 'Actividades', path: '/escuela/actividades' },
+              { name: 'actividades', label: 'Actividades', path: '/escuela/actividades' },
               { name: 'comunicacion', label: 'Comunicación', path: '/escuela/comunicacion' },
-              { name: 'actividades-2', label: 'Actividades', path: '/escuela/actividades-2' },
             ],
           },
           {
-            name: 'GestionBiblioteca',
+            name: 'GestionBibliotecaVirtual',
             label: 'Gestión de Biblioteca Virtual',
             icon: IconInforme,
             submenus: [
@@ -269,7 +254,7 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
             ],
           },
           {
-            name: 'GestionPagos',
+            name: 'GestionPagosVirtuales',
             label: 'Gestión de Pagos Virtuales',
             icon: IconProyecto,
             submenus: [
@@ -289,63 +274,23 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
             submenus: [
               { name: 'monitoreo-academico', label: 'Monitoreo académico', path: '/facultad/monitoreo-academico' },
               { name: 'seguimiento-academico', label: 'Seguimiento académico', path: '/facultad/seguimiento-academico' },
-              { name: 'evaluacion-docentes', label: 'Evaluación de docentes', path: '/facultad/evaluacion-docentes' },
-              { name: 'asignacion-carga', label: 'Asignación de carga académica', path: '/facultad/asignacion-carga' },
             ],
           },
           {
-            name: 'GestionMatricula',
-            label: 'Gestión de Matrícula',
-            icon: IconEjecucion,
+            name: 'Matricula',
+            label: 'Matrícula',
+            icon: IconInforme,
             submenus: [
               { name: 'control-matricula', label: 'Control de matrícula', path: '/facultad/control-matricula' },
-              { name: 'supervision-inscripciones', label: 'Supervisión de inscripciones', path: '/facultad/supervision-inscripciones' },
-              { name: 'estadisticas-matricula', label: 'Estadísticas de matrícula', path: '/facultad/estadisticas-matricula' },
-              { name: 'reportes-matricula', label: 'Reportes de matrícula', path: '/facultad/reportes-matricula' },
             ],
           },
           {
             name: 'RegistroAcademico',
             label: 'Registro Académico',
-            icon: IconInforme,
+            icon: IconEjecucion,
             submenus: [
               { name: 'generacion-documentos', label: 'Generación de documentos', path: '/facultad/generacion-documentos' },
               { name: 'validacion-academica', label: 'Validación académica', path: '/facultad/validacion-academica' },
-              { name: 'certificaciones', label: 'Certificaciones y títulos', path: '/facultad/certificaciones' },
-              { name: 'historial-academico', label: 'Historial académico institucional', path: '/facultad/historial-academico' },
-            ],
-          },
-          {
-            name: 'GestionEscuelas',
-            label: 'Gestión de Escuelas',
-            icon: IconProyecto,
-            submenus: [
-              { name: 'supervision-escuelas', label: 'Supervisión de escuelas', path: '/facultad/supervision-escuelas' },
-              { name: 'coordinacion-programas', label: 'Coordinación de programas', path: '/facultad/coordinacion-programas' },
-              { name: 'recursos-escuelas', label: 'Asignación de recursos', path: '/facultad/recursos-escuelas' },
-              { name: 'evaluacion-programas', label: 'Evaluación de programas académicos', path: '/facultad/evaluacion-programas' },
-            ],
-          },
-          {
-            name: 'ReportesAnalisis',
-            label: 'Reportes y Análisis',
-            icon: IconInforme,
-            submenus: [
-              { name: 'reportes-institucionales', label: 'Reportes institucionales', path: '/facultad/reportes-institucionales' },
-              { name: 'analisis-rendimiento', label: 'Análisis de rendimiento académico', path: '/facultad/analisis-rendimiento' },
-              { name: 'estadisticas-facultad', label: 'Estadísticas de facultad', path: '/facultad/estadisticas-facultad' },
-              { name: 'indicadores-calidad', label: 'Indicadores de calidad', path: '/facultad/indicadores-calidad' },
-            ],
-          },
-          {
-            name: 'AdministracionGeneral',
-            label: 'Administración General',
-            icon: IconEjecucion,
-            submenus: [
-              { name: 'planificacion-academica', label: 'Planificación académica', path: '/facultad/planificacion-academica' },
-              { name: 'gestion-calendario', label: 'Gestión de calendario académico', path: '/facultad/gestion-calendario' },
-              { name: 'configuracion-facultad', label: 'Configuración de facultad', path: '/facultad/configuracion-facultad' },
-              { name: 'comunicacion-institucional', label: 'Comunicación institucional', path: '/facultad/comunicacion-institucional' },
             ],
           },
         ];
@@ -357,120 +302,32 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
             label: 'Gestión de Usuarios',
             icon: IconProyecto,
             submenus: [
-              { name: 'creacion-administracion', label: 'Creación y administración de cuentas (docentes, estudiantes, administrativos)', path: '/administrativo/creacion-administracion' },
-              { name: 'perfiles-permisos', label: 'Gestión de perfiles y permisos', path: '/administrativo/perfiles-permisos' },
-              { name: 'activacion-suspension', label: 'Activación y suspensión de cuentas', path: '/administrativo/activacion-suspension' },
-              { name: 'auditoria-usuarios', label: 'Auditoría de usuarios', path: '/administrativo/auditoria-usuarios' },
+              { name: 'registro-usuarios', label: 'Registro de usuarios', path: '/administrativo/usuarios' },
+              { name: 'gestion-perfiles', label: 'Gestión de perfiles', path: '/administrativo/perfiles' },
+              { name: 'asignacion-roles', label: 'Asignación de roles', path: '/administrativo/roles' },
+              { name: 'monitoreo-actividad', label: 'Monitoreo de actividad', path: '/administrativo/monitoreo' },
             ],
           },
           {
-            name: 'GestionMatricula',
-            label: 'Gestión de Matrícula',
+            name: 'GestionSistema',
+            label: 'Gestión del Sistema',
+            icon: IconInforme,
+            submenus: [
+              { name: 'configuracion-sistema', label: 'Configuración del sistema', path: '/administrativo/configuracion' },
+              { name: 'backup-seguridad', label: 'Backup y seguridad', path: '/administrativo/backup' },
+              { name: 'actualizaciones', label: 'Actualizaciones', path: '/administrativo/actualizaciones' },
+              { name: 'logs-auditoria', label: 'Logs y auditoría', path: '/administrativo/logs' },
+            ],
+          },
+          {
+            name: 'ReportesAnalisis',
+            label: 'Reportes y Análisis',
             icon: IconEjecucion,
             submenus: [
-              { name: 'supervisar-validar', label: 'Supervisar y validar procesos de inscripción', path: '/administrativo/supervisar-validar' },
-              { name: 'configuracion-periodos', label: 'Configuración de períodos académicos', path: '/administrativo/configuracion-periodos' },
-              { name: 'gestion-cupos', label: 'Gestión de cupos y capacidad', path: '/administrativo/gestion-cupos' },
-              { name: 'reportes-matricula', label: 'Reportes de matrícula consolidados', path: '/administrativo/reportes-matricula' },
-            ],
-          },
-          {
-            name: 'GestionAcademica',
-            label: 'Gestión Académica',
-            icon: IconInforme,
-            submenus: [
-              { name: 'supervisar-carga', label: 'Supervisar carga académica y horarios', path: '/administrativo/supervisar-carga' },
-              { name: 'gestion-planes', label: 'Gestión de planes de estudio', path: '/administrativo/gestion-planes' },
-              { name: 'coordinacion-facultades', label: 'Coordinación entre facultades', path: '/administrativo/coordinacion-facultades' },
-              { name: 'evaluacion-institucional', label: 'Evaluación institucional', path: '/administrativo/evaluacion-institucional' },
-            ],
-          },
-          {
-            name: 'DocumentosyCertificados',
-            label: 'Documentos y Certificados',
-            icon: IconInforme,
-            submenus: [
-              { name: 'validar-emitir', label: 'Validar y emitir documentos oficiales (constancias, certificados)', path: '/administrativo/validar-emitir' },
-              { name: 'plantillas-documentos', label: 'Gestión de plantillas de documentos', path: '/administrativo/plantillas-documentos' },
-              { name: 'firmas-digitales', label: 'Gestión de firmas digitales', path: '/administrativo/firmas-digitales' },
-              { name: 'archivo-documental', label: 'Archivo documental', path: '/administrativo/archivo-documental' },
-            ],
-          },
-          {
-            name: 'GestionFinanciera',
-            label: 'Gestión Financiera',
-            icon: IconProyecto,
-            submenus: [
-              { name: 'control-pagos', label: 'Control de pagos de matrícula y cuotas', path: '/administrativo/control-pagos' },
-              { name: 'configuracion-aranceles', label: 'Configuración de aranceles', path: '/administrativo/configuracion-aranceles' },
-              { name: 'reportes-financieros', label: 'Reportes financieros', path: '/administrativo/reportes-financieros' },
-              { name: 'becas-descuentos', label: 'Gestión de becas y descuentos', path: '/administrativo/becas-descuentos' },
-            ],
-          },
-          {
-            name: 'ReportesInstitucionales',
-            label: 'Reportes Institucionales',
-            icon: IconInforme,
-            submenus: [
-              { name: 'generar-reportes', label: 'Generar reportes académicos, administrativos y financieros', path: '/administrativo/generar-reportes' },
-              { name: 'dashboard-ejecutivo', label: 'Dashboard ejecutivo', path: '/administrativo/dashboard-ejecutivo' },
-              { name: 'indicadores-institucionales', label: 'Indicadores institucionales', path: '/administrativo/indicadores-institucionales' },
-              { name: 'reportes-ministeriales', label: 'Reportes ministeriales', path: '/administrativo/reportes-ministeriales' },
-            ],
-          },
-          {
-            name: 'Comunicaciones',
-            label: 'Comunicaciones',
-            icon: IconEjecucion,
-            submenus: [
-              { name: 'enviar-avisos', label: 'Enviar avisos institucionales a estudiantes y docentes', path: '/administrativo/enviar-avisos' },
-              { name: 'gestion-notificaciones', label: 'Gestión de notificaciones masivas', path: '/administrativo/gestion-notificaciones' },
-              { name: 'comunicacion-externa', label: 'Comunicación externa', path: '/administrativo/comunicacion-externa' },
-              { name: 'archivo-comunicaciones', label: 'Archivo de comunicaciones', path: '/administrativo/archivo-comunicaciones' },
-            ],
-          },
-          {
-            name: 'SoporteyMesaAyuda',
-            label: 'Soporte y Mesa de Ayuda',
-            icon: IconProyecto,
-            submenus: [
-              { name: 'gestionar-incidencias', label: 'Gestionar incidencias de usuarios', path: '/administrativo/gestionar-incidencias' },
-              { name: 'tickets-soporte', label: 'Sistema de tickets de soporte', path: '/administrativo/tickets-soporte' },
-              { name: 'base-conocimientos', label: 'Base de conocimientos', path: '/administrativo/base-conocimientos' },
-              { name: 'capacitacion-usuarios', label: 'Capacitación de usuarios', path: '/administrativo/capacitacion-usuarios' },
-            ],
-          },
-          {
-            name: 'EvaluacionInstitucional',
-            label: 'Evaluación Institucional',
-            icon: IconInforme,
-            submenus: [
-              { name: 'aplicar-encuestas', label: 'Aplicar encuestas de satisfacción (docentes, estudiantes)', path: '/administrativo/aplicar-encuestas' },
-              { name: 'analisis-satisfaccion', label: 'Análisis de satisfacción', path: '/administrativo/analisis-satisfaccion' },
-              { name: 'evaluacion-docente', label: 'Evaluación docente institucional', path: '/administrativo/evaluacion-docente' },
-              { name: 'mejora-continua', label: 'Planes de mejora continua', path: '/administrativo/mejora-continua' },
-            ],
-          },
-          {
-            name: 'SeguridadyControl',
-            label: 'Seguridad y Control',
-            icon: IconEjecucion,
-            submenus: [
-              { name: 'monitoreo-accesos', label: 'Monitoreo de accesos y actividad de usuarios', path: '/administrativo/monitoreo-accesos' },
-              { name: 'configuracion-seguridad', label: 'Configuración de seguridad', path: '/administrativo/configuracion-seguridad' },
-              { name: 'backup-sistema', label: 'Backup y recuperación del sistema', path: '/administrativo/backup-sistema' },
-              { name: 'logs-auditoria', label: 'Logs y auditoría del sistema', path: '/administrativo/logs-auditoria' },
-            ],
-          },
-          {
-            name: 'ConfiguracionSistema',
-            label: 'Configuración del Sistema',
-            icon: IconProyecto,
-            submenus: [
-              { name: 'parametros-globales', label: 'Parámetros globales del sistema', path: '/administrativo/parametros-globales' },
-              { name: 'integraciones', label: 'Gestión de integraciones', path: '/administrativo/integraciones' },
-              { name: 'mantenimiento-sistema', label: 'Mantenimiento del sistema', path: '/administrativo/mantenimiento-sistema' },
-              { name: 'actualizaciones', label: 'Gestión de actualizaciones', path: '/administrativo/actualizaciones' },
+              { name: 'reportes-institucionales', label: 'Reportes institucionales', path: '/administrativo/reportes' },
+              { name: 'analisis-uso', label: 'Análisis de uso', path: '/administrativo/analisis' },
+              { name: 'estadisticas', label: 'Estadísticas generales', path: '/administrativo/estadisticas' },
+              { name: 'dashboard-admin', label: 'Dashboard administrativo', path: '/administrativo/dashboard' },
             ],
           },
         ];
@@ -488,7 +345,7 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
         ];
     }
   };
-
+  
   // Obtener secciones dinámicas según el rol actual
   const sections = getSectionsByRole(currentRole);
 
