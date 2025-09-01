@@ -37,24 +37,72 @@
 }
 
 @layer components {
-  /* Scrollbar personalizado */
-  .custom-scrollbar {
-    scrollbar-width: thin;
-    scrollbar-color: #cccccc62 transparent;
+  /* Scrollbar ultra minimalista como Copiloto - SIN ESPACIOS */
+  * {
+    scrollbar-width: thin !important;
+    scrollbar-color: rgba(204, 204, 204, 0.4) transparent !important;
   }
-  
-  .custom-scrollbar::-webkit-scrollbar {
-    width: 5px;
+
+  /* Webkit browsers - Scrollbar súper limpio pegado al borde */
+  ::-webkit-scrollbar {
+    width: 4px !important;
+    height: 4px !important;
+    background: transparent !important;
   }
-  
-  .custom-scrollbar::-webkit-scrollbar-track {
-    background: transparent;
-    border-radius: 10px;
+
+  ::-webkit-scrollbar-track {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
-  
-  .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #cccccc62;
-    border-radius: 5px;
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(204, 204, 204, 0.4) !important;
+    border-radius: 2px !important;
+    border: none !important;
+    margin: 0 !important;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(204, 204, 204, 0.6) !important;
+  }
+
+  /* ELIMINAR ABSOLUTAMENTE TODOS los botones y elementos */
+  ::-webkit-scrollbar-button:single-button:vertical:decrement,
+  ::-webkit-scrollbar-button:single-button:vertical:increment,
+  ::-webkit-scrollbar-button:double-button:vertical:decrement,
+  ::-webkit-scrollbar-button:double-button:vertical:increment,
+  ::-webkit-scrollbar-button:start:decrement,
+  ::-webkit-scrollbar-button:end:increment {
+    display: none !important;
+    height: 0 !important;
+    width: 0 !important;
+  }
+
+  ::-webkit-scrollbar-button {
+    display: none !important;
+    height: 0 !important;
+    width: 0 !important;
+  }
+
+  ::-webkit-scrollbar-corner {
+    display: none !important;
+    background: transparent !important;
+  }
+
+  ::-webkit-resizer {
+    display: none !important;
+  }
+
+  /* Para modo oscuro */
+  .dark ::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.3) !important;
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: rgba(156, 163, 175, 0.5) !important;
   }
 
   /* Selección de texto */
@@ -69,11 +117,11 @@
 
   /* Clases utilitarias UDH */
   .main-title {
-    @apply text-4xl tracking-wide font-bold text-center text-azul dark:text-gray-400 mb-8;
+    @apply text-4xl tracking-wide font-bold text-center text-blue-600 dark:text-gray-400 mb-8;
   }
 
   .main-card {
-    @apply text-base font-Poppins text-gray-500 dark:text-gray-400;
+    @apply text-base font-sans text-gray-500 dark:text-gray-400;
   }
 
   .main-text {
@@ -93,7 +141,7 @@
   }
 
   .contenedor-principal {
-    @apply flex-1 p-6 sm:p-8 md:p-9 font-Roboto min-h-full;
+    @apply flex-1 p-6 sm:p-8 md:p-9 font-sans min-h-full;
   }
 }
 
