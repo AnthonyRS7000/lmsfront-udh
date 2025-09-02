@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-import './Login.css';
+import './login.css';
 import udh_img from './assets/1.jpg';
 import udh_img1 from './assets/2.jpg';
 import udh_img2 from './assets/3.jpg';

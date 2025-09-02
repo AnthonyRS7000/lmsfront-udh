@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 
-export type Theme = 'light' | 'dark' | 'system';
+export type Theme = 'light' | 'dark';
 
 interface UseThemeReturn {
   theme: Theme;
@@ -14,7 +14,7 @@ interface UseThemeReturn {
 const getInitialTheme = (): { theme: Theme; isDark: boolean } => {
   // Durante SSR o si no hay ventana, usar valores por defecto
   if (typeof window === 'undefined') {
-    return { theme: 'system', isDark: false };
+    return { theme: 'light', isDark: false };
   }
 
   // Intentar usar el estado inicial del script en index.html
@@ -23,22 +23,18 @@ const getInitialTheme = (): { theme: Theme; isDark: boolean } => {
   }
 
   try {
-    const savedTheme = localStorage.getItem('current-theme') as Theme || 'system';
-    let isDark = false;
-
-    if (savedTheme === 'dark') {
-      isDark = true;
-    } else if (savedTheme === 'light') {
-      isDark = false;
-    } else {
-      // System theme - evaluar inmediatamente
-      isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = localStorage.getItem('current-theme') as Theme;
+    
+    // Si no hay tema guardado, usar 'light' por defecto
+    if (!savedTheme || (savedTheme !== 'light' && savedTheme !== 'dark')) {
+      return { theme: 'light', isDark: false };
     }
 
+    const isDark = savedTheme === 'dark';
     return { theme: savedTheme, isDark };
   } catch (error) {
     console.warn('Error reading theme from localStorage:', error);
-    return { theme: 'system', isDark: false };
+    return { theme: 'light', isDark: false };
   }
 };
 
@@ -79,30 +75,13 @@ export const useTheme = (): UseThemeReturn => {
       if (favicon) {
         favicon.href = '/copiloto_ico_dark.png'; // Como en UDH
       }
-    } else if (selectedTheme === 'light') {
+    } else {
+      // Light theme
       root.classList.remove('dark');
       root.classList.add('light');
       setIsDark(false);
       if (favicon) {
         favicon.href = '/copiloto_ico_light.png'; // Como en UDH
-      }
-    } else {
-      // System theme
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if (prefersDark) {
-        root.classList.add('dark');
-        root.classList.remove('light');
-        setIsDark(true);
-        if (favicon) {
-          favicon.href = '/copiloto_ico_dark.png';
-        }
-      } else {
-        root.classList.remove('dark');
-        root.classList.add('light');
-        setIsDark(false);
-        if (favicon) {
-          favicon.href = '/copiloto_ico_light.png';
-        }
       }
     }
   }, []);
@@ -153,25 +132,7 @@ export const useTheme = (): UseThemeReturn => {
     }
 
     setIsLoading(false);
-
-    // Escuchar cambios en la preferencia del sistema
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const handleChange = () => {
-      if (theme === 'system') {
-        applyTheme('system');
-      }
-    };
-
-    mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
   }, []); // Solo ejecutar una vez al montar
-
-  // Efecto separado para manejar cambios en el tema
-  useEffect(() => {
-    if (!isLoading && theme === 'system') {
-      applyTheme('system');
-    }
-  }, [theme, applyTheme, isLoading]);
 
   return {
     theme,

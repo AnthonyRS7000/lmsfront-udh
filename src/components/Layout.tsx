@@ -26,7 +26,10 @@ export default function Layout({ children }: LayoutProps) {
       {/* Main content area */}
       <div className={`admin-main-content ${sidebarOpen ? 'ml-64' : 'ml-0'} lg:${sidebarOpen ? 'ml-64' : 'ml-16'}`}>
         {/* Topbar */}
-        <Topbar onToggleSidebar={toggleSidebar} />
+        <Topbar 
+          onToggleSidebar={toggleSidebar} 
+          isSidebarOpen={sidebarOpen}
+        />
         
         {/* Content */}
         <main className="admin-content">

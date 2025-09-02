@@ -7,6 +7,7 @@ import {
   IconInforme
 } from './icons/LmsIcons';
 import { useTheme } from '../hooks/useTheme';
+import FlechaIcon from '../assets/icons/flecha.svg';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -516,28 +517,19 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
         />
       )}
 
-      {/* Botón de colapsar - POSICIONADO FUERA DEL SIDEBAR */}
-      {isOpen && (
-        <button
-          onClick={() => onToggle?.()}
-          className="sidebar-collapse-button"
-          title="Colapsar sidebar"
-        >
-          <svg 
-            className="w-4 h-4" 
-            fill="none" 
-            stroke="currentColor" 
-            viewBox="0 0 24 24"
-          >
-            <path 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              strokeWidth={2} 
-              d="M15 19l-7-7 7-7" 
-            />
-          </svg>
-        </button>
-      )}
+      {/* Botón de colapsar - Con transiciones inteligentes */}
+      <button
+        onClick={() => onToggle?.()}
+        className={`sidebar-collapse-button ${isOpen ? 'appearing' : 'disappearing'}`}
+        title="Colapsar sidebar"
+      >
+        <img 
+          src={FlechaIcon} 
+          alt="Flecha" 
+          className="sidebar-collapse-arrow"
+          style={{ width: '22px', height: '22px' }}
+        />
+      </button>
 
       {/* Sidebar */}
       <div className={`${sidebarClass} ${isOpen ? '' : 'closed'}`}>
