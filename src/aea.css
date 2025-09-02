@@ -1,0 +1,147 @@
+/* === Layout base === */
+.login-row-container {
+  display: flex;
+  flex-direction: column; /* Mobile primero */
+  width: 100%;
+  min-height: 100vh;
+  background: #fff;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: background 1s;
+}
+
+.login-row-container.dark {
+  background: #0F172A;
+}
+
+/* === Columna Imagen === */
+.login-col-img {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* centrado en móviles */
+  min-height: 40vh; /* más chico en móviles */
+  position: relative;
+  width: 100%;
+}
+
+.login-bg-img {
+  position: relative;
+  width: 100%;
+  height: 40vh; /* ajustado para móviles */
+  overflow: hidden;
+}
+
+.login-bg-img-real,
+.slide-img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* === Logo === */
+.login-logo-container {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%); /* centrado en móviles */
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  animation: bounce 2s infinite;
+  transition: background 1s;
+  z-index: 150;
+}
+
+.login-logo-dark-img,
+.login-logo-img {
+  height: 32px; /* más pequeño en móviles */
+}
+
+/* === Card === */
+.login-col-card {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 16px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(31, 41, 55, 0.95);
+  padding: 24px;
+}
+
+/* === Botón Darkmode flotante === */
+.login-darkmode-btn-screen {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #059669;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  cursor: pointer;
+}
+
+/* === Responsividad === */
+@media (min-width: 640px) {
+  .login-row-container {
+    flex-direction: row; /* a partir de tablet → fila */
+  }
+
+  .login-col-img {
+    min-height: 100vh;
+    flex: 1;
+  }
+
+  .login-bg-img {
+    height: 100vh;
+    border-bottom-right-radius: 120px; /* curva ligera en pantallas grandes */
+  }
+
+  .login-logo-container {
+    top: 24px;
+    left: auto;
+    right: 24px; /* en pantallas grandes vuelve a la esquina */
+    transform: none;
+  }
+
+  .login-logo-dark-img,
+  .login-logo-img {
+    height: 40px;
+  }
+
+  .login-col-card {
+    flex: 1;
+    min-height: 100vh;
+  }
+}
+
+@media (min-width: 1024px) {
+  .login-bg-img {
+    border-bottom-right-radius: 200px;
+  }
+  .login-card {
+    padding: 32px;
+  }
+}

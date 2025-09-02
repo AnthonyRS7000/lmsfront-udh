@@ -13,7 +13,6 @@ import FacultadDashboard from "./features/facultad/pages/FacultadDashboard";
 import AdministrativoDashboard from "./features/administrativo/pages/AdministrativoDashboard";
 import Cursos from "./features/docente/pages/Cursos";
 import Horarios from "./features/docente/pages/Horario";
-import Bienvenida from "./features/Bienvenida";
 
 function App() {
   return (
@@ -40,7 +39,6 @@ function App() {
               
               {/* Rutas anidadas para cada rol (futuras implementaciones) */}
               <Route path="/estudiante/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Submódulos del Estudiante</h2><p>Aquí irán las rutas específicas del estudiante</p></div>} />
-              <Route path="/docente/" element={<Bienvenida/>} />
               <Route path="/docente/perfil" element={<Cursos/>} />
               <Route path="/docente/cursos" element={<Cursos/>} />
               <Route path="/docente/horarios" element={<Horarios/>} />
