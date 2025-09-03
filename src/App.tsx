@@ -12,14 +12,24 @@ import EscuelaDashboard from "./features/escuela/pages/EscuelaDashboard";
 import FacultadDashboard from "./features/facultad/pages/FacultadDashboard";
 import AdministrativoDashboard from "./features/administrativo/pages/AdministrativoDashboard";
 
+// Importar páginas del módulo Gestión de Matrícula
 import UserDropdown from "./features/students/UserDropdown";
-import ProfilePage from "./features/students/ProfilePage";
-import CursosPage from "./features/students/CursosPage";
-import ConsultaCursosPage from "./features/students/ConsultaCursosPage";
-import EstadoMatriculaPage from "./features/students/EstadoMatriculaPage";
-import HistorialMatriculaPage from "./features/students/HistorialMatriculaPage";
-import TramitesPage from "./features/students/TramitesPage";
-import ProgressPage from "./features/students/ProgressPage";
+import { 
+  ProfilePage, 
+  CursosPage, 
+  ConsultaCursosPage, 
+  EstadoMatriculaPage, 
+  HistorialMatriculaPage, 
+  TramitesPage 
+} from "./features/students/gestion-matricula";
+
+// Importar páginas del módulo Registros Académicos
+import { CalificacionesPage, ProgresoAcademicoPage } from "./features/students/registros-academicos";
+import HistorialAcademicoPage from "./features/students/registros-academicos/HistorialAcademicoPage";
+import CertificadosPage from "./features/students/registros-academicos/CertificadosPage";
+
+// Importaciones del módulo Panel Virtual
+import AulaVirtualPage from "./features/students/panel-virtual/AulaVirtualPage";
 
 
 function App() {
@@ -45,11 +55,21 @@ function App() {
               <Route path="/facultad" element={<FacultadDashboard />} />
               <Route path="/administrativo" element={<AdministrativoDashboard />} />
               
-              {/* Rutas específicas para estudiante - de Benya */}
+              {/* Rutas específicas para estudiante - Gestión de Matrícula */}
               <Route path="/perfil" element={<UserDropdown />} />
               <Route path="/estudiante/perfil" element={<ProfilePage />} />
               <Route path="/estudiante/cursos" element={<CursosPage />} />
               <Route path="/estudiante/consultar_cursos" element={<ConsultaCursosPage />} />
+              <Route path="/estudiante/estado_matricula" element={<EstadoMatriculaPage />} />
+              <Route path="/estudiante/historial_matricula" element={<HistorialMatriculaPage />} />
+              <Route path="/estudiante/tramites" element={<TramitesPage />} />
+              <Route path="/estudiante/progreso_academico" element={<ProgresoAcademicoPage />} />
+
+              {/* Rutas específicas para estudiante - Registros Académicos */}
+              <Route path="/estudiante/calificaciones" element={<CalificacionesPage />} />
+              <Route path="/estudiante/historial" element={<HistorialAcademicoPage />} />
+              <Route path="/estudiante/certificados" element={<CertificadosPage />} />              {/* Rutas específicas para estudiante - Panel Virtual */}
+              <Route path="/estudiante/aula-virtual" element={<AulaVirtualPage />} />
               
               {/* Rutas generales fallback para cada área */}
               <Route path="/estudiante/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área de Estudiante</h2><p>Módulo en desarrollo</p></div>} />
