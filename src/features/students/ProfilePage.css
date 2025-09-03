@@ -1,17 +1,74 @@
+/* Variables CSS para temas del perfil - Usando los mismos colores del ThemeToggle */
+:root {
+  /* Tema claro - coincide exactamente con ThemeToggle */
+  --profile-bg-primary: #f9fafb;
+  --profile-bg-secondary: #ffffff;
+  --profile-bg-tertiary: #f3f4f6;
+  --profile-bg-input: #ffffff;
+  --profile-bg-input-readonly: #f3f4f6;
+  --profile-bg-hover: #f9fafb;
+  --profile-bg-active: #06b6d4;
+  --profile-bg-sidebar: #ffffff;
+  
+  --profile-text-primary: #111827;
+  --profile-text-secondary: #374151;
+  --profile-text-tertiary: #6b7280;
+  --profile-text-muted: #9ca3af;
+  --profile-text-on-accent: #ffffff;
+  --profile-text-error: #dc2626;
+  
+  --profile-border-primary: #d1d5db;
+  --profile-border-secondary: #e5e7eb;
+  --profile-border-accent: #06b6d4;
+  --profile-border-active: #0891b2;
+  
+  --profile-shadow-primary: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --profile-shadow-focus: 0 0 0 3px rgba(6, 182, 212, 0.1);
+}
+
+/* Tema oscuro - coincide exactamente con ThemeToggle */
+.dark {
+  --profile-bg-primary: #111827;
+  --profile-bg-secondary: #374151;
+  --profile-bg-tertiary: #4b5563;
+  --profile-bg-input: #374151;
+  --profile-bg-input-readonly: #111827;
+  --profile-bg-hover: #4b5563;
+  --profile-bg-active: #2a9d8f;
+  --profile-bg-sidebar: #374151;
+  
+  --profile-text-primary: #ffffff;
+  --profile-text-secondary: #f9fafb;
+  --profile-text-tertiary: #d1d5db;
+  --profile-text-muted: #9ca3af;
+  --profile-text-on-accent: #ffffff;
+  --profile-text-error: #f87171;
+  
+  --profile-border-primary: #4b5563;
+  --profile-border-secondary: #374151;
+  --profile-border-accent: #2a9d8f;
+  --profile-border-active: #238f7f;
+  
+  --profile-shadow-primary: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --profile-shadow-focus: 0 0 0 3px rgba(42, 157, 143, 0.1);
+}
+
 /* Contenedor principal del perfil */
 .profile-container {
   display: flex;
   min-height: 100vh;
-  background-color: #1a202c;
-  color: #e2e8f0;
+  background-color: var(--profile-bg-primary);
+  color: var(--profile-text-secondary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Sidebar de navegación del perfil */
 .profile-sidebar {
   width: 240px;
-  background-color: #2d3748;
+  background-color: var(--profile-bg-sidebar);
   padding: 20px 0;
-  border-right: 1px solid #4a5568;
+  border-right: 1px solid var(--profile-border-primary);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .profile-nav-item {
@@ -20,17 +77,19 @@
   gap: 12px;
   padding: 12px 20px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
   border-left: 3px solid transparent;
+  color: var(--profile-text-secondary);
 }
 
 .profile-nav-item.active {
-  background-color: #2a9d8f;
-  border-left-color: #20b2aa;
+  background-color: var(--profile-bg-active);
+  border-left-color: var(--profile-border-active);
+  color: var(--profile-text-on-accent);
 }
 
 .profile-nav-item:hover:not(.active) {
-  background-color: #4a5568;
+  background-color: var(--profile-bg-hover);
 }
 
 .profile-nav-icon {
@@ -50,6 +109,8 @@
   flex: 1;
   padding: 40px;
   overflow-y: auto;
+  background-color: var(--profile-bg-primary);
+  transition: background-color 0.3s ease;
 }
 
 .profile-form-container {
@@ -76,18 +137,19 @@
 .profile-form-label {
   font-size: 14px;
   font-weight: 500;
-  color: #a0aec0;
+  color: var(--profile-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  transition: color 0.3s ease;
 }
 
 /* Campos de input */
 .profile-form-input {
   padding: 12px 16px;
-  background-color: #2d3748;
-  border: 1px solid #4a5568;
+  background-color: var(--profile-bg-input);
+  border: 1px solid var(--profile-border-primary);
   border-radius: 6px;
-  color: #e2e8f0;
+  color: var(--profile-text-secondary);
   font-size: 14px;
   font-weight: 500;
   transition: all 0.2s ease;
@@ -95,37 +157,39 @@
 
 .profile-form-input:focus {
   outline: none;
-  border-color: #2a9d8f;
-  box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.1);
+  border-color: var(--profile-border-accent);
+  box-shadow: var(--profile-shadow-focus);
 }
 
 .profile-form-input:read-only {
   cursor: default;
-  background-color: #1a202c;
+  background-color: var(--profile-bg-input-readonly);
 }
 
 /* Campo editable */
 .profile-form-input.editable {
-  background-color: #2d3748;
+  background-color: var(--profile-bg-input);
   cursor: text;
 }
 
 .profile-form-input.editable:hover {
-  border-color: #2a9d8f;
+  border-color: var(--profile-border-accent);
 }
 
 /* Asterisco requerido */
 .required-asterisk {
-  color: #f56565;
+  color: var(--profile-text-error);
   margin-left: 4px;
+  transition: color 0.3s ease;
 }
 
 /* Texto de ayuda */
 .profile-help-text {
   font-size: 12px;
-  color: #718096;
+  color: var(--profile-text-tertiary);
   font-style: italic;
   margin-top: 4px;
+  transition: color 0.3s ease;
 }
 
 /* Mensaje de información */
@@ -134,26 +198,77 @@
   align-items: center;
   gap: 12px;
   padding: 16px;
-  background-color: #2d3748;
-  border: 1px solid #4a5568;
+  background-color: var(--profile-bg-secondary);
+  border: 1px solid var(--profile-border-primary);
   border-radius: 8px;
   margin-top: 30px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .info-icon {
   font-size: 18px;
   flex-shrink: 0;
+  color: var(--profile-text-secondary);
+  transition: color 0.3s ease;
 }
 
 .info-text {
   font-size: 14px;
   line-height: 1.5;
-  color: #cbd5e0;
+  color: var(--profile-text-tertiary);
+  transition: color 0.3s ease;
 }
 
 .info-text strong {
-  color: #f56565;
+  color: var(--profile-text-error);
   font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+/* Estados adicionales para mejor UX */
+.profile-form-input::placeholder {
+  color: var(--profile-text-muted);
+  transition: color 0.3s ease;
+}
+
+.profile-form-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: var(--profile-bg-input-readonly);
+}
+
+/* Mejoras visuales para el tema */
+.profile-nav-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-nav-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background-color: var(--profile-bg-active);
+  transition: width 0.2s ease;
+  z-index: -1;
+}
+
+.profile-nav-item:hover::before {
+  width: 3px;
+}
+
+.profile-nav-item.active::before {
+  width: 100%;
+}
+
+/* Separadores visuales para el sidebar */
+.profile-nav-separator {
+  height: 1px;
+  background-color: var(--profile-border-secondary);
+  margin: 16px 20px;
+  transition: background-color 0.3s ease;
 }
 
 /* Responsivo */
@@ -165,6 +280,8 @@
   .profile-sidebar {
     width: 100%;
     padding: 16px 0;
+    border-right: none;
+    border-bottom: 1px solid var(--profile-border-primary);
   }
   
   .profile-content {
@@ -185,4 +302,11 @@
   .profile-content {
     padding: 30px;
   }
+}
+
+/* Transiciones suaves para el cambio de tema */
+* {
+  transition-property: background-color, border-color, color, box-shadow, opacity;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
 }

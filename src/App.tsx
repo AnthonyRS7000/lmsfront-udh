@@ -7,6 +7,11 @@ import UserDropdown from "./features/students/UserDropdown";
 import ProfilePage from "./features/students/ProfilePage";
 import CursosPage from "./features/students/CursosPage";
 import ConsultaCursosPage from "./features/students/ConsultaCursosPage";
+import EstadoMatriculaPage from "./features/students/EstadoMatriculaPage";
+import HistorialMatriculaPage from "./features/students/HistorialMatriculaPage";
+import TramitesPage from "./features/students/TramitesPage";
+import ProgressPage from "./features/students/ProgressPage";
+
 
 function App() {
   return (
@@ -25,6 +30,11 @@ function App() {
               <Route path="/estudiante/perfil" element={<ProfilePage />} />
               <Route path="/estudiante/cursos" element={<CursosPage />} />
               <Route path= "/estudiante/consultar_cursos" element={<ConsultaCursosPage />} />
+              <Route path= "/estudiante/estado_matricula" element={<EstadoMatriculaPage />} />
+              <Route path= "/estudiante/historial_matricula" element={<HistorialMatriculaPage />} />
+              <Route path= "/estudiante/tramites" element={<TramitesPage />} />
+              <Route path="/estudiante/progreso_academico" element={<ProgressPage />} />
+
               {/* Rutas para docente */}
               <Route path="/docente/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área de Docente</h2><p>Aquí irán las rutas específicas del docente</p></div>} />
               {/* Rutas para administrativo */}

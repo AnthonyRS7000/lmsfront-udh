@@ -88,6 +88,10 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
         { name: 'actualizar-datos', label: 'Actualizar mis datos', path: '/estudiante/perfil' },
         { name: 'gestion-cursos', label: 'Gestión de cursos', path: '/estudiante/cursos' },
         { name: 'ver-cursos-semestre', label: 'Consultar cursos', path: '/estudiante/consultar_cursos' },
+        { name: 'ver estado-matricula', label: 'Historial Economico', path: '/estudiante/estado_matricula' },
+        { name: 'historial-matricula', label: 'Historial Matricula', path: '/estudiante/historial_matricula' },
+        { name: 'Tramite', label: 'Tramites', path: '/estudiante/tramites' },
+        { name: 'Progreso-academico', label: 'Progreso Academico', path: '/estudiante/progreso_academico' },
         /* { name: 'verificacion-prerequisitos', label: 'Verificación de prerrequisitos', path: '/estudiante/prerequisitos' },
         { name: 'consulta-cupos', label: 'Consulta de cupos disponibles', path: '/estudiante/cupos' },
         { name: 'confirmacion-matricula', label: 'Confirmación digital de matrícula', path: '/estudiante/confirmacion-matricula' }, */
