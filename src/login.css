@@ -1,0 +1,340 @@
+.login-row-container {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  min-height: auto;
+  background: #fff;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: background 1s;
+}
+
+.login-row-container.dark {
+  background: #0F172A;
+  transition: background 1s;
+}
+
+.login-col-img {
+  flex: 1 1 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  position: relative;
+}
+
+.login-bg-img {
+  position: relative;
+  display: flex;
+  width: 1000%;
+  height: 100vh;
+  overflow: hidden;
+  border-bottom-left-radius: 350px;
+}
+
+@media (min-width: 640px) {
+  .login-row-container {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  min-height: 100vh;
+  background: #fff;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  transition: background 1s;
+  }
+  .login-col-card {
+  flex: 1 1 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  }
+  .login-bg-img {
+    width: 100%;
+    height: 100vh;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 655px;
+  }
+}
+
+.login-bg-img-real {
+  object-fit: cover;
+  width: 100%;
+  height: 100vh;
+  border-bottom-right-radius: 250px;
+  border-bottom-left-radius: 0px;
+  transition: filter 1s;
+}
+
+.login-bg-img-real.grayscale {
+  filter: grayscale(1);
+}
+
+.carousel-slide {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.slide-img {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  transition: left 0.8s cubic-bezier(0.77,0,0.175,1);
+  border-bottom-right-radius: 250px;
+  border-bottom-left-radius: 0px;
+  object-fit: cover;
+  left: 0;
+}
+
+@keyframes slideRight {
+  from { left: 100%; }
+  to { left: 0; }
+}
+
+
+.login-logo-container {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+.login-logo-container.right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 24px;
+  background: rgba(255, 255, 255, 0.7);
+  animation: bounce 1s infinite;
+  transition: background 1s;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-30px); }
+}
+
+
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0);}
+  50% { transform: translateY(-10px);}
+}
+
+.login-logo-dark-img,
+.login-logo-img {
+  height: 40px;
+  display: block;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  background: transparent;
+}
+
+.login-row-container.dark .login-logo-container.right {
+  background: rgba(31, 41, 55, 0.95);
+}
+
+.login-col-card {
+  flex: 1 1 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  font-family: 'Times New Roman', Times, serif;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(31, 41, 55, 0.95);
+  padding: 32px;
+  position: relative;
+  margin: 0 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: background 1s;
+}
+
+.login-card.dark {
+  background: #23272f;
+  color: #fff;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+.login-card-borders {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+.login-card-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-corner {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  opacity: 0.7;
+  border-radius: 8px;
+  z-index: 1;
+}
+
+.login-corner.top-left {
+  position: absolute;
+  top: -0.5rem;
+  left: -0.5rem;
+  border-top: 2px solid #059669; 
+  border-left: 2px solid #059669; 
+  opacity: 0.7;
+  border-top-left-radius: 0.5rem; 
+}
+
+.login-corner.bottom-right {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-bottom: 2px solid #059669;
+  border-right: 2px solid #059669; 
+}
+
+.login-title {
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  color: #2d3748;
+  margin-bottom: 0;
+}
+
+.login-card.dark .login-title {
+  color: #fff;
+}
+
+.login-subtitle {
+  text-align: center;
+  font-style: italic;
+  color: #6b7280;
+  font-size: 1rem;
+  margin-top: 16px;
+}
+
+.login-card.dark .login-subtitle {
+  color: #d1d5db;
+}
+
+.login-domain {
+  font-weight: 600;
+}
+
+.login-google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid #e5e7eb;
+  padding: 10px 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  background: #fff;
+  transition: background 0.5s;
+  cursor: pointer;
+  width: max-content;
+}
+
+.login-card.dark .login-google-btn {
+  background: #23272f;
+  border: 1px solid #059669;
+  color: #fff;
+}
+
+.login-google-btn:hover {
+  background: #f3f4f6;
+}
+
+.login-card.dark .login-google-btn:hover {
+  background: #059669;
+  color: #fff;
+}
+
+.login-google-icon {
+  height: 20px;
+}
+
+.login-google-text {
+  font-weight: 500;
+  color: #374151;
+  font-size: 1rem;
+}
+
+.login-card.dark .login-google-text {
+  color: #fff;
+}
+
+.login-help {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin-top: 24px;
+}
+
+.login-card.dark .login-help {
+  color: #d1d5db;
+}
+
+.login-help-link {
+  color: #059669;
+  text-decoration: none;
+}
+
+.login-card.dark .login-help-link {
+  color: #ECC138;
+}
+
+.login-help-link:hover {
+  text-decoration: underline;
+}
+
+/* Botón modo oscuro en la pantalla */
+.login-darkmode-btn-screen {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  background: #059669;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  cursor: pointer;
+  z-index: 100;
+  transition: background 0.2s;
+}
+
+.login-darkmode-btn-screen:hover {
+  background: #ECC138;
+  color: #23272f;
+}

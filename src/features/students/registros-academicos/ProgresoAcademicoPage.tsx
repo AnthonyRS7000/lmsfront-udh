@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import './ProgressPage.css';
+import { useState } from 'react';
+import './ProgresoAcademicoPage.css';
 
 // Mock data del plan de estudios
 const planEstudios = {
@@ -117,9 +117,8 @@ const estudiante = {
   promedioGeneral: 16.8
 };
 
-const ProgresoAcademico = () => {
+const ProgresoAcademicoPage = () => {
   const [vistaActiva, setVistaActiva] = useState('resumen');
-  const [semestreSeleccionado, setSemestreSeleccionado] = useState(null);
 
   // Calcular estadísticas
   const calcularEstadisticas = () => {
@@ -182,7 +181,7 @@ const ProgresoAcademico = () => {
 
   const proyeccion = calcularProyeccion();
 
-  const getEstadoColor = (estado) => {
+  const getEstadoColor = (estado: string) => {
     switch (estado) {
       case 'aprobado': return '#28a745';
       case 'cursando': return '#007bff';
@@ -191,7 +190,7 @@ const ProgresoAcademico = () => {
     }
   };
 
-  const getEstadoTexto = (estado) => {
+  const getEstadoTexto = (estado: string) => {
     switch (estado) {
       case 'aprobado': return 'Aprobado';
       case 'cursando': return 'Cursando';
@@ -313,7 +312,7 @@ const ProgresoAcademico = () => {
                 const totalMaterias = semestre.materias.length;
                 const promedioSemestre = semestre.materias
                   .filter(m => m.nota)
-                  .reduce((sum, m, _, arr) => sum + m.nota / arr.length, 0);
+                  .reduce((sum, m, _, arr) => sum + (m.nota || 0) / arr.length, 0);
 
                 return (
                   <div 
@@ -375,7 +374,7 @@ const ProgresoAcademico = () => {
             <div className="proyeccion-grid">
               {/* Proyección de graduación */}
               <div className="graduacion-card">
-                <h2> Fecha Estimada de Graduación</h2>
+                <h2>🎓 Fecha Estimada de Graduación</h2>
                 <div className="año-graduacion">
                   {proyeccion.añoGraduacion}
                 </div>
@@ -389,7 +388,7 @@ const ProgresoAcademico = () => {
 
               {/* Estadísticas de progreso */}
               <div className="progreso-stats-card">
-                <h3> Tu Progreso</h3>
+                <h3>📊 Tu Progreso</h3>
                 
                 <div className="progreso-item">
                   <div className="progreso-item-header">
@@ -436,7 +435,7 @@ const ProgresoAcademico = () => {
 
             {/* Timeline de graduación */}
             <div className="timeline-card">
-              <h3>Timeline hacia la Graduación</h3>
+              <h3>⏱️ Timeline hacia la Graduación</h3>
               
               <div className="timeline-container">
                 {/* Línea timeline */}
@@ -537,4 +536,4 @@ const ProgresoAcademico = () => {
   );
 };
 
-export default ProgresoAcademico;
+export default ProgresoAcademicoPage;

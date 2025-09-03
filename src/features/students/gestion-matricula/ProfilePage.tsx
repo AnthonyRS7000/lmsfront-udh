@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './ProfilePage.css';
 // Datos del usuario (mismos que tienes en mockUser)
 const mockUserProfile = {
@@ -15,11 +15,9 @@ const mockUserProfile = {
 };
 
 const ProfilePage = () => {
-  const [isEditingPhone, setIsEditingPhone] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState(mockUserProfile.numero_celular);
 
   const handlePhoneSubmit = () => {
-    setIsEditingPhone(false);
     // Aquí puedes agregar lógica para guardar el número
     console.log('Número actualizado:', phoneNumber);
   };
@@ -140,7 +138,6 @@ const ProfilePage = () => {
                 className="profile-form-input editable" 
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
-                onFocus={() => setIsEditingPhone(true)}
                 onBlur={handlePhoneSubmit}
                 onKeyPress={(e) => e.key === 'Enter' && handlePhoneSubmit()}
               />

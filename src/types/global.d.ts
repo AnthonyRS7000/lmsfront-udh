@@ -3,7 +3,7 @@
 declare global {
   interface Window {
     __INITIAL_THEME__?: {
-      theme: 'light' | 'dark' | 'system';
+      theme: 'light' | 'dark';
       isDark: boolean;
     };
   }

@@ -5,6 +5,7 @@ import UserDropdown from '../features/students/UserDropdown';
 
 interface TopbarProps {
   onToggleSidebar: () => void;
+  isSidebarOpen: boolean;
 }
 
 // Mock user data - EXACTO COMO UDH
@@ -15,20 +16,22 @@ interface TopbarProps {
   image: 'https://ui-avatars.com/api/?name=Armando+Rojas&background=39B49E&color=fff',
 }; */
 
-export default function Topbar({ onToggleSidebar }: TopbarProps) {
+export default function Topbar({ onToggleSidebar, isSidebarOpen }: TopbarProps) {
   return (
     <header className="admin-topbar">
       <div className="topbar-container">
         {/* Lado izquierdo */}
         <div className="topbar-left">
-          {/* Botón toggle sidebar */}
-          <button
-            onClick={onToggleSidebar}
-            className="topbar-toggle"
-            title="Alternar barra lateral"
-          >
-            <Bars3Icon style={{ width: '1.5rem', height: '1.5rem' }} />
-          </button>
+          {/* Botón toggle sidebar - SOLO visible cuando sidebar está cerrado */}
+          {!isSidebarOpen && (
+            <button
+              onClick={onToggleSidebar}
+              className="topbar-toggle"
+              title="Abrir barra lateral"
+            >
+              <Bars3Icon style={{ width: '1.5rem', height: '1.5rem' }} />
+            </button>
+          )}
 
           
         </div>
