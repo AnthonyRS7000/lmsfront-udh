@@ -175,6 +175,7 @@ function Login() {
                   Acceder
                 </button>
               </form>
+              {/*
               <p className="login-subtitle">
                 Tu correo debe terminar en{" "}
                 <span className="login-domain">@udh.edu.pe</span>
@@ -188,7 +189,7 @@ function Login() {
               <p className="login-help">
                 ¿Necesitas ayuda?{" "}
                 <a href="#" className="login-help-link">Mira esta guía.</a>
-              </p>
+              </p>*/}
             </div>
             {/* Bordes decorativos */}
             <div className="login-corner top-left"></div>

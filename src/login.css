@@ -139,6 +139,7 @@
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
+  padding: 0px 0px 0px 0px;
 }
 
 .login-card-content {
@@ -170,8 +171,8 @@
 
 .login-corner.bottom-right {
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: -0.5rem;
+  right: -0.5rem;
   border-bottom: 2px solid #059669;
   border-right: 2px solid #059669; 
 }
@@ -181,7 +182,7 @@
   font-weight: 600;
   text-align: center;
   color: #2d3748;
-  margin-bottom: 0;
+  margin:10px 0px 10px 0px;
 }
 
 .login-card.dark .login-title{
@@ -193,7 +194,7 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin-top: 16px;
+  margin: 5px 0px 20px 0px ;
 }
 
 .login-input-container {

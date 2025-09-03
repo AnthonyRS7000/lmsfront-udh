@@ -189,7 +189,7 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
             label: 'Gestión Docente',
             icon: IconProyecto,
             submenus: [
-              { name: 'registro-perfil', label: 'Registro y actualización de perfil', path: '/docente/registro-perfil' },
+              { name: 'registro-perfil', label: 'Perfil', path: '/docente/perfil' },
               { name: 'asignacion-cursos', label: 'Asignación de cursos', path: '/docente/asignacion-cursos' },
               { name: 'gestion-horarios', label: 'Gestión de horarios', path: '/docente/gestion-horarios' },
               { name: 'reportes-actividad', label: 'Reportes de actividad', path: '/docente/reportes-actividad' },
