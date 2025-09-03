@@ -120,6 +120,81 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
     }
   }, [themeLoading]);
 
+<<<<<<< HEAD
+  // Secciones de navegación - MÓDULOS REALES DEL SISTEMA
+  const sections = [
+  
+    {
+      name: 'GestionMatricula',
+      label: 'Gestión de Matrícula',
+      icon: IconProyecto,
+      submenus: [
+        /* { name: 'registrarme-sistema', label: 'Registrarme al sistema', path: '/estudiante/registro' }, */
+        { name: 'actualizar-datos', label: 'Actualizar mis datos', path: '/estudiante/perfil' },
+        { name: 'gestion-cursos', label: 'Gestión de cursos', path: '/estudiante/cursos' },
+        { name: 'ver-cursos-semestre', label: 'Consultar cursos', path: '/estudiante/consultar_cursos' },
+        { name: 'ver estado-matricula', label: 'Historial Economico', path: '/estudiante/estado_matricula' },
+        { name: 'historial-matricula', label: 'Historial Matricula', path: '/estudiante/historial_matricula' },
+        { name: 'Tramite', label: 'Tramites', path: '/estudiante/tramites' },
+        { name: 'Progreso-academico', label: 'Progreso Academico', path: '/estudiante/progreso_academico' },
+        /* { name: 'verificacion-prerequisitos', label: 'Verificación de prerrequisitos', path: '/estudiante/prerequisitos' },
+        { name: 'consulta-cupos', label: 'Consulta de cupos disponibles', path: '/estudiante/cupos' },
+        { name: 'confirmacion-matricula', label: 'Confirmación digital de matrícula', path: '/estudiante/confirmacion-matricula' }, */
+      ], 
+    },
+    {
+      name: 'GestionRegistrosAcademicos',
+      label: 'Gestión de Registros Académicos',
+      icon: IconInforme,
+      submenus: [
+        { name: 'consulta-calificaciones', label: 'Consulta de calificaciones', path: '/estudiante/calificaciones' },
+        { name: 'historial-academico', label: 'Acceso a historial académico', path: '/estudiante/historial' },
+        { name: 'descarga-certificados', label: 'Descarga de certificados', path: '/estudiante/certificados' },
+        { name: 'solicitudes-virtuales', label: 'Solicitudes virtuales', path: '/estudiante/tramites' },
+        { name: 'reportes-academicos', label: 'Reportes académicos', path: '/estudiante/reportes' },
+      ],
+    },
+    {
+      name: 'GestionPanelVirtual',
+      label: 'Gestión del Panel Virtual',
+      icon: IconEjecucion,
+      submenus: [
+        { name: 'aula-virtual', label: 'Acceso a aulas virtuales', path: '/estudiante/aulas_virtuales' },
+        { name: 'clases-tiempo-real', label: 'Participación en clases en vivo', path: '/estudiante/clases-vivo' },
+        { name: 'acceso-grabaciones', label: 'Acceso a grabaciones', path: '/estudiante/grabaciones' },
+        { name: 'entrega-tareas', label: 'Entrega de tareas digitales', path: '/estudiante/tareas' },
+       /*  { name: 'evaluaciones-automatizadas', label: 'Evaluaciones automatizadas', path: '/estudiante/evaluaciones' },
+        { name: 'participacion-foros', label: 'Participación en foros', path: '/estudiante/foros' },
+        { name: 'chat-mensajeria', label: 'Chat y mensajería interna', path: '/estudiante/mensajes' },
+        { name: 'actividades-interactivas', label: 'Actividades interactivas', path: '/estudiante/actividades' }, */
+      ],
+    },
+    {
+      name: 'GestionBibliotecaVirtual',
+      label: 'Gestión de Biblioteca Virtual',
+      icon: IconSustentacion,
+      submenus: [
+        { name: 'busqueda-catalogos', label: 'Búsqueda en catálogos digitales', path: '/estudiante/catalogo' },
+        { name: 'bibliotecas-externas', label: 'Acceso a bibliotecas externas', path: '/estudiante/bibliotecas-externas' },
+        { name: 'descarga-materiales', label: 'Descarga de materiales', path: '/estudiante/materiales' },
+        { name: 'reserva-materiales', label: 'Reserva de materiales digitales', path: '/estudiante/reservas' },
+        { name: 'reportes-uso', label: 'Consulta de reportes de uso', path: '/estudiante/reportes-biblioteca' },
+      ],
+    },
+    {
+      name: 'GestionPagosVirtuales',
+      label: 'Gestión de Pagos Virtuales',
+      icon: IconProyecto,
+      submenus: [
+        { name: 'pagos-linea', label: 'Pagos en línea', path: '/estudiante/pagos', badge: 2 },
+        /* { name: 'metodos-pago', label: 'Métodos de pago diversos', path: '/estudiante/metodos-pago' },
+        { name: 'comprobantes-automaticos', label: 'Comprobantes automáticos', path: '/estudiante/comprobantes' }, */
+        { name: 'historial-pagos', label: 'Historial de pagos', path: '/estudiante/historial-pagos' },
+        /* { name: 'alertas-vencimiento', label: 'Alertas de vencimiento', path: '/estudiante/alertas', badge: 1 }, */
+      ],
+    },
+  ];
+=======
   // Función para obtener secciones según el rol
   const getSectionsByRole = (role: string) => {
     switch (role) {
@@ -172,6 +247,7 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
             ],
           },
         ];
+>>>>>>> f7bd969e5ecc1eeec2935e17e90e14cfbea80fc4
 
       case 'docente':
         return [
