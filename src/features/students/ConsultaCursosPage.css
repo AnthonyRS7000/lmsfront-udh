@@ -1,18 +1,69 @@
+/* Variables CSS para temas */
+:root {
+  /* Modo claro */
+  --bg-primary: #f7fafc;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f1f5f9;
+  --bg-quaternary: #e2e8f0;
+  
+  --text-primary: #1a202c;
+  --text-secondary: #2d3748;
+  --text-tertiary: #4a5568;
+  --text-quaternary: #718096;
+  --text-quinary: #a0aec0;
+  
+  --border-primary: #e2e8f0;
+  --border-secondary: #cbd5e0;
+  --border-accent: #2a9d8f;
+  
+  --shadow-primary: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.15);
+  
+  --accent-color: #2a9d8f;
+  --accent-hover: #20b2aa;
+}
+
+.dark {
+  /* Modo oscuro */
+  --bg-primary: #1a202c;
+  --bg-secondary: #2d3748;
+  --bg-tertiary: #1a202c;
+  --bg-quaternary: #4a5568;
+  
+  --text-primary: #e2e8f0;
+  --text-secondary: #a0aec0;
+  --text-tertiary: #718096;
+  --text-quaternary: #4a5568;
+  --text-quinary: #2d3748;
+  
+  --border-primary: #4a5568;
+  --border-secondary: #718096;
+  --border-accent: #2a9d8f;
+  
+  --shadow-primary: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.4);
+  
+  --accent-color: #2a9d8f;
+  --accent-hover: #20b2aa;
+}
+
 /* Contenedor principal */
 .schedule-container {
   min-height: 100vh;
-  background-color: #1a202c;
-  color: #e2e8f0;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   padding: 40px;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 /* Header */
 .header {
-  background-color: #2d3748;
+  background-color: var(--bg-secondary);
   border-radius: 8px;
-  border: 1px solid #4a5568;
+  border: 1px solid var(--border-primary);
   padding: 24px;
   margin-bottom: 24px;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .header-content {
@@ -24,17 +75,19 @@
 .header-info h1.header-title {
   font-size: 28px;
   font-weight: 600;
-  color: #e2e8f0;
+  color: var(--text-primary);
   margin: 0;
   letter-spacing: 0.5px;
+  transition: color 0.2s ease;
 }
 
 .header-subtitle {
-  color: #a0aec0;
+  color: var(--text-secondary);
   margin-top: 8px;
   margin-bottom: 0;
   font-size: 14px;
   font-weight: 500;
+  transition: color 0.2s ease;
 }
 
 .header-actions {
@@ -50,14 +103,15 @@
 .credits-number {
   font-size: 32px;
   font-weight: 600;
-  color: #2a9d8f;
+  color: var(--accent-color);
 }
 
 .credits-label {
   font-size: 12px;
-  color: #718096;
+  color: var(--text-tertiary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  transition: color 0.2s ease;
 }
 
 .view-toggle {
@@ -68,23 +122,23 @@
 .toggle-button {
   padding: 10px 16px;
   border-radius: 6px;
-  border: 1px solid #4a5568;
+  border: 1px solid var(--border-primary);
   cursor: pointer;
   transition: all 0.2s ease;
   font-size: 14px;
   font-weight: 500;
-  background-color: #2d3748;
-  color: #e2e8f0;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
 }
 
 .toggle-button:not(.active):hover {
-  background-color: #4a5568;
-  border-color: #2a9d8f;
+  background-color: var(--bg-quaternary);
+  border-color: var(--border-accent);
 }
 
 .toggle-button.active {
-  background-color: #2a9d8f;
-  border-color: #20b2aa;
+  background-color: var(--accent-color);
+  border-color: var(--accent-hover);
   color: #ffffff;
 }
 
@@ -108,17 +162,19 @@
 
 .schedule-grid,
 .schedule-list {
-  background-color: #2d3748;
+  background-color: var(--bg-secondary);
   border-radius: 8px;
-  border: 1px solid #4a5568;
+  border: 1px solid var(--border-primary);
   overflow: hidden;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .grid-header,
 .list-header {
   padding: 20px;
-  border-bottom: 1px solid #4a5568;
-  background-color: #1a202c;
+  border-bottom: 1px solid var(--border-primary);
+  background-color: var(--bg-tertiary);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .grid-title,
@@ -126,8 +182,9 @@
   font-size: 18px;
   font-weight: 600;
   margin: 0;
-  color: #e2e8f0;
+  color: var(--text-primary);
   letter-spacing: 0.5px;
+  transition: color 0.2s ease;
 }
 
 /* Tabla de horarios */
@@ -141,48 +198,54 @@
 }
 
 .table-header {
-  background-color: #1a202c;
+  background-color: var(--bg-tertiary);
+  transition: background-color 0.2s ease;
 }
 
 .time-header {
   padding: 16px;
   text-align: left;
   font-weight: 500;
-  color: #a0aec0;
+  color: var(--text-secondary);
   width: 80px;
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  transition: color 0.2s ease;
 }
 
 .day-header {
   padding: 16px;
   text-align: center;
   font-weight: 500;
-  color: #a0aec0;
+  color: var(--text-secondary);
   min-width: 140px;
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  transition: color 0.2s ease;
 }
 
 .table-row {
-  border-top: 1px solid #4a5568;
+  border-top: 1px solid var(--border-primary);
+  transition: border-color 0.2s ease;
 }
 
 .time-cell {
   padding: 16px;
   font-size: 12px;
   font-weight: 500;
-  color: #718096;
-  background-color: #1a202c;
+  color: var(--text-tertiary);
+  background-color: var(--bg-tertiary);
+  transition: color 0.2s ease, background-color 0.2s ease;
 }
 
 .schedule-cell {
   padding: 4px;
   height: 64px;
-  border-left: 1px solid #4a5568;
+  border-left: 1px solid var(--border-primary);
   vertical-align: top;
+  transition: border-color 0.2s ease;
 }
 
 /* Bloques de cursos en la tabla */
@@ -198,7 +261,7 @@
 
 .course-block:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-hover);
 }
 
 .course-code {
@@ -234,7 +297,7 @@
 
 .course-item:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-hover);
 }
 
 .course-item-content {
@@ -281,20 +344,22 @@
 }
 
 .sidebar-section {
-  background-color: #2d3748;
+  background-color: var(--bg-secondary);
   border-radius: 8px;
-  border: 1px solid #4a5568;
+  border: 1px solid var(--border-primary);
   padding: 20px;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .sidebar-title {
   font-weight: 600;
   font-size: 16px;
   margin: 0 0 16px 0;
-  color: #e2e8f0;
+  color: var(--text-primary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-size: 14px;
+  transition: color 0.2s ease;
 }
 
 /* Lista de cursos disponibles */
@@ -313,13 +378,13 @@
 }
 
 .course-unselected {
-  background-color: #1a202c;
-  border-color: #4a5568;
+  background-color: var(--bg-tertiary);
+  border-color: var(--border-primary);
 }
 
 .course-unselected:hover {
-  background-color: #2d3748;
-  border-color: #2a9d8f;
+  background-color: var(--bg-secondary);
+  border-color: var(--border-accent);
 }
 
 .available-course-content {
@@ -331,15 +396,18 @@
 .available-course-code {
   font-weight: 500;
   font-size: 13px;
+  color: var(--text-primary);
+  transition: color 0.2s ease;
 }
 
 .available-course-name {
   font-size: 11px;
-  color: #a0aec0;
+  color: var(--text-secondary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 120px;
+  transition: color 0.2s ease;
 }
 
 .selection-indicator {
@@ -358,11 +426,13 @@
   display: flex;
   justify-content: space-between;
   font-size: 14px;
+  color: var(--text-primary);
+  transition: color 0.2s ease;
 }
 
 .summary-value {
   font-weight: 600;
-  color: #2a9d8f;
+  color: var(--accent-color);
 }
 
 /* Leyenda */
@@ -388,9 +458,11 @@
 .legend-text {
   font-size: 13px;
   font-weight: 500;
+  color: var(--text-primary);
+  transition: color 0.2s ease;
 }
 
-/* Colores para diferentes cursos - Adaptados al tema oscuro */
+/* Colores para diferentes cursos - Compatibles con ambos modos */
 .course-blue {
   background-color: #2563eb;
   border-color: #3b82f6;
@@ -428,9 +500,17 @@
 }
 
 .course-gray {
-  background-color: #4a5568;
-  border-color: #718096;
-  color: #e2e8f0;
+  background-color: var(--text-tertiary);
+  border-color: var(--text-secondary);
+  color: var(--text-primary);
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+/* Mejoras para modo claro */
+:root .course-gray {
+  background-color: #6b7280;
+  border-color: #9ca3af;
+  color: #f9fafb;
 }
 
 /* Responsive */
@@ -489,4 +569,22 @@
   .main-layout {
     gap: 20px;
   }
+}
+
+/* Mejoras adicionales para transiciones suaves */
+.dark .course-unselected:hover {
+  background-color: var(--bg-quaternary);
+}
+
+.dark .course-block:hover,
+.dark .course-item:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Estados focus para accesibilidad */
+.toggle-button:focus,
+.available-course:focus,
+.course-block:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
 }

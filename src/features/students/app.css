@@ -1,0 +1,414 @@
+
+/* ==========================================================================
+   App Theme — Unified CSS (Light/Dark) 
+   Primary color: #20b2aa (LightSeaGreen)
+   This file consolidates repeated patterns (headers, cards, tabs, buttons,
+   badges, modals, grids) used across:
+   - Modificar/Estado/Historial de Matrícula
+   - Consulta/Curso/Horarios
+   - Perfil de usuario
+   - Progreso académico
+   - User dropdown/topbar
+   Replace per-page CSS with this single file where possible.
+   ========================================================================== */
+
+/* -----------------------------
+   1) Design Tokens (CSS Vars)
+   ----------------------------- */
+:root {
+  /* Brand */
+  --primary: #20b2aa;
+  --primary-600: #1aa199;
+  --primary-700: #168c86;
+
+  /* Semantic */
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger:  #dc3545;
+  --info:    #2563eb;
+  --muted:   #6b7280;
+
+  /* Surfaces - LIGHT */
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface-2: #f1f5f9;
+  --elevated: #ffffff;
+  --border: #e5e7eb;
+
+  /* Text - LIGHT */
+  --text: #111827;
+  --text-2: #374151;
+  --text-3: #6b7280;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(16, 24, 40, 0.08);
+  --shadow-md: 0 4px 12px rgba(16, 24, 40, 0.10);
+  --shadow-lg: 0 10px 25px rgba(16, 24, 40, 0.12);
+
+  /* Radii / spacing */
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-lg: 16px;
+  --gap: 20px;
+}
+
+:root.dark {
+  /* Surfaces - DARK */
+  --bg: #0f1623;          /* ~ slate-950 */
+  --surface: #1a202c;     /* ~ slate-900 */
+  --surface-2: #2d3748;   /* ~ slate-800 */
+  --elevated: #232b3a; 
+  --border: #4a5568;
+
+  /* Text - DARK */
+  --text: #e2e8f0;
+  --text-2: #cbd5e1;
+  --text-3: #94a3b8;
+
+  /* Shadows tuned for dark */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.25);
+  --shadow-md: 0 6px 16px rgba(0,0,0,0.30);
+  --shadow-lg: 0 14px 32px rgba(0,0,0,0.35);
+}
+
+/* Utility brand tints for course labels, etc. */
+:root {
+  --teal-400: #2dd4bf;
+  --teal-500: #14b8a6;
+  --teal-600: #0d9488;
+  --blue-500: #3b82f6;
+  --green-500:#22c55e;
+  --purple-500:#a855f7;
+  --orange-500:#f97316;
+  --pink-500:#ec4899;
+  --gray-500: #6b7280;
+}
+
+/* ----------------------------------
+   2) Base Reset + Elements
+   ---------------------------------- */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img { max-width: 100%; display:block; }
+
+/* Links */
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Containers (generic) */
+.container, .matricula-container, .schedule-container, .historial-container, .estado-financiero-container, .progreso-container, .profile-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Cards */
+.card, .info-card, .historial-card, .estado-financiero-card, .sidebar-section, .schedule-grid, .schedule-list, .timeline-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ----------------------------------
+   3) Headers / Page Mastheads
+   ---------------------------------- */
+.header, .progreso-header {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-700) 100%);
+  color: #fff;
+  padding: 30px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+}
+
+.header-title, .progreso-header h1 {
+  margin: 0 0 6px 0;
+  font-size: clamp(22px, 2.3vw, 36px);
+  font-weight: 700;
+}
+
+.header-subtitle, .progreso-header p {
+  margin: 0;
+  opacity: .95;
+}
+
+/* "Badge" helpers (e.g., semestre, estado, etc.) */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 999px;
+  font-weight: 700;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text-2);
+}
+.badge.primary { background: color-mix(in srgb, var(--primary) 15%, transparent); border-color: var(--primary); color:#fff; }
+.badge.success { background: color-mix(in srgb, var(--success) 15%, transparent); border-color: var(--success); color:#fff; }
+.badge.warning { background: color-mix(in srgb, var(--warning) 15%, transparent); border-color: var(--warning); color:#fff; }
+.badge.danger  { background: color-mix(in srgb, var(--danger)  15%, transparent); border-color: var(--danger);  color:#fff; }
+
+/* ----------------------------------
+   4) Buttons (shared)
+   ---------------------------------- */
+.btn {
+  --btn-bg: var(--primary);
+  --btn-fg: #fff;
+  --btn-bd: var(--primary-700);
+  display:inline-flex; align-items:center; justify-content:center;
+  gap:8px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--btn-bd);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-weight:600; font-size: 14px; letter-spacing:.3px;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .2s ease, background-color .2s ease;
+  box-shadow: var(--shadow-sm);
+  text-transform: uppercase;
+}
+.btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.btn:disabled, .btn[disabled] { opacity:.6; cursor:not-allowed; transform:none; }
+
+.btn-primary { --btn-bg: var(--primary); --btn-bd: var(--primary-700); }
+.btn-success { --btn-bg: var(--success); --btn-bd: #0e9f6e; }
+.btn-danger  { --btn-bg: var(--danger);  --btn-bd: #b02a37; }
+.btn-secondary { --btn-bg: var(--surface-2); --btn-bd: var(--border); --btn-fg: var(--text); }
+.btn-outline { --btn-bg: transparent; --btn-fg: var(--primary); --btn-bd: var(--primary); }
+.btn-outline:hover { --btn-bg: color-mix(in srgb, var(--primary) 10%, transparent); }
+
+/* Icon-only round */
+.btn-icon {
+  width:40px; height:40px; padding:0; border-radius:50%;
+}
+
+/* ----------------------------------
+   5) Tabs (shared)
+   ---------------------------------- */
+.tabs-container {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+.tabs-header {
+  display: flex;
+  gap: 2px;
+  padding: 4px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+}
+.tab-button {
+  appearance:none;
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-3);
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.tab-button:hover {
+  background: color-mix(in srgb, var(--primary) 8%, var(--surface-2));
+  color: var(--text);
+}
+.tab-button.active, .tab-active {
+  background: var(--surface);
+  color: var(--primary);
+  border-color: color-mix(in srgb, var(--primary) 40%, var(--border));
+}
+.tab-content { padding: 24px; }
+
+/* ----------------------------------
+   6) Lists, grids & course cards
+   ---------------------------------- */
+.cursos-grid, .courses-grid, .schedule-grid .grid-content, .semestres-grid {
+  display:grid; gap: var(--gap);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.curso-card, .curso-card-disponible, .curso-card-cambio, .course-card, .course-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  transition: transform .15s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.curso-card:hover, .curso-card-disponible:hover, .curso-card-cambio:hover, .course-card:hover, .course-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: color-mix(in srgb, var(--primary) 40%, var(--border));
+}
+
+.curso-nombre, .course-full-name { 
+  margin: 0 0 8px 0; 
+  color: var(--text); 
+  font-weight:700; 
+}
+
+.curso-detalles, .curso-profesor, .course-professor, .course-description, .curso-modal-descripcion {
+  color: var(--text-3);
+  font-size: 0.925rem;
+}
+
+/* Type / status pills */
+.tipo-badge, .estado-badge, .semestre-estado, .semestre-badge, .badge-actual {
+  font-size: 12px; font-weight:700; padding: 4px 10px; border-radius: 999px;
+  background: var(--surface-2);
+  border:1px solid var(--border);
+  color: var(--text-2);
+}
+.tipo-obligatorio { background: color-mix(in srgb, var(--info) 12%, var(--surface)); color: var(--info); }
+.tipo-electivo    { background: color-mix(in srgb, var(--purple-500) 12%, var(--surface)); color: var(--purple-500); }
+
+/* Cupos, créditos */
+.cupos-sin { color: var(--danger); font-weight:700; }
+.cupos-con { color: var(--success); font-weight:700; }
+.curso-creditos, .course-credits { color: var(--primary); font-weight:700; }
+
+/* ----------------------------------
+   7) Modals (shared)
+   ---------------------------------- */
+.modal-overlay {
+  position: fixed; inset:0; display:flex; align-items:center; justify-content:center;
+  background: rgba(0,0,0,.45); z-index: 1000;
+}
+.modal-content {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  width: min(600px, 92vw);
+  max-height: 85vh;
+  overflow:auto;
+  padding: 24px;
+  box-shadow: var(--shadow-lg);
+}
+.modal-title { 
+  margin:0 0 14px 0; 
+  text-align:center; 
+  font-size: 1.25rem; 
+  color: var(--text); 
+}
+.modal-title-danger { color: var(--danger); }
+.modal-title-success{ color: var(--success); }
+.modal-title-primary{ color: var(--primary); }
+
+.modal-buttons { display:flex; gap:14px; justify-content:center; margin-top: 18px; }
+
+/* ----------------------------------
+   8) Tables / Schedule
+   ---------------------------------- */
+.table-container { overflow-x:auto; }
+.schedule-table { width:100%; border-collapse:collapse; }
+.table-header { background: var(--surface-2); }
+.time-header, .day-header {
+  padding: 12px; font-size:12px; text-transform: uppercase; letter-spacing:.5px;
+  color: var(--text-3); font-weight:700; text-align:left;
+}
+.table-row { border-top: 1px solid var(--border); }
+.time-cell { padding: 12px; color: var(--text-3); background: var(--surface-2); font-weight:600; }
+.schedule-cell { padding: 6px; height: 64px; border-left: 1px solid var(--border); vertical-align: top; }
+
+.course-block {
+  height:100%; border-radius:8px; padding:8px; border:2px solid var(--primary);
+  background: color-mix(in srgb, var(--primary) 18%, transparent);
+  color: var(--text);
+  transition: transform .15s ease, box-shadow .2s ease;
+}
+.course-block:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
+
+/* Color helpers for blocks */
+.course-blue{ background:#2563eb; border-color:#3b82f6; color:#dbeafe; }
+.course-green{ background:#16a34a; border-color:#22c55e; color:#dcfce7; }
+.course-purple{background:#9333ea; border-color:#a855f7; color:#f3e8ff; }
+.course-orange{background:#ea580c; border-color:#f97316; color:#fed7aa; }
+.course-teal{ background:#0d9488; border-color:#14b8a6; color:#ccfbf1; }
+.course-pink{ background:#db2777; border-color:#ec4899; color:#fce7f3; }
+.course-gray{ background:#4a5568; border-color:#718096; color:#e2e8f0; }
+
+/* ----------------------------------
+   9) Profile / Sidebar
+   ---------------------------------- */
+.profile-container { display:flex; min-height: 100vh; background: var(--bg); color: var(--text); }
+.profile-sidebar {
+  width: 240px; background: var(--surface-2); border-right:1px solid var(--border); padding: 20px 0;
+}
+.profile-nav-item {
+  display:flex; align-items:center; gap:12px; padding:12px 20px; cursor:pointer;
+  border-left:3px solid transparent; transition: background-color .2s ease, border-color .2s ease;
+}
+.profile-nav-item.active { background: var(--primary); border-left-color: var(--primary-700); color:#fff; }
+.profile-nav-item:hover:not(.active) { background: color-mix(in srgb, var(--primary) 12%, transparent); }
+.profile-content { flex:1; padding: 32px; }
+
+.profile-form-label { font-size: 13px; color: var(--text-3); text-transform: uppercase; letter-spacing:.5px; }
+.profile-form-input {
+  padding: 12px 14px; background: var(--surface-2); border:1px solid var(--border); color: var(--text);
+  border-radius: 8px; transition: border-color .2s, box-shadow .2s;
+}
+.profile-form-input:focus {
+  outline:none; border-color: var(--primary); box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 20%, transparent);
+}
+
+/* ----------------------------------
+   10) Topbar User Dropdown
+   ---------------------------------- */
+.topbar-user {
+  display:flex; align-items:center; gap:8px; padding:8px 12px; border-radius:8px; cursor:pointer;
+  transition: background-color .2s ease;
+}
+.topbar-user:hover { background: color-mix(in srgb, var(--text-3) 10%, transparent); }
+
+.topbar-user-avatar { width:32px; height:32px; border-radius:50%; overflow:hidden; border: 2px solid var(--primary); }
+
+.user-dropdown-menu {
+  position:absolute; top:100%; right:0; min-width:180px; margin-top:6px; z-index:1000;
+  background: var(--surface-2); border:1px solid var(--border); border-radius:10px; box-shadow: var(--shadow-lg);
+}
+.dropdown-btn {
+  display:flex; align-items:center; gap:8px; width:100%; padding:12px 14px; border:none; background:none; cursor:pointer;
+  color: var(--text); border-bottom:1px solid var(--border); text-align:left; font-size:14px;
+}
+.dropdown-btn:hover { background: color-mix(in srgb, var(--primary) 10%, transparent); }
+.dropdown-btn:last-child { border-bottom:none; }
+
+/* ----------------------------------
+   11) Helpers & Responsive
+   ---------------------------------- */
+.warning-banner {
+  background: color-mix(in srgb, var(--warning) 15%, var(--surface)); 
+  color: #7a4b00; border-left:4px solid var(--warning); padding:12px 16px; border-radius: 10px;
+}
+
+.empty-message {
+  text-align: center; color: var(--text-3); font-style: italic; padding: 40px;
+  background: var(--surface-2); border-radius: var(--radius-sm);
+}
+
+.grid-2 { display:grid; gap: var(--gap); grid-template-columns: repeat(2,1fr); }
+.grid-3 { display:grid; gap: var(--gap); grid-template-columns: repeat(3,1fr); }
+@media (max-width: 900px) {
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  .profile-sidebar { width: 100%; }
+}
+
+/* Hide-only-on-mobile */
+@media (max-width: 768px) {
+  .topbar-user-name { display:none; }
+}

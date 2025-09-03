@@ -16,6 +16,11 @@ import UserDropdown from "./features/students/UserDropdown";
 import ProfilePage from "./features/students/ProfilePage";
 import CursosPage from "./features/students/CursosPage";
 import ConsultaCursosPage from "./features/students/ConsultaCursosPage";
+import EstadoMatriculaPage from "./features/students/EstadoMatriculaPage";
+import HistorialMatriculaPage from "./features/students/HistorialMatriculaPage";
+import TramitesPage from "./features/students/TramitesPage";
+import ProgressPage from "./features/students/ProgressPage";
+
 
 function App() {
   return (
