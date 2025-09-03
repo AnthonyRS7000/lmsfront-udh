@@ -114,14 +114,14 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
       label: 'Gestión del Panel Virtual',
       icon: IconEjecucion,
       submenus: [
-        { name: 'aula-virtual', label: 'Acceso a aulas virtuales', path: '/estudiante/aula-virtual' },
+        { name: 'aula-virtual', label: 'Acceso a aulas virtuales', path: '/estudiante/aulas_virtuales' },
         { name: 'clases-tiempo-real', label: 'Participación en clases en vivo', path: '/estudiante/clases-vivo' },
         { name: 'acceso-grabaciones', label: 'Acceso a grabaciones', path: '/estudiante/grabaciones' },
         { name: 'entrega-tareas', label: 'Entrega de tareas digitales', path: '/estudiante/tareas' },
-        { name: 'evaluaciones-automatizadas', label: 'Evaluaciones automatizadas', path: '/estudiante/evaluaciones' },
+       /*  { name: 'evaluaciones-automatizadas', label: 'Evaluaciones automatizadas', path: '/estudiante/evaluaciones' },
         { name: 'participacion-foros', label: 'Participación en foros', path: '/estudiante/foros' },
         { name: 'chat-mensajeria', label: 'Chat y mensajería interna', path: '/estudiante/mensajes' },
-        { name: 'actividades-interactivas', label: 'Actividades interactivas', path: '/estudiante/actividades' },
+        { name: 'actividades-interactivas', label: 'Actividades interactivas', path: '/estudiante/actividades' }, */
       ],
     },
     {
@@ -142,10 +142,10 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
       icon: IconProyecto,
       submenus: [
         { name: 'pagos-linea', label: 'Pagos en línea', path: '/estudiante/pagos', badge: 2 },
-        { name: 'metodos-pago', label: 'Métodos de pago diversos', path: '/estudiante/metodos-pago' },
-        { name: 'comprobantes-automaticos', label: 'Comprobantes automáticos', path: '/estudiante/comprobantes' },
+        /* { name: 'metodos-pago', label: 'Métodos de pago diversos', path: '/estudiante/metodos-pago' },
+        { name: 'comprobantes-automaticos', label: 'Comprobantes automáticos', path: '/estudiante/comprobantes' }, */
         { name: 'historial-pagos', label: 'Historial de pagos', path: '/estudiante/historial-pagos' },
-        { name: 'alertas-vencimiento', label: 'Alertas de vencimiento', path: '/estudiante/alertas', badge: 1 },
+        /* { name: 'alertas-vencimiento', label: 'Alertas de vencimiento', path: '/estudiante/alertas', badge: 1 }, */
       ],
     },
   ];

@@ -12,6 +12,14 @@ import HistorialMatriculaPage from "./features/students/HistorialMatriculaPage";
 import TramitesPage from "./features/students/TramitesPage";
 import ProgressPage from "./features/students/ProgressPage";
 
+import AulasVirtualesPage from "./features/students/AulasVirtualesPage";
+import ClasesVivoPage from "./features/students/ClasesVivoPage";
+import AccesGrabacionesPage from "./features/students/AccesGrabacionesPage";
+import TareasPage  from "./features/students/TareasPage";
+import PagosPage  from "./features/students/PagosPage";
+import DetallePagosPage  from "./features/students/DetallePagosPage";
+
+
 
 function App() {
   return (
@@ -34,6 +42,13 @@ function App() {
               <Route path= "/estudiante/historial_matricula" element={<HistorialMatriculaPage />} />
               <Route path= "/estudiante/tramites" element={<TramitesPage />} />
               <Route path="/estudiante/progreso_academico" element={<ProgressPage />} />
+
+              <Route path="/estudiante/aulas_virtuales" element={<AulasVirtualesPage />} />
+              <Route path="/estudiante/clases-vivo" element={<ClasesVivoPage />} />
+              <Route path="/estudiante/grabaciones" element={<AccesGrabacionesPage />} />
+              <Route path="/estudiante/tareas" element={<TareasPage />} />
+              <Route path="/estudiante/pagos" element={<PagosPage />} />
+              <Route path="/estudiante/historial-pagos" element={<DetallePagosPage />} />
 
               {/* Rutas para docente */}
               <Route path="/docente/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área de Docente</h2><p>Aquí irán las rutas específicas del docente</p></div>} />

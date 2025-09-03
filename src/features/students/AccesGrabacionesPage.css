@@ -1,0 +1,714 @@
+/* Variables CSS para temas claro y oscuro */
+:root {
+  /* Tema claro */
+  --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --bg-primary: rgba(255, 255, 255, 0.95);
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f8fafc;
+  --bg-glass: rgba(255, 255, 255, 0.95);
+  --bg-hover: rgba(0, 0, 0, 0.05);
+  --bg-selected: linear-gradient(45deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+  
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --text-muted: #4b5563;
+  --text-light: #374151;
+  --text-on-selected: #1f2937;
+  
+  --border-color: transparent;
+  --border-light: #e5e7eb;
+  --border-selected: #667eea;
+  --border-focus: #667eea;
+  
+  --shadow-light: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.1);
+  
+  /* Status colors */
+  --color-obligatorio: #1e40af;
+  --color-electivo: #92400e;
+  --bg-obligatorio: #dbeafe;
+  --bg-electivo: #fef3c7;
+  
+  /* Tipo colors */
+  --color-clase: #3B82F6;
+  --color-examen: #EF4444;
+  --color-laboratorio: #10B981;
+  --color-presentacion: #F59E0B;
+  
+  /* Button colors */
+  --btn-primary: #667eea;
+  --btn-primary-hover: #5a67d8;
+  --btn-secondary: #10b981;
+  --btn-secondary-hover: #059669;
+  
+  /* Empty state */
+  --empty-icon-color: #d1d5db;
+  --empty-text-color: #6b7280;
+}
+
+/* Tema oscuro */
+.dark {
+  --bg-gradient: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+  --bg-primary: rgba(31, 41, 55, 0.95);
+  --bg-secondary: #374151;
+  --bg-tertiary: #4b5563;
+  --bg-glass: rgba(31, 41, 55, 0.95);
+  --bg-hover: rgba(255, 255, 255, 0.05);
+  --bg-selected: linear-gradient(45deg, rgba(79, 70, 229, 0.2), rgba(124, 58, 237, 0.2));
+  
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --text-muted: #9ca3af;
+  --text-light: #e5e7eb;
+  --text-on-selected: #f9fafb;
+  
+  --border-color: rgba(75, 85, 99, 0.5);
+  --border-light: #374151;
+  --border-selected: #4f46e5;
+  --border-focus: #4f46e5;
+  
+  --shadow-light: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.3);
+  
+  /* Status colors - adapted for dark theme */
+  --color-obligatorio: #60a5fa;
+  --color-electivo: #fbbf24;
+  --bg-obligatorio: rgba(59, 130, 246, 0.2);
+  --bg-electivo: rgba(251, 191, 36, 0.2);
+  
+  /* Empty state - dark theme */
+  --empty-icon-color: #4b5563;
+  --empty-text-color: #9ca3af;
+}
+
+.grabaciones-container {
+  min-height: 100vh;
+background: var(--bg-tertiary);
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: all 0.3s ease;
+}
+
+.header {
+   background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border-radius: 15px;
+  padding: 25px;
+  margin-bottom: 25px;
+  box-shadow: var(--shadow-light);
+  backdrop-filter: blur(10px);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.main-title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.title-icon {
+  background: var(--bg-gradient);
+  color: white;
+  padding: 8px;
+  border-radius: 10px;
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.student-info {
+  text-align: right;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.student-name {
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+.student-details {
+  margin: 2px 0;
+}
+
+.student-program {
+  margin: 2px 0;
+}
+
+.main-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 25px;
+}
+
+.cursos-panel,
+.grabaciones-panel {
+  background: var(--bg-glass);
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: var(--shadow-light);
+  backdrop-filter: blur(10px);
+}
+
+.cursos-panel {
+  height: fit-content;
+}
+
+.panel-title {
+  margin: 0 0 20px 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.panel-icon {
+  font-size: 24px;
+  color: #667eea;
+}
+
+.cursos-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.curso-item {
+  padding: 16px;
+  border-radius: 12px;
+  border: 2px solid var(--border-color);
+  background: var(--bg-tertiary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.curso-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+}
+
+.curso-item.selected {
+  border-color: var(--border-selected);
+  background: var(--bg-selected);
+  color: var(--text-on-selected);
+}
+
+.curso-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.curso-codigo {
+  font-weight: bold;
+  font-size: 14px;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.curso-nombre {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.curso-tipo {
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.curso-tipo.obligatorio {
+  background: var(--bg-obligatorio);
+  color: var(--color-obligatorio);
+}
+
+.curso-tipo.electivo {
+  background: var(--bg-electivo);
+  color: var(--color-electivo);
+}
+
+.curso-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.curso-schedule {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 6px;
+}
+
+.meta-item,
+.schedule-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.meta-icon,
+.schedule-icon {
+  font-size: 12px;
+}
+
+.meta-text,
+.schedule-text {
+  font-size: 11px;
+}
+
+.grabaciones-count {
+  margin-top: 8px;
+  font-size: 10px;
+  color: #667eea;
+  font-weight: 600;
+}
+
+.selected-course-header {
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--border-light);
+}
+
+.course-title {
+  margin: 0 0 10px 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+.course-description {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.filters-container {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.search-input,
+.filter-select {
+  padding: 12px 16px;
+  border: 2px solid var(--border-light);
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.search-input {
+  flex: 1;
+}
+
+.search-input:focus,
+.filter-select:focus {
+  border-color: var(--border-focus);
+}
+
+.filter-select {
+  cursor: pointer;
+}
+
+.grabaciones-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.grabacion-item {
+  padding: 20px;
+  border: 2px solid var(--border-light);
+  border-radius: 12px;
+  background: var(--bg-tertiary);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.grabacion-item:hover {
+  border-color: var(--border-focus);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+}
+
+.grabacion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.grabacion-info {
+  flex: 1;
+}
+
+.grabacion-titulo {
+  margin: 0 0 6px 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+.grabacion-meta {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.grabacion-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tipo-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
+}
+
+.tipo-clase {
+  background-color: var(--color-clase);
+}
+
+.tipo-examen {
+  background-color: var(--color-examen);
+}
+
+.tipo-laboratorio {
+  background-color: var(--color-laboratorio);
+}
+
+.tipo-presentacion {
+  background-color: var(--color-presentacion);
+}
+
+.tipo-default {
+  background-color: var(--text-secondary);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.btn-reproducir,
+.btn-descargar {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-reproducir {
+  background-color: var(--btn-primary);
+  color: white;
+}
+
+.btn-reproducir:hover {
+  background-color: var(--btn-primary-hover);
+}
+
+.btn-descargar {
+  background-color: var(--btn-secondary);
+  color: white;
+}
+
+.btn-descargar:hover {
+  background-color: var(--btn-secondary-hover);
+}
+
+.btn-icon {
+  font-size: 12px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: var(--empty-text-color);
+}
+
+.empty-icon {
+  font-size: 48px;
+  margin: 0 auto 15px;
+  color: var(--empty-icon-color);
+}
+
+.empty-message {
+  margin: 0;
+  font-size: 16px;
+}
+
+.no-course-selected {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--empty-text-color);
+}
+
+.no-course-icon {
+  font-size: 64px;
+  margin: 0 auto 20px;
+  color: var(--empty-icon-color);
+}
+
+.no-course-title {
+  margin: 0 0 10px 0;
+  font-size: 20px;
+  color: var(--text-light);
+}
+
+.no-course-message {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .header-content {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+  
+  .student-info {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .grabaciones-container {
+    padding: 15px;
+  }
+  
+  .header,
+  .cursos-panel,
+  .grabaciones-panel {
+    padding: 20px;
+  }
+  
+  .main-title {
+    font-size: 24px;
+  }
+  
+  .filters-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .search-input,
+  .filter-select {
+    width: 100%;
+  }
+  
+  .grabacion-header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  
+  .action-buttons {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-title {
+    font-size: 20px;
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+  
+  .title-icon {
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+  }
+  
+  .curso-item {
+    padding: 12px;
+  }
+  
+  .curso-meta,
+  .curso-schedule {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  
+  .grabacion-item {
+    padding: 15px;
+  }
+  
+  .grabacion-titulo {
+    font-size: 14px;
+  }
+  
+  .grabacion-meta {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .btn-reproducir,
+  .btn-descargar {
+    width: 100%;
+    justify-content: center;
+    padding: 10px 16px;
+  }
+}
+
+/* Scrollbar personalizado para tema oscuro/claro */
+.cursos-list::-webkit-scrollbar,
+.grabaciones-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.cursos-list::-webkit-scrollbar-track,
+.grabaciones-list::-webkit-scrollbar-track {
+  background: var(--bg-tertiary);
+  border-radius: 3px;
+}
+
+.cursos-list::-webkit-scrollbar-thumb,
+.grabaciones-list::-webkit-scrollbar-thumb {
+  background: var(--text-secondary);
+  border-radius: 3px;
+}
+
+.cursos-list::-webkit-scrollbar-thumb:hover,
+.grabaciones-list::-webkit-scrollbar-thumb:hover {
+  background: var(--text-primary);
+}
+
+/* Animaciones suaves para transiciones de tema */
+* {
+  transition: background-color 0.3s ease, 
+              color 0.3s ease, 
+              border-color 0.3s ease, 
+              box-shadow 0.3s ease;
+}
+
+/* Estados focus para accesibilidad */
+.btn-reproducir:focus,
+.btn-descargar:focus,
+.search-input:focus,
+.filter-select:focus,
+.curso-item:focus,
+.grabacion-item:focus {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+/* Estados activos para botones */
+.btn-reproducir:active {
+  transform: translateY(1px);
+}
+
+.btn-descargar:active {
+  transform: translateY(1px);
+}
+
+/* Mejoras para el tema oscuro */
+.dark .curso-item:hover {
+  background: rgba(75, 85, 99, 0.3);
+}
+
+.dark .curso-item.selected {
+  background: var(--bg-selected);
+  color: var(--text-on-selected);
+}
+
+.dark .grabacion-item:hover {
+  background: rgba(75, 85, 99, 0.3);
+}
+
+/* Placeholder styles for dark theme */
+.dark .search-input::placeholder {
+  color: var(--text-secondary);
+}
+
+/* Custom select arrow for dark theme */
+.dark .filter-select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.filter-select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Loading states */
+.btn-reproducir:disabled,
+.btn-descargar:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-reproducir:disabled:hover,
+.btn-descargar:disabled:hover {
+  transform: none;
+}
