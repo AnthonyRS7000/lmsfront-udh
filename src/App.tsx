@@ -24,9 +24,12 @@ import {
 } from "./features/students/gestion-matricula";
 
 // Importar páginas del módulo Registros Académicos
-import { CalificacionesPage, ProgresoAcademicoPage } from "./features/students/registros-academicos";
-import HistorialAcademicoPage from "./features/students/registros-academicos/HistorialAcademicoPage";
-import CertificadosPage from "./features/students/registros-academicos/CertificadosPage";
+import { 
+  CalificacionesPage, 
+  HistorialAcademicoPage, 
+  ProgresoAcademicoPage, 
+  CertificadosPage 
+} from "./features/students/registros-academicos";
 
 // Importaciones del módulo Panel Virtual
 import AulaVirtualPage from "./features/students/panel-virtual/AulaVirtualPage";
@@ -73,7 +76,6 @@ function App() {
               <Route path="/estudiante/tramites" element={<TramitesPage />} />
               <Route path="/estudiante/progreso_academico" element={<ProgresoAcademicoPage />} />
 
-<<<<<<< HEAD
               <Route path="/estudiante/aulas_virtuales" element={<AulasVirtualesPage />} />
               <Route path="/estudiante/clases-vivo" element={<ClasesVivoPage />} />
               <Route path="/estudiante/grabaciones" element={<AccesGrabacionesPage />} />
@@ -87,11 +89,10 @@ function App() {
               <Route path="/admin/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área Administrativa</h2><p>Aquí irán las rutas específicas del área administrativa</p></div>} />
               {/* Rutas para escuela */}
               <Route path="/escuela/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área de Escuela</h2><p>Aquí irán las rutas específicas de la escuela</p></div>} />
-=======
               {/* Rutas específicas para estudiante - Registros Académicos */}
               <Route path="/estudiante/calificaciones" element={<CalificacionesPage />} />
               <Route path="/estudiante/historial" element={<HistorialAcademicoPage />} />
-              <Route path="/estudiante/certificados" element={<CertificadosPage />} />              {/* Rutas específicas para estudiante - Panel Virtual */}
+              <Route path="/estudiante/certificados" element={<CertificadosPage />} />
               <Route path="/estudiante/aula-virtual" element={<AulaVirtualPage />} />
               
               {/* Rutas generales fallback para cada área */}
@@ -100,7 +101,6 @@ function App() {
               <Route path="/escuela/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área de Escuela</h2><p>Módulo en desarrollo</p></div>} />
               <Route path="/facultad/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área de Facultad</h2><p>Módulo en desarrollo</p></div>} />
               <Route path="/administrativo/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área Administrativa</h2><p>Módulo en desarrollo</p></div>} />
->>>>>>> f7bd969e5ecc1eeec2935e17e90e14cfbea80fc4
             </Routes>
           </Layout>
         } />
