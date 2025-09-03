@@ -73,7 +73,6 @@ function App() {
               <Route path="/estudiante/tramites" element={<TramitesPage />} />
               <Route path="/estudiante/progreso_academico" element={<ProgresoAcademicoPage />} />
 
-<<<<<<< HEAD
               <Route path="/estudiante/aulas_virtuales" element={<AulasVirtualesPage />} />
               <Route path="/estudiante/clases-vivo" element={<ClasesVivoPage />} />
               <Route path="/estudiante/grabaciones" element={<AccesGrabacionesPage />} />
@@ -87,7 +86,6 @@ function App() {
               <Route path="/admin/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área Administrativa</h2><p>Aquí irán las rutas específicas del área administrativa</p></div>} />
               {/* Rutas para escuela */}
               <Route path="/escuela/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área de Escuela</h2><p>Aquí irán las rutas específicas de la escuela</p></div>} />
-=======
               {/* Rutas específicas para estudiante - Registros Académicos */}
               <Route path="/estudiante/calificaciones" element={<CalificacionesPage />} />
               <Route path="/estudiante/historial" element={<HistorialAcademicoPage />} />
@@ -100,7 +98,6 @@ function App() {
               <Route path="/escuela/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área de Escuela</h2><p>Módulo en desarrollo</p></div>} />
               <Route path="/facultad/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área de Facultad</h2><p>Módulo en desarrollo</p></div>} />
               <Route path="/administrativo/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área Administrativa</h2><p>Módulo en desarrollo</p></div>} />
->>>>>>> f7bd969e5ecc1eeec2935e17e90e14cfbea80fc4
             </Routes>
           </Layout>
         } />
