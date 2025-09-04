@@ -4,9 +4,8 @@ import './login.css';
 import udh_img from './assets/1.jpg';
 import udh_img1 from './assets/2.jpg';
 import udh_img2 from './assets/3.jpg';
-import logo_light from './assets/logo_light.svg';
-import logo_dark from './assets/logo_dark.svg';
-
+import udh_logo from './assets/logo.png';
+import { ArrowRightEndOnRectangleIcon, IdentificationIcon, KeyIcon, LockClosedIcon, UserIcon } from '@heroicons/react/24/outline';
 
 function Login() {
   const navigate = useNavigate();
@@ -14,13 +13,29 @@ function Login() {
   const images = [udh_img, udh_img1, udh_img2]; // Array de imágenes
   const [currentImg, setCurrentImg] = useState(0);
   const [sliding, setSliding] = useState(false);
+  
+  // Estado del formulario
+  const [usuario, setUsuario] = useState('');
+  const [password, setPassword] = useState('');
+  const [dni, setDni] = useState('');
+  const [captchaAnswer, setCaptchaAnswer] = useState('');
+  const [captchaQuestion, setCaptchaQuestion] = useState('');
+  const [captchaResult, setCaptchaResult] = useState<number | null>(null);
 
-  // Función para manejar el login con Google
-  const handleGoogleLogin = () => {
-    // Aquí simularemos el login exitoso y redirigimos al dashboard
-    navigate('/dashboard');
-  };
 
+  useEffect(() => {
+    generateCaptcha();
+  }, []);
+
+  const generateCaptcha = () => {
+    const a = Math.floor(Math.random() * 10) + 1;
+    const b = Math.floor(Math.random() * 10) + 1;
+    setCaptchaQuestion(`${a} + ${b}`);
+    setCaptchaResult(a + b);
+    setCaptchaAnswer('');
+  };  
+
+  
   // Carrusel automático
   useEffect(() => {
     const interval = setInterval(() => {
@@ -35,10 +50,38 @@ function Login() {
 
   const nextImg = (currentImg + 1) % images.length;
 
+  
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (parseInt(captchaAnswer) !== captchaResult) {
+      alert('Captcha incorrecto, inténtalo nuevamente.');
+      generateCaptcha();
+      return;
+    }else{
+      if (usuario === "1" && password === "1") {
+        navigate("/administrativo");
+      } else if (usuario === "2" && password === "2") {
+        navigate("/estudiate");
+      } else if (usuario === "3" && password === "3") {
+        navigate("/docente");
+      } else if (usuario === "4" && password === "4") {
+        navigate("/escuela");
+      } else if (usuario === "5" && password === "5") {
+        navigate("/facultad");
+      } else {
+        alert("Credenciales incorrectas ❌");
+      }
+    }
+    
+  };
+
   return (
     <div className={`login-row-container${darkMode ? ' dark' : ''}`}>
       {/* Columna imagen */}
       <div className="login-col-img">
+        <div className={`login-logo-container${darkMode ? ' dark' : ''}`}>
+          <img src={udh_logo} alt="Logo_light" className="login-logo-img" />
+        </div>
         <div className="login-bg-img">
           <div className="carousel-slide">
             {/* Imagen actual, siempre fija */}
@@ -61,15 +104,6 @@ function Login() {
             )}
           </div>
         </div>
-        {darkMode ? (
-          <div className="login-logo-container right">
-            <img src={logo_dark} alt="Logo_dark" className="login-logo-dark-img" />
-          </div>
-        ) : (
-          <div className="login-logo-container right">
-            <img src={logo_light} alt="Logo_light" className="login-logo-img" />
-          </div>
-        )}
       </div>
       {/* Columna card */}
       <div className="login-col-card">
@@ -79,6 +113,70 @@ function Login() {
               <h2 className="login-title">
                 Iniciar sesión
               </h2>
+              
+              <form onSubmit={handleSubmit} className="login-form" method='post'>
+                <div className="login-input-container">
+                  <UserIcon className="login-input-icon" />
+                  <input
+                    type="text"
+                    placeholder="Usuario UDH"
+                    className="login-input"
+                    value={usuario}
+                    onChange={(e) => setUsuario(e.target.value.replace(/\D/g, ''))}
+                    required
+                  />
+                </div>
+                
+                <div className="login-input-container">
+                  <LockClosedIcon  className="login-input-icon" />
+                  <input
+                    type="password"
+                    placeholder="Contraseña"
+                    className="login-input"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                </div>
+
+                <div className="login-input-container">
+                  <IdentificationIcon className="login-input-icon" />
+                  <input
+                    type="text"
+                    placeholder="DNI"
+                    className="login-input"
+                    value={dni}
+                    onChange={(e) => setDni(e.target.value.replace(/\D/g, ''))} // solo números
+                    maxLength={8}
+                    required
+                  />
+                </div>
+                
+                <div className="login-captcha">
+                  <label>{captchaQuestion} = ?</label>
+                  <div className="login-captcha-group">
+                    <div className="login-input-container">
+                      <KeyIcon className="login-input-icon" />
+                      <input
+                        type="text"
+                        placeholder="Respuesta"
+                        className="login-input"
+                        value={captchaAnswer}
+                        onChange={(e) => setCaptchaAnswer(e.target.value.replace(/\D/g, ''))}
+                        required
+                      />
+                    </div>
+                    <button type="button" onClick={generateCaptcha} className="login-captcha-refresh" >
+                      ↻
+                    </button>
+                  </div>
+                </div>
+                <button type="submit" className="login-submit-btn">
+                  <ArrowRightEndOnRectangleIcon  style={{ position: "relative",width: 24, height: 24, marginRight: 8 }} />
+                  Acceder
+                </button>
+              </form>
+              {/*
               <p className="login-subtitle">
                 Tu correo debe terminar en{" "}
                 <span className="login-domain">@udh.edu.pe</span>
@@ -92,7 +190,7 @@ function Login() {
               <p className="login-help">
                 ¿Necesitas ayuda?{" "}
                 <a href="#" className="login-help-link">Mira esta guía.</a>
-              </p>
+              </p>*/}
             </div>
             {/* Bordes decorativos */}
             <div className="login-corner top-left"></div>

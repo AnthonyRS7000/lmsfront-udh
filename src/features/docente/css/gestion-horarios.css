@@ -1,0 +1,319 @@
+/* Contenedor principal */
+.gestion-horarios-container {
+  max-width: auto;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* Títulos y separadores */
+.gestion-horarios-title {
+  color: #4CAF91;
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 1.5rem;
+}
+.gestion-horarios-divider {
+  border: 1px solid #4CAF91;
+  margin-bottom: 24px;
+}
+.gestion-horarios-subtitle {
+  font-size: 1.25rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+/* Formulario */
+.gestion-horarios-form {
+  margin-bottom: 18px;
+}
+.gestion-horarios-row {
+  display: flex;
+  gap: 24px;
+  align-items: flex-end;
+  margin-bottom: 18px;
+}
+.gestion-horarios-field label {
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* Inputs y selects bonitos */
+.gestion-horarios-field input,
+.gestion-horarios-field select,
+.custom-select {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #4CAF91;
+  font-size: 16px;
+  background: #f8f8f8;
+  color: #222;
+  box-shadow: 0 2px 8px rgba(76,175,145,0.08);
+  transition: border 0.2s;
+  width: 140px;
+  appearance: none;
+  outline: none;
+}
+
+/* Iconos en inputs */
+.hora-field .input-icon-wrapper,
+.tipo-field .input-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.input-icon-wrapper select {
+  width: 140px;
+  padding-right: 32px;
+}
+.input-icon {
+  position: absolute;
+  right: 8px;
+  pointer-events: none;
+  color: #4CAF91;
+  width: 20px;
+  height: 20px;
+}
+
+/* Botones centrados */
+.center-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.center-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+/* Botón guardar y confirmar */
+.gestion-horarios-btn {
+  background: #444;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 16px;
+  transition: background 0.2s;
+  display: flex;
+  padding: 10px 32px;
+  font-weight: 600;
+  font-size: 16px;
+  margin: 0 auto;
+}
+.gestion-horarios-btn:hover {
+  background: #222;
+}
+.gestion-horarios-confirmar-btn {
+  background: #4CAF91;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 22px;
+  font-weight: 600;
+  font-size: 18px;
+  cursor: pointer;
+  margin: 10px 0px 10px 0px;
+  transition: background 0.2s;
+}
+
+.confirmar-top-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.gestion-horarios-confirmar-btn:hover {
+  background: #388e6c;
+}
+
+/* Días */
+.gestion-horarios-dias {
+  margin-bottom: 12px;
+}
+.gestion-horarios-dias-list {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+.gestion-horarios-dia-btn {
+  background: #fff;
+  color: #222;
+  border: 1px solid #222;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+}
+
+.gestion-horarios-dia-btn:hover {
+  background: #4CAF91;
+  color: #fff;
+  border: 1px solid rgb(76, 175, 145);
+}
+
+.gestion-horarios-dia-btn.selected {
+  background: #4CAF91;
+  color: #fff;
+  border: 1px solid rgb(76, 175, 145);
+}
+
+/* Modal estilo bootstrap */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(44, 62, 80, 0.35);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-content {
+  background: #fff;
+  border-radius: 12px;
+  padding: 32px 24px;
+  box-shadow: 0 8px 32px rgba(44,62,80,0.18);
+  min-width: 320px;
+  max-width: 90vw;
+  text-align: center;
+  position: relative;
+}
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #CF2C17;
+}
+.modal-message {
+  font-size: 1rem;
+  margin-bottom: 24px;
+  color: #222;
+}
+.modal-close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #4CAF91;
+  padding: 0;
+  z-index: 10;
+}
+
+/* Google Calendar style for horario */
+.calendar-wrapper {
+  overflow-x: auto;
+  background: #f8f8f8;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+}
+.calendar-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  min-width: 800px;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+}
+.calendar-table th,
+.calendar-table td {
+  border: 1px solid #e0e0e0;
+  padding: 8px 6px;
+  text-align: center;
+  font-size: 14px;
+  width: 110px; /* ancho fijo para todas las celdas */
+  min-width: 110px;
+  max-width: 110px;
+  vertical-align: middle;
+  word-break: break-word;
+}
+.calendar-hour-header {
+  background: #e0f7fa;
+  color: #222;
+}
+.calendar-day-header {
+  background: #f5f5f5;
+  color: #222;
+}
+.calendar-hour-cell {
+  background: #f8f8f8;
+  color: #222;
+  font-weight: 500;
+}
+.calendar-cell {
+  background: #fff;
+  min-height: 40px;
+  position: relative;
+  vertical-align: middle;
+}
+.calendar-event {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+}
+.calendar-event-content {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 4px 0;
+  flex-wrap: wrap;
+  word-break: break-word;
+  width: 100%;
+  min-height: 40px;
+  position: relative;
+}
+.horario-eliminar-btn {
+  background-color: #CF2C17;
+  color: #fff;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  vertical-align: middle;
+  transition: background 0.2s;
+  margin-left: 8px;
+  padding: 0px;
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.horario-eliminar-btn:hover {
+  background: transparent;
+  color: #CF2C17;
+  border: 2px solid #CF2C17;
+}
+
+@media (max-width: 700px) {
+  .gestion-horarios-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .horario-table {
+    min-width: 600px;
+    font-size: 12px;
+  }
+}
