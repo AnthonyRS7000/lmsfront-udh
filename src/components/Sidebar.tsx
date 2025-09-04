@@ -306,7 +306,7 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
         return [
           {
             name: 'GestionUsuarios',
-            label: 'Gestión de Usuarios',
+            label: 'Gestión de Cursos',
             icon: IconProyecto,
             submenus: [
               { name: 'registro-usuarios', label: 'Registro de usuarios', path: '/administrativo/usuarios' },
