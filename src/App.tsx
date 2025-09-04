@@ -50,6 +50,7 @@ import ReportesActividad from "./features/docente/pages/ReportesActividad";
 import RegistroCalificaciones from "./features/docente/pages/RegistroCalificaciones";
 import FirmaActas from "./features/docente/pages/FirmaActas";
 import GestionCursos from "./features/docente/pages/GestionCursos";
+import GestionContenido from "./features/docente/pages/GestionContenido";
 
 function App() {
   return (
@@ -93,6 +94,8 @@ function App() {
 
               {/* Rutas para administrativo */}
               <Route path="/admin/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área Administrativa</h2><p>Aquí irán las rutas específicas del área administrativa</p></div>} />
+              {/*Aqui crear */}
+
               {/* Rutas para escuela */}
               <Route path="/escuela/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área de Escuela</h2><p>Aquí irán las rutas específicas de la escuela</p></div>} />
               {/* Rutas específicas para estudiante - Registros Académicos */}
@@ -116,6 +119,7 @@ function App() {
               <Route path="/docente/registro-calificaciones" element={<RegistroCalificaciones />} />
               <Route path="/docente/firma-actas" element={<FirmaActas />} />
               <Route path="/docente/gestion-cursos" element={<GestionCursos />} />
+              <Route path="/docente/contenidos" element={<GestionContenido />} />
               <Route path="/escuela/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Submódulos de la Escuela</h2><p>Aquí irán las rutas específicas de la escuela</p></div>} />
               <Route path="/facultad/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Submódulos de la Facultad</h2><p>Aquí irán las rutas específicas de la facultad</p></div>} />
               <Route path="/administrativo/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Submódulos Administrativos</h2><p>Aquí irán las rutas específicas del área administrativa</p></div>} />
