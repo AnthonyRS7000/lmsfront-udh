@@ -5,7 +5,7 @@ import udh_img from './assets/1.jpg';
 import udh_img1 from './assets/2.jpg';
 import udh_img2 from './assets/3.jpg';
 import udh_logo from './assets/logo.png';
-import { IdentificationIcon, KeyIcon, LockClosedIcon, UserIcon } from '@heroicons/react/24/outline';
+import { ArrowRightEndOnRectangleIcon, IdentificationIcon, KeyIcon, LockClosedIcon, UserIcon } from '@heroicons/react/24/outline';
 
 function Login() {
   const [darkMode, setDarkMode] = useState(false);
@@ -172,6 +172,7 @@ function Login() {
                   </div>
                 </div>
                 <button type="submit" className="login-submit-btn">
+                  <ArrowRightEndOnRectangleIcon  style={{ position: "relative",width: 24, height: 24, marginRight: 8 }} />
                   Acceder
                 </button>
               </form>

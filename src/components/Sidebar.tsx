@@ -201,6 +201,7 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
             icon: IconInforme,
             submenus: [
               { name: 'registro-calificaciones', label: 'Registro de calificaciones', path: '/docente/registro-calificaciones' },
+              { name: 'firma-actas', label: 'Firma de Actas', path: '/docente/firma-actas' },
               { name: 'administracion-historial', label: 'Administración del historial académico', path: '/docente/administracion-historial' },
               { name: 'generacion-actas', label: 'Generación automática de actas y certificados en formato electrónico', path: '/docente/generacion-actas' },
             ],

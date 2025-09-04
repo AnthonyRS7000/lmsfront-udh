@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../css/registro-calificaciones.css";
+import { BookmarkIcon, CheckIcon, ClockIcon, DocumentArrowDownIcon, PaperAirplaneIcon } from "@heroicons/react/24/outline";
 
 const cursos = [
   "Epidemiología - A",
@@ -111,7 +112,7 @@ const RegistroCalificaciones: React.FC = () => {
 
   return (
     <div className="registro-calificaciones-container">
-      <h2 className="registro-calificaciones-title">Registro de Calificaciones</h2>
+      <h2 className="registro-calificaciones-title">REGISTRO DE CALIFICACIONES</h2>
       <hr className="registro-calificaciones-divider" />
       <div className="registro-calificaciones-header">
         <div>
@@ -149,7 +150,8 @@ const RegistroCalificaciones: React.FC = () => {
             className="registro-importar-btn"
             onClick={() => document.getElementById("importar-notas")?.click()}
           >
-            ⬆️ Importar Notas
+            <DocumentArrowDownIcon style={{ position: "relative",width: 20, height: 20, marginRight: 8 }} />
+            Importar Notas
           </button>
         </div>
       </div>
@@ -216,12 +218,15 @@ const RegistroCalificaciones: React.FC = () => {
       </table>
       <div className="registro-calificaciones-actions">
         <button className="registro-salvar-btn" onClick={handleSalvar} disabled={!editable}>
+          <BookmarkIcon style={{ position: "relative",width: 20, height: 20, marginRight: 8 }} />
           Salvar
         </button>
         <button className="registro-confirmar-btn" onClick={handleConfirmar} disabled={!editable}>
+          <CheckIcon style={{ position: "relative",width: 20, height: 20, marginRight: 8 }} />
           Confirmar Notas
         </button>
         <button className="registro-aplazamiento-btn" onClick={handleSolicitarAplazamiento}>
+          <ClockIcon style={{ position: "relative",width: 20, height: 20, marginRight: 8 }} />
           Solicitar Aplazamiento
         </button>
       </div>
@@ -248,6 +253,7 @@ const RegistroCalificaciones: React.FC = () => {
               onClick={handleEnviarAplazamiento}
               disabled={!motivo.trim()}
             >
+              <PaperAirplaneIcon style={{ position: "relative",width: 20, height: 20, marginRight: 8 }} />
               Enviar Solicitud
             </button>
           </div>

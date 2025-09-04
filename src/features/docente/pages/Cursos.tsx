@@ -5,7 +5,7 @@ import { DocumentArrowUpIcon } from "@heroicons/react/24/outline";
 
 export const cursos = [
     { id: 1, nombre: "Epidemiología", grupo: "A", destacado: false },
-    { id: 2, nombre: "Salud Pública I", grupo: "C", destacado: true },
+    { id: 2, nombre: "Salud Pública I", grupo: "C", destacado: false },
     { id: 3, nombre: "Farmacología", grupo: "A", destacado: false },
     { id: 4, nombre: "Farmacología", grupo: "A", destacado: false },
     { id: 5, nombre: "Farmacología", grupo: "B", destacado: false },

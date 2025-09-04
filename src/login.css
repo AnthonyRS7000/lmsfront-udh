@@ -276,8 +276,10 @@
 }
 
 .login-submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 8px;
-  padding: 12px;
   background: #059669;
   color: #fff;
   border: none;

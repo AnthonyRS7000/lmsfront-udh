@@ -17,6 +17,8 @@ import Perfil from "./features/docente/pages/Perfil";
 import GestionHorarios from "./features/docente/pages/GestionHorarios";
 import ReportesActividad from "./features/docente/pages/ReportesActividad";
 import RegistroCalificaciones from "./features/docente/pages/RegistroCalificaciones";
+import FirmaActas from "./features/docente/pages/FirmaActas";
+import GestionCursos from "./features/docente/pages/GestionCursos";
 
 function App() {
   return (
@@ -49,6 +51,8 @@ function App() {
               <Route path="/docente/gestion-horarios" element={<GestionHorarios/>} />
               <Route path="/docente/reportes-actividad" element={<ReportesActividad />} />
               <Route path="/docente/registro-calificaciones" element={<RegistroCalificaciones />} />
+              <Route path="/docente/firma-actas" element={<FirmaActas />} />
+              <Route path="/docente/gestion-cursos" element={<GestionCursos />} />
               <Route path="/escuela/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Submódulos de la Escuela</h2><p>Aquí irán las rutas específicas de la escuela</p></div>} />
               <Route path="/facultad/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Submódulos de la Facultad</h2><p>Aquí irán las rutas específicas de la facultad</p></div>} />
               <Route path="/administrativo/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Submódulos Administrativos</h2><p>Aquí irán las rutas específicas del área administrativa</p></div>} />
