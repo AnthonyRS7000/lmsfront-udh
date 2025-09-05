@@ -51,6 +51,11 @@ import RegistroCalificaciones from "./features/docente/pages/RegistroCalificacio
 import FirmaActas from "./features/docente/pages/FirmaActas";
 import GestionCursos from "./features/docente/pages/GestionCursos";
 
+import Monitoreo from "./features/administrativo/pages/Monitoreo";
+import Perfiles from "./features/administrativo/pages/Perfiles";
+import Roles from "./features/administrativo/pages/Roles";
+import Usuarios from "./features/administrativo/pages/Usuarios";
+
 function App() {
   return (
     <BrowserRouter>
@@ -92,7 +97,13 @@ function App() {
               <Route path="/estudiante/historial-pagos" element={<DetallePagosPage />} />
 
               {/* Rutas para administrativo */}
-              <Route path="/admin/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área Administrativa</h2><p>Aquí irán las rutas específicas del área administrativa</p></div>} />
+              <Route path="/administrativo/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área Administrativa</h2><p>Aquí irán las rutas específicas del área administrativa</p></div>} />
+              <Route path="/administrativo/monitoreo" element={<Monitoreo />} />
+              <Route path="/administrativo/perfiles" element={<Perfiles />} />
+              <Route path="/administrativo/roles" element={<Roles />} />
+              <Route path="/administrativo/usuarios" element={<Usuarios />} />
+              
+              
               {/* Rutas para escuela */}
               <Route path="/escuela/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área de Escuela</h2><p>Aquí irán las rutas específicas de la escuela</p></div>} />
               {/* Rutas específicas para estudiante - Registros Académicos */}

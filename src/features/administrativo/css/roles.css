@@ -1,0 +1,104 @@
+/* ------------------------
+   MODO CLARO (por defecto)
+------------------------ */
+.light .roles-container {
+  background: #fff;
+  color: #111;
+}
+
+.light .roles-title {
+  color: #dc2626;
+}
+
+.light .roles-divider {
+  border-top: 1px solid #e5e7eb;
+}
+
+.light .roles-table {
+  background: #fff;
+  color: #111;
+}
+
+.light .roles-table th {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.light .roles-table tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+.light .roles-table tr {
+  background: #fff;
+}
+
+/* ------------------------
+   MODO OSCURO
+------------------------ */
+.dark .roles-container {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+.dark .roles-title {
+  color: #f87171;
+}
+
+.dark .roles-divider {
+  border-top: 1px solid #1e293b;
+}
+
+.dark .roles-table {
+  background: #1e293b;
+  color: #f1f5f9;
+}
+
+.dark .roles-table th {
+  background: #334155;
+  color: #e2e8f0;
+}
+
+.dark .roles-table tr:nth-child(even) {
+  background: #1c2431;
+}
+
+.dark .roles-table tr {
+  background: #1e293b;
+}
+
+/* ------------------------
+   Estilos comunes
+------------------------ */
+.roles-container {
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin-bottom: 2rem;
+  transition: background 0.3s, color 0.3s;
+}
+
+.roles-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.roles-divider {
+  margin-bottom: 2rem;
+  border: none;
+}
+
+.roles-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: background 0.3s, color 0.3s;
+}
+
+.roles-table th,
+.roles-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
