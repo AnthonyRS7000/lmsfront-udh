@@ -1,0 +1,171 @@
+/* ------------------------
+   MODO CLARO (por defecto)
+------------------------ */
+.light .monitoreo-container {
+  background: #fff;
+  color: #111;
+}
+
+.light .monitoreo-title {
+  color: #dc2626;
+}
+
+.light .monitoreo-divider {
+  border-top: 1px solid #e5e7eb;
+}
+
+.light .monitoreo-card {
+  background: #f9fafb;
+  color: #111;
+  border: 1px solid #e5e7eb;
+}
+
+.light .monitoreo-logs-table {
+  background: #fff;
+  color: #111;
+}
+
+.light .monitoreo-logs-table th {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.light .monitoreo-logs-table tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+.light .monitoreo-logs-table tr {
+  background: #fff;
+}
+
+/* ------------------------
+   MODO OSCURO
+------------------------ */
+.dark .monitoreo-container {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+.dark .monitoreo-title {
+  color: #f87171;
+}
+
+.dark .monitoreo-divider {
+  border-top: 1px solid #1e293b;
+}
+
+.dark .monitoreo-card {
+  background: #1e293b;
+  color: #f1f5f9;
+  border: 1px solid #334155;
+}
+
+.dark .monitoreo-logs-table {
+  background: #1e293b;
+  color: #f1f5f9;
+}
+
+.dark .monitoreo-logs-table th {
+  background: #334155;
+  color: #e2e8f0;
+}
+
+.dark .monitoreo-logs-table tr:nth-child(even) {
+  background: #1c2431;
+}
+
+.dark .monitoreo-logs-table tr {
+  background: #1e293b;
+}
+
+/* ------------------------
+   Estilos comunes
+------------------------ */
+.monitoreo-container {
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
+  transition: background 0.3s, color 0.3s;
+}
+
+.monitoreo-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.monitoreo-divider {
+  margin-bottom: 2rem;
+  border: none;
+}
+
+.monitoreo-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.monitoreo-card {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.monitoreo-card-icon {
+  margin-right: 1rem;
+}
+
+.monitoreo-icon {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+/* Colores de íconos */
+.icon-success {
+  color: #10b981;
+}
+
+.icon-warning {
+  color: #f59e0b;
+}
+
+.icon-info {
+  color: #3b82f6;
+}
+
+/* Tabla de logs */
+.monitoreo-logs-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.monitoreo-logs-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: background 0.3s, color 0.3s;
+}
+
+.monitoreo-logs-table th,
+.monitoreo-logs-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+/* Estados */
+.monitoreo-log-status.success {
+  color: #10b981;
+  font-weight: bold;
+}
+
+.monitoreo-log-status.error {
+  color: #ef4444;
+  font-weight: bold;
+}

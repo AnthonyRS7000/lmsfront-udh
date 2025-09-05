@@ -1,0 +1,216 @@
+/* ------------------------
+   MODO CLARO (por defecto)
+------------------------ */
+.light .perfiles-container {
+  background: #fff;
+  color: #111;
+}
+
+.light .perfiles-title {
+  color: #dc2626;
+}
+
+.light .perfiles-divider {
+  border-top: 1px solid #e5e7eb;
+}
+
+.light .perfiles-table {
+  background: #fff;
+  color: #111;
+}
+
+.light .perfiles-table th {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.light .perfiles-table tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+.light .perfiles-table tr {
+  background: #fff;
+}
+
+.light .perfiles-formulario {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+}
+
+.light .form-grupo input,
+.light .form-grupo textarea {
+  background: #fff;
+  color: #111;
+  border: 1px solid #d1d5db;
+}
+
+.light .btn-agregar {
+  background: #10b981;
+  color: white;
+}
+
+.light .btn-agregar:hover {
+  background: #059669;
+}
+
+/* ------------------------
+   MODO OSCURO
+------------------------ */
+.dark .perfiles-container {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+.dark .perfiles-title {
+  color: #f87171;
+}
+
+.dark .perfiles-divider {
+  border-top: 1px solid #1e293b;
+}
+
+.dark .perfiles-table {
+  background: #1e293b;
+  color: #f1f5f9;
+}
+
+.dark .perfiles-table th {
+  background: #334155;
+  color: #e2e8f0;
+}
+
+.dark .perfiles-table tr:nth-child(even) {
+  background: #1c2431;
+}
+
+.dark .perfiles-table tr {
+  background: #1e293b;
+}
+
+.dark .perfiles-formulario {
+  background: #1e293b;
+  border: 1px solid #334155;
+}
+
+.dark .form-grupo input,
+.dark .form-grupo textarea {
+  background: #0f172a;
+  color: #e2e8f0;
+  border: 1px solid #334155;
+}
+
+.dark .btn-agregar {
+  background: #10b981;
+  color: white;
+}
+
+.dark .btn-agregar:hover {
+  background: #059669;
+}
+
+/* ------------------------
+   Estilos comunes
+------------------------ */
+.perfiles-container {
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin-bottom: 2rem;
+  transition: background 0.3s, color 0.3s;
+}
+
+.perfiles-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.perfiles-divider {
+  margin-bottom: 2rem;
+  border: none;
+}
+
+.perfiles-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: background 0.3s, color 0.3s;
+}
+
+.perfiles-table th,
+.perfiles-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.perfiles-formulario {
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  transition: background 0.3s, color 0.3s;
+}
+
+.form-titulo {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.form-grupo {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-grupo label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.form-grupo input,
+.form-grupo textarea {
+  padding: 0.6rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  resize: none;
+  transition: all 0.3s ease;
+}
+
+.form-btn-wrapper {
+  text-align: right;
+  margin-top: 1rem;
+}
+
+.btn-agregar {
+  padding: 0.6rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-editar {
+  background-color: #facc15;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  margin-right: 4px;
+  cursor: pointer;
+}
+
+.btn-eliminar {
+  background-color: #ef4444;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  color: white;
+  cursor: pointer;
+}
