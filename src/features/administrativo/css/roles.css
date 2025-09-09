@@ -1,0 +1,270 @@
+/* ------------------------
+   MODO CLARO (por defecto)
+------------------------ */
+/* ===========================
+   MODO CLARO (mejorado)
+=========================== */
+.light .roles-container {
+  background: #ffffff;
+  color: #111827;
+}
+
+.light .roles-title {
+  color: #b91c1c; /* rojo sobrio */
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.light .roles-divider {
+  border-top: 1px solid #e5e7eb; /* gray-200 */
+  margin: 1.5rem 0;
+}
+
+.light .roles-table {
+  background: #ffffff;
+  color: #111827;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.light .roles-table th {
+  background: #f1f5f9; /* gris claro */
+  color: #1f2937;
+  text-align: left;
+  font-weight: 600;
+}
+
+.light .roles-table tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+.light .roles-formulario {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1.25rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.light .form-grupo input[type="text"] {
+  background-color: #ffffff;
+  color: #111827;
+  border: 1px solid #d1d5db;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+  width: 100%;
+  max-width: 1140px;
+}
+
+.light .form-titulo {
+  color: #1e293b;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.light .form-grupo label {
+  color: #1f2937;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+.light .permiso-tag {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+}
+
+.light .btn-agregar {
+  background-color: #10b981;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  padding: 0.5rem 1.25rem;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.light .btn-agregar:hover {
+  background-color: #059669;
+  transform: scale(1.02);
+}
+
+/* ------------------------
+   MODO OSCURO (ajustado como Usuarios)
+------------------------ */
+.dark .roles-container {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+.dark .roles-title {
+  color: #f87171;
+}
+
+.dark .roles-divider {
+  border-top: 1px solid #1e293b;
+}
+
+.dark .roles-table {
+  background: #1e293b;
+  color: #f1f5f9;
+}
+
+.dark .roles-table th {
+  background: #334155;
+  color: #e2e8f0;
+}
+
+.dark .roles-table tr:nth-child(even) {
+  background: #1c2431;
+}
+
+.dark .roles-table tr {
+  background: #1e293b;
+}
+
+.dark .roles-formulario {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+}
+
+.dark .form-grupo input[type="text"] {
+  background-color: #0f172a;
+  color: #f1f5f9;
+  border: 1px solid #334155;
+  max-width: 1140px;
+}
+
+.dark .form-titulo {
+  color: #f8fafc;
+}
+
+.dark .form-grupo label {
+  color: #e2e8f0;
+}
+
+.dark .permiso-tag {
+  background-color: #1e3a8a;
+  color: #cbd5e1;
+}
+
+.dark .btn-agregar {
+  background-color: #22c55e;
+  color: #0f172a;
+}
+
+.dark .btn-agregar:hover {
+  background-color: #16a34a;
+}
+
+/* ------------------------
+   Estilos comunes
+------------------------ */
+.roles-container {
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin-bottom: 2rem;
+  transition: background 0.3s, color 0.3s;
+}
+
+.roles-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.roles-divider {
+  margin-bottom: 2rem;
+  border: none;
+}
+
+.roles-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: background 0.3s, color 0.3s;
+}
+
+.roles-table th,
+.roles-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+/* formulario */
+.roles-formulario {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.form-titulo {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.form-grupo {
+  margin-bottom: 1rem;
+}
+
+.form-grupo label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-grupo input[type="text"] {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.5rem;
+}
+
+.checkbox-grid label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+/* botón registrar */
+.btn-agregar {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s ease;
+}
+
+.form-btn-wrapper {
+  text-align: right;
+}
+
+/* etiquetas permisos */
+.permiso-tag {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  margin: 2px;
+  font-size: 0.9rem;
+  border-radius: 20px;
+  font-weight: 500;
+}

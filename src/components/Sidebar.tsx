@@ -296,14 +296,28 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
       case 'administrativo':
         return [
           {
-            name: 'GestionUsuarios',
-            label: 'Gestión de Cursos',
+            name: 'GestiónAdministrativa',
+            label: 'Gestión Administrativa',
             icon: IconProyecto,
             submenus: [
               { name: 'registro-usuarios', label: 'Registro de usuarios', path: '/administrativo/usuarios' },
               { name: 'gestion-perfiles', label: 'Gestión de perfiles', path: '/administrativo/perfiles' },
               { name: 'asignacion-roles', label: 'Asignación de roles', path: '/administrativo/roles' },
               { name: 'monitoreo-actividad', label: 'Monitoreo de actividad', path: '/administrativo/monitoreo' },
+            ],
+          },
+          {
+            name: 'GestiónAcadémica',
+            label: 'Gestión Académica',
+            icon: IconProyecto,
+            submenus: [
+              { name: 'planificacion-cursos', label: 'Planificación de cursos', path: '/administrativo/planificacion-cursos' },
+              { name: 'asignacion-docentes', label: 'Asignación de docentes', path: '/administrativo/asignacion-docentes' },
+              { name: 'gestion-horarios-aulas', label: 'Gestión de horarios y aulas', path: '/administrativo/gestion-horarios-aulas' },
+              { name: 'matricula-estudiantes', label: 'Matrícula de estudiantes', path: '/administrativo/matricula-estudiantes' },
+              { name: 'control-notas', label: 'Control de notas', path: '/administrativo/control-notas' },
+              { name: 'seguimiento-academico', label: 'Seguimiento académico', path: '/administrativo/seguimiento-academico' },
+              { name: 'evaluacion-docente', label: 'Evaluación docente', path: '/administrativo/evaluacion-docente' },
             ],
           },
           {
@@ -322,6 +336,7 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
             label: 'Reportes y Análisis',
             icon: IconEjecucion,
             submenus: [
+              { name: 'reportes-academicos', label: 'Reportes académicos', path: '/administrativo/reportes-academicos' },
               { name: 'reportes-institucionales', label: 'Reportes institucionales', path: '/administrativo/reportes' },
               { name: 'analisis-uso', label: 'Análisis de uso', path: '/administrativo/analisis' },
               { name: 'estadisticas', label: 'Estadísticas generales', path: '/administrativo/estadisticas' },

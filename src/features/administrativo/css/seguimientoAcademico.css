@@ -1,0 +1,131 @@
+.seguimiento-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.seguimiento-header {
+  margin-bottom: 1.5rem;
+}
+
+.seguimiento-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1f2937;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.icono-titulo {
+  width: 2rem;
+  height: 2rem;
+  color: #4C7C74;
+}
+
+.seguimiento-subtitle {
+  color: #6b7280;
+  margin-top: 0.25rem;
+}
+
+.barra-busqueda {
+  display: flex;
+  align-items: center;
+  background: #f3f4f6;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid #d1d5db;
+}
+
+.icono-busqueda {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #9ca3af;
+  margin-right: 0.5rem;
+}
+
+.input-busqueda {
+  border: none;
+  background: transparent;
+  outline: none;
+  flex-grow: 1;
+  font-size: 0.95rem;
+}
+
+.tabla-container {
+  overflow-x: auto;
+  border-radius: 0.75rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+}
+
+.tabla-seguimiento {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.tabla-seguimiento th,
+.tabla-seguimiento td {
+  padding: 1rem;
+  border-bottom: 1px solid #f3f4f6;
+  text-align: left;
+}
+
+.tabla-seguimiento th {
+  background: #f9fafb;
+  font-weight: 600;
+  color: #374151;
+}
+
+.texto-vacio {
+  text-align: center;
+  padding: 1.5rem;
+  color: #6b7280;
+}
+
+/* MODO OSCURO */
+.dark .seguimiento-container {
+  background: #0f172a;
+}
+
+.dark .seguimiento-title {
+  color: #f1f5f9;
+}
+
+.dark .seguimiento-subtitle {
+  color: #94a3b8;
+}
+
+.dark .barra-busqueda {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.dark .input-busqueda {
+  color: #f1f5f9;
+}
+
+.dark .icono-busqueda {
+  color: #cbd5e1;
+}
+
+.dark .tabla-container {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.dark .tabla-seguimiento th {
+  background: #334155;
+  color: #e2e8f0;
+}
+
+.dark .tabla-seguimiento td {
+  color: #f1f5f9;
+  border-color: #475569;
+}
+
+.dark .texto-vacio {
+  color: #cbd5e1;
+}
