@@ -131,12 +131,11 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
             label: 'Gestión de Matrícula',
             icon: IconProyecto,
             submenus: [
-              { name: 'actualizar-datos', label: 'Actualizar mis datos', path: '/estudiante/perfil' },
+              { name: 'tramites', label: 'Trámites', path: '/estudiante/tramites' },
               { name: 'gestion-cursos', label: 'Gestión de cursos', path: '/estudiante/cursos' },
               { name: 'ver-cursos-semestre', label: 'Consultar cursos', path: '/estudiante/consultar_cursos' },
               { name: 'estado-matricula', label: 'Estado de Matrícula', path: '/estudiante/estado_matricula' },
               { name: 'historial-matricula', label: 'Historial de Matrícula', path: '/estudiante/historial_matricula' },
-              { name: 'tramites', label: 'Trámites', path: '/estudiante/tramites' },
               { name: 'progreso-academico', label: 'Progreso Académico', path: '/estudiante/progreso_academico' },
             ],
           },
