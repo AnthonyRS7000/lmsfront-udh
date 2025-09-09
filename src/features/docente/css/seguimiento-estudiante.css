@@ -1,0 +1,136 @@
+.seg-bg {
+  max-width: auto;
+  max-height: auto;
+  margin: 0 auto;
+  padding: 24px;
+}
+.seg-main {
+  max-width: auto;
+  max-height: auto;
+  margin: 0 auto;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border-radius: 12px;
+  background: #fff;
+}
+.seg-title {
+  text-align: center;
+  color: #4CAF91;
+  font-weight: 700;
+  margin: 8px auto; 
+  font-size: 2rem;
+}
+.seg-divider {
+  border: 1px solid #4CAF91;
+  margin: 8px 0 24px 0;
+  opacity: 0.7;
+}
+.seg-filtros {
+  display: flex;
+  gap: 24px;
+  align-items: flex-end;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.seg-filtros label {
+  color: #000;
+  font-size: 1em;
+  margin-bottom: 2px;
+  display: block;
+}
+.seg-input {
+  width: 170px;
+  margin-top: 4px;
+  margin-bottom: 0;
+  padding: 8px 12px;
+  border: 1px solid #cce3db;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+  background: #f8faf9;
+  transition: border 0.2s;
+  box-sizing: border-box;
+}
+.seg-table-wrap {
+  overflow-x: auto;
+}
+.seg-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #fff;
+  color: #222;
+  font-size: 1.05em;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: none;
+}
+.seg-table th, .seg-table td {
+  border: 1px solid #e0e0e0;
+  padding: 12px 10px;
+}
+.seg-table th {
+  background: #f8fafb;
+  color: #333;
+  font-weight: 700;
+  text-align: left;
+  border-bottom: 2px solid #e0e0e0;
+}
+.seg-table td {
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+}
+.seg-nombre {
+  color: #333;
+}
+.seg-es {
+  display: inline-block;
+  padding: 2px 12px;
+  border-radius: 16px;
+  font-weight: 600;
+  font-size: 1em;
+}
+.es-si {
+  background: #e53935;
+  color: #fff;
+}
+.es-no {
+  background: #388e6c;
+  color: #fff;
+}
+.seg-rendimiento {
+  display: inline-block;
+  padding: 2px 12px;
+  border-radius: 16px;
+  font-weight: 600;
+  font-size: 1em;
+}
+.rend-excelente {
+  background: #4CAF91;
+  color: #fff;
+}
+.rend-bueno {
+  background: #388e6c;
+  color: #fff;
+}
+.rend-moderado {
+  background: #ffe082;
+  color: #444;
+}
+.rend-bajo {
+  background: #e53935;
+  color: #fff;
+}
+.rend-malo {
+  background: #b71c1c;
+  color: #fff;
+}
+.seg-table th,
+.seg-table td, .eg-table th.seg-nombre {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.seg-table td.seg-nombre {
+  text-align: left;
+}

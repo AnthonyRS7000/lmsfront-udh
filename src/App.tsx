@@ -44,13 +44,15 @@ import DetallePagosPage  from "./features/students/DetallePagosPage";
 
 import Cursos from "./features/docente/pages/Cursos";
 import SubirSilabo from './features/docente/pages/SubirSilabo';
-import Perfil from "./features/docente/pages/Perfil";
 import GestionHorarios from "./features/docente/pages/GestionHorarios";
 import ReportesActividad from "./features/docente/pages/ReportesActividad";
 import RegistroCalificaciones from "./features/docente/pages/RegistroCalificaciones";
 import FirmaActas from "./features/docente/pages/FirmaActas";
 import GestionCursos from "./features/docente/pages/GestionCursos";
-import GestionContenido from "./features/docente/pages/GestionContenido";
+import VerCursoGestionCursos from "./features/docente/pages/VerCursoGestionCursos";
+import CrearEvaluaciones from "./features/docente/pages/CrearEvaluaciones";
+import Evaluaciones from "./features/docente/pages/Evaluaciones";
+import SeguimientoEstudiante from "./features/docente/pages/SeguimientoEstudiante";
 
 function App() {
   return (
@@ -111,15 +113,18 @@ function App() {
               <Route path="/administrativo/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área Administrativa</h2><p>Módulo en desarrollo</p></div>} />
               {/* Rutas anidadas para cada rol (futuras implementaciones) */}
               <Route path="/estudiante/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Submódulos del Estudiante</h2><p>Aquí irán las rutas específicas del estudiante</p></div>} />
-              <Route path="/docente/perfil" element={<Perfil/>} />
-              <Route path="/docente/subir-silabo/:cursoId" element={<SubirSilabo />} />
               <Route path="/docente/asignacion-cursos" element={<Cursos/>} />
+              <Route path="/docente/subir-silabo/:cursoId" element={<SubirSilabo />} />
               <Route path="/docente/gestion-horarios" element={<GestionHorarios/>} />
               <Route path="/docente/reportes-actividad" element={<ReportesActividad />} />
               <Route path="/docente/registro-calificaciones" element={<RegistroCalificaciones />} />
               <Route path="/docente/firma-actas" element={<FirmaActas />} />
               <Route path="/docente/gestion-cursos" element={<GestionCursos />} />
-              <Route path="/docente/contenidos" element={<GestionContenido />} />
+              <Route path="/docente/ver-curso/:id" element={<VerCursoGestionCursos />} />
+              <Route path="/docente/crear-evaluaciones" element={<CrearEvaluaciones />} />
+              <Route path="/docente/evaluaciones" element={<Evaluaciones />} />
+              <Route path="/docente/seguimiento-estudiantes" element={<SeguimientoEstudiante />} />
+              
               <Route path="/escuela/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Submódulos de la Escuela</h2><p>Aquí irán las rutas específicas de la escuela</p></div>} />
               <Route path="/facultad/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Submódulos de la Facultad</h2><p>Aquí irán las rutas específicas de la facultad</p></div>} />
               <Route path="/administrativo/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Submódulos Administrativos</h2><p>Aquí irán las rutas específicas del área administrativa</p></div>} />

@@ -54,87 +54,88 @@ const FirmaActas: React.FC = () => {
   };
 
   return (
-    <div className="firma-actas-container">
+    <div className="container">
       <h2 className="firma-actas-title">FIRMA DE ACTAS</h2>
       <hr className="firma-actas-divider" />
-
-      <form className="firma-actas-form" onSubmit={handleFirmar}>
-        <label className="firma-actas-label">Curso:</label>
-        <select
-          className="firma-actas-select"
-          value={cursoSeleccionado}
-          onChange={e => setCursoSeleccionado(e.target.value)}
-        >
-          {cursos.map(curso => (
-            <option key={curso} value={curso}>{curso}</option>
-          ))}
-        </select>
-        <label className="firma-actas-label">Firma:</label>
-        <div className="firma-actas-upload-row">
-          <input
-            type="text"
-            className="firma-actas-input"
-            value={firmaArchivo}
-            readOnly
-            placeholder="Sin archivo"
-          />
-          <input
-            id="firma-upload"
-            type="file"
-            accept="image/*"
-            style={{ display: "none" }}
-            onChange={handleSubirFirma}
-            ref={fileInputRef}
-          />
-          <button
-            type="button"
-            className="firma-actas-upload-btn"
-            onClick={() => document.getElementById("firma-upload")?.click()}
+      <div className="firma-actas-container">
+        <form className="firma-actas-form" onSubmit={handleFirmar}>
+          <label className="firma-actas-label">Curso:</label>
+          <select
+            className="firma-actas-select"
+            value={cursoSeleccionado}
+            onChange={e => setCursoSeleccionado(e.target.value)}
           >
-            <DocumentArrowDownIcon style={{ position: "relative", width: 20, height: 20, marginRight: 8 }} />
-            Subir Firma
+            {cursos.map(curso => (
+              <option key={curso} value={curso}>{curso}</option>
+            ))}
+          </select>
+          <label className="firma-actas-label">Firma:</label>
+          <div className="firma-actas-upload-row">
+            <input
+              type="text"
+              className="firma-actas-input"
+              value={firmaArchivo}
+              readOnly
+              placeholder="Sin archivo"
+            />
+            <input
+              id="firma-upload"
+              type="file"
+              accept="image/*"
+              style={{ display: "none" }}
+              onChange={handleSubirFirma}
+              ref={fileInputRef}
+            />
+            <button
+              type="button"
+              className="firma-actas-upload-btn"
+              onClick={() => document.getElementById("firma-upload")?.click()}
+            >
+              <DocumentArrowDownIcon style={{ position: "relative", width: 20, height: 20, marginRight: 8 }} />
+              Subir Firma
+            </button>
+          </div>
+          <button
+            type="submit"
+            className="firma-actas-firmar-btn"
+            disabled={!firmaArchivo}
+          >
+            <PencilSquareIcon style={{ position: "relative", width: 20, height: 20, marginRight: 8 }} />
+            Firmar
           </button>
-        </div>
-        <button
-          type="submit"
-          className="firma-actas-firmar-btn"
-          disabled={!firmaArchivo}
-        >
-          <PencilSquareIcon style={{ position: "relative", width: 20, height: 20, marginRight: 8 }} />
-          Firmar
-        </button>
-      </form>
+        </form>
 
-      <table className="firma-actas-table">
-        <thead>
-          <tr>
-            <th>N°</th>
-            <th>Curso</th>
-            <th>Firma</th>
-            <th>Estado</th>
-          </tr>
-        </thead>
-        <tbody>
-          {actas.map(acta => (
-            <tr key={acta.id}>
-              <td>{acta.id}</td>
-              <td>{acta.curso}</td>
-              <td>{acta.firma}</td>
-              <td>
-                {acta.estado === "Firmado" ? (
-                  <span className="firma-actas-estado firmado">
-                    ✔ Firmado
-                  </span>
-                ) : (
-                  <span className="firma-actas-estado pendiente">
-                    ○ Pendiente
-                  </span>
-                )}
-              </td>
+        <table className="firma-actas-table">
+          <thead>
+            <tr>
+              <th>N°</th>
+              <th>Curso</th>
+              <th>Firma</th>
+              <th>Estado</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {actas.map(acta => (
+              <tr key={acta.id}>
+                <td>{acta.id}</td>
+                <td>{acta.curso}</td>
+                <td>{acta.firma}</td>
+                <td>
+                  {acta.estado === "Firmado" ? (
+                    <span className="firma-actas-estado firmado">
+                      ✔ Firmado
+                    </span>
+                  ) : (
+                    <span className="firma-actas-estado pendiente">
+                      ○ Pendiente
+                    </span>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
