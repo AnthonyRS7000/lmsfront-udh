@@ -1,0 +1,12 @@
+.academico-container {
+  padding: 1rem;
+}
+
+.academico-container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.academico-container p {
+  color: #555;
+}

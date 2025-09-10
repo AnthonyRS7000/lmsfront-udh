@@ -1,0 +1,4 @@
+/* Estilos para RendimientoAcademico */
+.rendimiento-academico-root { padding: 16px; }
+.rendimiento-academico-title { font-size:1.25rem; font-weight:700; margin-bottom:12px; }
+.rendimiento-academico-card { background: var(--panel-bg,#fff); padding:12px; border-radius:8px; }

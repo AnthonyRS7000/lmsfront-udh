@@ -1,0 +1,4 @@
+/* Estilos base para Tramite Documentario */
+.tramite-documentario-root { padding: 20px; }
+.tramite-documentario-title { font-size: 1.4rem; font-weight:700; color: var(--title-color); margin-bottom:12px; }
+.tramite-documentario-card { background: var(--panel-bg); padding:14px; border-radius:8px; border:1px solid var(--border-soft); }

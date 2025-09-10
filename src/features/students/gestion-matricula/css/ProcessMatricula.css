@@ -1,0 +1,116 @@
+/* Estilos inspirados en Copiloto para ProcessMatriculaPage */
+.pm-root {
+	max-width: 1180px;
+	margin: 22px auto;
+	padding: 28px;
+	font-family: 'Roboto', Inter, system-ui, -apple-system, 'Segoe UI', Arial;
+	color: var(--text, #0f1724);
+}
+
+/* Card principal igual que Copiloto */
+.pm-card {
+	background: #ffffff;
+	border-radius: 10px;
+	padding: 20px;
+	box-shadow: 0 12px 30px rgba(2,6,23,0.06);
+	border: 1px solid rgba(15,23,36,0.04);
+}
+
+.pm-title {
+	text-align: center;
+	font-size: 2.25rem;
+	font-weight: 700;
+	color: #21526a; /* azul suave */
+	margin: 0 0 12px 0;
+}
+
+.pm-section { margin-top: 12px; }
+
+.pm-row { display:flex; gap:12px; align-items:center; }
+
+.pm-field { width:100%; }
+.pm-input-disabled {
+	width:100%;
+	padding: 12px 14px;
+	border-radius: 8px;
+	background: #f3f4f6;
+	border: 1px solid rgba(15,23,36,0.06);
+	color: #475569;
+}
+
+.badge-accepted {
+	background: #10b981; /* verde */
+	color: white;
+	padding: 6px 10px;
+	border-radius: 8px;
+	font-weight: 700;
+}
+
+.pm-info-box {
+	margin-top: 10px;
+	padding: 14px;
+	border-radius: 8px;
+	background: #f8fafc;
+	border: 1px solid rgba(15,23,36,0.04);
+}
+
+.pm-error {
+	background: #fff7ed;
+	color: #92400e;
+	padding: 10px 12px;
+	margin: 12px 0;
+	border-radius: 8px;
+	border: 1px solid #f5d0a9;
+	font-weight: 700;
+}
+
+/* Tabla de cursos similar a la estética: tarjeta con header y filas */
+.pm-courses { margin-top: 12px; border-radius: 8px; overflow: hidden; border: 1px solid rgba(15,23,36,0.04); }
+.pm-courses-header { display:grid; grid-template-columns: 120px 1fr 80px 60px 80px 90px; gap:8px; padding:12px; font-weight:800; background: #eef2f7; color:#0f1724; }
+.pm-course-row { display:grid; grid-template-columns: 120px 1fr 80px 60px 80px 90px; gap:8px; padding:10px 12px; align-items:center; border-top:1px solid rgba(15,23,36,0.04); }
+.pm-course-row:nth-child(odd) { background: rgba(2,6,23,0.02); }
+.col-name { font-size:0.95rem; color: #0f1724; }
+.col-code { font-weight:700; color: #475569; }
+
+.pm-actions { display:flex; justify-content:flex-end; gap:12px; margin-top:14px; }
+.pm-btn { background: linear-gradient(180deg,#2fb48f,#238a6f); color: #fff; padding:10px 18px; border-radius:10px; border:none; font-weight:700; cursor:pointer; box-shadow: 0 8px 20px rgba(47,180,143,0.16); }
+.pm-btn.secondary { background: #64748b; box-shadow: none; }
+
+.pm-bottom-box { margin-top:16px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.pm-bottom-left { color:#6b7280; }
+.pm-bottom-right { text-align:right; font-weight:700; }
+
+/* Header block similar to image 1 */
+.pm-header-box {
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+	padding: 14px 16px;
+	margin: 10px 0 8px 0;
+	border-radius: 8px;
+	background: linear-gradient(180deg, #fbfcfd, #f6fafc);
+	border: 1px solid rgba(15,23,36,0.04);
+}
+.pm-header-left { display:flex; flex-direction:column; }
+.pm-header-label { font-weight:800; color:#0f1724; font-size:1rem; }
+.pm-header-sub { font-size:0.85rem; color:#6b7280; margin-top:2px; }
+.pm-header-right { display:flex; gap:12px; align-items:center; }
+.pm-header-meta { font-size:0.85rem; color:#334155; }
+.pm-header-meta span { font-weight:800; color:#0f1724; margin-right:6px; }
+
+/* New header frame matching image 1 */
+.pm-header-frame { border: 2px solid #1f2937; border-radius:4px; overflow:hidden; margin-bottom:10px; }
+.pm-header-top { display:flex; justify-content:space-between; align-items:center; background:#f3f4f6; padding:6px 10px; border-bottom:2px solid #1f2937; }
+.pm-header-title { font-weight:900; font-size:0.95rem; color:#0b1220; }
+.pm-header-top-right { font-weight:700; color:#0b1220; }
+.pm-header-body { display:flex; justify-content:space-between; padding:8px 10px; background:#fff; }
+.pm-header-left { display:flex; flex-direction:column; gap:4px; }
+.pm-header-right { display:flex; flex-direction:column; gap:4px; align-items:flex-end; }
+.pm-meta-item { font-size:0.85rem; color:#0f1724; }
+.pm-meta-label { font-weight:800; margin-right:6px; }
+.pm-meta-value { font-weight:600; color:#0b1220; }
+
+@media (max-width: 860px) {
+	.pm-courses-header, .pm-course-row { grid-template-columns: 100px 1fr 60px 50px 60px 80px; }
+	.pm-title { font-size: 1.6rem; text-align:left; }
+}

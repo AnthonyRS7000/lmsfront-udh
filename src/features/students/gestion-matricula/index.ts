@@ -1,7 +1,6 @@
-// Exportaciones del módulo Gestión de Matrícula
-export { default as ProfilePage } from './ProfilePage';
-export { default as CursosPage } from './CursosPage';
-export { default as ConsultaCursosPage } from './ConsultaCursosPage';
-export { default as EstadoMatriculaPage } from './EstadoMatriculaPage';
-export { default as HistorialMatriculaPage } from './HistorialMatriculaPage';
-export { default as TramitesPage } from './TramitesPage';
+export { default as Matricula } from './pages/Matricula';
+export { default as VerHorario } from './pages/VerHorario';
+export { default as TramiteDocumentario } from './pages/TramiteDocumentario';
+export { default as TramiteGradosTitulos } from './pages/TramiteGradosTitulos';
+export { default as TramiteSeguimiento } from './pages/TramiteSeguimiento';
+export { default as Reglamento } from './pages/Reglamento';

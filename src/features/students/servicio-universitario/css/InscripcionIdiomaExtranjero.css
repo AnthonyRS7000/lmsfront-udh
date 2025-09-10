@@ -1,0 +1,4 @@
+/* Estilos base para Inscripción Idioma Extranjero */
+.inscripcion-idioma-root { padding: 20px; }
+.inscripcion-idioma-title { font-size: 1.4rem; font-weight:700; color: var(--title-color); margin-bottom:12px; }
+.inscripcion-idioma-card { background: var(--panel-bg); padding:14px; border-radius:8px; border:1px solid var(--border-soft); }
