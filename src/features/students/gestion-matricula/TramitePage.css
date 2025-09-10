@@ -1,405 +1,167 @@
-/* Variables CSS para modo claro y oscuro */
+/* TramitePage — estilos dirigidos a reproducir la imagen 1
+   - fondo muy oscuro
+   - tarjetas grandes con franja izquierda cyan
+   - botón principal verde con sombra
+   - aviso naranja oscuro
+*/
+
 :root {
-  /* Colores modo claro */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
-  --bg-tertiary: #e9ecef;
-  --bg-card: #ffffff;
-  --bg-gradient-start: #667eea;
-  --bg-gradient-end: #764ba2;
-  
-  --text-primary: #333333;
-  --text-secondary: #666666;
-  --text-tertiary: #777777;
-  --text-muted: #6c757d;
-  --text-white: #ffffff;
-  
-  --border-primary: #dee2e6;
-  --border-secondary: #d1d5db;
-  --border-accent: #667eea;
-  
-  --shadow-sm: 0 4px 6px rgba(0,0,0,0.1);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.15);
-  
-  /* Estados y alertas */
-  --success-bg: #d4edda;
-  --success-text: #155724;
-  --success-btn: #28a745;
-  --success-btn-hover: #218838;
-  
-  --warning-bg: #fff3cd;
-  --warning-text: #856404;
-  --warning-border: #ffc107;
-  
-  --danger-bg: #f8d7da;
-  --danger-text: #721c24;
-  --danger-btn: #dc3545;
-  --danger-btn-hover: #c82333;
-  
-  --primary-btn: #667eea;
-  --primary-btn-hover: #5a6fd8;
-  
-  --secondary-btn: #6c757d;
-  --secondary-btn-hover: #5a6268;
-  
-  --disabled-bg: #e9ecef;
-  --disabled-text: #6c757d;
+  /* Tema claro (valores por defecto) */
+  --page-bg: linear-gradient(180deg,#f3f4f6 0%, #eef2f7 100%);
+  --page-bg-solid: #f6f7f9;
+  --panel-bg: #ffffff;       /* tarjetas en claro */
+  --panel-contrast: #f3f4f6;
+  --accent-cyan: #3ac5aa;
+  --button-green: #2fb48f;
+  --button-green-2: #238a6f;
+  --warning-bg: #fef3c7;
+  --warning-text: #92400e;
+  --muted: #6b7280;
+  --text: #0f1724;
+  --title-color: #0b1726; /* ligeramente más oscuro/contraste en tema claro */
+  --border-soft: rgba(15,23,36,0.04);
+  --shadow-lg: 0 12px 30px rgba(2,6,23,0.06);
 }
 
-/* Variables para modo oscuro */
+/* Sobreescritura para modo oscuro: añade la clase .dark al root o body */
 .dark {
-  --bg-primary: #1f2937;
-  --bg-secondary: #374151;
-  --bg-tertiary: #4b5563;
-  --bg-card: #374151;
-  --bg-gradient-start: #4f46e5;
-  --bg-gradient-end: #7c3aed;
-  
-  --text-primary: #f9fafb;
-  --text-secondary: #d1d5db;
-  --text-tertiary: #9ca3af;
-  --text-muted: #9ca3af;
-  --text-white: #ffffff;
-  
-  --border-primary: #4b5563;
-  --border-secondary: #6b7280;
-  --border-accent: #6366f1;
-  
-  --shadow-sm: 0 4px 6px rgba(0,0,0,0.3);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
-  
-  /* Estados y alertas para modo oscuro */
-  --success-bg: #064e3b;
-  --success-text: #34d399;
-  --success-btn: #10b981;
-  --success-btn-hover: #059669;
-  
-  --warning-bg: #451a03;
-  --warning-text: #fbbf24;
-  --warning-border: #f59e0b;
-  
-  --danger-bg: #7f1d1d;
-  --danger-text: #fca5a5;
-  --danger-btn: #ef4444;
-  --danger-btn-hover: #dc2626;
-  
-  --primary-btn: #6366f1;
-  --primary-btn-hover: #4f46e5;
-  
-  --secondary-btn: #6b7280;
-  --secondary-btn-hover: #4b5563;
-  
-  --disabled-bg: #374151;
-  --disabled-text: #9ca3af;
+  --page-bg: linear-gradient(180deg,#0b1220 0%, #0f1724 60%, #0f1724 100%);
+  --page-bg-solid: #0f1724;
+  --panel-bg: #374151;       /* como bg-gray-700 */
+  --panel-contrast: #27303a;
+  --accent-cyan: #3ac5aa;
+  --button-green: #2fb48f;
+  --button-green-2: #238a6f;
+  --warning-bg: #6b2f00;
+  --warning-text: #ffc874;
+  --muted: #9aa6ae;
+  --text: #dbeef7;
+  --title-color: #cfe8f5; /* título más claro en tema oscuro (similar a imagen 2) */
+  --border-soft: rgba(255,255,255,0.04);
+  --shadow-lg: 0 12px 30px rgba(2,8,20,0.45);
 }
 
-/* Estilos para Modificar Matrícula */
-.matricula-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Header */
-.header {
-   background: var(--bg-tertiary);
-  color: var(--text-primary);
-  padding: 40px 30px;
-  border-radius: 16px;
-  margin-bottom: 30px;
-  text-align: center;
-  box-shadow: 0 8px 32px var(--shadow-color);
-  border: 2px solid var(--border-color);
-}
-.header h1 {
-  margin: 0 0 10px 0;
-  font-size: 2.5em;
-  font-weight: 300;
-}
-
-.header-title {
-  margin: 0 0 10px 0;
-  font-size: 2.5em;
-  font-weight: 300;
-  color: var(--text-primary);
-}
-
-.header-subtitle {
-  margin: 0;
-  font-size: 1.1em;
-  opacity: 0.9;
-  color: var(--text-primary);
-}
-
-/* Content wrapper */
-.content-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
-
-/* Info card */
-.info-card {
-  background: var(--bg-card);
-  border-radius: 12px;
-  padding: 25px;
-  box-shadow: var(--shadow-sm);
-  border-left: 4px solid var(--border-accent);
-  transition: background-color 0.3s ease;
-}
-
-.info-title {
-  margin: 0 0 20px 0;
-  font-size: 1.4em;
-  color: var(--text-primary);
-}
-
-.info-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 15px;
-}
-
-.info-item {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  background: var(--bg-secondary);
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
-}
-
-.info-item strong {
-  color: var(--text-secondary);
-  margin-right: 8px;
-}
-
-.creditos {
-  font-weight: bold;
-  padding: 4px 8px;
-  border-radius: 4px;
-  margin-left: 8px;
-}
-
-.creditos-normal {
-  background: var(--success-bg);
-  color: var(--success-text);
-}
-
-.creditos-alto {
-  background: var(--danger-bg);
-  color: var(--danger-text);
-}
-
-.periodo {
-  font-weight: bold;
-  padding: 4px 8px;
-  border-radius: 4px;
-  margin-left: 8px;
-}
-
-.periodo-activo {
-  background: var(--success-bg);
-  color: var(--success-text);
-}
-
-.periodo-cerrado {
-  background: var(--danger-bg);
-  color: var(--danger-text);
-}
-
-/* Tabs */
-.tabs-container {
-  background: var(--bg-card);
-  border-radius: 12px;
-  box-shadow: var(--shadow-sm);
-  overflow: hidden;
-  transition: background-color 0.3s ease;
-}
-
-.tabs-header {
-  display: flex;
-  background: var(--bg-secondary);
-  border-bottom: 2px solid var(--border-primary);
-  transition: background-color 0.3s ease, border-color 0.3s ease;
-}
-
-.tab-button {
-  flex: 1;
-  padding: 15px 20px;
-  border: none;
+/* Contenedor principal */
+.tramites-root {
+  max-width: 1180px;
+  margin: 28px auto;
+  padding: 36px 40px;
+  font-family: 'Roboto', Inter, system-ui, -apple-system, 'Segoe UI', Arial;
+  color: var(--text);
+  /* usar fondo transparente para heredar el fondo global del layout */
   background: transparent;
-  font-size: 1em;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  color: var(--text-secondary);
+  padding-bottom: 120px; /* espacio inferior para que se vea la franja */
 }
 
-.tab-button:hover {
-  background: var(--bg-tertiary);
-  color: var(--text-primary);
-}
-
-.tab-active {
-  background: var(--bg-card) !important;
-  color: var(--border-accent) !important;
-  border-bottom: 3px solid var(--border-accent);
-}
-
-.tab-content {
-  padding: 30px;
-}
-
-/* Section styles */
-.section-title {
-  margin: 0 0 20px 0;
-  font-size: 1.3em;
-  color: var(--text-primary);
-  display: flex;
-  align-items: center;
-}
-
-.section-header {
-  margin-bottom: 20px;
-}
-
-.warning-banner {
-  background: var(--warning-bg);
-  color: var(--warning-text);
-  padding: 12px 16px;
-  border-radius: 8px;
-  border-left: 4px solid var(--warning-border);
-  margin-top: 10px;
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-}
-
-.empty-message {
+.tramites-title {
+  font-size: 2.2rem;
+  font-weight: 700;
   text-align: center;
-  color: var(--text-muted);
-  font-style: italic;
-  padding: 40px;
-  background: var(--bg-secondary);
-  border-radius: 8px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  margin-bottom: 26px;
 }
 
-/* Curso cards */
-.cursos-grid {
-  display: grid;
-  gap: 20px;
-}
+/* aplicar color específico al título para mayor contraste */
+.tramites-title { color: var(--title-color); }
 
-.curso-card, .curso-card-disponible, .curso-card-cambio {
-  background: var(--bg-card);
-  border: 1px solid var(--border-primary);
-  border-radius: 8px;
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: all 0.3s ease;
-}
-
-.curso-card:hover, .curso-card-disponible:hover, .curso-card-cambio:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
-  border-color: var(--border-accent);
-}
-
-.curso-info {
-  flex: 1;
-}
-
-.curso-nombre {
-  margin: 0 0 8px 0;
-  font-size: 1.1em;
-  color: var(--text-primary);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.curso-detalles {
-  margin: 5px 0;
-  color: var(--text-secondary);
-  font-size: 0.9em;
-}
-
-.curso-profesor {
-  margin: 5px 0 0 0;
-  color: var(--text-tertiary);
-  font-size: 0.9em;
-  font-style: italic;
-}
-
-.curso-descripcion {
-  margin: 5px 0;
-  color: var(--text-secondary);
-  font-size: 0.9em;
-}
-
-.curso-creditos {
-  margin: 5px 0 0 0;
-  font-weight: bold;
-  color: var(--border-accent);
-}
-
-/* Tipo badges */
-.tipo-badge {
-  font-size: 0.75em;
-  padding: 4px 8px;
+/* Tarjeta principal */
+.tramites-card {
+  background: var(--panel-bg); /* usar color sólido por tema */
   border-radius: 12px;
-  font-weight: bold;
-  text-transform: uppercase;
+  padding: 22px 22px 26px 22px;
+  margin-bottom: 22px;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  border: 1px solid var(--border-soft);
+  overflow: visible;
 }
 
-.tipo-obligatorio {
-  background: var(--success-bg);
-  color: var(--success-text);
+/* franja izquierda */
+.tramites-card::before {
+  content: '';
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  bottom: 14px;
+  width: 6px;
+  background: linear-gradient(180deg, var(--accent-cyan), rgba(58,197,170,0.6));
+  border-radius: 6px;
 }
 
-.tipo-electivo {
+.tramites-card-header { padding-left: 40px; }
+.tramites-card-header h2{ margin:0; font-size:1.15rem; font-weight:700; color:var(--text); }
+.tramites-card-body { padding-left: 40px; margin-top:12px; color:var(--muted); }
+
+/* Barra de pasos (3 secciones) */
+.steps-bar { display:flex; gap:10px; align-items:center; margin: 18px 0; padding-left:40px; }
+.step {
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: var(--panel-contrast);
+  border: 1px solid var(--border-soft);
+  cursor: pointer;
+  font-weight:700;
+}
+.step[disabled], .step:disabled { opacity: 0.45; cursor: not-allowed; }
+.step-active { outline: 2px solid var(--accent-cyan); transform: translateY(-2px); }
+.step-done { background: linear-gradient(90deg, rgba(58,197,170,0.12), var(--panel-contrast)); border-color: var(--accent-cyan); }
+
+.steps-content { padding-left:40px; margin-top:12px; }
+.doc-view { background: var(--panel-bg); padding:18px; border-radius:10px; border:1px solid var(--border-soft); }
+.doc-title { font-weight:800; font-size:1.05rem; margin:0 0 8px 0; color:var(--title-color); }
+.doc-body { color:var(--muted); margin-bottom:12px; }
+
+/* Estilos para ProcessMatricula */
+.process-matricula-root { margin-top:6px; }
+.process-title { margin:0 0 10px 0; font-size:1.05rem; color:var(--title-color); }
+.process-table-wrap { overflow:auto; border-radius:8px; border:1px solid var(--border-soft); }
+.process-table { width:100%; border-collapse:collapse; min-width:860px; }
+.process-table th, .process-table td { padding:8px 10px; border-bottom:1px solid var(--border-soft); text-align:left; font-size:0.95rem; }
+.process-table thead th { background: var(--panel-contrast); font-weight:800; }
+.process-table tbody tr:hover { background: rgba(0,0,0,0.03); }
+
+/* Botón principal verde */
+.action-center { display:flex; justify-content:flex-start; padding-left:40px; margin-top:14px; }
+.btn-primary {
+  background: linear-gradient(180deg, var(--button-green), var(--button-green-2));
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: none;
+  font-weight:700;
+  box-shadow: 0 8px 20px rgba(47,180,143,0.16);
+  cursor: pointer;
+}
+.btn-primary:active{ transform: translateY(1px); }
+
+/* Aviso naranja dentro de la segunda tarjeta */
+.aviso {
+  display:flex; align-items:center; gap:12px;
   background: var(--warning-bg);
   color: var(--warning-text);
+  padding: 12px 16px; border-radius: 8px; font-weight:700; margin-top:8px;
 }
 
-/* Buttons */
-.btn {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 6px;
-  font-size: 0.9em;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+/* Grid de selección (placeholder) */
+.seleccion-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:14px; margin-top:14px; padding-left:40px; }
+.seleccion-item { background: var(--panel-contrast); padding:14px; border-radius:10px; border:1px solid var(--border-soft); color:var(--text); }
+.seleccion-nombre{ font-weight:700; }
+
+.help-text { color:var(--muted); margin-top:6px; }
+
+/* Responsividad */
+@media (max-width: 1024px) { .tramites-root{ padding:24px; } .tramites-title{ font-size:1.9rem; } }
+@media (max-width: 640px) {
+  .tramites-root{ padding:12px; margin:12px auto; }
+  .tramites-title{ font-size:1.4rem; text-align:left; }
+  .tramites-card{ padding:16px; }
+  .tramites-card::before{ left:12px; top:12px; bottom:12px; }
+  .tramites-card-header, .tramites-card-body, .action-center, .seleccion-grid{ padding-left:20px; }
+  .seleccion-grid{ grid-template-columns: 1fr; }
 }
 
-.btn-danger {
-  background: var(--danger-btn);
-  color: var(--text-white);
-}
+/* transiciones suaves */
+* { transition: background-color .18s ease, color .18s ease, border-color .18s ease; }
 
-.btn-danger:hover {
-  background: var(--danger-btn-hover);
-  transform: translateY(-1px);
-}
-
-.btn-success {
-  background: var(--success-btn);
-  color: var(--text-white);
-}
-
-.btn-success:hover {
-  background: var(--success-btn-hover);
-  transform: translateY(-1px);
-}
 
 .btn-primary {
   background: var(--primary-btn);
