@@ -131,45 +131,65 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
             label: 'Gestión de Matrícula',
             icon: IconProyecto,
             submenus: [
-              { name: 'actualizar-datos', label: 'Actualizar mis datos', path: '/estudiante/perfil' },
-              { name: 'gestion-cursos', label: 'Gestión de cursos', path: '/estudiante/cursos' },
-              { name: 'ver-cursos-semestre', label: 'Consultar cursos', path: '/estudiante/consultar_cursos' },
-              { name: 'estado-matricula', label: 'Estado de Matrícula', path: '/estudiante/estado_matricula' },
-              { name: 'historial-matricula', label: 'Historial de Matrícula', path: '/estudiante/historial_matricula' },
-              { name: 'tramites', label: 'Trámites', path: '/estudiante/tramites' },
-              { name: 'progreso-academico', label: 'Progreso Académico', path: '/estudiante/progreso_academico' },
+              { name: 'matricula', label: 'Matrícula', path: '/estudiante/matricula' },
+              { name: 'ver-horario', label: 'Ver Horario', path: '/estudiante/ver-horario' },
+              { name: 'tramite-documentario', label: 'Trámite Documentario', path: '/estudiante/tramite-documentario' },
+              { name: 'tramite-grados', label: 'Trámite Grados y Títulos', path: '/estudiante/tramite-grados' },
+              { name: 'tramite-seguimiento', label: 'Trámite Seguimiento', path: '/estudiante/tramite-seguimiento' },
+              { name: 'reglamento', label: 'Reglamento del estudiante', path: '/estudiante/reglamento' },
             ],
           },
           {
-            name: 'GestionRegistrosAcademicos',
-            label: 'Gestión de Registros Académicos',
+            name: 'ModuloAcademico',
+            label: 'Módulo Académico',
             icon: IconInforme,
             submenus: [
-              { name: 'consulta-calificaciones', label: 'Consulta de calificaciones', path: '/estudiante/calificaciones' },
-              { name: 'historial-academico', label: 'Acceso a historial académico', path: '/estudiante/historial' },
-              { name: 'descarga-certificados', label: 'Descarga de certificados', path: '/estudiante/certificados' },
-            ],
+              { name: 'cursos-llevados', label: 'Cursos llevados', path: '/estudiante/cursos-llevados' },
+              { name: 'mi-asistencia', label: 'Mi Asistencia', path: '/estudiante/mi-asistencia' },
+              { name: 'notas-parciales', label: 'Notas Parciales', path: '/estudiante/notas-parciales' },
+              { name: 'evaluacion-diaria', label: 'Evaluación Diaria', path: '/estudiante/evaluacion-diaria' },
+              { name: 'historial-academico', label: 'Historial Académico', path: '/estudiante/historial-academico' },
+              { name: 'plan-de-estudios', label: 'Plan de Estudios', path: '/estudiante/plan-de-estudios' },
+              { name: 'malla-curricular', label: 'Malla curricular', path: '/estudiante/malla-curricular' },
+              { name: 'rendimiento-academico', label: 'Rendimiento académico', path: '/estudiante/rendimiento-academico' },
+              ],
           },
           {
-            name: 'GestionPanelVirtual',
-            label: 'Gestión del Panel Virtual',
+            name: 'TitulacionGrados',
+            label: 'Titulación y Grados',
             icon: IconEjecucion,
             submenus: [
-              { name: 'aula-virtual', label: 'Acceso a aulas virtuales', path: '/estudiante/aulas_virtuales' },
-              { name: 'clases-tiempo-real', label: 'Clases en tiempo real', path: '/estudiante/clases-vivo' },
-              { name: 'acceso-grabaciones', label: 'Acceso a grabaciones', path: '/estudiante/grabaciones' },
-              { name: 'entrega-tareas', label: 'Entrega de tareas digitales', path: '/estudiante/tareas' },
+              { name: 'consulta-grados', label: 'Consulta Reg. Grados y Títulos', path: '/estudiante/titulacion/consulta-grados' },
+              { name: 'ficha-inscripcion', label: 'Ficha Inscripción Titulación', path: '/estudiante/titulacion/ficha-inscripcion' },
+              { name: 'inscripcion-taller', label: 'Inscripción Taller Trab. Inv.', path: '/estudiante/titulacion/inscripcion-taller' },
+              { name: 'tramite-grados-titulos', label: 'Trámite Grados y Títulos', path: '/estudiante/titulacion/tramite-grados' },
             ],
           },
           {
-            name: 'GestionPagosVirtuales',
-            label: 'Gestión de Pagos Virtuales',
+            name: 'ServiciosUniversitarios',
+            label: 'Servicios Universitarios',
             icon: IconProyecto,
             submenus: [
-              { name: 'pagos-linea', label: 'Pagos en línea', path: '/estudiante/pagos', badge: 2 },
-              { name: 'historial-pagos', label: 'Historial de pagos', path: '/estudiante/historial-pagos' },
+              { name: 'carnet-sunedu', label: 'Carnet Universitario SUNEDU', path: '/estudiante/servicios/carnet-sunedu' },
+              { name: 'tarjeta-virtual', label: 'Tarjeta de Identificación Virtual', path: '/estudiante/servicios/tarjeta-virtual' },
+              { name: 'subir-fotografia', label: 'Subir Fotografía', path: '/estudiante/servicios/subir-fotografia' },
+              { name: 'bolsa-trabajo', label: 'Bolsa de Trabajo UDH', path: '/estudiante/servicios/bolsa-trabajo' },
+              { name: 'inscripcion-idioma', label: 'Inscripción Idioma Extranjero', path: '/estudiante/servicios/inscripcion-idioma' },
+              { name: 'educacion-distancia', label: 'Educación a Distancia', path: '/estudiante/servicios/educacion-distancia' },
             ],
           },
+          {
+            name: 'SoporteDefensoria',
+            label: 'Soporte y Defensoría',
+            icon: IconEjecucion,
+            submenus: [
+              { name: 'consultas-quejas', label: 'Consultas y Quejas', path: '/estudiante/soporte/consultas-quejas' },
+              { name: 'consentimiento-informado', label: 'Consentimiento Informado', path: '/estudiante/soporte/consentimiento-informado' },
+              { name: 'congresos-otros', label: 'Congresos y Otros', path: '/estudiante/soporte/congresos-otros' },
+            ],
+          },
+          // Soporte y Defensoría (removido según preferencia del usuario)
+          // Panel Virtual removido
         ];
 
       case 'docente':
@@ -239,17 +259,7 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
               { name: 'reportes', label: 'Reportes', path: '/escuela/reportes' },
             ],
           },
-          {
-            name: 'GestionPanelVirtual',
-            label: 'Gestión del Panel Virtual',
-            icon: IconEjecucion,
-            submenus: [
-              { name: 'aula-virtual', label: 'Aula virtual', path: '/escuela/aula-virtual' },
-              { name: 'clases-tiempo-real', label: 'Clases en tiempo real', path: '/escuela/clases-tiempo-real' },
-              { name: 'actividades', label: 'Actividades', path: '/escuela/actividades' },
-              { name: 'comunicacion', label: 'Comunicación', path: '/escuela/comunicacion' },
-            ],
-          },
+          // Panel Virtual removido
           {
             name: 'GestionBibliotecaVirtual',
             label: 'Gestión de Biblioteca Virtual',
@@ -260,16 +270,7 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
               { name: 'reportes-biblioteca', label: 'Reportes', path: '/escuela/reportes-biblioteca' },
             ],
           },
-          {
-            name: 'GestionPagosVirtuales',
-            label: 'Gestión de Pagos Virtuales',
-            icon: IconProyecto,
-            submenus: [
-              { name: 'pagos', label: 'Pagos', path: '/escuela/pagos' },
-              { name: 'comprobantes', label: 'Comprobantes', path: '/escuela/comprobantes' },
-              { name: 'notificaciones', label: 'Notificaciones', path: '/escuela/notificaciones' },
-            ],
-          },
+          // Gestión de Pagos removida
         ];
 
       case 'facultad':

@@ -1,0 +1,421 @@
+/* TramitePage — estilos dirigidos a reproducir la imagen 1
+   - fondo muy oscuro
+   - tarjetas grandes con franja izquierda cyan
+   - botón principal verde con sombra
+   - aviso naranja oscuro
+*/
+
+:root {
+  /* Tema claro (valores por defecto) */
+  --page-bg: linear-gradient(180deg,#f3f4f6 0%, #eef2f7 100%);
+  --page-bg-solid: #f6f7f9;
+  --panel-bg: #ffffff;       /* tarjetas en claro */
+  --panel-contrast: #f3f4f6;
+  --accent-cyan: #3ac5aa;
+  --button-green: #2fb48f;
+  --button-green-2: #238a6f;
+  --warning-bg: #fef3c7;
+  --warning-text: #92400e;
+  --muted: #6b7280;
+  --text: #0f1724;
+  --title-color: #0b1726; /* ligeramente más oscuro/contraste en tema claro */
+  --border-soft: rgba(15,23,36,0.04);
+  --shadow-lg: 0 12px 30px rgba(2,6,23,0.06);
+}
+
+/* Sobreescritura para modo oscuro: añade la clase .dark al root o body */
+.dark {
+  --page-bg: linear-gradient(180deg,#0b1220 0%, #0f1724 60%, #0f1724 100%);
+  --page-bg-solid: #0f1724;
+  --panel-bg: #374151;       /* como bg-gray-700 */
+  --panel-contrast: #27303a;
+  --accent-cyan: #3ac5aa;
+  --button-green: #2fb48f;
+  --button-green-2: #238a6f;
+  --warning-bg: #6b2f00;
+  --warning-text: #ffc874;
+  --muted: #9aa6ae;
+  --text: #dbeef7;
+  --title-color: #cfe8f5; /* título más claro en tema oscuro (similar a imagen 2) */
+  --border-soft: rgba(255,255,255,0.04);
+  --shadow-lg: 0 12px 30px rgba(2,8,20,0.45);
+}
+
+/* Contenedor principal */
+.tramites-root {
+  max-width: 1180px;
+  margin: 28px auto;
+  padding: 36px 40px;
+  font-family: 'Roboto', Inter, system-ui, -apple-system, 'Segoe UI', Arial;
+  color: var(--text);
+  /* usar fondo transparente para heredar el fondo global del layout */
+  background: transparent;
+  padding-bottom: 120px; /* espacio inferior para que se vea la franja */
+}
+
+.tramites-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 26px;
+}
+
+/* aplicar color específico al título para mayor contraste */
+.tramites-title { color: var(--title-color); }
+
+/* utilidades rápidas para badges y color principal */
+.estado-estilo { display:inline-block; padding:6px 10px; border-radius:8px; font-weight:700; }
+.bg-green-500 { background:#10b981; color:#fff; }
+.text-azul { color: #2b5566; }
+
+/* Tarjeta principal */
+.tramites-card {
+  background: var(--panel-bg); /* usar color sólido por tema */
+  border-radius: 12px;
+  padding: 22px 22px 26px 22px;
+  margin-bottom: 22px;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  border: 1px solid var(--border-soft);
+  overflow: visible;
+}
+
+/* franja izquierda */
+.tramites-card::before {
+  content: '';
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  bottom: 14px;
+  width: 6px;
+  background: linear-gradient(180deg, var(--accent-cyan), rgba(58,197,170,0.6));
+  border-radius: 6px;
+}
+
+.tramites-card-header { padding-left: 40px; }
+.tramites-card-header h2{ margin:0; font-size:1.15rem; font-weight:700; color:var(--text); }
+.tramites-card-body { padding-left: 40px; margin-top:12px; color:var(--muted); }
+
+/* Barra de pasos (3 secciones) */
+.steps-bar { display:flex; gap:10px; align-items:center; margin: 18px 0; padding-left:40px; }
+.step {
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: var(--panel-contrast);
+  border: 1px solid var(--border-soft);
+  cursor: pointer;
+  font-weight:700;
+}
+.step[disabled], .step:disabled { opacity: 0.45; cursor: not-allowed; }
+.step-active { outline: 2px solid var(--accent-cyan); transform: translateY(-2px); }
+.step-done { background: linear-gradient(90deg, rgba(58,197,170,0.12), var(--panel-contrast)); border-color: var(--accent-cyan); }
+
+.steps-content { padding-left:40px; margin-top:12px; }
+.doc-view { background: var(--panel-bg); padding:18px; border-radius:10px; border:1px solid var(--border-soft); }
+.doc-title { font-weight:800; font-size:1.05rem; margin:0 0 8px 0; color:var(--title-color); }
+.doc-body { color:var(--muted); margin-bottom:12px; }
+
+/* Estilos para ProcessMatricula */
+.process-matricula-root { margin-top:6px; }
+.process-title { margin:0 0 10px 0; font-size:1.05rem; color:var(--title-color); }
+.process-table-wrap { overflow:auto; border-radius:8px; border:1px solid var(--border-soft); }
+.process-table { width:100%; border-collapse:collapse; min-width:860px; }
+.process-table th, .process-table td { padding:8px 10px; border-bottom:1px solid var(--border-soft); text-align:left; font-size:0.95rem; }
+.process-table thead th { background: var(--panel-contrast); font-weight:800; }
+.process-table tbody tr:hover { background: rgba(0,0,0,0.03); }
+
+/* Botón principal verde */
+.action-center { display:flex; justify-content:flex-start; padding-left:40px; margin-top:14px; }
+.btn-primary {
+  background: linear-gradient(180deg, var(--button-green), var(--button-green-2));
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: none;
+  font-weight:700;
+  box-shadow: 0 8px 20px rgba(47,180,143,0.16);
+  cursor: pointer;
+}
+.btn-primary:active{ transform: translateY(1px); }
+
+/* Aviso naranja dentro de la segunda tarjeta */
+.aviso {
+  display:flex; align-items:center; gap:12px;
+  background: var(--warning-bg);
+  color: var(--warning-text);
+  padding: 12px 16px; border-radius: 8px; font-weight:700; margin-top:8px;
+}
+
+/* Grid de selección (placeholder) */
+.seleccion-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:14px; margin-top:14px; padding-left:40px; }
+.seleccion-item { background: var(--panel-contrast); padding:14px; border-radius:10px; border:1px solid var(--border-soft); color:var(--text); }
+.seleccion-nombre{ font-weight:700; }
+
+.help-text { color:var(--muted); margin-top:6px; }
+
+/* Responsividad */
+@media (max-width: 1024px) { .tramites-root{ padding:24px; } .tramites-title{ font-size:1.9rem; } }
+@media (max-width: 640px) {
+  .tramites-root{ padding:12px; margin:12px auto; }
+  .tramites-title{ font-size:1.4rem; text-align:left; }
+  .tramites-card{ padding:16px; }
+  .tramites-card::before{ left:12px; top:12px; bottom:12px; }
+  .tramites-card-header, .tramites-card-body, .action-center, .seleccion-grid{ padding-left:20px; }
+  .seleccion-grid{ grid-template-columns: 1fr; }
+}
+
+/* transiciones suaves */
+* { transition: background-color .18s ease, color .18s ease, border-color .18s ease; }
+
+
+.btn-primary {
+  background: var(--primary-btn);
+  color: var(--text-white);
+}
+
+.btn-primary:hover {
+  background: var(--primary-btn-hover);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: var(--secondary-btn);
+  color: var(--text-white);
+}
+
+.btn-secondary:hover {
+  background: var(--secondary-btn-hover);
+}
+
+.btn-disabled {
+  background: var(--disabled-bg);
+  color: var(--disabled-text);
+  cursor: not-allowed;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  transition: background-color 0.3s ease;
+  box-shadow: var(--shadow-md);
+}
+
+.modal-title {
+  margin: 0 0 20px 0;
+  font-size: 1.4em;
+  text-align: center;
+}
+
+.modal-title-danger {
+  color: var(--danger-btn);
+}
+
+.modal-title-success {
+  color: var(--success-btn);
+}
+
+.modal-title-primary {
+  color: var(--primary-btn);
+}
+
+.modal-message {
+  text-align: center;
+  color: var(--text-secondary);
+  margin: 20px 0;
+  line-height: 1.6;
+}
+
+.modal-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+/* Curso info en modal */
+.curso-retiro-info, .curso-modal-info {
+  background: var(--bg-secondary);
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+  border-left: 4px solid var(--border-accent);
+  transition: background-color 0.3s ease;
+}
+
+.curso-retiro-nombre, .curso-modal-nombre {
+  margin: 0 0 10px 0;
+  font-size: 1.2em;
+  color: var(--text-primary);
+}
+
+.curso-retiro-detalles {
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.curso-modal-descripcion {
+  margin: 10px 0;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.curso-modal-creditos {
+  margin: 10px 0 0 0;
+  color: var(--border-accent);
+}
+
+/* Secciones en modal */
+.secciones-container {
+  margin: 20px 0;
+}
+
+.secciones-title {
+  margin: 0 0 15px 0;
+  font-size: 1.1em;
+  color: var(--text-primary);
+}
+
+.seccion-option {
+  display: flex;
+  align-items: flex-start;
+  padding: 15px;
+  border: 2px solid var(--border-primary);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: var(--bg-card);
+}
+
+.seccion-option:hover {
+  border-color: var(--border-accent);
+  background: var(--bg-secondary);
+}
+
+.seccion-selected {
+  border-color: var(--border-accent) !important;
+  background: var(--success-bg) !important;
+}
+
+.seccion-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: var(--disabled-bg) !important;
+}
+
+.seccion-radio {
+  margin-right: 15px;
+  margin-top: 2px;
+}
+
+.seccion-info {
+  flex: 1;
+}
+
+.seccion-detalles {
+  margin-top: 5px;
+  color: var(--text-secondary);
+  font-size: 0.9em;
+  line-height: 1.4;
+}
+
+.seccion-actual {
+  background: var(--warning-bg);
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 4px solid var(--warning-border);
+  margin: 15px 0;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.seccion-actual-detalles {
+  color: var(--warning-text);
+}
+
+.badge-actual {
+  background: var(--warning-border);
+  color: var(--warning-text);
+  font-size: 0.75em;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+
+/* Cupos info */
+.cupos-info {
+  font-weight: bold;
+}
+
+.cupos-sin {
+  color: var(--danger-btn);
+}
+
+.cupos-con {
+  color: var(--success-btn);
+}
+
+/* Transiciones suaves para el cambio de tema */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .matricula-container {
+    padding: 10px;
+  }
+  
+  .header {
+    padding: 20px;
+  }
+  
+  .header-title {
+    font-size: 2em;
+  }
+  
+  .tabs-header {
+    flex-direction: column;
+  }
+  
+  .tab-content {
+    padding: 20px;
+  }
+  
+  .curso-card, .curso-card-disponible, .curso-card-cambio {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .modal-content {
+    margin: 20px;
+    padding: 20px;
+  }
+  
+  .modal-buttons {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,4 @@
+/* Estilos compartidos para páginas académicas (usado por soporte-defensoria/CongresosOtros) */
+.academico-root { padding:16px; }
+.academico-title { font-size:1.25rem; font-weight:700; margin-bottom:12px; }
+.academico-card { background: var(--panel-bg,#fff); padding:12px; border-radius:8px; }
