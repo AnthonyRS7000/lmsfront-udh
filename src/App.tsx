@@ -17,9 +17,6 @@ import ProfilePage from "./features/students/ProfilePage";
 import {
   Matricula,
   VerHorario,
-  TramiteDocumentario,
-  TramiteGradosTitulos,
-  TramiteSeguimiento,
   Reglamento
 } from "./features/students/gestion-matricula";
 
@@ -47,11 +44,13 @@ import {
 import {
   CarnetSunedu,
   TarjetaIdentificacionVirtual,
-  SubirFotografia,
   BolsaTrabajoUDH,
   InscripcionIdiomaExtranjero,
   EducacionDistancia
 } from './features/students/servicio-universitario';
+
+// Trámite (nuevo módulo)
+import { TramiteDocumentario, TramiteSeguimiento } from './features/students/tramite';
 
 // Soporte y Defensoría
 import {
@@ -60,11 +59,6 @@ import {
   CongresosOtros
 } from './features/students/soporte-defensoria';
 
-// Importaciones del módulo Panel Virtual
-// AulaVirtualPage removed as module deleted
-
-// Panel Virtual pages removed
-// Pagos module removed
 
 
 import Cursos from "./features/docente/pages/Cursos";
@@ -117,9 +111,6 @@ function App() {
               <Route path="/estudiante/perfil" element={<ProfilePage />} />
               <Route path="/estudiante/matricula" element={<Matricula />} />
               <Route path="/estudiante/ver-horario" element={<VerHorario />} />
-              <Route path="/estudiante/tramite-documentario" element={<TramiteDocumentario />} />
-              <Route path="/estudiante/tramite-grados" element={<TramiteGradosTitulos />} />
-              <Route path="/estudiante/tramite-seguimiento" element={<TramiteSeguimiento />} />
               <Route path="/estudiante/reglamento" element={<Reglamento />} />
               <Route path="/estudiante/progreso_academico" element={<div />} />
               {/* Rutas del nuevo módulo académico */}
@@ -139,10 +130,14 @@ function App() {
               {/* Servicios Universitarios */}
               <Route path="/estudiante/servicios/carnet-sunedu" element={<CarnetSunedu />} />
               <Route path="/estudiante/servicios/tarjeta-virtual" element={<TarjetaIdentificacionVirtual />} />
-              <Route path="/estudiante/servicios/subir-fotografia" element={<SubirFotografia />} />
               <Route path="/estudiante/servicios/bolsa-trabajo" element={<BolsaTrabajoUDH />} />
               <Route path="/estudiante/servicios/inscripcion-idioma" element={<InscripcionIdiomaExtranjero />} />
               <Route path="/estudiante/servicios/educacion-distancia" element={<EducacionDistancia />} />
+
+              {/* Trámite */}
+              <Route path="/estudiante/tramite" element={<TramiteDocumentario />} />
+              <Route path="/estudiante/tramite/documentario" element={<TramiteDocumentario />} />
+              <Route path="/estudiante/tramite/seguimiento" element={<TramiteSeguimiento />} />
 
               {/* Soporte y Defensoría */}
               <Route path="/estudiante/soporte/consultas-quejas" element={<ConsultasQuejas />} />
