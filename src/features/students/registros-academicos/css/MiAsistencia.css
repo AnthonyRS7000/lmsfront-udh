@@ -1,4 +1,64 @@
 /* Estilos para MiAsistencia */
-.mi-asistencia-root { padding: 16px; }
-.mi-asistencia-title { font-size:1.25rem; font-weight:700; margin-bottom:12px; }
-.mi-asistencia-card { background: var(--panel-bg,#fff); padding:12px; border-radius:8px; }
+.mi-asistencia-root { padding: 32px 20px; }
+.mi-asistencia-container { max-width: 1100px; margin: 0 auto; }
+.mi-asistencia-title {
+	font-size: 2.2rem;
+	font-weight: 700;
+	text-align: left; /* igual que la imagen: alineado a la izquierda */
+	margin-bottom: 16px;
+}
+.mi-asistencia-card { background: transparent; padding: 0; border-radius: 6px; }
+
+.mi-asistencia-filter { display:flex; gap:8px; align-items:center; margin-bottom:12px; }
+.mi-asistencia-filter label { font-weight:600; }
+.mi-asistencia-filter input { padding:6px 8px; border-radius:4px; border:1px solid var(--border-soft,#ccc); }
+
+.mi-asistencia-table { width:100%; border-collapse:collapse; font-size:0.95rem; }
+.mi-asistencia-table thead th {
+	background: linear-gradient(180deg, #14325a 0%, #2F63D6 100%);
+	color: #fff;
+	padding: 8px 10px;
+	border: 1px solid #234a9e;
+	text-align: left;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+.mi-asistencia-table th, .mi-asistencia-table td { border:1px solid #234a9e; padding:10px 12px; }
+.mi-asistencia-table tbody tr:nth-child(even) { background:#f3f7ff; }
+
+/* Dark theme overrides */
+:root.dark .mi-asistencia-title { color: #cfe8f5; }
+:root.dark .mi-asistencia-table thead th { background: linear-gradient(180deg, #071726 0%, #14325a 100%); color: #e6f2ff; border-color: #0b2340; }
+:root.dark .mi-asistencia-table td { background: rgba(255,255,255,0.02); color: #dfeeff; border-color: rgba(255,255,255,0.08); }
+
+/* Header del estudiante (datos a la izquierda, resumen a la derecha) */
+.mi-student-header { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom: 18px; }
+.mi-student-left dl { display:grid; grid-template-columns: auto 1fr; gap:6px 12px; margin:0; }
+.mi-student-left dt { font-weight:700; text-transform:uppercase; font-size:0.95rem; }
+.mi-student-left dd { margin:0; }
+.mi-student-name { font-weight:700; font-size:1.125rem; text-transform:uppercase; }
+.mi-student-right { text-align:right; min-width:180px; }
+.mi-student-right .stat { font-weight:700; display:block; }
+
+/* Mensaje de advertencia y caja de NO HAY DATOS */
+.mi-warning { color:#d9534f; text-align:center; margin:6px 0 10px 0; font-weight:600; }
+.mi-no-data-box { border:1px solid #cfcfcf; background:#fff; padding:10px 14px; width:100%; max-width:920px; margin:12px auto; display:block; box-shadow: 0 1px 0 rgba(0,0,0,0.04); }
+
+:root.dark .mi-no-data-box { background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.06); color:#dfeeff; box-shadow:none; }
+
+/* Mejorar visibilidad del header en dark */
+:root.dark .mi-student-left dt, :root.dark .mi-student-left dd { color: rgba(255,255,255,0.65); }
+:root.dark .mi-student-name { color: #cfe8f5; }
+:root.dark .mi-student-right .stat { color: rgba(255,255,255,0.7); }
+
+/* Ajustes responsivos: en pantallas pequeñas el header se apila */
+@media (max-width: 900px) {
+	.mi-student-header { flex-direction: column; align-items: flex-start; }
+	.mi-student-right { text-align: left; margin-top: 8px; }
+	.mi-no-data-box { width: 95%; }
+}
+
+@media (min-width: 1920px) {
+	/* En pantallas ultrawide, limitar aún más la caja interna para conservar proporción */
+	.mi-asistencia-container { max-width: 1200px; }
+}

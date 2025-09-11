@@ -1,19 +1,29 @@
-/* Estilos para CursosLlevados (migrado a nombre correcto) */
+/* Estilos para CursosLlevados */
 .cursos-llevados-root { padding: 16px; }
-.cursos-llevados-title { font-size:1.25rem; font-weight:700; margin-bottom:12px; }
-.cursos-llevados-card { background: var(--panel-bg,#fff); padding:12px; border-radius:8px; }
-/* Stub CSS mínimo para evitar errores de importación en MallaCurricular.tsx */
-.cursos-llevados-root {
-  padding: 16px;
-}
-.cursos-llevados-title {
-  font-size: 1.25rem;
+.cursos-llevados-title { font-size: 2.2rem;
   font-weight: 700;
-  margin-bottom: 12px;
-}
-.cursos-llevados-card {
-  background: var(--panel-bg, #fff);
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid var(--border-soft, #e6e6e6);
-}
+  text-align: center;
+  margin-bottom: 26px;}
+.cursos-llevados-filter { display:flex; gap:8px; align-items:center; margin-bottom:12px; }
+.cursos-llevados-filter label { font-weight:600; }
+.cursos-llevados-filter input { padding:6px 8px; border-radius:4px; border:1px solid var(--border-soft,#ccc); }
+.btn-show { padding:6px 10px; border-radius:4px; background:#0ea5a1; color:#fff; border:none; cursor:pointer; }
+
+.cursos-llevados-card { background: transparent; padding:0; border-radius:6px; }
+.table-wrap { width:100%; overflow-x:auto; }
+.cursos-table { width:100%; border-collapse:collapse; min-width:900px; font-size:0.95rem; }
+.cursos-table thead th { background:#2F63D6; color:#fff; padding:8px 10px; border:1px solid #234a9e; text-align:left; }
+.cursos-table th, .cursos-table td { border:1px solid #234a9e; padding:10px 12px; vertical-align:top; }
+.cursos-table tbody tr:nth-child(even) { background:#f3f7ff; }
+.cursos-table .desc { text-transform:uppercase; }
+
+/* Dark theme overrides */
+:root.dark .cursos-llevados-title { color: #cfe8f5; }
+:root.dark .cursos-table thead th { background: #14325a; color: #e6f2ff; border-color: #0b2340; }
+:root.dark .cursos-table td { background: rgba(255, 255, 255, 0.02); color: #dfeeff; border-color: rgba(255,255,255,0.08); }
+
+/* Dark theme */
+:root.dark .cursos-llevados-title { color: #cfe8f5; }
+:root.dark .cursos-table thead th { background: #14325a; }
+:root.dark .cursos-table tbody tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+:root.dark .cursos-table th, :root.dark .cursos-table td { color: #d6e7ff; border-color: rgba(255,255,255,0.05); }
