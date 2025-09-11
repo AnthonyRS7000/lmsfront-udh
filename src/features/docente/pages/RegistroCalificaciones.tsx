@@ -111,126 +111,128 @@ const RegistroCalificaciones: React.FC = () => {
   const editable = esEditable(fecha) && rol === "docente";
 
   return (
-    <div className="registro-calificaciones-container">
+    <div className="container">
       <h2 className="registro-calificaciones-title">REGISTRO DE CALIFICACIONES</h2>
       <hr className="registro-calificaciones-divider" />
-      <div className="registro-calificaciones-header">
-        <div>
-          <label>Curso:</label>
-          <select
-            className="registro-select"
-            value={curso}
-            onChange={e => setCurso(e.target.value)}
-          >
-            {cursos.map(c => (
-              <option key={c} value={c}>{c}</option>
-            ))}
-          </select>
+      <div className="registro-calificaciones-container">
+        <div className="registro-calificaciones-header">
+          <div>
+            <div style={{ fontWeight: 600, marginBottom: 8 }}>Curso:</div>
+            <select
+              className="registro-select"
+              value={curso}
+              onChange={e => setCurso(e.target.value)}
+            >
+              {cursos.map(c => (
+                <option key={c} value={c}>{c}</option>
+              ))}
+            </select>
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 4 }}>
+            <div style={{ fontWeight: 600, marginBottom: 8, maxWidth: "140px" }}>Subir Notas Hasta:</div>
+            <input
+              type="datetime-local"
+              className="registro-fecha"
+              value={fecha}
+              onChange={e => setFecha(e.target.value)}
+              disabled
+            />
+          </div>
+          <div>
+            <label htmlFor="importar-notas" style={{ display: "none" }}>Importar Notas</label>
+            <input
+              id="importar-notas"
+              type="file"
+              accept=".csv,.xlsx"
+              style={{ display: "none" }}
+              onChange={handleImportar}
+            />
+            <button
+              className="registro-importar-btn"
+              onClick={() => document.getElementById("importar-notas")?.click()}
+            >
+              <DocumentArrowDownIcon style={{ position: "relative",width: 20, height: 20, marginRight: 8 }} />
+              Importar Notas
+            </button>
+          </div>
         </div>
-        <div>
-          <label>Subir Notas Hasta:</label>
-          <input
-            type="datetime-local"
-            className="registro-fecha"
-            value={fecha}
-            onChange={e => setFecha(e.target.value)}
-            disabled
-          />
-        </div>
-        <div>
-          <label htmlFor="importar-notas" style={{ display: "none" }}>Importar Notas</label>
-          <input
-            id="importar-notas"
-            type="file"
-            accept=".csv,.xlsx"
-            style={{ display: "none" }}
-            onChange={handleImportar}
-          />
-          <button
-            className="registro-importar-btn"
-            onClick={() => document.getElementById("importar-notas")?.click()}
-          >
-            <DocumentArrowDownIcon style={{ position: "relative",width: 20, height: 20, marginRight: 8 }} />
-            Importar Notas
+        <table className="registro-calificaciones-table">
+          <thead>
+            <tr>
+              <th>N°</th>
+              <th>Apellidos y Nombres</th>
+              <th>T1</th>
+              <th>T2</th>
+              <th>T3</th>
+              <th>T4</th>
+              <th>T5</th>
+              <th>EMC</th>
+              <th>EFC</th>
+              <th>ES</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            {alumnos.map((al, idx) => {
+              const notas = al.notas;
+              const estado = calcularEstado(notas);
+              return (
+                <tr key={al.id}>
+                  <td>{idx + 1}</td>
+                  <td>{al.nombre}</td>
+                  {["T1", "T2", "T3", "T4", "T5", "EMC", "EFC", "ES"].map((campo, i) => (
+                    <td key={campo}>
+                      <input
+                        type="number"
+                        min={0}
+                        max={20}
+                        value={notas[campo as keyof typeof notas]}
+                        onChange={e => {
+                          const valor = Math.max(0, Math.min(20, Number(e.target.value)));
+                          setAlumnos(alumnos =>
+                            alumnos.map(a =>
+                              a.id === al.id
+                                ? { ...a, notas: { ...a.notas, [campo]: valor } }
+                                : a
+                            )
+                          );
+                        }}
+                        disabled={
+                          !editable ||
+                          !notasEditables.includes(campo)
+                        }
+                        className="registro-nota-input"
+                      />
+                    </td>
+                  ))}
+                  <td>
+                    <span
+                      className={`registro-estado registro-estado-${estado.color}`}
+                    >
+                      {estado.label}
+                    </span>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+        <div className="registro-calificaciones-actions">
+          <button className="registro-salvar-btn" onClick={handleSalvar} disabled={!editable}>
+            <BookmarkIcon style={{ position: "relative",width: 20, height: 20, marginRight: 8 }} />
+            Salvar
+          </button>
+          <button className="registro-confirmar-btn" onClick={handleConfirmar} disabled={!editable}>
+            <CheckIcon style={{ position: "relative",width: 20, height: 20, marginRight: 8 }} />
+            Subir Notas
+          </button>
+          <button className="registro-aplazamiento-btn" onClick={handleSolicitarAplazamiento}>
+            <ClockIcon style={{ position: "relative",width: 20, height: 20, marginRight: 8 }} />
+            Solicitar Aplazamiento
           </button>
         </div>
       </div>
-      <table className="registro-calificaciones-table">
-        <thead>
-          <tr>
-            <th>N°</th>
-            <th>Apellidos y Nombres</th>
-            <th>T1</th>
-            <th>T2</th>
-            <th>T3</th>
-            <th>T4</th>
-            <th>T5</th>
-            <th>EMC</th>
-            <th>EFC</th>
-            <th>ES</th>
-            <th>Estado</th>
-          </tr>
-        </thead>
-        <tbody>
-          {alumnos.map((al, idx) => {
-            const notas = al.notas;
-            const estado = calcularEstado(notas);
-            return (
-              <tr key={al.id}>
-                <td>{idx + 1}</td>
-                <td>{al.nombre}</td>
-                {["T1", "T2", "T3", "T4", "T5", "EMC", "EFC", "ES"].map((campo, i) => (
-                  <td key={campo}>
-                    <input
-                      type="number"
-                      min={0}
-                      max={20}
-                      value={notas[campo as keyof typeof notas]}
-                      onChange={e => {
-                        const valor = Math.max(0, Math.min(20, Number(e.target.value)));
-                        setAlumnos(alumnos =>
-                          alumnos.map(a =>
-                            a.id === al.id
-                              ? { ...a, notas: { ...a.notas, [campo]: valor } }
-                              : a
-                          )
-                        );
-                      }}
-                      disabled={
-                        !editable ||
-                        !notasEditables.includes(campo)
-                      }
-                      className="registro-nota-input"
-                    />
-                  </td>
-                ))}
-                <td>
-                  <span
-                    className={`registro-estado registro-estado-${estado.color}`}
-                  >
-                    {estado.label}
-                  </span>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-      <div className="registro-calificaciones-actions">
-        <button className="registro-salvar-btn" onClick={handleSalvar} disabled={!editable}>
-          <BookmarkIcon style={{ position: "relative",width: 20, height: 20, marginRight: 8 }} />
-          Salvar
-        </button>
-        <button className="registro-confirmar-btn" onClick={handleConfirmar} disabled={!editable}>
-          <CheckIcon style={{ position: "relative",width: 20, height: 20, marginRight: 8 }} />
-          Confirmar Notas
-        </button>
-        <button className="registro-aplazamiento-btn" onClick={handleSolicitarAplazamiento}>
-          <ClockIcon style={{ position: "relative",width: 20, height: 20, marginRight: 8 }} />
-          Solicitar Aplazamiento
-        </button>
-      </div>
-
+      
       {/* Modal de Solicitud de Aplazamiento */}
       {showModal && (
         <div className="registro-modal-overlay" onClick={handleCerrarModal}>

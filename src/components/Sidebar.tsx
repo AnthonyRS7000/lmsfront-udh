@@ -205,7 +205,7 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
             label: 'Gestión Docente',
             icon: IconProyecto,
             submenus: [
-              { name: 'registro-perfil', label: 'Perfil', path: '/docente/perfil' },
+              { name: 'docente', label: 'Principal', path: '/docente' },
               { name: 'asignacion-cursos', label: 'Asignación de cursos', path: '/docente/asignacion-cursos' },
               { name: 'gestion-horarios', label: 'Gestión de horarios', path: '/docente/gestion-horarios' },
               { name: 'reportes-actividad', label: 'Reportes de actividad', path: '/docente/reportes-actividad' },
@@ -216,13 +216,8 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
             label: 'Registro Académico',
             icon: IconInforme,
             submenus: [
-              { name: 'registro-calificaciones', label: 'Registro de calificaciones', path: '/docente/calificaciones' },
-              { name: 'administracion-historial', label: 'Administración del historial académico', path: '/docente/historial-academico' },
-              { name: 'generacion-actas', label: 'Generación automática de actas y certificados en formato electrónico', path: '/docente/actas-certificados' },
               { name: 'registro-calificaciones', label: 'Registro de calificaciones', path: '/docente/registro-calificaciones' },
               { name: 'firma-actas', label: 'Firma de Actas', path: '/docente/firma-actas' },
-              { name: 'administracion-historial', label: 'Administración del historial académico', path: '/docente/administracion-historial' },
-              { name: 'generacion-actas', label: 'Generación automática de actas y certificados en formato electrónico', path: '/docente/generacion-actas' },
             ],
           },
           {
@@ -231,12 +226,8 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
             icon: IconEjecucion,
             submenus: [
               { name: 'gestion-cursos', label: 'Gestión de cursos', path: '/docente/gestion-cursos' },
-              { name: 'gestion-contenidos', label: 'Gestión de contenidos', path: '/docente/contenidos' },
               { name: 'evaluaciones', label: 'Evaluaciones', path: '/docente/evaluaciones' },
-              { name: 'seguimiento-estudiantes', label: 'Seguimiento de estudiantes', path: '/docente/seguimiento' },
-              { name: 'retroalimentacion', label: 'Retroalimentación', path: '/docente/retroalimentacion' },
-              { name: 'herramientas-innovacion', label: 'Herramientas de innovación', path: '/docente/innovacion' },
-              { name: 'comunicacion-academica', label: 'Comunicación académica', path: '/docente/comunicacion' },
+              { name: 'seguimiento-estudiantes', label: 'Seguimiento de estudiantes', path: '/docente/seguimiento-estudiantes' },
             ],
           },
         ];

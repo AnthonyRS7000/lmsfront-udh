@@ -1,13 +1,18 @@
 .gestion-cursos-container {
-  min-height: 100vh;
-  padding: 32px 0;
+  max-width: auto;
+  max-height: auto;
+  margin: 0 auto;
+  padding: 32px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border-radius: 12px;
+  background: #fff;
 }
 .gestion-cursos-title {
+  text-align: center;
   color: #4CAF91;
   font-weight: 700;
-  font-size: 1.3rem;
-  margin-left: 32px;
-  letter-spacing: 1px;
+  margin: 8px auto;
+  font-size: 2rem;
 }
 .gestion-cursos-divider {
   border: 1px solid #4CAF91;
@@ -15,11 +20,11 @@
 }
 .gestion-cursos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1rem));
-  gap: 32px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 25px;
   overflow-y: auto;
   justify-content: center;
-  margin: 0 32px;
+  padding: 25px;
 }
 .gestion-curso-card {
   border: 1px solid #eee;
@@ -29,12 +34,10 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   gap: 12px;
   transition: box-shadow 0.2s;
   min-width: 0; /* permite que el card se adapte al grid */
-  width: 100%;
-  max-width: 400px;
+  width: 350px;
   box-sizing: border-box;
 }
 .gestion-curso-card:hover {
@@ -46,6 +49,7 @@
   font-size: 1.18rem;
   margin-bottom: 10px;
   letter-spacing: 0.5px;
+  text-align: center; 
 }
 .gestion-curso-grupo,
 .gestion-curso-estudiantes {
