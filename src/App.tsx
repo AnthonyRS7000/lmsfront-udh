@@ -13,37 +13,58 @@ import FacultadDashboard from "./features/facultad/pages/FacultadDashboard";
 import AdministrativoDashboard from "./features/administrativo/pages/AdministrativoDashboard";
 
 // Importar páginas del módulo Gestión de Matrícula
-import UserDropdown from "./features/students/UserDropdown";
-import { 
-  ProfilePage, 
-  CursosPage, 
-  ConsultaCursosPage, 
-  EstadoMatriculaPage, 
-  HistorialMatriculaPage, 
-  TramitesPage 
+import ProfilePage from "./features/students/ProfilePage";
+import {
+  Matricula,
+  VerHorario,
+  TramiteDocumentario,
+  TramiteGradosTitulos,
+  TramiteSeguimiento,
+  Reglamento
 } from "./features/students/gestion-matricula";
 
 // Importar páginas del módulo Registros Académicos
-import { 
-  CalificacionesPage, 
-  HistorialAcademicoPage, 
-  ProgresoAcademicoPage, 
-  CertificadosPage 
+import {
+  CursosLlevados,
+  MiAsistencia,
+  NotasParciales,
+  EvaluacionDiaria,
+  HistorialAcademico,
+  PlanDeEstudios,
+  MallaCurricular,
+  RendimientoAcademico
 } from "./features/students/registros-academicos";
 
-import HistorialAcademico  from "./features/estudiante/pages/HistorialAcademico";
-import MallaCurricular  from "./features/estudiante/pages/MallaCurricular";
-import MiAsistencia  from "./features/estudiante/pages/MiAsistencia";
+// Titulación y Grados
+import {
+  ConsultaRegistroGradosTitulos,
+  FichaInscripcionTitulacion,
+  InscripcionTallerTrabInv,
+  TramiteGradosTitulos as TramiteGradosTitulosTitulacion
+} from "./features/students/titulacion-graduados";
+
+// Servicios Universitarios
+import {
+  CarnetSunedu,
+  TarjetaIdentificacionVirtual,
+  SubirFotografia,
+  BolsaTrabajoUDH,
+  InscripcionIdiomaExtranjero,
+  EducacionDistancia
+} from './features/students/servicio-universitario';
+
+// Soporte y Defensoría
+import {
+  ConsultasQuejas,
+  ConsentimientoInformado,
+  CongresosOtros
+} from './features/students/soporte-defensoria';
 
 // Importaciones del módulo Panel Virtual
-import AulaVirtualPage from "./features/students/panel-virtual/AulaVirtualPage";
+// AulaVirtualPage removed as module deleted
 
-import AulasVirtualesPage from "./features/students/AulasVirtualesPage";
-import ClasesVivoPage from "./features/students/ClasesVivoPage";
-import AccesGrabacionesPage from "./features/students/AccesGrabacionesPage";
-import TareasPage  from "./features/students/TareasPage";
-import PagosPage  from "./features/students/PagosPage";
-import DetallePagosPage  from "./features/students/DetallePagosPage";
+// Panel Virtual pages removed
+// Pagos module removed
 
 
 import Cursos from "./features/docente/pages/Cursos";
@@ -93,37 +114,47 @@ function App() {
               <Route path="/facultad" element={<FacultadDashboard />} />
               <Route path="/administrativo" element={<AdministrativoDashboard />} />
               
-              {/* Rutas específicas para ESTUDIANTE - Gestión de Matrícula */}
-              <Route path="/perfil" element={<UserDropdown />} />
+              {/* Rutas específicas para estudiante - Gestión de Matrícula */}
+              <Route path="/perfil" element={<ProfilePage />} />
               <Route path="/estudiante/perfil" element={<ProfilePage />} />
-              <Route path="/estudiante/cursos" element={<CursosPage />} />
-              <Route path="/estudiante/consultar_cursos" element={<ConsultaCursosPage />} />
-              <Route path="/estudiante/estado_matricula" element={<EstadoMatriculaPage />} />
-              <Route path="/estudiante/historial_matricula" element={<HistorialMatriculaPage />} />
-              <Route path="/estudiante/tramites" element={<TramitesPage />} />
-              <Route path="/estudiante/progreso_academico" element={<ProgresoAcademicoPage />} />
-
-              <Route path="/estudiante/aulas_virtuales" element={<AulasVirtualesPage />} />
-              <Route path="/estudiante/clases-vivo" element={<ClasesVivoPage />} />
-              <Route path="/estudiante/grabaciones" element={<AccesGrabacionesPage />} />
-              <Route path="/estudiante/tareas" element={<TareasPage />} />
-              <Route path="/estudiante/pagos" element={<PagosPage />} />
-              <Route path="/estudiante/historial-pagos" element={<DetallePagosPage />} />
-
-              {/* Rutas específicas para ESTUDIANTE - Registros Académicos */}
+              <Route path="/estudiante/matricula" element={<Matricula />} />
+              <Route path="/estudiante/ver-horario" element={<VerHorario />} />
+              <Route path="/estudiante/tramite-documentario" element={<TramiteDocumentario />} />
+              <Route path="/estudiante/tramite-grados" element={<TramiteGradosTitulos />} />
+              <Route path="/estudiante/tramite-seguimiento" element={<TramiteSeguimiento />} />
+              <Route path="/estudiante/reglamento" element={<Reglamento />} />
+              <Route path="/estudiante/progreso_academico" element={<div />} />
+              {/* Rutas del nuevo módulo académico */}
+              <Route path="/estudiante/cursos-llevados" element={<CursosLlevados />} />
+              <Route path="/estudiante/mi-asistencia" element={<MiAsistencia />} />
+              <Route path="/estudiante/notas-parciales" element={<NotasParciales />} />
+              <Route path="/estudiante/evaluacion-diaria" element={<EvaluacionDiaria />} />
               <Route path="/estudiante/historial-academico" element={<HistorialAcademico />} />
+              <Route path="/estudiante/plan-de-estudios" element={<PlanDeEstudios />} />
               <Route path="/estudiante/malla-curricular" element={<MallaCurricular />} />
-              <Route path="/estudiante/asistencia" element={<MiAsistencia />} />
+              <Route path="/estudiante/rendimiento-academico" element={<RendimientoAcademico />} />
+              {/* Titulación y Grados */}
+              <Route path="/estudiante/titulacion/consulta-grados" element={<ConsultaRegistroGradosTitulos />} />
+              <Route path="/estudiante/titulacion/ficha-inscripcion" element={<FichaInscripcionTitulacion />} />
+              <Route path="/estudiante/titulacion/inscripcion-taller" element={<InscripcionTallerTrabInv />} />
+              <Route path="/estudiante/titulacion/tramite-grados" element={<TramiteGradosTitulosTitulacion />} />
+              {/* Servicios Universitarios */}
+              <Route path="/estudiante/servicios/carnet-sunedu" element={<CarnetSunedu />} />
+              <Route path="/estudiante/servicios/tarjeta-virtual" element={<TarjetaIdentificacionVirtual />} />
+              <Route path="/estudiante/servicios/subir-fotografia" element={<SubirFotografia />} />
+              <Route path="/estudiante/servicios/bolsa-trabajo" element={<BolsaTrabajoUDH />} />
+              <Route path="/estudiante/servicios/inscripcion-idioma" element={<InscripcionIdiomaExtranjero />} />
+              <Route path="/estudiante/servicios/educacion-distancia" element={<EducacionDistancia />} />
 
-              <Route path="/estudiante/calificaciones" element={<CalificacionesPage />} />
-              <Route path="/estudiante/historial" element={<HistorialAcademicoPage />} />
-              <Route path="/estudiante/certificados" element={<CertificadosPage />} />
-              <Route path="/estudiante/aula-virtual" element={<AulaVirtualPage />} />
+              {/* Soporte y Defensoría */}
+              <Route path="/estudiante/soporte/consultas-quejas" element={<ConsultasQuejas />} />
+              <Route path="/estudiante/soporte/consentimiento-informado" element={<ConsentimientoInformado />} />
+              <Route path="/estudiante/soporte/congresos-otros" element={<CongresosOtros />} />
 
               {/* Rutas para docente */}
-              <Route path="/docente/asignacion-cursos" element={<Cursos/>} />
+              <Route path="/docente/asignacion-cursos" element={<Cursos />} />
               <Route path="/docente/subir-silabo/:cursoId" element={<SubirSilabo />} />
-              <Route path="/docente/gestion-horarios" element={<GestionHorarios/>} />
+              <Route path="/docente/gestion-horarios" element={<GestionHorarios />} />
               <Route path="/docente/reportes-actividad" element={<ReportesActividad />} />
               <Route path="/docente/registro-calificaciones" element={<RegistroCalificaciones />} />
               <Route path="/docente/firma-actas" element={<FirmaActas />} />
@@ -132,6 +163,7 @@ function App() {
               <Route path="/docente/crear-evaluaciones" element={<CrearEvaluaciones />} />
               <Route path="/docente/evaluaciones" element={<Evaluaciones />} />
               <Route path="/docente/seguimiento-estudiantes" element={<SeguimientoEstudiante />} />
+
 
               {/* Rutas para administrativo */}
               <Route path="/administrativo/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área Administrativa</h2><p>Aquí irán las rutas específicas del área administrativa</p></div>} />
@@ -152,7 +184,11 @@ function App() {
               
               {/* Rutas para escuela */}
               <Route path="/escuela/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área de Escuela</h2><p>Aquí irán las rutas específicas de la escuela</p></div>} />
-              
+              {/* Rutas específicas para estudiante - Registros Académicos */}
+              <Route path="/estudiante/calificaciones" element={<NotasParciales />} />
+              <Route path="/estudiante/historial" element={<HistorialAcademico />} />
+              <Route path="/estudiante/certificados" element={<div className='p-6'>Descarga de certificados (pendiente)</div>} />
+              {/* Aula virtual removed */}
               
               {/* Rutas generales fallback para cada área */}
               <Route path="/estudiante/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área de Estudiante</h2><p>Módulo en desarrollo</p></div>} />
