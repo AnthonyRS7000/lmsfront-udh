@@ -144,8 +144,11 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
             label: 'Gestión de Registros Académicos',
             icon: IconInforme,
             submenus: [
+              { name: 'historial-academico', label: 'Historial Académico', path: '/estudiante/historial-academico' },
+              { name: 'malla-curricular', label: 'Malla Curricular', path: '/estudiante/malla-curricular' },
+              { name: 'mi-asistencia', label: 'Mi asistencia', path: '/estudiante/asistencia' },
               { name: 'consulta-calificaciones', label: 'Consulta de calificaciones', path: '/estudiante/calificaciones' },
-              { name: 'historial-academico', label: 'Acceso a historial académico', path: '/estudiante/historial' },
+              { name: 'historial', label: 'Acceso a historial académico', path: '/estudiante/historial' },
               { name: 'descarga-certificados', label: 'Descarga de certificados', path: '/estudiante/certificados' },
             ],
           },

@@ -1,0 +1,299 @@
+.container {
+  width: auto;
+  margin: 32px auto;
+  padding: 0 16px;
+}
+
+.historial-title {
+  color: #5a9e8d;
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 26px;
+}
+
+.historial-container {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(44, 62, 80, 0.08);
+  box-sizing: border-box;
+  padding: 32px 24px 24px 24px;
+  margin: 0 auto;
+}
+
+.historial-form {
+  display: block;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.historial-form label {
+  font-weight: 600;
+  color: #3d3c3b;
+}
+
+.historial-form input {
+  padding: 6px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 5px;
+  font-size: 15px;
+  min-width: 140px;
+}
+
+.historial-form input:focus {
+  border-color: #5a9e8d;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(90, 158, 141, 0.3);
+}
+
+.input-nombre-auto {
+  width: auto;
+  min-width: 220px;
+  max-width: 100%;
+  font-size: 1rem;
+  transition: width 0.2s;
+}
+
+.input-disabled {
+  background: #f5f5f5;
+  color: #888;
+}
+
+.historial-form button {
+  background: #5a9e8d;
+  color: #fff;
+  border: none;
+  padding: 7px 18px;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.historial-form button:disabled {
+  background: #bdbdbd;
+  cursor: not-allowed;
+}
+
+.historial-form button:hover:not(:disabled) {
+  background: #4a8e7d;
+}
+
+.historial-table-container {
+  overflow-x: auto;
+}
+
+.historial-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+.historial-table th {
+  background: #5a9e8d;
+  color: #fff;
+  font-weight: 700;
+  padding: 10px 6px;
+  text-align: center;
+}
+
+.historial-table td {
+  padding: 8px 6px;
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.row-par {
+  background: #cfe5de;
+}
+
+.center {
+  text-align: center;
+  color: #888;
+}
+
+.historial-mensaje-imprimir {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.mensaje-electivo {
+  color: #b71c00;
+  font-weight: bold;
+  margin-bottom: 18px;
+  font-size: 16px;
+}
+
+.historial-footer {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 15px;
+  color: #222;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-imprimir {
+  margin-top: 8px;
+  padding: 7px 22px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ecc138;
+  background: #ecc138;
+  color: #3d3c3b;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-imprimir:hover {
+  background: #b98d1e;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.form-row-nombres {
+  margin-top: 8px;
+}
+
+.icon-btn {
+  width: 20px;
+  height: 20px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.btn-imprimir .icon-btn {
+  margin-right: 8px;
+  margin-left: 0;
+}
+
+.curso-nombre {
+  text-align: left !important;
+  padding-left: 12px;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.filtros-row {
+  display: flex;
+  gap: 24px;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.filtros-row label {
+  font-weight: 600;
+  margin-right: 6px;
+  color: #3d3c3b;
+}
+
+.filtros-row input,
+.filtros-row select {
+  padding: 5px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.barra-superior {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.nombre-usuario {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: auto 0px;
+}
+
+.nombre-usuario label {
+  font-weight: 600;
+  color: #3d3c3b;
+}
+
+.nombre-usuario input {
+  padding: 6px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 5px;
+  font-size: 15px;
+  min-width: 140px;
+}
+
+/* Estilos para impresión */
+@media print {
+  body * {
+    visibility: hidden !important;
+    box-shadow: none !important;
+  }
+  .historial-print, .historial-print * {
+    visibility: visible !important;
+  }
+  .container {
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+  }
+  .historial-print {
+    position: absolute !important;
+    left: 0;
+    top: 0;
+    width: 100vw !important;
+    min-width: 0 !important;
+    max-width: 100vw !important;
+    background: #fff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  input,
+  select {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: #222 !important;
+    outline: none !important;
+    padding: 0 !important;
+    font-size: 15px !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    background: transparent !important;
+    background-image: none !important;
+  }
+  .btn-imprimir,
+  .historial-form button {
+    display: none !important;
+  }
+  .filtros-row label[for="busqueda"],
+  #busqueda {
+    display: none !important;
+  }
+  /* Ajuste para que el contenido quepa en una hoja vertical */
+  @page {
+    size: A4 portrait;
+    margin: 20mm 10mm 20mm 10mm;
+  }
+  .historial-table {
+    font-size: 12px !important;
+    width: 100% !important;
+  }
+  .historial-table th, .historial-table td {
+    padding: 4px 2px !important;
+  }
+}

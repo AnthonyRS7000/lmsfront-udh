@@ -31,6 +31,10 @@ import {
   CertificadosPage 
 } from "./features/students/registros-academicos";
 
+import HistorialAcademico  from "./features/estudiante/pages/HistorialAcademico";
+import MallaCurricular  from "./features/estudiante/pages/MallaCurricular";
+import MiAsistencia  from "./features/estudiante/pages/MiAsistencia";
+
 // Importaciones del módulo Panel Virtual
 import AulaVirtualPage from "./features/students/panel-virtual/AulaVirtualPage";
 
@@ -89,7 +93,7 @@ function App() {
               <Route path="/facultad" element={<FacultadDashboard />} />
               <Route path="/administrativo" element={<AdministrativoDashboard />} />
               
-              {/* Rutas específicas para estudiante - Gestión de Matrícula */}
+              {/* Rutas específicas para ESTUDIANTE - Gestión de Matrícula */}
               <Route path="/perfil" element={<UserDropdown />} />
               <Route path="/estudiante/perfil" element={<ProfilePage />} />
               <Route path="/estudiante/cursos" element={<CursosPage />} />
@@ -105,6 +109,29 @@ function App() {
               <Route path="/estudiante/tareas" element={<TareasPage />} />
               <Route path="/estudiante/pagos" element={<PagosPage />} />
               <Route path="/estudiante/historial-pagos" element={<DetallePagosPage />} />
+
+              {/* Rutas específicas para ESTUDIANTE - Registros Académicos */}
+              <Route path="/estudiante/historial-academico" element={<HistorialAcademico />} />
+              <Route path="/estudiante/malla-curricular" element={<MallaCurricular />} />
+              <Route path="/estudiante/asistencia" element={<MiAsistencia />} />
+
+              <Route path="/estudiante/calificaciones" element={<CalificacionesPage />} />
+              <Route path="/estudiante/historial" element={<HistorialAcademicoPage />} />
+              <Route path="/estudiante/certificados" element={<CertificadosPage />} />
+              <Route path="/estudiante/aula-virtual" element={<AulaVirtualPage />} />
+
+              {/* Rutas para docente */}
+              <Route path="/docente/asignacion-cursos" element={<Cursos/>} />
+              <Route path="/docente/subir-silabo/:cursoId" element={<SubirSilabo />} />
+              <Route path="/docente/gestion-horarios" element={<GestionHorarios/>} />
+              <Route path="/docente/reportes-actividad" element={<ReportesActividad />} />
+              <Route path="/docente/registro-calificaciones" element={<RegistroCalificaciones />} />
+              <Route path="/docente/firma-actas" element={<FirmaActas />} />
+              <Route path="/docente/gestion-cursos" element={<GestionCursos />} />
+              <Route path="/docente/ver-curso/:id" element={<VerCursoGestionCursos />} />
+              <Route path="/docente/crear-evaluaciones" element={<CrearEvaluaciones />} />
+              <Route path="/docente/evaluaciones" element={<Evaluaciones />} />
+              <Route path="/docente/seguimiento-estudiantes" element={<SeguimientoEstudiante />} />
 
               {/* Rutas para administrativo */}
               <Route path="/administrativo/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área Administrativa</h2><p>Aquí irán las rutas específicas del área administrativa</p></div>} />
@@ -123,14 +150,9 @@ function App() {
               
 
               
-              
               {/* Rutas para escuela */}
               <Route path="/escuela/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área de Escuela</h2><p>Aquí irán las rutas específicas de la escuela</p></div>} />
-              {/* Rutas específicas para estudiante - Registros Académicos */}
-              <Route path="/estudiante/calificaciones" element={<CalificacionesPage />} />
-              <Route path="/estudiante/historial" element={<HistorialAcademicoPage />} />
-              <Route path="/estudiante/certificados" element={<CertificadosPage />} />
-              <Route path="/estudiante/aula-virtual" element={<AulaVirtualPage />} />
+              
               
               {/* Rutas generales fallback para cada área */}
               <Route path="/estudiante/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área de Estudiante</h2><p>Módulo en desarrollo</p></div>} />
@@ -139,18 +161,6 @@ function App() {
               <Route path="/administrativo/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área Administrativa</h2><p>Módulo en desarrollo</p></div>} />
               {/* Rutas anidadas para cada rol (futuras implementaciones) */}
               <Route path="/estudiante/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Submódulos del Estudiante</h2><p>Aquí irán las rutas específicas del estudiante</p></div>} />
-              <Route path="/docente/asignacion-cursos" element={<Cursos/>} />
-              <Route path="/docente/subir-silabo/:cursoId" element={<SubirSilabo />} />
-              <Route path="/docente/gestion-horarios" element={<GestionHorarios/>} />
-              <Route path="/docente/reportes-actividad" element={<ReportesActividad />} />
-              <Route path="/docente/registro-calificaciones" element={<RegistroCalificaciones />} />
-              <Route path="/docente/firma-actas" element={<FirmaActas />} />
-              <Route path="/docente/gestion-cursos" element={<GestionCursos />} />
-              <Route path="/docente/ver-curso/:id" element={<VerCursoGestionCursos />} />
-              <Route path="/docente/crear-evaluaciones" element={<CrearEvaluaciones />} />
-              <Route path="/docente/evaluaciones" element={<Evaluaciones />} />
-              <Route path="/docente/seguimiento-estudiantes" element={<SeguimientoEstudiante />} />
-              
               <Route path="/escuela/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Submódulos de la Escuela</h2><p>Aquí irán las rutas específicas de la escuela</p></div>} />
               <Route path="/facultad/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Submódulos de la Facultad</h2><p>Aquí irán las rutas específicas de la facultad</p></div>} />
               <Route path="/administrativo/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Submódulos Administrativos</h2><p>Aquí irán las rutas específicas del área administrativa</p></div>} />
