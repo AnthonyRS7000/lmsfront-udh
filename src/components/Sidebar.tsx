@@ -133,9 +133,6 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
             submenus: [
               { name: 'matricula', label: 'Matrícula', path: '/estudiante/matricula' },
               { name: 'ver-horario', label: 'Ver Horario', path: '/estudiante/ver-horario' },
-              { name: 'tramite-documentario', label: 'Trámite Documentario', path: '/estudiante/tramite-documentario' },
-              { name: 'tramite-grados', label: 'Trámite Grados y Títulos', path: '/estudiante/tramite-grados' },
-              { name: 'tramite-seguimiento', label: 'Trámite Seguimiento', path: '/estudiante/tramite-seguimiento' },
               { name: 'reglamento', label: 'Reglamento del estudiante', path: '/estudiante/reglamento' },
             ],
           },
@@ -155,6 +152,28 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
               ],
           },
           {
+            name: 'ServiciosUniversitarios',
+            label: 'Servicios Universitarios',
+            icon: IconProyecto,
+            submenus: [
+              { name: 'carnet-sunedu', label: 'Carnet Universitario SUNEDU', path: '/estudiante/servicios/carnet-sunedu' },
+              { name: 'tarjeta-virtual', label: 'Tarjeta de Identificación Virtual', path: '/estudiante/servicios/tarjeta-virtual' },
+              { name: 'bolsa-trabajo', label: 'Bolsa de Trabajo UDH', path: '/estudiante/servicios/bolsa-trabajo' },
+              { name: 'inscripcion-idioma', label: 'Inscripción Idioma Extranjero', path: '/estudiante/servicios/inscripcion-idioma' },
+              { name: 'educacion-distancia', label: 'Educación a Distancia', path: '/estudiante/servicios/educacion-distancia' },
+            ],
+          },
+          {
+            name: 'Tramite',
+            label: 'Trámite',
+            icon: IconProyecto,
+            submenus: [
+              { name: 'tramite-documentario', label: 'Trámite Documentario', path: '/estudiante/tramite-documentario' },
+              { name: 'tramite-seguimiento', label: 'Seguimiento de Trámite', path: '/estudiante/tramite-seguimiento' },
+              
+            ],
+          },
+          {
             name: 'TitulacionGrados',
             label: 'Titulación y Grados',
             icon: IconEjecucion,
@@ -163,19 +182,6 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
               { name: 'ficha-inscripcion', label: 'Ficha Inscripción Titulación', path: '/estudiante/titulacion/ficha-inscripcion' },
               { name: 'inscripcion-taller', label: 'Inscripción Taller Trab. Inv.', path: '/estudiante/titulacion/inscripcion-taller' },
               { name: 'tramite-grados-titulos', label: 'Trámite Grados y Títulos', path: '/estudiante/titulacion/tramite-grados' },
-            ],
-          },
-          {
-            name: 'ServiciosUniversitarios',
-            label: 'Servicios Universitarios',
-            icon: IconProyecto,
-            submenus: [
-              { name: 'carnet-sunedu', label: 'Carnet Universitario SUNEDU', path: '/estudiante/servicios/carnet-sunedu' },
-              { name: 'tarjeta-virtual', label: 'Tarjeta de Identificación Virtual', path: '/estudiante/servicios/tarjeta-virtual' },
-              { name: 'subir-fotografia', label: 'Subir Fotografía', path: '/estudiante/servicios/subir-fotografia' },
-              { name: 'bolsa-trabajo', label: 'Bolsa de Trabajo UDH', path: '/estudiante/servicios/bolsa-trabajo' },
-              { name: 'inscripcion-idioma', label: 'Inscripción Idioma Extranjero', path: '/estudiante/servicios/inscripcion-idioma' },
-              { name: 'educacion-distancia', label: 'Educación a Distancia', path: '/estudiante/servicios/educacion-distancia' },
             ],
           },
           {
