@@ -4,7 +4,7 @@
   padding: 0 32px;
 }
 
-.card {
+.asistencia-card {
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 2px 12px rgba(44, 62, 80, 0.08);
@@ -13,33 +13,33 @@
   position: relative;
 }
 
-.card::before {
+.asistencia-card::before {
   content: '';
   position: absolute;
   left: 14px;
-  top: 14px;           /* Ajusta según tu padding */
-  bottom: 14px;        /* Ajusta según tu padding */
-  width: 6px;          /* Grosor de la línea */
+  top: 14px;
+  bottom: 14px;
+  width: 6px;
   border-radius: 4px;
 }
 
-.card-estudiante::before {
-  background: #3d3c3b; /*  3d3c3b*/
+.asistencia-card-estudiante::before {
+  background: #3d3c3b;
 }
 
-.card-cursos::before {
-  background: #ecc138; /* ecc138 */
+.asistencia-card-cursos::before {
+  background: #ecc138;
 }
 
-.card-asistencia::before {
-  background: #5a9e8d; /* 5a9e8d */
+.asistencia-card-asistencia::before {
+  background: #5a9e8d;
 }
 
-.card-estudiante {
+.asistencia-card-estudiante {
   margin-bottom: 18px;
 }
 
-.datos-estudiante {
+.asistencia-datos-estudiante {
   display: flex;
   flex-wrap: wrap;
   gap: 18px 32px;
@@ -47,21 +47,21 @@
   font-size: 1.1rem;
 }
 
-.estudiante-header {
+.asistencia-estudiante-header {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 8px;
 }
 
-.nombre-estudiante {
+.asistencia-nombre-estudiante {
   font-size: 1.2rem;
   font-weight: 700;
   text-align: center;
   color: #3d3c3b;
 }
 
-.estudiante-info {
+.asistencia-estudiante-info {
   display: flex;
   gap: 32px;
   margin-bottom: 8px;
@@ -70,7 +70,7 @@
   color: #3d3c3b;
 }
 
-.estudiante-semestre {
+.asistencia-estudiante-semestre {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -78,8 +78,8 @@
   color: #3d3c3b;
 }
 
-.input-disabled,
-.input-semestre {
+.asistencia-input-disabled,
+.asistencia-input-semestre {
   border: 1px solid #5a9e8d;
   border-radius: 5px;
   padding: 4px 8px;
@@ -88,17 +88,17 @@
   color: #333;
 }
 
-.input-semestre {
+.asistencia-input-semestre {
   background: #fff;
 }
 
-.input-semestre:focus {
+.asistencia-input-semestre:focus {
   border-color: #5a9e8d;
   outline: none;
   box-shadow: 0 0 0 2px rgba(90, 158, 141, 0.3);
 }
 
-.btn-mostrar {
+.asistencia-btn-mostrar {
   padding: 5px 16px;
   border-radius: 5px;
   border: 1px solid #5a9e8d;
@@ -110,15 +110,15 @@
   transition: background 0.2s;
 }
 
-.btn-mostrar:hover {
+.asistencia-btn-mostrar:hover {
   background: #4a8e7d;
 }
 
-.card-cursos {
+.asistencia-card-cursos {
   margin-bottom: 18px;
 }
 
-.titulo-cursos {
+.asistencia-titulo-cursos {
   font-size: 1.2rem;
   font-weight: 700;
   color: #ecc138;
@@ -126,13 +126,13 @@
   text-align: center;
 }
 
-.tabla-cursos {
+.asistencia-tabla-cursos {
   width: 100%;
   border-collapse: collapse;
   font-size: 1rem;
 }
 
-.tabla-cursos th {
+.asistencia-tabla-cursos th {
   background: #ecc138;
   color: #fff;
   font-weight: 700;
@@ -140,22 +140,22 @@
   text-align: center;
 }
 
-.tabla-cursos td {
+.asistencia-tabla-cursos td {
   padding: 8px 4px;
   border-bottom: 1px solid #e0e0e0;
   text-align: center;
   vertical-align: top;
 }
 
-.tabla-cursos tr:nth-child(even) {
+.asistencia-tabla-cursos tr:nth-child(even) {
   background: #fef9e7;
 }
 
-.tabla-cursos tr:nth-child(odd) {
+.asistencia-tabla-cursos tr:nth-child(odd) {
   background: #fff;
 }
 
-.btn-ver {
+.asistencia-btn-ver {
   display: inline-flex;
   background: #ecc138;
   border: 1px solid #fff;
@@ -169,22 +169,22 @@
   transition: background 0.2s, color 0.2s;
 }
 
-.btn-ver:hover {
+.asistencia-btn-ver:hover {
   background: #fff;
   color: #f5d96b;
   border-color: #f5d96b;
 }
 
-.icono-ojo {
+.asistencia-icono-ojo {
   width: 18px;
   height: 18px;
 }
 
-.card-asistencia {
+.asistencia-card-asistencia {
   margin-bottom: 18px;
 }
 
-.titulo-asistencia {
+.asistencia-titulo-asistencia {
   font-size: 1.2rem;
   font-weight: 700;
   color: #5a9e8d;
@@ -192,14 +192,14 @@
   text-align: center;
 }
 
-.tabla-asistencia {
+.asistencia-tabla-asistencia {
   width: 100%;
   border-collapse: collapse;
   font-size: 1rem;
   margin-bottom: 18px;
 }
 
-.tabla-asistencia th {
+.asistencia-tabla-asistencia th {
   background: #5a9e8d;
   color: #fff;
   font-weight: 700;
@@ -207,28 +207,28 @@
   text-align: center;
 }
 
-.tabla-asistencia td {
+.asistencia-tabla-asistencia td {
   padding: 8px 4px;
   border-bottom: 1px solid #e0e0e0;
   text-align: center;
 }
 
-.tabla-asistencia tr:nth-child(even) {
+.asistencia-tabla-asistencia tr:nth-child(even) {
   background: #cfe5de;
 }
 
-.tabla-asistencia tr:nth-child(odd) {
+.asistencia-tabla-asistencia tr:nth-child(odd) {
   background: #fff;
 }
 
-.resumen-asistencia {
+.asistencia-resumen-asistencia {
   margin-top: 10px;
   text-align: center;
   font-size: 1.1rem;
   color: #222;
 }
 
-.btn-imprimir {
+.asistencia-btn-imprimir {
   margin-top: 12px;
   padding: 7px 22px;
   font-size: 16px;
@@ -243,11 +243,11 @@
   gap: 8px;
 }
 
-.btn-imprimir:hover {
+.asistencia-btn-imprimir:hover {
   background: #e0e0e0;
 }
 
-.icono-impresora {
+.asistencia-icono-impresora {
   width: 20px;
   height: 20px;
 }
@@ -272,7 +272,7 @@
   }
 
   /* Elimina bordes, fondo y sombra de los cards */
-  .card, .card-estudiante, .card-cursos, .card-asistencia {
+  .asistencia-card, .asistencia-card-estudiante, .asistencia-card-cursos, .asistencia-card-asistencia {
     box-shadow: none !important;
     border-radius: 0 !important;
     border: none !important;
@@ -282,10 +282,10 @@
   }
 
   /* Oculta la línea vertical decorativa */
-  .card::before,
-  .card-estudiante::before,
-  .card-cursos::before,
-  .card-asistencia::before {
+  .asistencia-card::before,
+  .asistencia-card-estudiante::before,
+  .asistencia-card-cursos::before,
+  .asistencia-card-asistencia::before {
     display: none !important;
   }
 
@@ -302,24 +302,24 @@
   }
 
   /* Ajusta tablas */
-  .tabla-cursos, .tabla-asistencia {
+  .asistencia-tabla-cursos, .asistencia-tabla-asistencia {
     width: 100% !important;
     font-size: 0.95rem !important;
     background: none !important;
   }
 
   /* Oculta todos los botones */
-  .btn-imprimir,
-  .btn-ver,
-  .btn-mostrar {
+  .asistencia-btn-imprimir,
+  .asistencia-btn-ver,
+  .asistencia-btn-mostrar {
     display: none !important;
   }
 
   /* Solo muestra la fila seleccionada en la tabla de cursos */
-  .asistencia-print .card-cursos .tabla-cursos tbody tr {
+  .asistencia-print .asistencia-card-cursos .asistencia-tabla-cursos tbody tr {
     display: none;
   }
-  .asistencia-print .card-cursos .tabla-cursos tbody tr.selected {
+  .asistencia-print .asistencia-card-cursos .asistencia-tabla-cursos tbody tr.selected {
     display: table-row;
   }
 
