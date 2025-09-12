@@ -1,6 +1,7 @@
 .container {
   width: auto;
   margin: 32px auto;
+  padding: 0 20px;
 }
 
 .historial-title {
@@ -18,7 +19,7 @@
   box-shadow: 0 2px 12px rgba(44, 62, 80, 0.08);
   box-sizing: border-box;
   padding: 28px 24px 24px 24px;
-  margin-bottom: 24px;
+  margin-bottom: 18px;
   position: relative;
 }
 

@@ -128,6 +128,16 @@ const HistorialAcademico: React.FC = () => {
                     </div>
                     <div className="historial-filtros-row">
                         <div>
+                            <label htmlFor="busqueda">Buscar:</label>
+                            <input
+                                id="busqueda"
+                                type="text"
+                                placeholder="Buscar curso, código..."
+                                value={busqueda}
+                                onChange={e => setBusqueda(e.target.value)}
+                            />
+                        </div>
+                        <div>
                             <label htmlFor="filtro-ciclo">Ciclo:</label>
                             <select
                                 id="filtro-ciclo"
@@ -139,16 +149,6 @@ const HistorialAcademico: React.FC = () => {
                                     <option key={ciclo} value={ciclo}>{ciclo}</option>
                                 ))}
                             </select>
-                        </div>
-                        <div>
-                            <label htmlFor="busqueda">Buscar:</label>
-                            <input
-                                id="busqueda"
-                                type="text"
-                                placeholder="Buscar curso, código..."
-                                value={busqueda}
-                                onChange={e => setBusqueda(e.target.value)}
-                            />
                         </div>
                     </div>
                 </div>
