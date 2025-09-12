@@ -193,13 +193,13 @@
 .login-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
   margin: 5px 0px 20px 0px ;
 }
 
 .login-input-container {
   position: relative;
   width: 100%;
+  margin-top: 12px;
   display: flex;
   align-items: center;
 }
@@ -262,6 +262,10 @@
 }
 
 .login-captcha-refresh {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
   padding: 8px 12px;
   border: none;
   border-radius: 8px;
@@ -271,7 +275,7 @@
   transition: background 0.2s;
 }
 
-.login-captcha-refresh:hover {
+.captcha-refresh:hover {
   background: #047857;
 }
 
@@ -283,8 +287,9 @@
   background: #059669;
   color: #fff;
   border: none;
+  margin-top: 12px;
   border-radius: 8px;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 500;
   cursor: pointer;
   transition: background 0.2s;
@@ -402,6 +407,14 @@
 .login-darkmode-btn-screen:hover {
   background: #ECC138;
   color: #23272f;
+}
+
+.login-error {
+  color: #e53935;
+  font-size: 0.95em;
+  margin-top: 2px;
+  margin-bottom: 0px;
+  margin-left: 36px;
 }
 
 @media (min-width: 640px) {

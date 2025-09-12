@@ -20,38 +20,40 @@ const GestionCursos: React.FC = () => {
   };
 
   const verCurso = (cursoId: number) => {
-    // Redirecciona a Clases.tsx con el id del curso
-    navigate(`/clases/${cursoId}`);
+    // Redirecciona al módulo VerCursoGestionCursos con el id del curso
+    navigate(`/docente/ver-curso/${cursoId}`);
   };
 
   return (
-    <div className="gestion-cursos-container">
+    <div className="container">
       <h2 className="gestion-cursos-title">CURSOS</h2>
       <hr className="gestion-cursos-divider" />
-      <div className="gestion-cursos-grid">
-        {cursos.map(curso => (
-          <div key={curso.id} className="gestion-curso-card">
-            <div className="gestion-curso-nombre">{curso.nombre}</div>
-            <div className="gestion-curso-grupo">Grupo: {curso.grupo}</div>
-            <div className="gestion-curso-estudiantes">Estudiantes: {curso.estudiantes}</div>
-            <div className="gestion-curso-actions">
-              <button
-                className="gestion-curso-btn"
-                onClick={() => verCurso(curso.id)}
-              >
-                <EyeIcon style={{ width: '20px', height: '20px' }} />
-                Ver Curso
-              </button>
-              <button
-                className="gestion-curso-btn"
-                onClick={() => crearMeet(curso.id)}
-              >
-                <VideoCameraIcon style={{ width: '20px', height: '20px' }} />
-                Crear Meet
-              </button>
+      <div className="gestion-cursos-container">
+        <div className="gestion-cursos-grid">
+          {cursos.map(curso => (
+            <div key={curso.id} className="gestion-curso-card">
+              <div className="gestion-curso-nombre">{curso.nombre}</div>
+              <div className="gestion-curso-grupo">Grupo: {curso.grupo}</div>
+              <div className="gestion-curso-estudiantes">Estudiantes: {curso.estudiantes}</div>
+              <div className="gestion-curso-actions">
+                <button
+                  className="gestion-curso-btn"
+                  onClick={() => verCurso(curso.id)}
+                >
+                  <EyeIcon style={{ width: '20px', height: '20px' }} />
+                  Ver Curso
+                </button>
+                <button
+                  className="gestion-curso-btn"
+                  onClick={() => crearMeet(curso.id)}
+                >
+                  <VideoCameraIcon style={{ width: '20px', height: '20px' }} />
+                  Crear Meet
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

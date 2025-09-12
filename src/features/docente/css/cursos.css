@@ -1,20 +1,22 @@
 /* Contenedor principal */
 .cursos-container {
   max-width: auto;
+  max-height: auto;
   margin: 0 auto;
   padding: 24px;
 }
 
 /* Título y línea */
 .cursos-title {
+  text-align: center;
   color: #4CAF91;
-  font-weight: 600;
-  margin-bottom: 8px;
-  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 8px auto;
+  font-size: 2rem;
 }
 .cursos-divider {
   border: 1px solid #4CAF91;
-  margin-bottom: 24px;
+  margin-bottom: 14px;
 }
 
 /* Buscador y filtro */
@@ -34,11 +36,11 @@
 /* Grid de cursos con scroll */
 .cursos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(277px, 1rem));
-  gap: 25px;
-  overflow-y: auto;
-  overflow-x: hidden;
   justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(auto, 1fr));
+  gap: 25px;
+  padding: 25px;
+  box-sizing: border-box;
 }
 
 /* Card de curso */
