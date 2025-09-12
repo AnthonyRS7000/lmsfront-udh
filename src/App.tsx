@@ -23,6 +23,7 @@ import {
 // Importar páginas del módulo Registros Académicos
 import {
   CursosLlevados,
+  
   MiAsistencia,
   NotasParciales,
   EvaluacionDiaria,
@@ -117,6 +118,7 @@ function App() {
               <Route path="/estudiante/progreso_academico" element={<div />} />
               {/* Rutas del nuevo módulo académico */}
               <Route path="/estudiante/cursos-llevados" element={<CursosLlevados />} />
+              
               <Route path="/estudiante/mi-asistencia" element={<MiAsistencia />} />
               <Route path="/estudiante/notas-parciales" element={<NotasParciales />} />
               <Route path="/estudiante/evaluacion-diaria" element={<EvaluacionDiaria />} />

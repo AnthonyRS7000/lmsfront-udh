@@ -62,6 +62,9 @@
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Permite posicionar el título en la parte superior centrada */
+.profile-container { position: relative; }
+
 /* Sidebar de navegación del perfil */
 .profile-sidebar {
   width: 240px;
@@ -117,6 +120,44 @@
   max-width: 1000px;
   margin: 0 auto;
 }
+
+/* Encabezado simple del perfil */
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.profile-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--profile-bg-active);
+  color: var(--profile-text-on-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 20px;
+  box-shadow: var(--profile-shadow-primary);
+}
+.profile-page-title {
+  margin: 0;
+  font-size: 20px;
+  color: var(--title-color, var(--profile-text-primary));
+}
+.profile-page-subtitle {
+  margin-top: 4px;
+  color: var(--profile-text-tertiary);
+  font-size: 13px;
+}
+
+/* Título principal en la parte superior, similar a Trámites de Matrícula */
+.profile-root { text-align: center; margin-bottom: 6px; position: absolute; left: 50%; transform: translateX(-50%); top: 80px; width: min(1100px, 94%); z-index: 30; }
+.profile-title { font-size: 2.2rem; font-weight: 700; text-align: center; margin-bottom: 26px; color: var(--title-color, var(--profile-text-primary)); }
+
+/* Empuja el contenido para dejar espacio al título superior */
+.profile-content { padding-top: 180px; }
 
 /* Filas del formulario */
 .profile-form-row {
@@ -191,6 +232,47 @@
   margin-top: 4px;
   transition: color 0.3s ease;
 }
+
+/* Botón guardar junto al campo */
+.profile-save-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+.profile-save-btn {
+  background-color: var(--profile-bg-active);
+  color: var(--profile-text-on-accent);
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.profile-save-btn:hover { filter: brightness(0.95); }
+.profile-save-note { font-size: 12px; color: var(--profile-text-muted); }
+
+/* Sección Subir Fotografía */
+.profile-photo-section { margin: 18px 0 8px 0; display:flex; flex-direction:column; gap:8px; }
+.photo-open-btn { background: linear-gradient(180deg, var(--button-green), var(--button-green-2)); color: #fff; padding:10px 14px; border-radius:10px; border:none; cursor:pointer; width:240px; }
+.photo-instructions { font-size:12px; color:var(--profile-text-tertiary); }
+
+/* Modal para subir foto (estilo tarjeta centrada) */
+.modal-overlay { position: fixed; inset:0; display:flex; align-items:center; justify-content:center; background: rgba(0,0,0,0.45); z-index:1200; }
+.photo-modal { width: 520px; max-width:94%; background: var(--profile-bg-secondary); border-radius:12px; box-shadow: 0 12px 40px rgba(2,6,23,0.45); padding:18px; border:1px solid var(--profile-border-primary); }
+.photo-modal-header { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.photo-modal-header h3 { margin:0; color: var(--title-color, var(--profile-text-primary)); }
+.close-modal { background:transparent; border:none; font-size:20px; cursor:pointer; }
+.photo-modal-body { display:flex; gap:18px; margin-top:12px; }
+.photo-preview { width:220px; height:264px; display:flex; align-items:center; justify-content:center; border-radius:8px; background: #fff; box-shadow: 0 6px 18px rgba(2,6,23,0.15); border:1px solid rgba(0,0,0,0.06); }
+.photo-preview img { max-width:100%; max-height:100%; border-radius:6px; }
+.photo-placeholder { color:var(--profile-text-tertiary); font-size:14px; }
+.photo-controls { flex:1; display:flex; flex-direction:column; gap:8px; }
+.photo-hint { font-size:12px; color:var(--profile-text-muted); }
+.photo-actions { display:flex; gap:10px; margin-top:8px; }
+.btn-primary { background: linear-gradient(180deg, var(--button-green), var(--button-green-2)); color:#fff; padding:8px 12px; border-radius:8px; border:none; cursor:pointer; }
+.btn-secondary { background: transparent; color: var(--profile-text-primary); border:1px solid var(--profile-border-primary); padding:8px 12px; border-radius:8px; cursor:pointer; }
+.photo-error { color: var(--danger, #b00020); font-size:12px; margin-top:6px; }
 
 /* Mensaje de información */
 .profile-info-message {
@@ -292,6 +374,12 @@
     grid-template-columns: 1fr;
     gap: 20px;
   }
+}
+
+@media (max-width: 600px) {
+  .profile-root { top: 40px; }
+  .profile-content { padding-top: 110px; }
+  .profile-title { font-size: 1.6rem; }
 }
 
 @media (max-width: 1024px) {

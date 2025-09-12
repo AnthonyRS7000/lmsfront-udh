@@ -1,4 +1,72 @@
-/* Estilos base para Ver Horario */
+/* Estilos base para Ver Horario (imitando imagen 1) */
 .ver-horario-root { padding: 20px; }
-.ver-horario-title { font-size: 1.4rem; font-weight:700; color: var(--title-color); margin-bottom:12px; }
-.ver-horario-card { background: var(--panel-bg); padding:14px; border-radius:8px; border:1px solid var(--border-soft); }
+.ver-horario-title { font-size: 2.2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 26px;}
+.ver-horario-card { background: transparent; padding:0; border-radius:6px; }
+
+.full-table { width: 100%; overflow-x: auto; }
+.schedule-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+.schedule-table thead th { background: #2F63D6; color: #fff; padding: 8px 10px; border: 1px solid #234a9e; }
+.schedule-table th, .schedule-table td { border: 1px solid #234a9e; padding: 10px 12px; vertical-align: top; }
+.schedule-table tbody tr:nth-child(even) { background: #f3f7ff; }
+.curso-cell { text-transform: capitalize; }
+
+.schedule-table td { white-space: nowrap; }
+
+.cell-detail .cell-content { display: flex; flex-direction: column; }
+.cell-detail .cell-time { font-weight:700; color:#0b3e91; font-size:0.95rem; }
+.cell-detail .cell-info { font-size:0.85rem; color:#0b5b2e; margin-top:4px; }
+
+/* Dark theme adjustments */
+html.dark .ver-horario-title { color: #cfe8f5; }
+html.dark label { color: #cfe8f5; }
+
+/* Botón descargar */
+.btn-download {
+	background: #2f63d6;
+	color: #fff;
+	border: none;
+	padding: 8px 14px;
+	border-radius: 6px;
+	cursor: pointer;
+}
+
+/* imprimir solo el contenido del horario */
+@media print {
+	body * { visibility: hidden; }
+	.ver-horario-card, .ver-horario-card * { visibility: visible; }
+	.ver-horario-card { position: absolute; left: 0; top: 0; width: 100%; }
+}
+
+.btn-download-pdf { background:#2F63D6; color:#fff; padding:8px 12px; border-radius:6px; border:none; cursor:pointer; }
+
+/* Impresión: mostrar solo la tabla y ocultar navegación/otros elementos */
+@media print {
+	body * { visibility: visible; }
+	.ver-horario-root * { visibility: visible; }
+	header, nav, .sidebar, .btn-download-pdf, .sidebar-backdrop { display: none !important; }
+	.full-table { overflow: visible !important; }
+}
+
+/* Dark theme overrides using html.dark */
+html.dark .schedule-table thead th,
+html.dark .schedule-table thead td {
+	background: #14325a; /* encabezado más oscuro */
+	color: #e6f2ff;
+	border-color: #0b2340;
+}
+
+html.dark .schedule-table td {
+	background: rgba(255,255,255,0.02);
+	color: #dfeeff;
+	border-color: rgba(255,255,255,0.08);
+}
+
+html.dark .cell-detail .cell-time { color: #7ec0ff; }
+html.dark .cell-detail .cell-info { color: #8fe3a3; }
+
+/* Improve alternating rows contrast in dark */
+html.dark .schedule-table tbody tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+html.dark .schedule-table tbody tr:nth-child(odd) { background: rgba(255,255,255,0.01); }

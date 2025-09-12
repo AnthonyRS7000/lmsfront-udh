@@ -1,4 +1,110 @@
-/* Estilos para NotasParciales */
-.notas-parciales-root { padding: 16px; }
-.notas-parciales-title { font-size:1.25rem; font-weight:700; margin-bottom:12px; }
-.notas-parciales-card { background: var(--panel-bg,#fff); padding:12px; border-radius:8px; }
+/* Estilos para NotasParciales - adaptados al estilo global */
+.notas-parciales-root { padding: 32px 20px; background: transparent; }
+.notas-parciales-container { max-width: 1100px; margin: 0 auto; background: transparent; color: #222; }
+.notas-parciales-title { font-size: 1.8rem; font-weight: 700; text-align: center; color: #113d6b; margin: 10px 0 18px 0; }
+.notas-parciales-header { display:flex; flex-direction:column; gap:8px; align-items:stretch; margin-bottom:12px; }
+.notas-header-row { display:flex; justify-content:space-between; align-items:center; }
+.notas-header-row.first-row .notas-student-name { font-weight:700; text-transform:uppercase; }
+.notas-student-semestre { font-weight:700; }
+.notas-controls-left { display:flex; gap:12px; align-items:center; }
+.btn-ver-notas { padding:6px 10px; border-radius:4px; background:#2f63d6; color:#fff; border:none; cursor:pointer; }
+.semestre-input { padding:6px 8px; border:1px solid #ccc; border-radius:4px; }
+
+.notas-card { background: transparent; padding:0; border-radius:6px; }
+.notas-table { width:100%; border-collapse:collapse; font-size:0.95rem; margin-top:8px; }
+.notas-table thead th {
+	background: var(--notas-header-bg, #2F63D6);
+	color: var(--notas-header-color, #fff);
+	padding: 8px 10px;
+	border: 1px solid var(--notas-header-border, #234a9e);
+	text-align: left;
+	font-weight: 700;
+}
+.notas-table th, .notas-table td { border: 1px solid var(--notas-header-border, #234a9e); padding: 8px 10px; }
+/* zebra rows: variable para poder ajustar en dark mode */
+.notas-table tbody tr:nth-child(even) { background: var(--notas-zebra-bg, #f3f7ff); }
+
+.notas-table td { color: var(--notas-td-color, #1b2b3a); }
+
+/* Forzar esquema claro solo para este componente */
+.notas-parciales-root, .notas-parciales-root * { background: transparent; color: inherit; }
+.notas-table .small { font-size:0.85rem; }
+
+.notas-footnote { margin-top:8px; font-size:0.9rem; color:#286; }
+
+/* Panel informativo grande con borde y título negro redondeado (imagen 2) */
+.info-panel { margin-top:18px; border-radius:8px; overflow:hidden; border:1px solid var(--info-panel-border, #aac6e6); }
+.info-panel-header { background: var(--notas-header-bg, #234a9e); color: var(--notas-header-color, #fff); padding:12px 14px; font-weight:700; border-top-left-radius:8px; border-top-right-radius:8px; }
+/* .info-panel-body ahora acepta dos modos: claro y oscuro via variables */
+.info-panel-body { background: var(--info-panel-body-bg, #fff); color: var(--info-panel-body-color, #222); padding:16px; }
+.info-panel-body p { margin:8px 0; line-height:1.3; }
+.btn-imprimir { margin:12px 0 0 0; padding:8px 12px; border-radius:6px; background:var(--btn-imprimir-bg, #113d6b); color:var(--btn-imprimir-color, #fff); border:1px solid var(--btn-imprimir-border, #ccc); cursor:pointer; }
+
+/* Definición de variables por defecto (modo claro) y override para modo oscuro */
+:root {
+	--notas-header-bg: #2F63D6;
+	--notas-header-color: #ffffff;
+	--notas-header-border: #234a9e;
+
+	--info-panel-border: #aac6e6;
+	--info-panel-body-bg: #ffffff;
+	--info-panel-body-color: #222222;
+
+	--btn-imprimir-bg: #113d6b;
+	--btn-imprimir-color: #ffffff;
+	--btn-imprimir-border: #ccc;
+}
+
+/* Dark theme overrides usando la clase raíz existente */
+:root.dark {
+	--notas-header-bg: #14325a; /* coincide con VerHorario dark header */
+	--notas-header-color: #e6f2ff;
+	--notas-header-border: #0b2340;
+
+	--info-panel-border: rgba(255,255,255,0.06);
+	--info-panel-body-bg: rgba(255,255,255,0.02);
+	--info-panel-body-color: #dfeeff;
+
+	--btn-imprimir-bg: linear-gradient(180deg,#2f63d6,#1f4ea8);
+	--btn-imprimir-color: #ffffff;
+	--btn-imprimir-border: rgba(255,255,255,0.08);
+}
+
+/* Dark theme overrides: mejorar visibilidad del header y controles */
+:root.dark .notas-parciales-container { color: rgba(255,255,255,0.92); }
+:root.dark .notas-parciales-title { color: #cfe8f5; }
+:root.dark .notas-student-name,
+:root.dark .notas-student-semestre,
+:root.dark .notas-controls-left,
+:root.dark .notas-controls-left label { color: rgba(255,255,255,0.88); }
+:root.dark .btn-ver-notas { background: linear-gradient(180deg,#2f63d6,#1f4ea8); color:#fff; box-shadow:0 1px 0 rgba(0,0,0,0.35); }
+:root.dark .semestre-input { background: rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.09); color: #e6f2ff; }
+:root.dark .notas-table thead th,
+:root.dark .notas-table thead td {
+	background: var(--notas-header-bg, #14325a); /* encabezado más oscuro */
+	color: var(--notas-header-color, #e6f2ff);
+	border-color: var(--notas-header-border, #0b2340);
+}
+
+/* En dark mode la zebra no debe ser blanca; usamos una tónica sutil */
+:root.dark {
+	--notas-zebra-bg: rgba(255,255,255,0.02);
+	--notas-td-color: #dfeeff;
+}
+
+:root.dark .notas-table td {
+	background: rgba(255,255,255,0.02);
+	color: var(--notas-td-color, #dfeeff);
+	border-color: rgba(255,255,255,0.08);
+}
+:root.dark .info-panel { border-color: rgba(255,255,255,0.06); }
+:root.dark .info-panel-header { background: #0b2a45; }
+:root.dark .info-panel-body { background: rgba(255,255,255,0.02); color:#dfeeff; border-top:1px solid rgba(255,255,255,0.03); }
+
+/* Responsivo */
+@media (max-width: 900px) {
+	.notas-parciales-header { gap:6px; }
+	.notas-header-row { flex-direction:column; align-items:flex-start; gap:6px; }
+	.notas-controls-left { width:100%; }
+	.notas-table { font-size:0.9rem; }
+}
