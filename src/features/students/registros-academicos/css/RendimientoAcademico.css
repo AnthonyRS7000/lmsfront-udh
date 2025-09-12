@@ -1,4 +1,131 @@
-/* Estilos para RendimientoAcademico */
-.rendimiento-academico-root { padding: 16px; }
-.rendimiento-academico-title { font-size:1.25rem; font-weight:700; margin-bottom:12px; }
-.rendimiento-academico-card { background: var(--panel-bg,#fff); padding:12px; border-radius:8px; }
+.rend-acad-root {
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 32px 12px;
+}
+
+.rend-acad-title {
+  color: #5a9e8d;
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 0px 0px 26px 0px;
+  letter-spacing: 1px;
+}
+
+.rend-acad-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(44, 62, 80, 0.08);
+  padding: 24px 24px 18px 24px;
+  margin-bottom: 24px;
+}
+
+.rend-acad-card-user {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: start;
+  border-left: 6px solid #5a9e8d;
+}
+
+.rend-acad-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.rend-acad-label {
+  font-weight: 600;
+  color: #3d3c3b;
+  font-size: 1rem;
+  min-width: 160px;
+}
+
+.rend-acad-input {
+  background: #fff;
+  color: #3d3c3b;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 2px 8px;
+  width: 100%;
+}
+
+.rend-acad-card-tabla {
+  border-left: 6px solid #5a9e8d;
+}
+
+.rend-acad-table-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.rend-acad-table-wrapper {
+  overflow-x: auto;
+}
+
+.rend-acad-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.97rem;
+  margin-bottom: 8px;
+}
+
+.rend-acad-table th {
+  background: #5a9e8d;
+  color: #fff;
+  font-weight: 700;
+  padding: 8px 4px;
+  text-align: center;
+}
+
+.rend-acad-table td {
+  padding: 8px 4px;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.rend-acad-btn-ver {
+  background: #5a9e8d;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 14px 4px 8px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: background 0.2s;
+  font-size: 0.97rem;
+}
+.rend-acad-btn-ver:hover {
+  background: #417265;
+}
+
+.rend-acad-table-foot {
+  font-size: 0.98rem;
+  color: #222;
+  margin-top: 8px;
+}
+
+.rend-acad-card-detalle {
+  border-left: 6px solid #5a9e8d;
+}
+
+.rend-acad-alert {
+  border: 2px solid #888;
+  background: #f9f9f9;
+  color: #222;
+  padding: 10px 18px;
+  border-radius: 6px;
+  margin-bottom: 18px;
+  text-align: center;
+  font-size: 1rem;
+}

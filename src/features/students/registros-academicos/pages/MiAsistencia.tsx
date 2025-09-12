@@ -56,7 +56,7 @@ const asistenciaEjemplo = {
     curso: 'INGENIERÍA INVERSA',
   },
   detalle: [
-    { fecha: '3/01/2024', dia: 'Miércoles', entrada: '08:00', salida: '11:00', asistio: false },
+    { fecha: '3/01/2024', dia: 'Miércoles', entrada: '08:00', salida: '11:00', asistio: true },
     { fecha: '8/01/2024', dia: 'Lunes', entrada: '08:00', salida: '11:00', asistio: false },
     { fecha: '10/01/2024', dia: 'Miércoles', entrada: '08:00', salida: '11:00', asistio: false },
     { fecha: '15/01/2024', dia: 'Lunes', entrada: '08:00', salida: '11:00', asistio: false },
@@ -91,37 +91,24 @@ const MiAsistencia: React.FC = () => {
   const cardCursosRef = useRef<HTMLDivElement>(null);
   const cardAsistenciaRef = useRef<HTMLDivElement>(null);
 
-  const handleMostrar = () => {
-    setMostrarTabla(true);
-    setCursoSeleccionado(null);
-    setAsistencia(null);
-    setTimeout(() => {
-      cardCursosRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, 100); // Espera a que el card se renderice
-  };
-
-  const handleVerAsistencia = (codigo: string) => {
-    setCursoSeleccionado(codigo);
-    setAsistencia(asistenciaEjemplo);
-    setTimeout(() => {
-      cardAsistenciaRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
-  };
-
-  /*Esto es con Api
   // Simulación de llamada a API al presionar "Mostrar"
   const handleMostrar = () => {
     setMostrarTabla(true);
     setCursoSeleccionado(null);
-    setAsistencia(null);
-    // Aquí iría la llamada real a la API
+    setAsistencia(null); // Aquí iría la llamada real a la API
+    setTimeout(() => {
+      cardCursosRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }, 100); // Espera a que el card se renderice
   };
 
   // Simulación de llamada a API al presionar "Ver" asistencia
   const handleVerAsistencia = (codigo: string) => {
     setCursoSeleccionado(codigo);
     setAsistencia(asistenciaEjemplo); // Aquí iría la llamada real a la API
-  };*/
+    setTimeout(() => {
+    cardAsistenciaRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  };
 
   const handleImprimir = () => {
     window.print();
@@ -131,33 +118,33 @@ const MiAsistencia: React.FC = () => {
     <div className="asistencia-container asistencia-print">
         <h2 className="malla-title">Mi Asistencia</h2>
         {/* Card de datos del estudiante */}
-        <div className="card card-estudiante">
-            <div className="estudiante-header">
-                <div className="nombre-estudiante">{estudianteEjemplo.nombre}</div>
+        <div className="asistencia-card asistencia-card-estudiante">
+            <div className="asistencia-estudiante-header">
+                <div className="asistencia-nombre-estudiante">{estudianteEjemplo.nombre}</div>
             </div>
-            <div className="estudiante-info">
+            <div className="asistencia-estudiante-info">
                 <div><b>CÓDIGO:</b> {estudianteEjemplo.codigo}</div>
                 <div><b>SEDE:</b> {estudianteEjemplo.sede}</div>
                 <div><b>PLAN:</b> {estudianteEjemplo.plan}</div>
             </div>
-            <div className="estudiante-semestre">
+            <div className="asistencia-estudiante-semestre">
                 <b>SEMESTRE:</b>
                 <input
                 type="text"
                 value={semestre}
                 onChange={e => setSemestre(e.target.value)}
-                className="input-semestre"
+                className="asistencia-input-semestre"
                 style={{ width: 80, marginLeft: 8, marginRight: 8 }}
                 />
-                <button className="btn-mostrar" onClick={handleMostrar}>Mostrar</button>
+                <button className="asistencia-btn-mostrar" onClick={handleMostrar}>Mostrar</button>
             </div>
         </div>
 
         {/* Card de tabla de cursos */}
         {mostrarTabla && (
-            <div className="card card-cursos" ref={cardCursosRef}>
-            <h3 className="titulo-cursos">MI HORARIO/ASISTENCIA</h3>
-            <table className="tabla-cursos">
+            <div className="asistencia-card asistencia-card-cursos" ref={cardCursosRef}>
+            <h3 className="asistencia-titulo-cursos">MI HORARIO/ASISTENCIA</h3>
+            <table className="asistencia-tabla-cursos">
                 <thead>
                 <tr>
                     <th>CÓDIGO</th>
@@ -170,7 +157,7 @@ const MiAsistencia: React.FC = () => {
                 </thead>
                 <tbody>
                 {cursosEjemplo.map(curso => (
-                    <tr key={curso.codigo} className={curso.codigo === cursoSeleccionado ? 'selected' : ''}>
+                    <tr key={curso.codigo} className={curso.codigo === cursoSeleccionado ? 'asistencia-selected' : ''}>
                     <td>{curso.codigo}</td>
                     <td>
                         <div style={{ fontWeight: 600, color: '#ecc138' }}>
@@ -192,8 +179,8 @@ const MiAsistencia: React.FC = () => {
                     <td>{curso.creditos}</td>
                     <td>{curso.seccion}</td>
                     <td>
-                        <button className="btn-ver" onClick={() => handleVerAsistencia(curso.codigo)}>
-                        <EyeIcon className="icono-ojo" />
+                        <button className="asistencia-btn-ver" onClick={() => handleVerAsistencia(curso.codigo)}>
+                        <EyeIcon className="asistencia-icono-ojo" />
                         Ver
                         </button>
                     </td>
@@ -206,9 +193,9 @@ const MiAsistencia: React.FC = () => {
 
         {/* Card de asistencia */}
         {cursoSeleccionado && asistencia && (
-            <div className="card card-asistencia" ref={cardAsistenciaRef}>
-            <h3 className="titulo-asistencia">REPORTE DE ASISTENCIA</h3>
-            <table className="tabla-asistencia">
+            <div className="asistencia-card asistencia-card-asistencia" ref={cardAsistenciaRef}>
+            <h3 className="asistencia-titulo-asistencia">REPORTE DE ASISTENCIA</h3>
+            <table className="asistencia-tabla-asistencia">
                 <thead>
                 <tr>
                     <th>Fecha</th>
@@ -232,16 +219,16 @@ const MiAsistencia: React.FC = () => {
                 ))}
                 </tbody>
             </table>
-            <div className="resumen-asistencia">
+            <div className="asistencia-resumen-asistencia">
                 <span>
                 TOTAL: {asistencia.resumen.total} | Asistencias: {asistencia.resumen.asistencias} | Inasistencias: {asistencia.resumen.inasistencias} | % Inasist.: {asistencia.resumen.porcentajeInasist.toFixed(2)}
                 </span>
                 <div style={{ textAlign: 'center', fontWeight: 500, marginTop: 4 }}>
                 {asistencia.resumen.curso}
                 </div>
-                <button className="btn-imprimir" onClick={handleImprimir}>
+                <button className="asistencia-btn-imprimir" onClick={handleImprimir}>
                 Imprimir
-                <PrinterIcon className="icono-impresora" />
+                <PrinterIcon className="asistencia-icono-impresora" />
                 </button>
             </div>
             </div>

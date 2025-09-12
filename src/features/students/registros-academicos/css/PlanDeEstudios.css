@@ -1,4 +1,133 @@
-/* Estilos para PlanDeEstudios */
-.plan-de-estudios-root { padding: 16px; }
-.plan-de-estudios-title { font-size:1.25rem; font-weight:700; margin-bottom:12px; }
-.plan-de-estudios-card { background: var(--panel-bg,#fff); padding:12px; border-radius:8px; }
+.plan-estudios-root {
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 32px 12px;
+}
+
+.plan-estudios-title {
+  text-align: center;
+  color: #5a9e8d;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.plan-estudios-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(44, 62, 80, 0.08);
+  padding: 24px 24px 18px 24px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  border-left: 8px solid #5a9e8d;
+  border-bottom: 8px solid #5a9e8d;
+}
+
+.plan-estudios-filtros {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.plan-estudios-label {
+  font-weight: 600;
+  color: #3d3c3b;
+  font-size: 1rem;
+}
+
+.plan-estudios-select {
+  padding: 5px 12px;
+  border: 1.5px solid #bdbdbd;
+  border-radius: 6px;
+  font-size: 1rem;
+  color: #3d3c3b;
+  background: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.plan-estudios-select:hover,
+.plan-estudios-select:focus {
+  border-color: #5a9e8d;
+  box-shadow: 0 0 0 2px #e0f3ef;
+}
+
+.plan-estudios-btn {
+  background: #5a9e8d;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  padding: 7px 22px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.plan-estudios-btn:hover {
+  background: #417265;
+}
+
+.plan-estudios-link {
+  font-size: 0.98rem;
+  color: #222;
+  margin-top: 8px;
+}
+
+.plan-estudios-link a {
+  color: #2c5d8c;
+  text-decoration: underline;
+}
+
+.plan-estudios-tabla-card {
+  margin-top: 18px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(44, 62, 80, 0.08);
+  padding: 18px 18px 12px 18px;
+}
+
+.plan-estudios-tabla-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #3d3c3b;
+}
+
+.plan-estudios-tabla-wrapper {
+  overflow-x: auto;
+}
+
+.plan-estudios-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.97rem;
+}
+
+.plan-estudios-tabla th {
+  background: #5a9e8d;
+  color: #fff;
+  font-weight: 700;
+  padding: 8px 4px;
+  text-align: center;
+}
+
+.plan-estudios-tabla td {
+  padding: 8px 4px;
+  border-bottom: 1px solid #e0e0e0;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.plan-estudios-row-par {
+  background: #f5f9f8;
+}
+
+@media (max-width: 700px) {
+  .plan-estudios-filtros {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+}
