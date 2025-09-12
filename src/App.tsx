@@ -24,7 +24,7 @@ import {
 import {
   CursosLlevados,
   
-  //MiAsistencia,
+  MiAsistencia,
   NotasParciales,
   EvaluacionDiaria,
   HistorialAcademico,
@@ -119,7 +119,7 @@ function App() {
               {/* Rutas del nuevo módulo académico */}
               <Route path="/estudiante/cursos-llevados" element={<CursosLlevados />} />
               
-              {/* <Route path="/estudiante/mi-asistencia" element={<MiAsistencia />} />*/}
+              <Route path="/estudiante/mi-asistencia" element={<MiAsistencia />} />
               <Route path="/estudiante/notas-parciales" element={<NotasParciales />} />
               <Route path="/estudiante/evaluacion-diaria" element={<EvaluacionDiaria />} />
               <Route path="/estudiante/historial-academico" element={<HistorialAcademico />} />
