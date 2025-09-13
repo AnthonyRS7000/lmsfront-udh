@@ -1,0 +1,119 @@
+.tramite-documentario-root {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 32px 12px;
+}
+
+.tramite-documentario-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(44, 62, 80, 0.08);
+  padding: 22px 24px 18px 24px;
+  margin-bottom: 24px;
+}
+
+.tramite-documentario-card-select {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-left: 6px solid #5a9e8d;
+}
+
+.tramite-documentario-label {
+  font-weight: 600;
+  color: #3d3c3b;
+  font-size: 1rem;
+  min-width: 140px;
+}
+
+.tramite-documentario-select {
+  padding: 6px 12px;
+  border: 1.5px solid #bdbdbd;
+  border-radius: 6px;
+  font-size: 1rem;
+  color: #3d3c3b;
+  background: #f5f5f5;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.tramite-documentario-select:hover,
+.tramite-documentario-select:focus {
+  border-color: #5a9e8d;
+  box-shadow: 0 0 0 2px #e0f3ef;
+}
+
+.tramite-documentario-card-form {
+  border-left: 6px solid #5a9e8d;
+}
+
+.tramite-documentario-title {
+  text-align: center;
+  color: #2c4372;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+  margin-top: 0;
+}
+
+.tramite-documentario-form-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin: 18px 0 6px 0;
+}
+
+.tramite-documentario-form-label {
+  min-width: 220px;
+  font-weight: 500;
+  color: #222;
+  margin-top: 4px;
+}
+
+.tramite-documentario-textarea {
+  flex: 1;
+  border: 1.5px solid #bdbdbd;
+  border-radius: 6px;
+  font-size: 1rem;
+  color: #3d3c3b;
+  background: #fff;
+  padding: 8px;
+  resize: vertical;
+}
+
+.tramite-documentario-ayuda {
+  color: #2c4372;
+  font-size: 0.95rem;
+  font-style: italic;
+  margin-bottom: 10px;
+  margin-left: 236px;
+}
+
+.tramite-documentario-costo {
+  text-align: center;
+  font-size: 1.2rem;
+  margin: 24px 0 12px 0;
+}
+
+.tramite-documentario-btn-row {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.tramite-documentario-btn-enviar {
+  background: #5a9e8d;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 22px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background 0.2s;
+  box-shadow: 0 1px 4px rgba(44, 62, 80, 0.08);
+}
+
+.tramite-documentario-btn-enviar:hover {
+  background: #417265;
+}

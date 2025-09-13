@@ -862,15 +862,24 @@
   display: flex;
   align-items: center;
   flex: 1;
+  transition: transform 0.25s cubic-bezier(0.4,0,0.2,1), background 0.2s;
+}
+
+.nav-section-content-copiloto:hover {
+  transform: translateX(15px);
+}
+
+.nav-section-content-copiloto:hover .nav-section-icon-copiloto {
+  color: #111827; /* negro */
 }
 
 .nav-section-icon-copiloto {
   width: 2rem;
   height: 2rem;
   flex-shrink: 0;
-  transition: transform 0.3s ease;
+  transition: color 0.25s cubic-bezier(0.4,0,0.2,1);
   /* Color para tema CLARO - similar a Copiloto */
-  color: #0ea5e9; /* Azul claro como Copiloto */
+  color: #5a9e8d; /* Azul claro como Copiloto */
 }
 
 /* Tema oscuro - íconos blancos */
@@ -901,6 +910,10 @@
 
 .dark .nav-chevron-copiloto {
   color: #9ca3af;
+}
+
+.dark .nav-section-content-copiloto:hover .nav-section-icon-copiloto {
+  color: #5a9e8d;
 }
 
 /* Submenús - ANIMACIÓN COPILOTO */

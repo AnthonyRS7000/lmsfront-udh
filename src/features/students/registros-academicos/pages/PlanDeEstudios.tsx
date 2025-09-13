@@ -98,7 +98,6 @@ const PlanDeEstudios: React.FC = () => {
       </div>
 
       {mostrar && (
-        <div className="plan-estudios-tabla-card">
           <div className="plan-estudios-tabla-wrapper">
             <table className="plan-estudios-tabla">
               <thead>
@@ -129,7 +128,6 @@ const PlanDeEstudios: React.FC = () => {
               </tbody>
             </table>
           </div>
-        </div>
       )}
     </div>
   );

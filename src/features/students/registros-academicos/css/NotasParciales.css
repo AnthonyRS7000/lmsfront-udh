@@ -21,6 +21,8 @@
   padding: 1.5rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   margin-bottom: 1.5rem;
+  border-bottom: 6px solid #5a9e8d;
+  border-right: 6px solid #5a9e8d;
 }
 .notas-card.notas-header h2 {
   color: #5a9e8d;
@@ -34,12 +36,6 @@
   justify-content: flex-start;
   gap: 2.5rem;
   margin-bottom: 1.2rem;
-}
-.notas-info {
-  width: auto;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
 }
 
 /* Selector */
@@ -208,6 +204,8 @@
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border-bottom: 6px solid #3d3c3b;
+  border-right: 6px solid #3d3c3b;
 }
 
 .notas-advertencia-header {
@@ -235,6 +233,8 @@
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border-bottom: 6px solid #ecc138;
+  border-right: 6px solid #ecc138;
 }
 
 .notas-info-extra-header {

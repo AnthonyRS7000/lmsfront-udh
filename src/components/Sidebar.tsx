@@ -4,7 +4,12 @@ import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 import { 
   IconProyecto, 
   IconEjecucion, 
-  IconInforme
+  IconInforme,
+  IconUniversidad,
+  IconAcademico,
+  IconServicio,
+  IconTitulacion,
+  IconSoporte
 } from './icons/LmsIcons';
 import { useTheme } from '../hooks/useTheme';
 import FlechaIcon from '../assets/icons/flecha.svg';
@@ -129,7 +134,7 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
           {
             name: 'GestionMatricula',
             label: 'Gestión de Matrícula',
-            icon: IconProyecto,
+            icon: IconUniversidad,
             submenus: [
               { name: 'matricula', label: 'Matrícula', path: '/estudiante/matricula' },
               { name: 'ver-horario', label: 'Ver Horario', path: '/estudiante/ver-horario' },
@@ -139,7 +144,7 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
           {
             name: 'ModuloAcademico',
             label: 'Módulo Académico',
-            icon: IconInforme,
+            icon: IconAcademico,
             submenus: [
               { name: 'cursos-llevados', label: 'Cursos llevados', path: '/estudiante/cursos-llevados' },
               { name: 'mi-asistencia', label: 'Mi Asistencia', path: '/estudiante/mi-asistencia' },
@@ -154,29 +159,30 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
           {
             name: 'ServiciosUniversitarios',
             label: 'Servicios Universitarios',
-            icon: IconProyecto,
+            icon: IconServicio,
             submenus: [
               { name: 'carnet-sunedu', label: 'Carnet Universitario SUNEDU', path: '/estudiante/servicios/carnet-sunedu' },
               { name: 'tarjeta-virtual', label: 'Tarjeta de Identificación Virtual', path: '/estudiante/servicios/tarjeta-virtual' },
               { name: 'bolsa-trabajo', label: 'Bolsa de Trabajo UDH', path: '/estudiante/servicios/bolsa-trabajo' },
               { name: 'inscripcion-idioma', label: 'Inscripción Idioma Extranjero', path: '/estudiante/servicios/inscripcion-idioma' },
               { name: 'educacion-distancia', label: 'Educación a Distancia', path: '/estudiante/servicios/educacion-distancia' },
+              { name: 'congresos-otros', label: 'Congresos y Otros', path: '/estudiante/servicios/congresos-otros' },
             ],
           },
           {
-            name: 'Tramite',
-            label: 'Trámite',
+            name: 'TramitesDocumentarios',
+            label: 'Trámites Documentarios',
             icon: IconProyecto,
             submenus: [
-              { name: 'tramite-documentario', label: 'Trámite Documentario', path: '/estudiante/tramite-documentario' },
-              { name: 'tramite-seguimiento', label: 'Seguimiento de Trámite', path: '/estudiante/tramite-seguimiento' },
+              { name: 'tramite-generar', label: 'Generar Trámite', path: '/estudiante/tramite/generar' },
+              { name: 'tramite-seguimiento', label: 'Seguimiento de Trámite', path: '/estudiante/tramite/seguimiento' },
               
             ],
           },
           {
             name: 'TitulacionGrados',
             label: 'Titulación y Grados',
-            icon: IconEjecucion,
+            icon: IconTitulacion,
             submenus: [
               { name: 'consulta-grados', label: 'Consulta Reg. Grados y Títulos', path: '/estudiante/titulacion/consulta-grados' },
               { name: 'ficha-inscripcion', label: 'Ficha Inscripción Titulación', path: '/estudiante/titulacion/ficha-inscripcion' },
@@ -187,11 +193,10 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
           {
             name: 'SoporteDefensoria',
             label: 'Soporte y Defensoría',
-            icon: IconEjecucion,
+            icon: IconSoporte,
             submenus: [
               { name: 'consultas-quejas', label: 'Consultas y Quejas', path: '/estudiante/soporte/consultas-quejas' },
               { name: 'consentimiento-informado', label: 'Consentimiento Informado', path: '/estudiante/soporte/consentimiento-informado' },
-              { name: 'congresos-otros', label: 'Congresos y Otros', path: '/estudiante/soporte/congresos-otros' },
             ],
           },
           // Soporte y Defensoría (removido según preferencia del usuario)

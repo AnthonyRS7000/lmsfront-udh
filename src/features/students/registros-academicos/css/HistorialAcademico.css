@@ -40,6 +40,8 @@
 
 .historial-card-resultados {
   margin-bottom: 18px;
+  border-right: 6px solid #ecc138;
+  border-bottom: 6px solid #ecc138;
 }
 
 /* --- Código Row --- */

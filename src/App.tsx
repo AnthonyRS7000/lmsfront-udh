@@ -47,17 +47,17 @@ import {
   TarjetaIdentificacionVirtual,
   BolsaTrabajoUDH,
   InscripcionIdiomaExtranjero,
-  EducacionDistancia
+  EducacionDistancia,
+  CongresosOtros
 } from './features/students/servicio-universitario';
 
 // Trámite (nuevo módulo)
-import { TramiteDocumentario, TramiteSeguimiento } from './features/students/tramite';
+import { TramiteGenerar, TramiteSeguimiento} from './features/students/tramite-documentario';
 
 // Soporte y Defensoría
 import {
   ConsultasQuejas,
   ConsentimientoInformado,
-  CongresosOtros
 } from './features/students/soporte-defensoria';
 
 
@@ -118,7 +118,6 @@ function App() {
               <Route path="/estudiante/progreso_academico" element={<div />} />
               {/* Rutas del nuevo módulo académico */}
               <Route path="/estudiante/cursos-llevados" element={<CursosLlevados />} />
-              
               <Route path="/estudiante/mi-asistencia" element={<MiAsistencia />} />
               <Route path="/estudiante/notas-parciales" element={<NotasParciales />} />
               <Route path="/estudiante/evaluacion-diaria" element={<EvaluacionDiaria />} />
@@ -137,16 +136,15 @@ function App() {
               <Route path="/estudiante/servicios/bolsa-trabajo" element={<BolsaTrabajoUDH />} />
               <Route path="/estudiante/servicios/inscripcion-idioma" element={<InscripcionIdiomaExtranjero />} />
               <Route path="/estudiante/servicios/educacion-distancia" element={<EducacionDistancia />} />
+              <Route path="/estudiante/servicios/congresos-otros" element={<CongresosOtros />} />
 
               {/* Trámite */}
-              <Route path="/estudiante/tramite" element={<TramiteDocumentario />} />
-              <Route path="/estudiante/tramite/documentario" element={<TramiteDocumentario />} />
+              <Route path="/estudiante/tramite/generar" element={<TramiteGenerar />} />
               <Route path="/estudiante/tramite/seguimiento" element={<TramiteSeguimiento />} />
 
               {/* Soporte y Defensoría */}
               <Route path="/estudiante/soporte/consultas-quejas" element={<ConsultasQuejas />} />
               <Route path="/estudiante/soporte/consentimiento-informado" element={<ConsentimientoInformado />} />
-              <Route path="/estudiante/soporte/congresos-otros" element={<CongresosOtros />} />
 
               {/* Rutas para docente */}
               <Route path="/docente/asignacion-cursos" element={<Cursos />} />

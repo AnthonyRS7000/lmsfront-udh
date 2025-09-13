@@ -3,3 +3,4 @@ export { default as TarjetaIdentificacionVirtual } from './pages/TarjetaIdentifi
 export { default as BolsaTrabajoUDH } from './pages/BolsaTrabajoUDH';
 export { default as InscripcionIdiomaExtranjero } from './pages/InscripcionIdiomaExtranjero';
 export { default as EducacionDistancia } from './pages/EducacionDistancia';
+export { default as CongresosOtros } from './pages/CongresosOtros';
