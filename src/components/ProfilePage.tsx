@@ -1,25 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+//import { useLocation } from "react-router-dom";
 import './ProfilePage.css';
-// Datos del usuario (mismos que tienes en mockUser)
-const mockUserProfile = {
-  nombres: 'BENYAMIN FELIX',
-  apellido_paterno: 'ADRIAN', 
-  apellido_materno: 'LAZARO',
-  dni: '73246971',
-  facultad: 'INGENIERÍA',
-  programa_academico: 'INGENIERÍA DE SISTEMAS E INFORMÁTICA',
-  codigo: '2019110501',
-  correo_institucional: '2019110501@udh.edu.pe',
-  sede: 'HUÁNUCO',
-  numero_celular: '904501160'
-};
 
 const ProfilePage = () => {
-  const [phoneNumber, setPhoneNumber] = useState(mockUserProfile.numero_celular);
+  const [userData, setUserData] = useState<any>(null);
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [photoModalOpen, setPhotoModalOpen] = useState(false);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const [photoFile, setPhotoFile] = useState<File | null>(null);
   const [photoError, setPhotoError] = useState<string | null>(null);
+/*
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const code = params.get("code");*/
+
+  const code = "4%2F0AVGzR1Ce79395yN0z9ZR4EeT_mD7wd323_SNztu8RUt9eIqMol8dcwbFCMgwXtJIwPQgNA";
+
+  // Obtención de datos
+  useEffect(() => {
+    if (!code) return;
+    fetch(`https://lmsback.sistemasudh.com/api/auth/google/callback?code=${code}`)
+      .then(res => res.json())
+      .then(data => {
+        setUserData(data);
+        setPhoneNumber(data?.datos_udh?.numero_celular || "");
+      })
+      .catch(err => {
+        console.error("Error al obtener datos:", err);
+      });
+  }, [code]);
+
+  if (!userData) return <div>Cargando...</div>;
 
   // Maneja selección de archivo, valida tipo/tamaño y genera preview con URL
   const onPhotoSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,7 +55,6 @@ const ProfilePage = () => {
     }
     // Generar preview
     const url = URL.createObjectURL(file);
-    // liberar preview anterior si existía
     if (photoPreview) URL.revokeObjectURL(photoPreview);
     setPhotoFile(file);
     setPhotoPreview(url);
@@ -54,14 +64,12 @@ const ProfilePage = () => {
     // Aquí puedes agregar lógica para guardar el número
     console.log('Número actualizado:', phoneNumber);
   };
-  
 
   return (
     <div className="profile-container">
       <div className="profile-root">
         <h1 className="profile-title">Mi Perfil</h1>
       </div>
-
 
       {/* Contenido principal del perfil */}
       <div className="profile-content">
@@ -74,7 +82,7 @@ const ProfilePage = () => {
               <input 
                 type="text" 
                 className="profile-form-input" 
-                value={mockUserProfile.nombres}
+                value={userData.datos_udh.nombres || ""}
                 readOnly
               />
             </div>
@@ -83,7 +91,7 @@ const ProfilePage = () => {
               <input 
                 type="text" 
                 className="profile-form-input" 
-                value={mockUserProfile.apellido_paterno}
+                value={userData.datos_udh.apellido_paterno || ""}
                 readOnly
               />
             </div>
@@ -96,7 +104,7 @@ const ProfilePage = () => {
               <input 
                 type="text" 
                 className="profile-form-input" 
-                value={mockUserProfile.apellido_materno}
+                value={userData.datos_udh.apellido_materno || ""}
                 readOnly
               />
             </div>
@@ -105,7 +113,7 @@ const ProfilePage = () => {
               <input 
                 type="text" 
                 className="profile-form-input" 
-                value={mockUserProfile.dni}
+                value={userData.datos_udh.dni || ""}
                 readOnly
               />
             </div>
@@ -118,7 +126,7 @@ const ProfilePage = () => {
               <input 
                 type="text" 
                 className="profile-form-input" 
-                value={mockUserProfile.facultad}
+                value={userData.datos_udh.facultad || ""}
                 readOnly
               />
             </div>
@@ -127,7 +135,7 @@ const ProfilePage = () => {
               <input 
                 type="text" 
                 className="profile-form-input" 
-                value={mockUserProfile.programa_academico}
+                value={userData.datos_udh.programa || ""}
                 readOnly
               />
             </div>
@@ -140,7 +148,7 @@ const ProfilePage = () => {
               <input 
                 type="text" 
                 className="profile-form-input" 
-                value={mockUserProfile.codigo}
+                value={userData.datos_udh.codigo || ""}
                 readOnly
               />
             </div>
@@ -149,7 +157,7 @@ const ProfilePage = () => {
               <input 
                 type="email" 
                 className="profile-form-input" 
-                value={mockUserProfile.correo_institucional}
+                value={userData.datos_udh.codigo ? `${userData.datos_udh.codigo}@udh.edu.pe` : ""}
                 readOnly
               />
             </div>
@@ -162,7 +170,7 @@ const ProfilePage = () => {
               <input 
                 type="text" 
                 className="profile-form-input" 
-                value={mockUserProfile.sede}
+                value="HUÁNUCO"
                 readOnly
               />
             </div>
@@ -175,7 +183,6 @@ const ProfilePage = () => {
                 className="profile-form-input editable" 
                 value={phoneNumber}
                 onChange={(e) => setPhoneNumber(e.target.value)}
-                
                 onBlur={handlePhoneSubmit}
                 onKeyPress={(e) => e.key === 'Enter' && handlePhoneSubmit()}
               />
@@ -211,7 +218,6 @@ const ProfilePage = () => {
                         if (!photoFile) return;
                         // Simular subida
                         console.log('Subiendo foto', photoFile);
-                        // limpiar preview objectURL
                         if (photoPreview) URL.revokeObjectURL(photoPreview);
                         setPhotoPreview(null);
                         setPhotoFile(null);
@@ -226,15 +232,12 @@ const ProfilePage = () => {
           )}
 
           {/* Mensaje de información */}
-
           <div className="profile-info-message">
             <span className="info-icon">⚠️</span>
             <span className="info-text">
               <strong>¡Importante!</strong> Mantén tu número celular actualizado para recibir notificaciones.
             </span>
           </div>
-          
-
         </div>
       </div>
     </div>

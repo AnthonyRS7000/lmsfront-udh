@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 // Datos del usuario mock
 const mockUser = {
-  full_name: 'ARMANDO ROJAS LUNA',
+  full_name: 'ARMDO ROJAS LUNA',
   email: 'armando.estudiante@udh.edu.pe',
   role: 'estudiante',
   image: 'https://ui-avatars.com/api/?name=Armando+Rojas&background=39B49E&color=fff',
@@ -36,9 +36,8 @@ const UserDropdown = () => {
   // Manejar cierre de sesión
   const handleLogout = () => {
     setIsOpen(false);
-    // Aquí puedes agregar la lógica de logout
-    console.log('Cerrando sesión...');
-    // navigate('/login');
+    localStorage.removeItem('token'); // Limpia el token
+    navigate('/login'); // Redirige al login
   };
 
   return (
@@ -52,9 +51,6 @@ const UserDropdown = () => {
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
         </div>
-        <span className="topbar-user-name">
-          {mockUser.full_name.split(' ')[0]}
-        </span>
       </div>
 
       {/* Menú desplegable */}

@@ -1,13 +1,10 @@
-import { useState, type ReactNode } from "react";
+import { useState } from "react";
+import { Outlet } from "react-router-dom";
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 import './Layout.css';
 
-interface LayoutProps {
-  children: ReactNode;
-}
-
-export default function Layout({ children }: LayoutProps) {
+export default function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const toggleSidebar = () => {
@@ -33,7 +30,7 @@ export default function Layout({ children }: LayoutProps) {
         
         {/* Content */}
         <main className="admin-content">
-          {children}
+          <Outlet />
         </main>
       </div>
     </div>
