@@ -1,15 +1,80 @@
-import React, { useState } from 'react';
-import '../css/TramiteDocumentario.css';
+import React, { useState, Suspense } from 'react';
+import '../css/TramiteGenerar.css';
+
+import AnulacionNota from '../tramite/pages/AnulacionNota';
 
 const TIPOS_TRAMITE = [
-  { value: 'ANULACION_DE_NOTA', label: 'ANULACION DE NOTA' },
-  // Puedes agregar más tipos aquí
+  { value: '0', label: 'Seleccione un tipo de trámite' },
+  { value: '0162', label: 'ANULACION DE NOTA' },
+  { value: '0177', label: 'ANULACION DE TALLER' },
+  { value: '0544', label: 'APROBACION DEL INFORME FINAL DE PPP' },
+  { value: '2225', label: 'APROBACION DEL INFORME FINAL DEL TRABAJO DE INVESTIGACION (BACHILLER)' },
+  { value: '1012', label: 'APROBACION DEL INFORME FINAL DEL TRABAJO DE INVESTIGACION (TESIS)' },
+  { value: '2433', label: 'APROBACION DEL INFORME FINAL DEL TRABAJO DE SUFICIENCIA PROFESIONAL' },
+  { value: '0383', label: 'APROBACION DEL PLAN DE  PRACTICAS PRE PROFESIONALES' },
+  { value: '2221', label: 'APROBACIÓN DEL PROYECTO DEL TRABAJO DE INVESTIGACIÓN (BACHILLER)' },
+  { value: '1011', label: 'APROBACIÓN DEL TRABAJO DE INVESTIGACIÓN (TESIS)' },
+  { value: '2013', label: 'CAMBIO DE ASESOR DE TRABAJO DE INVESTIGACION (TESIS)' },
+  { value: '0581', label: 'CAMBIO DE FILIAL TEMPORAL' },
+  { value: '0375', label: 'CAMBIO DE SEDE/FILIAL DEFINITIVO' },
+  { value: '2373', label: 'CARTA DE PRESENTACION (PLAN 2021)' },
+  { value: '0003', label: 'CERTIFICADO DE ESTUDIOS' },
+  { value: '2194', label: 'CERTIFICADO DE ESTUDIOS DEL CURSO DE INGLES (SAP)' },
+  { value: '2449', label: 'CERTIFICADO DEL IDIOMA EXTRANJERO' },
+  { value: '0035', label: 'CONSTANCIA DE CONDUCTA' },
+  { value: '0080', label: 'CONSTANCIA DE EGRESADO' },
+  { value: '0018', label: 'CONSTANCIA DE ESTUDIOS' },
+  { value: '2384', label: 'CONSTANCIA DE ESTUDIOS PRONABEC' },
+  { value: '0492', label: 'CONSTANCIA DE HABILITACIÓN PARA TRÁMITE' },
+  { value: '2438', label: 'CONSTANCIA DE IDIOMA EXTRANJERO PLAN 2021 (BACHILLER)' },
+  { value: '1017', label: 'CONSTANCIA DE INGLES' },
+  { value: '2490', label: 'CONSTANCIA DE INGLES DEL SERVICIO PUBLICO(SAP)' },
+  { value: '0050', label: 'CONSTANCIA DE INGRESO' },
+  { value: '1296', label: 'CONSTANCIA DE PRIMERA MATRICULA' },
+  { value: '0096', label: 'CONSTANCIA DE QUINTO SUPERIOR' },
+  { value: '0564', label: 'CONSTANCIA DE TERCIO SUPERIOR' },
+  { value: '2324', label: 'CONVALIDACION DE PRACTICAS PRE PROFESIONALES' },
+  { value: '1223', label: 'CONVALIDACION DEL CURSO DE INGLES CON EL SERVICIO PUBLICO (SAP)' },
+  { value: '0376', label: 'CONVALIDACIONES' },
+  { value: '1371', label: 'CONVALIDACIONES PARA ALUMNOS DE OTRAS UNIVERSIDADES' },
+  { value: '2319', label: 'DESIGNACION DE DOCENTE ASESOR PARA TRAB. SUF. PROF' },
+  { value: '1892', label: 'DESIGNACION DE JURADOS PARA LA  REV. DEL TRABAJO DE INV. (TESIS)' },
+  { value: '2415', label: 'DESIGNACION DE JURADOS PARA LA  REV. DEL TRABAJO DE SUFIC. PROF.' },
+  { value: '2265', label: 'DESIGNACION DE JURADOS REV. PARA EL INF.FINAL DEL TRAB.  INV.(BACHILLER)' },
+  { value: '1955', label: 'DESIGNACION DE JURADOS REV. PARA EL INF.FINAL DEL TRAB.  INV.(TESIS)' },
+  { value: '1010', label: 'DESIGNACIÓN DEL DOCENTE ASESOR PARA LA TESIS' },
+  { value: '2003', label: 'DEVOLUCIÓN DE DINERO' },
+  { value: '0220', label: 'EXAMEN DE SUBSANACION' },
+  { value: '0877', label: 'EXAMEN DE SUBSANACION (CATP)' },
+  { value: '2104', label: 'EXAMEN DE SUBSANACION (SAP)' },
+  { value: '1009', label: 'FECHA Y HORA DE SUSTENTACIÓN DE TESIS' },
+  { value: '2446', label: 'FECHA Y HORA DE SUSTENTACION TRAB. DE SUFICIENCIA' },
+  { value: '1118', label: 'LLEVAR CON CRUCE DE HORARIO (POR SER ULTIMO CICLO)' },
+  { value: '2646', label: 'LLEVAR CON EXCESO DE CREDITOS (ULTIMO SEMESTRE)' },
+  { value: '0377', label: 'LLEVAR CURSO DIRIGIDO' },
+  { value: '0360', label: 'LLEVAR CURSO PARALELO (PARA ALUMNOS QUE ESTAN POR EGRESAR)' },
+  { value: '1340', label: 'POSTERGACION DE ESTUDIOS' },
+  { value: '2226', label: 'PROFORMA DE ESTUDIOS - PREGRADO' },
+  { value: '0333', label: 'REINCORPORACIONES' },
+  { value: '1331', label: 'REINICIO DE INSCRIPCION' },
+  { value: '0534', label: 'RENUNCIA DE INGRESO A LA CARRERA PROFESIONAL' },
+  { value: '0442', label: 'RESERVA DE MATRICULA' },
+  { value: '1398', label: 'RETIRO DE CURSO' },
+  { value: '0382', label: 'RETIRO DE SEMESTRE' },
+  { value: '1926', label: 'TRANSFERENCIA DE PAGO' },
+  { value: '0986', label: 'VALIDEZ DE REINCORPORACION' },
 ];
 
-const TramiteDocumentario: React.FC = () => {
-  const [tipoTramite, setTipoTramite] = useState('ANULACION_DE_NOTA');
-  const [detalle, setDetalle] = useState('');
+// Se relaciona el value del select con el componente correspondiente
+const FORMULARIOS: Record<string, React.FC> = {
+  '0162': AnulacionNota,
+};
 
+const TramiteDocumentario: React.FC = () => {
+  const [tipoTramite, setTipoTramite] = useState('0');
+
+  // Obtiene el formulario correspondiente
+  const Formulario = FORMULARIOS[tipoTramite];
   return (
     <div className="tramite-documentario-root">
       <h2 className="rend-acad-title">Generar Trámite Documentario</h2>
@@ -29,44 +94,15 @@ const TramiteDocumentario: React.FC = () => {
           ))}
         </select>
       </div>
-
-      {/* Card del formulario según trámite */}
-      <div className="tramite-documentario-card tramite-documentario-card-form">
-        {tipoTramite === 'ANULACION_DE_NOTA' && (
-          <form className="tramite-documentario-form">
-            <h2 className="tramite-documentario-title">TRAMITE: ANULACION DE NOTA</h2>
-            <p>
-              Sr. Decano de la Facultad de INGENIERÍA, ante usted expongo, que teniendo la necesidad de anular la(s) nota(s) de los siguiente(s) curso(s) solicito a su despacho tenga a bien atender lo solicitado, para ello adjunto los siguientes datos:
-            </p>
-            <div className="tramite-documentario-form-row">
-              <label htmlFor="detalle" className="tramite-documentario-form-label">
-                Semestre(s) en el cual llevaron los curso(s):
-              </label>
-              <textarea
-                id="detalle"
-                className="tramite-documentario-textarea"
-                value={detalle}
-                onChange={e => setDetalle(e.target.value)}
-                rows={6}
-                placeholder="Sr. Alumno(a) mencionar los nombres completos del curso a anular."
-              />
-            </div>
-            <div className="tramite-documentario-ayuda">
-              <span>Sr. Alumno(a) mencionar los nombres completos del curso a anular.</span>
-            </div>
-            <p>Es todo cuanto informo a su despacho.</p>
-            <div className="tramite-documentario-costo">
-              <b>( Costo: S/. 5.00 )</b>
-            </div>
-            <div className="tramite-documentario-btn-row">
-              <button type="submit" className="tramite-documentario-btn-enviar">
-                <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Enviar" style={{ width: 24, marginRight: 6, verticalAlign: 'middle' }} />
-                Enviar
-              </button>
-            </div>
-          </form>
+      {Formulario ? (
+          <Suspense fallback={<div>Cargando formulario...</div>}>
+            <Formulario />
+          </Suspense>
+        ) : (
+          <div style={{ color: "#888", textAlign: "center", margin: "24px 0" }}>
+            Seleccione un tipo de trámite para continuar.
+          </div>
         )}
-      </div>
     </div>
   );
 };
