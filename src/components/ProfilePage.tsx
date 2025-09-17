@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-//import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import './ProfilePage.css';
 
 const ProfilePage = () => {
@@ -9,12 +9,10 @@ const ProfilePage = () => {
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const [photoFile, setPhotoFile] = useState<File | null>(null);
   const [photoError, setPhotoError] = useState<string | null>(null);
-/*
+
   const location = useLocation();
   const params = new URLSearchParams(location.search);
-  const code = params.get("code");*/
-
-  const code = "4%2F0AVGzR1Ce79395yN0z9ZR4EeT_mD7wd323_SNztu8RUt9eIqMol8dcwbFCMgwXtJIwPQgNA";
+  const code = params.get("code");
 
   // Obtención de datos
   useEffect(() => {

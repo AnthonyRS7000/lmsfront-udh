@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 function AuthCallback() {
   useEffect(() => {
-    const params = new URLSearchParams("window.location.search");
+    const params = new URLSearchParams(window.location.search);
     const message = params.get("message");
     const token = params.get("token");
 

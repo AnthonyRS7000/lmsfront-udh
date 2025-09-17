@@ -30,7 +30,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   const login = (token: string) => {
-    // Determina el rol por el primer dígito del token
+    // Determina el rol por el primer dígito del token 
     let rol = "";
     if (token.startsWith("5")) rol = "estudiante";
     else if (token.startsWith("4")) rol = "docente";

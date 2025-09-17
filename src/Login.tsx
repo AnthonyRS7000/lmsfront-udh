@@ -32,10 +32,10 @@ function Login() {
 
   // Simulación de login como estudiante
   const handleGoogleLogin = () => {
-    /* Simula login: guarda token y navega
+    // Simula login: guarda token y navega
     login('5'); // El primer dígito "5" es para estudiante
-    navigate('/estudiante');*/
-    const width = 500;
+    navigate('/estudiante');
+    /*const width = 500;
     const height = 600;
     const left = window.screenX + (window.outerWidth - width) / 2;
     const top = window.screenY + (window.outerHeight - height) / 2;
@@ -43,7 +43,7 @@ function Login() {
       "https://lmsback.sistemasudh.com/api/auth/google",
       "GoogleAuth",
       `width=${width},height=${height},left=${left},top=${top},resizable,scrollbars=yes,status=1`
-    );
+    );*/
   };
 
   // Escucha mensajes de la ventana emergente (flujo real Google)
@@ -53,9 +53,9 @@ function Login() {
       if (event.data && event.data.type === "google-auth-success") {
         const { token } = event.data;
         login(token);
-        //navigate("/estudiante");
+        navigate("/estudiante");
         // Determina el rol por el primer dígito del token
-        let rol = "";
+        /*let rol = "";
         if (token.startsWith("5")) rol = "estudiante";
         else if (token.startsWith("4")) rol = "docente";
         else if (token.startsWith("3")) rol = "administrativo";
@@ -68,7 +68,7 @@ function Login() {
         else if (rol === "administrativo") navigate("/administrativo");
         else if (rol === "escuela") navigate("/escuela");
         else if (rol === "facultad") navigate("/facultad");
-        else navigate("/");
+        else navigate("/");*/
       }
     };
     window.addEventListener("message", handleMessage);
