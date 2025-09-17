@@ -3,7 +3,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 type AuthContextType = {
   isAuthenticated: boolean;
   rol: string;
-  login: (token: string) => void;
+  login: (token: string, rol: string) => void;
   logout: () => void;
 };
 
@@ -29,14 +29,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return () => window.removeEventListener("storage", syncAuth);
   }, []);
 
-  const login = (token: string) => {
-    // Determina el rol por el primer dígito del token
-    let rol = "";
-    if (token.startsWith("5")) rol = "estudiante";
-    else if (token.startsWith("4")) rol = "docente";
-    else if (token.startsWith("3")) rol = "administrativo";
-    else if (token.startsWith("2")) rol = "escuela";
-    else if (token.startsWith("1")) rol = "facultad";
+  const login = (token: string, rol: string) => {
     setIsAuthenticated(true);
     setRol(rol);
     localStorage.setItem("token", token);
