@@ -1,4 +1,49 @@
-/* Estilos base para Inscripción Idioma Extranjero */
-.inscripcion-idioma-root { padding: 20px; }
-.inscripcion-idioma-title { font-size: 1.4rem; font-weight:700; color: var(--title-color); margin-bottom:12px; }
-.inscripcion-idioma-card { background: var(--panel-bg); padding:14px; border-radius:8px; border:1px solid var(--border-soft); }
+
+/* Inscripcion Idioma — estilos alineados con Matricula.css */
+.inscripcion-idioma-root { max-width: 1180px; margin: 18px auto; padding: 28px 40px; }
+.inscripcion-idioma-card { background: var(--panel-bg); border-radius:12px; padding:22px; border:1px solid var(--border-soft); box-shadow: var(--shadow-lg); position:relative; }
+.inscripcion-idioma-card::before { content: ''; position:absolute; left:14px; top:14px; bottom:14px; width:6px; background: linear-gradient(180deg, var(--accent-cyan), rgba(58,197,170,0.6)); border-radius:6px; }
+.inscripcion-idioma-body { padding-left:40px; color:var(--muted); }
+.inscripcion-idioma-title { font-size:2.2rem; font-weight:700; color:var(--title-color); text-align:center; margin-bottom:18px; }
+
+/* Reutilizar select desde CarnetSunedu */
+.carnet-select {
+	width:100%;
+	padding:12px 14px;
+	border-radius:10px;
+	border:1px solid rgba(0,0,0,0.08);
+	background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
+	color: var(--text);
+	font-size: 1.03rem;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	position: relative;
+	box-shadow: inset 0 -6px 18px rgba(2,6,23,0.25);
+	padding-right: 44px; /* espacio para la flecha */
+	transition: box-shadow .18s ease, border-color .18s ease, background .18s ease;
+	background-color: var(--panel-contrast);
+	border: 1px solid var(--border-soft);
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath fill='%23cfe8f5' d='M5 7l5 5 5-5z'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right 12px center;
+}
+
+.carnet-select:focus {
+	outline: none;
+	border-color: rgba(58,197,170,0.9);
+	box-shadow: 0 6px 20px rgba(2,6,23,0.25), 0 0 0 4px rgba(58,197,170,0.06);
+}
+
+.carnet-select:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+/* Remove native IE arrow */
+.carnet-select::-ms-expand { display: none; }
+
+@media (max-width: 768px) {
+	.inscripcion-idioma-title { font-size:1.4rem; text-align:left; }
+	.inscripcion-idioma-card { padding:14px; }
+}

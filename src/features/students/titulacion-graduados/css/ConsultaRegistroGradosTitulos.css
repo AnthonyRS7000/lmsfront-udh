@@ -1,0 +1,15 @@
+/* Estilos para ConsultaRegistroGradosTitulos - basados en BolsaTrabajoUDH */
+.consulta-registros-root { padding: 18px 20px; max-width: 1180px; margin: 18px auto; }
+.consulta-registros-title { font-size: 2.2rem; font-weight:700; color: var(--title-color); margin-bottom:18px; text-align:center; }
+.consulta-registros-card { background: var(--panel-bg); padding:18px; border-radius:12px; border:1px solid var(--border-soft); box-shadow: var(--shadow-lg); position:relative; }
+.consulta-registros-card::before { content: ''; position:absolute; left:14px; top:14px; bottom:14px; width:8px; background: linear-gradient(180deg, var(--accent-cyan), rgba(58,197,170,0.6)); border-radius:6px; }
+.consulta-registros-card .tramites-card-body { padding-left: 40px; }
+
+.consulta-registros-card p { margin: 8px 0 12px 0; color: var(--muted); font-size:1rem; }
+
+.consulta-registros-card .action-center { padding-left: 40px; }
+
+@media (max-width: 768px) {
+  .consulta-registros-title { font-size: 1.4rem; text-align:left; }
+  .consulta-registros-card { padding: 14px; }
+}
