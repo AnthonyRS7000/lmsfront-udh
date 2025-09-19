@@ -1,34 +1,28 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from "react-router-dom";
 import './ProfilePage.css';
 
 const ProfilePage = () => {
   const [userData, setUserData] = useState<any>(null);
+  const [udhData, setUdhData] = useState<any>(null);
+  const [photo, setPhoto] = useState<string | null>(null);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [photoModalOpen, setPhotoModalOpen] = useState(false);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const [photoFile, setPhotoFile] = useState<File | null>(null);
   const [photoError, setPhotoError] = useState<string | null>(null);
 
-  const location = useLocation();
-  const params = new URLSearchParams(location.search);
-  const code = params.get("code");
-
-  // Obtención de datos
   useEffect(() => {
-    if (!code) return;
-    fetch(`https://lmsback.sistemasudh.com/api/auth/google/callback?code=${code}`)
-      .then(res => res.json())
-      .then(data => {
-        setUserData(data);
-        setPhoneNumber(data?.datos_udh?.numero_celular || "");
-      })
-      .catch(err => {
-        console.error("Error al obtener datos:", err);
-      });
-  }, [code]);
+    // Obtener datos del localStorage
+    const usuario = JSON.parse(localStorage.getItem("usuario") || "{}");
+    const datosUdh = JSON.parse(localStorage.getItem("datos_udh") || "{}");
+    const foto = localStorage.getItem("foto");
 
-  if (!userData) return <div>Cargando...</div>;
+    setUserData(usuario);
+    setUdhData(datosUdh);
+    setPhoto(foto);
+  }, []);
+  
+  if (!userData || !udhData) return <div>Cargando...</div>;
 
   // Maneja selección de archivo, valida tipo/tamaño y genera preview con URL
   const onPhotoSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -80,7 +74,7 @@ const ProfilePage = () => {
               <input 
                 type="text" 
                 className="profile-form-input" 
-                value={userData.datos_udh.nombres || ""}
+                value={udhData.nombres || ""}
                 readOnly
               />
             </div>
@@ -89,7 +83,7 @@ const ProfilePage = () => {
               <input 
                 type="text" 
                 className="profile-form-input" 
-                value={userData.datos_udh.apellido_paterno || ""}
+                value={udhData.apellido_paterno || ""}
                 readOnly
               />
             </div>
@@ -102,7 +96,7 @@ const ProfilePage = () => {
               <input 
                 type="text" 
                 className="profile-form-input" 
-                value={userData.datos_udh.apellido_materno || ""}
+                value={udhData.apellido_materno || ""}
                 readOnly
               />
             </div>
@@ -111,7 +105,7 @@ const ProfilePage = () => {
               <input 
                 type="text" 
                 className="profile-form-input" 
-                value={userData.datos_udh.dni || ""}
+                value={udhData.dni || ""}
                 readOnly
               />
             </div>
@@ -124,7 +118,7 @@ const ProfilePage = () => {
               <input 
                 type="text" 
                 className="profile-form-input" 
-                value={userData.datos_udh.facultad || ""}
+                value={udhData.facultad || ""}
                 readOnly
               />
             </div>
@@ -133,7 +127,7 @@ const ProfilePage = () => {
               <input 
                 type="text" 
                 className="profile-form-input" 
-                value={userData.datos_udh.programa || ""}
+                value={udhData.programa || ""}
                 readOnly
               />
             </div>
@@ -146,7 +140,7 @@ const ProfilePage = () => {
               <input 
                 type="text" 
                 className="profile-form-input" 
-                value={userData.datos_udh.codigo || ""}
+                value={udhData.codigo || ""}
                 readOnly
               />
             </div>
@@ -155,7 +149,7 @@ const ProfilePage = () => {
               <input 
                 type="email" 
                 className="profile-form-input" 
-                value={userData.datos_udh.codigo ? `${userData.datos_udh.codigo}@udh.edu.pe` : ""}
+                value={udhData.codigo ? `${udhData.codigo}@udh.edu.pe` : ""}
                 readOnly
               />
             </div>

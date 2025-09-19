@@ -3,17 +3,26 @@ import './UserDropdown.css';
 import { useNavigate } from 'react-router-dom';
 
 // Datos del usuario mock
-const mockUser = {
-  full_name: 'ARMDO ROJAS LUNA',
-  email: 'armando.estudiante@udh.edu.pe',
-  role: 'estudiante',
-  image: 'https://ui-avatars.com/api/?name=Armando+Rojas&background=39B49E&color=fff',
+const getUserDataFromLocalStorage = () => {
+  /*const usuario = JSON.parse(localStorage.getItem("usuario") || "{}");
+  const datosUdh = JSON.parse(localStorage.getItem("datos_udh") || "{}");*/
+  const foto = localStorage.getItem("foto");
+
+  return {
+    /*full_name: `${datosUdh.nombres || usuario.nombres} ${datosUdh.apellido_paterno || usuario.apellidos}`,
+    email: usuario.email || "Correo no disponible",
+    role: usuario.rol || "Invitado",*/
+    image: foto || "https://ui-avatars.com/api/?name=Usuario+Invitado&background=6B7280&color=fff",
+  };
 };
 
 const UserDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+
+  // Obtener datos del usuario desde localStorage
+  const userData = getUserDataFromLocalStorage();
 
   // Manejar clics fuera del dropdown para cerrarlo
   useEffect(() => {
@@ -37,6 +46,9 @@ const UserDropdown = () => {
   const handleLogout = () => {
     setIsOpen(false);
     localStorage.removeItem('token'); // Limpia el token
+    localStorage.removeItem('usuario'); // Limpia los datos del usuario
+    localStorage.removeItem('datos_udh'); // Limpia los datos UDH
+    localStorage.removeItem('foto'); // Limpia la foto
     navigate('/login'); // Redirige al login
   };
 
@@ -46,8 +58,8 @@ const UserDropdown = () => {
       <div className="topbar-user" onClick={() => setIsOpen(!isOpen)}>
         <div className="topbar-user-avatar">
           <img
-            src={mockUser.image}
-            alt={mockUser.full_name}
+            src={userData.image}
+            alt={userData.full_name}
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
           />
         </div>
@@ -57,20 +69,20 @@ const UserDropdown = () => {
       {isOpen && (
         <div className="user-dropdown-menu">
           <div className="dropdown-content">
-            {/* Información del usuario oculta pero mantenida en mockUser */}
+            {/* Información del usuario oculta pero mantenida en mockUser 
             <div className="user-info" style={{ display: 'none' }}>
               <img 
-                src={mockUser.image} 
-                alt={mockUser.full_name}
+                src={userData.image} 
+                alt={userData.full_name}
                 className="dropdown-avatar"
               />
               <div className="user-details">
-                <span className="user-name">{mockUser.full_name}</span>
-                <span className="user-email">{mockUser.email}</span>
+                <span className="user-name">{userData.full_name}</span>
+                <span className="user-email">{userData.email}</span>
               </div>
             </div>
             
-            <hr className="dropdown-divider" style={{ display: 'none' }} />
+            <hr className="dropdown-divider" style={{ display: 'none' }} />*/}
             
             <button 
               className="dropdown-btn profile-btn" 

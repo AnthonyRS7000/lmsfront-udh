@@ -49,7 +49,7 @@ function Login() {
       `${API_URL}/auth/google?state=${encodeURIComponent(state)}`,
       "GoogleAuth",
       `width=${width},height=${height},left=${left},top=${top},resizable,scrollbars=yes,status=1`
-    );*/
+    );
   };
 
   // 🔹 Escuchar datos del popup con validaciones de seguridad
@@ -58,7 +58,6 @@ function Login() {
       // Validar origen - ser más permisivo con orígenes de desarrollo
       const allowedOrigins = [
         import.meta.env.VITE_API_URL || "http://localhost:8000",
-        "http://localhost:8000",
         "http://127.0.0.1:8000",
         "https://lmsback.sistemasudh.com"
       ];
@@ -81,10 +80,10 @@ function Login() {
 
       // Manejar éxito
       if (event.data.type === "google-auth-success") {
-        const { token, usuario, state } = event.data;
+        const { token, usuario, datos_udh, foto, state } = event.data;
 
         // Validar que los datos requeridos estén presentes
-        if (!token || !usuario || !usuario.rol) {
+        if (!token || !usuario || !usuario.rol || !datos_udh) {
           alert("Datos de autenticación incompletos");
           return;
         }
@@ -102,9 +101,14 @@ function Login() {
             }
           } catch (e) {
             console.warn("State inválido");
-            // No bloquear si hay error en el state, solo advertir
+            // No bloquear si hay error en el state, solo advertir. Cambiar después por un bloqueo para una buena seguridad
           }
         }
+
+        localStorage.setItem("token", token);
+        localStorage.setItem("usuario", JSON.stringify(usuario));
+        localStorage.setItem("datos_udh", JSON.stringify(datos_udh));
+        localStorage.setItem("foto", foto);
 
         // Guardar en AuthContext
         login(token, usuario.rol);

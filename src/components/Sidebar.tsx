@@ -31,40 +31,17 @@ const getCurrentRole = (pathname: string): string => {
 };
 
 // Función para obtener datos del usuario según el rol
-const getUserDataByRole = (role: string) => {
-  const users = {
-    estudiante: {
-      full_name: 'ARMANDO ROJAS LUNA',
-      role: 'Estudiante',
-      image: 'https://ui-avatars.com/api/?name=Armando+Rojas&background=39B49E&color=fff',
-    },
-    docente: {
-      full_name: 'DR. MARÍA GARCÍA',
-      role: 'Docente',
-      image: 'https://ui-avatars.com/api/?name=Maria+Garcia&background=10B981&color=fff',
-    },
-    escuela: {
-      full_name: 'ADMIN ESCUELA',
-      role: 'Escuela',
-      image: 'https://ui-avatars.com/api/?name=Admin+Escuela&background=8B5CF6&color=fff',
-    },
-    facultad: {
-      full_name: 'ADMIN FACULTAD',
-      role: 'Facultad',
-      image: 'https://ui-avatars.com/api/?name=Admin+Facultad&background=F59E0B&color=fff',
-    },
-    administrativo: {
-      full_name: 'ADMIN SISTEMA',
-      role: 'Administrativo',
-      image: 'https://ui-avatars.com/api/?name=Admin+Sistema&background=EF4444&color=fff',
-    },
-    dashboard: {
-      full_name: 'USUARIO INVITADO',
-      role: 'Seleccionar Rol',
-      image: 'https://ui-avatars.com/api/?name=Usuario+Invitado&background=6B7280&color=fff',
-    }
+const getUserDataFromLocalStorage = () => {
+  const usuario = JSON.parse(localStorage.getItem("usuario") || "{}");
+  const foto = localStorage.getItem("foto");
+
+  console.log("Datos obtenidos de localStorage:", { usuario, foto });
+
+  return {
+    full_name: `${usuario.nombres} ${usuario.apellidos}`,
+    role: usuario.rol,
+    image: foto || '',
   };
-  return users[role as keyof typeof users] || users.dashboard;
 };
 
 export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
@@ -77,7 +54,7 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
 
   // Detectar rol actual basado en la ruta
   const currentRole = getCurrentRole(location.pathname);
-  const currentUser = getUserDataByRole(currentRole);
+  const currentUser = getUserDataFromLocalStorage();
 
   // Detectar cambios de tema directamente en el DOM para respuesta inmediata
   useEffect(() => {
