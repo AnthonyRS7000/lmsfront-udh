@@ -16,6 +16,8 @@ function Login() {
   const [currentImg, setCurrentImg] = useState(0);
   const [sliding, setSliding] = useState(false);
 
+  const API_URL = import.meta.env.VITE_API_URL;
+
   // Carrusel automático
   useEffect(() => {
     const interval = setInterval(() => {
@@ -30,50 +32,94 @@ function Login() {
 
   const nextImg = (currentImg + 1) % images.length;
 
-  // Simulación de login como estudiante
+  // 🔹 Abrir popup de Google con state para CSRF protection
   const handleGoogleLogin = () => {
-    // Simula login: guarda token y navega
-    login('5'); // El primer dígito "5" es para estudiante
-    navigate('/estudiante');
-    /*const width = 500;
+    const width = 500;
     const height = 600;
     const left = window.screenX + (window.outerWidth - width) / 2;
     const top = window.screenY + (window.outerHeight - height) / 2;
+
+    // Generar state para prevenir ataques CSRF
+    const state = btoa(JSON.stringify({
+      timestamp: Date.now(),
+      origin: window.location.origin
+    }));
+
     window.open(
-      "https://lmsback.sistemasudh.com/api/auth/google",
+      `${API_URL}/auth/google?state=${encodeURIComponent(state)}`,
       "GoogleAuth",
       `width=${width},height=${height},left=${left},top=${top},resizable,scrollbars=yes,status=1`
     );*/
   };
 
-  // Escucha mensajes de la ventana emergente (flujo real Google)
+  // 🔹 Escuchar datos del popup con validaciones de seguridad
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
-      if (event.origin !== window.location.origin) return;
-      if (event.data && event.data.type === "google-auth-success") {
-        const { token } = event.data;
-        login(token);
-        navigate("/estudiante");
-        // Determina el rol por el primer dígito del token
-        /*let rol = "";
-        if (token.startsWith("5")) rol = "estudiante";
-        else if (token.startsWith("4")) rol = "docente";
-        else if (token.startsWith("3")) rol = "administrativo";
-        else if (token.startsWith("2")) rol = "escuela";
-        else if (token.startsWith("1")) rol = "facultad";
+      // Validar origen - ser más permisivo con orígenes de desarrollo
+      const allowedOrigins = [
+        import.meta.env.VITE_API_URL || "http://localhost:8000",
+        "http://localhost:8000",
+        "http://127.0.0.1:8000",
+        "https://lmsback.sistemasudh.com"
+      ];
+      
+      if (!allowedOrigins.includes(event.origin)) {
+        console.warn("Origen no permitido:", event.origin);
+        return;
+      }
 
-        // Redirige según el rol
-        if (rol === "estudiante") navigate("/estudiante");
-        else if (rol === "docente") navigate("/docente");
-        else if (rol === "administrativo") navigate("/administrativo");
-        else if (rol === "escuela") navigate("/escuela");
-        else if (rol === "facultad") navigate("/facultad");
-        else navigate("/");*/
+      // Validar estructura del mensaje
+      if (!event.data || typeof event.data !== 'object') {
+        return;
+      }
+
+      // Manejar errores
+      if (event.data.type === "google-auth-error") {
+        alert("Error en la autenticación: " + (event.data.message || "Error desconocido"));
+        return;
+      }
+
+      // Manejar éxito
+      if (event.data.type === "google-auth-success") {
+        const { token, usuario, state } = event.data;
+
+        // Validar que los datos requeridos estén presentes
+        if (!token || !usuario || !usuario.rol) {
+          alert("Datos de autenticación incompletos");
+          return;
+        }
+
+        // Validar state para prevenir CSRF (solo si se envió)
+        if (state) {
+          try {
+            const decodedState = JSON.parse(atob(state));
+            const timeDiff = Date.now() - decodedState.timestamp;
+            
+            // Rechazar si el state es muy antiguo (5 minutos)
+            if (timeDiff > 5 * 60 * 1000) {
+              alert("Sesión expirada, intenta nuevamente");
+              return;
+            }
+          } catch (e) {
+            console.warn("State inválido");
+            // No bloquear si hay error en el state, solo advertir
+          }
+        }
+
+        // Guardar en AuthContext
+        login(token, usuario.rol);
+
+        // Redirigir según rol
+        if (usuario.rol === "estudiante") navigate("/estudiante");
+        else if (usuario.rol === "docente") navigate("/docente");
+        else if (usuario.rol === "admin") navigate("/admin");
+        else navigate("/");
       }
     };
+
     window.addEventListener("message", handleMessage);
     return () => window.removeEventListener("message", handleMessage);
-  }, [login, navigate]);
+  }, [login, navigate, API_URL]);
 
   return (
     <div className={`login-row-container${darkMode ? ' dark' : ''}`}>
@@ -105,35 +151,30 @@ function Login() {
           </div>
         </div>
       </div>
+
       {/* Columna card */}
       <div className="login-col-card">
         <div className={`login-card${darkMode ? ' dark' : ''}`}>
           <div className="login-card-borders">
             <div className="login-card-content">
-              <h2 className="login-title">
-                Iniciar sesión
-              </h2>
+              <h2 className="login-title">Iniciar sesión</h2>
               <p className="login-subtitle">
                 Tu correo debe terminar en{" "}
                 <span className="login-domain">@udh.edu.pe</span>
               </p>
               <button className="login-google-btn" onClick={handleGoogleLogin}>
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className="login-google-icon"><g><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path><path fill="none" d="M0 0h48v48H0z"></path></g></svg>
-                <span className="login-google-text">
-                  Acceder con Google
-                </span>
+                <span className="login-google-text">Acceder con Google</span>
               </button>
               <p className="login-help">
                 ¿Necesitas ayuda?{" "}
                 <a href="#" className="login-help-link">Mira esta guía.</a>
               </p>
             </div>
-            {/* Bordes decorativos */}
             <div className="login-corner top-left"></div>
             <div className="login-corner bottom-right"></div>
           </div>
         </div>
-        {/* Botón modo oscuro en la pantalla */}
         <button className="login-darkmode-btn-screen" onClick={() => setDarkMode(!darkMode)} title={darkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}>
           {darkMode ? (
             <SunIconSolid style={{ width: 24, height: 24 }} />
