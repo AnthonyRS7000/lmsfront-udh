@@ -1,36 +1,59 @@
 import React, { useState } from 'react';
 import '../css/CarnetSunedu.css';
+import { CheckCircleIcon } from '@heroicons/react/24/outline';
 
 const CarnetSunedu: React.FC = () => {
-  const [tipo, setTipo] = useState('');
+  const [description, setDescription] = useState('');
+  const [showModal, setShowModal] = useState(false);
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    if (event.target.value.length <= 500) {
+      setDescription(event.target.value);
+    }
+  };
+
+  const handleSubmit = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
 
   return (
-    <div className="tramites-root carnet-root">
-      <h2 className="tramites-title">GENERA RECIBOS DE PAGO</h2>
-
-      <div className="tramites-card carnet-card">
-        <div className="tramites-card-header">
-          <h2 className="carnet-header-title">DATOS DEL TRÁMITE</h2>
+    <div className="carnet-container">
+      <h1 className="carnet-titulo">Carnet Universitario 2025-2 <br></br>(SUNEDU)</h1>
+      <div className="carnet-card">
+        <div className="carnet-form-group">
+          <label htmlFor="description" className="carnet-label">Descripción:</label>
+          <textarea
+            id="description"
+            className="carnet-input"
+            value={description}
+            onChange={handleInputChange}
+            placeholder="Escriba una pequeña descripción del motivo por el que está solicitando el trámite. (Máximo 500 caracteres)"
+          ></textarea>
         </div>
-        <div className="tramites-card-body">
-          <label className="carnet-label" htmlFor="tipo-tramite">TIPO DE TRÁMITE:</label>
+        <div className="carnet-cost">
+          <label className="carnet-label">Costo del trámite:</label>
+          <p>S/. 27.00</p>
+        </div>
+        <p className="carnet-warning">SR. ALUMNO RECUERDE QUE SE TRAMITARÁ EL CARNET CON SU FOTOGRAFÍA ACTUAL.</p>
+        <div className="carnet-button-container">
+          <button className="carnet-submit-button" onClick={handleSubmit}>
+            <CheckCircleIcon className="carnet-icon" />
+            Solicitar
+          </button>
+        </div>
 
-          <div className="carnet-select-wrap">
-            <select
-              id="tipo-tramite"
-              className="carnet-select"
-              value={tipo}
-              onChange={(e) => setTipo(e.target.value)}
-            >
-              <option value="">Seleccione...</option>
-              <option value="carnet-2025-2">CARNET UNIVERSITARIO 2025-2 (SUNEDU)</option>
-            </select>
+        {showModal && (
+          <div className="carnet-modal">
+            <div className="carnet-modal-content">
+              <p>Trámite generado</p>
+              <button onClick={closeModal} className="carnet-modal-close-button">Cerrar</button>
+            </div>
           </div>
-
-          <div className="carnet-divider" />
-
-          <div className="carnet-empty" />
-        </div>
+        )}
       </div>
     </div>
   );
