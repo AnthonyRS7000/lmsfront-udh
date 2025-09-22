@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "./components/Layout";
+import Layout from "./components/pages/Layout";
 import LandingPage from "./pages/LandingPage";
 import Login from "./Login";
 
 // Contexto de autenticación
-import RutaProtegidaPorRol from "./components/RutaProtegidaPorRol";
+import RutaProtegidaPorRol from "./components/pages/RutaProtegidaPorRol";
 import { AuthProvider } from "./context/AuthContext";
 import AuthCallback from "./context/AuthCallback";
 
@@ -16,7 +16,7 @@ import FacultadDashboard from "./features/facultad/pages/FacultadDashboard";
 import AdministrativoDashboard from "./features/administrativo/pages/AdministrativoDashboard";
 
 // Importar páginas del módulo Gestión de Matrícula
-import ProfilePage from "./components/ProfilePage";
+import ProfilePage from "./components/pages/ProfilePage";
 import {
   Matricula,
   VerHorario,
@@ -85,7 +85,7 @@ import Monitoreo from "./features/administrativo/pages/Monitoreo";
 import Perfiles from "./features/administrativo/pages/Perfiles";
 import Roles from "./features/administrativo/pages/Roles";
 import Usuarios from "./features/administrativo/pages/Usuarios";
-import PageNotFound from "./components/PageNotFound";
+import PageNotFound from "./components/pages/PageNotFound";
 
 function App() {
   return (

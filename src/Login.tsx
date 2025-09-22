@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
 import './login.css';
 import udh_img from './assets/1.jpg';
-import udh_img1 from './assets/2.jpg';
 import udh_img2 from './assets/3.jpg';
+import udh_img3 from './assets/4.jpg';
 import udh_logo from './assets/logo.png';
 import { MoonIcon as MoonIconSolid, SunIcon as SunIconSolid } from '@heroicons/react/24/solid';
 
@@ -12,7 +12,7 @@ function Login() {
   const navigate = useNavigate();
   const { login } = useAuth();
   const [darkMode, setDarkMode] = useState(false);
-  const images = [udh_img, udh_img1, udh_img2];
+  const images = [udh_img2, udh_img, udh_img3,];
   const [currentImg, setCurrentImg] = useState(0);
   const [sliding, setSliding] = useState(false);
 

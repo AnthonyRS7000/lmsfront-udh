@@ -10,9 +10,9 @@ import {
   IconServicio,
   IconTitulacion,
   IconSoporte
-} from './icons/LmsIcons';
-import { useTheme } from '../hooks/useTheme';
-import FlechaIcon from '../assets/icons/flecha.svg';
+} from '../icons/LmsIcons';
+import { useTheme } from '../../hooks/useTheme';
+import FlechaIcon from '../../assets/icons/flecha.svg';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -34,8 +34,6 @@ const getCurrentRole = (pathname: string): string => {
 const getUserDataFromLocalStorage = () => {
   const usuario = JSON.parse(localStorage.getItem("usuario") || "{}");
   const foto = localStorage.getItem("foto");
-
-  console.log("Datos obtenidos de localStorage:", { usuario, foto });
 
   return {
     full_name: `${usuario.nombres} ${usuario.apellidos}`,

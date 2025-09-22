@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import './ProfilePage.css';
+import '../css/ProfilePage.css';
 
 const ProfilePage = () => {
   const [userData, setUserData] = useState<any>(null);
   const [udhData, setUdhData] = useState<any>(null);
-  const [photo, setPhoto] = useState<string | null>(null);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [photoModalOpen, setPhotoModalOpen] = useState(false);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
@@ -15,11 +14,9 @@ const ProfilePage = () => {
     // Obtener datos del localStorage
     const usuario = JSON.parse(localStorage.getItem("usuario") || "{}");
     const datosUdh = JSON.parse(localStorage.getItem("datos_udh") || "{}");
-    const foto = localStorage.getItem("foto");
 
     setUserData(usuario);
     setUdhData(datosUdh);
-    setPhoto(foto);
   }, []);
   
   if (!userData || !udhData) return <div>Cargando...</div>;

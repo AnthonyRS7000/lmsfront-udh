@@ -1,16 +1,16 @@
 import { useState, useRef, useEffect } from 'react';
-import './UserDropdown.css';
+import '../css/UserDropdown.css';
 import { useNavigate } from 'react-router-dom';
 
 // Datos del usuario mock
 const getUserDataFromLocalStorage = () => {
-  /*const usuario = JSON.parse(localStorage.getItem("usuario") || "{}");
-  const datosUdh = JSON.parse(localStorage.getItem("datos_udh") || "{}");*/
+  const usuario = JSON.parse(localStorage.getItem("usuario") || "{}");
+  //const datosUdh = JSON.parse(localStorage.getItem("datos_udh") || "{}");
   const foto = localStorage.getItem("foto");
 
   return {
-    /*full_name: `${datosUdh.nombres || usuario.nombres} ${datosUdh.apellido_paterno || usuario.apellidos}`,
-    email: usuario.email || "Correo no disponible",
+    full_name: `${usuario.nombres} ${usuario.apellidos}`,
+    /*email: usuario.email || "Correo no disponible",
     role: usuario.rol || "Invitado",*/
     image: foto || "https://ui-avatars.com/api/?name=Usuario+Invitado&background=6B7280&color=fff",
   };

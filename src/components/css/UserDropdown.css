@@ -4,36 +4,6 @@
   display: inline-block;
 }
 
-/* Botón del usuario en el topbar */
-.topbar-user {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  user-select: none;
-}
-
-.topbar-user:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-
-.topbar-user-avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid #39B49E;
-}
-
-.topbar-user-name {
-  font-weight: 500;
-  color: #333;
-  font-size: 14px;
-}
-
 /* Menú desplegable - Estilo oscuro minimalista */
 .user-dropdown-menu {
   position: absolute;

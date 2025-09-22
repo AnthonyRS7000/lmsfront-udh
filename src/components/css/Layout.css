@@ -462,7 +462,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.25rem 0.5rem;
+  padding: 0rem 0rem;
   border-radius: 0.5rem;
   transition: background-color 0.1s ease;
 }
@@ -476,8 +476,8 @@
 }
 
 .topbar-user-avatar {
-  height: 2rem;
-  width: 2rem;
+  height: 40px;
+  width: 40px;
   border-radius: 50%;
   overflow: hidden;
   background-color: #e5e7eb;
@@ -758,8 +758,8 @@
 }
 
 .user-avatar-copiloto {
-  width: 5rem;
-  height: 5rem;
+  width: 96px;
+  height: 96px;
   margin-bottom: 1rem;
   overflow: hidden;
   border-radius: 50%;
@@ -779,18 +779,19 @@
 
 .user-info-text {
   width: 100%;
-  max-width: 10rem;
+  max-width: auto;
   text-align: center;
 }
 
 .user-name-copiloto {
   font-size: 1.125rem;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 0.5rem;
+  margin-top: 0;
   text-transform: uppercase;
   letter-spacing: 0.3px;
   word-break: break-words;
-  color: #111827;
+  color: #3d3c3b;
   transition: color 0.15s ease;
   line-height: 1.2;
 }
@@ -803,10 +804,11 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 1rem;
-  font-weight: 600;
+  margin: 0 auto;
+  font-size: 20px;
+  font-weight: 500;
   color: #48A6A7;
-  border-bottom: 3px solid #EFB036;
+  border-bottom: 4px solid #EFB036;
   padding-bottom: 0.25rem;
   text-transform: capitalize;
   transition: color 0.15s ease, border-color 0.15s ease;
@@ -842,7 +844,7 @@
 }
 
 .nav-section-header-copiloto:hover {
-  background-color: #f3f4f6;
+  background-color: #e6f2ef;
 }
 
 .dark .nav-section-header-copiloto:hover {
@@ -850,7 +852,7 @@
 }
 
 .nav-section-header-copiloto.active {
-  background-color: #f3f4f6;
+  background-color: #e6f2ef;
 }
 
 .dark .nav-section-header-copiloto.active {
@@ -969,8 +971,8 @@
 }
 
 .nav-submenu-link-copiloto:hover {
-  background-color: #f3f4f6;
-  color: #111827;
+  background-color: #e6f2ef;
+  color: #3d3c3b;
 }
 
 .dark .nav-submenu-link-copiloto:hover {
@@ -979,13 +981,13 @@
 }
 
 .nav-submenu-link-copiloto.active {
-  background-color: #48A6A7;
+  background-color: #5a9e8d;
   color: #ffffff;
   font-weight: 500;
 }
 
 .dark .nav-submenu-link-copiloto.active {
-  background-color: #48A6A7;
+  background-color: #5a9e8d;
   color: #ffffff;
 }
 

@@ -1,6 +1,6 @@
-import { useTheme } from '../hooks/useTheme';
-import TemaClaro from '../assets/icons/temaClaro.svg';
-import TemaOscuro from '../assets/icons/temaOscuro.svg';
+import { useTheme } from '../../hooks/useTheme';
+import TemaClaro from '../../assets/icons/temaClaro.svg';
+import TemaOscuro from '../../assets/icons/temaOscuro.svg';
 
 export default function ThemeToggle() {
   const { theme, setTheme } = useTheme();
