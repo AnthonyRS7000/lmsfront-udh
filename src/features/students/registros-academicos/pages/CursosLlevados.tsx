@@ -1,67 +1,179 @@
-import React, { useState } from 'react';
-import '../css/CursosLlevados.css';
+import React, { useState, useRef } from 'react';
+import '../css/HistorialAcademico.css';
+import { PrinterIcon } from '@heroicons/react/24/outline';
 
-type Course = {
-  no: number;
-  codigo: string;
-  descripcion: string;
-  creditos: number;
-  ciclo: number;
-  nota?: string;
-  fecha?: string;
+interface Curso {
+    codigo: string;
+    nombre: string;
+    ciclo: number;
+    nota: number;
+    prereq?: string;
+    prereq2?: string;
+    nroVecesLlevado: string;
+    especializacion?: string;
+}
+
+const obtenerFechaHora = () => {
+    const fecha = new Date();
+    const opciones: Intl.DateTimeFormatOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const fechaStr = fecha.toLocaleDateString('es-PE', opciones);
+    const horaStr = fecha.toLocaleTimeString('es-PE', { hour12: false });
+    return { fechaStr, horaStr };
 };
 
-const sample: Course[] = [
-  { no: 1, codigo: '04150106', descripcion: 'INFORMÁTICA APLICADA A LA INGENIERÍA', creditos: 3, ciclo: 1, nota: '11', fecha: '27/01/2021' },
-  { no: 2, codigo: '04150105', descripcion: 'INGLÉS I', creditos: 3, ciclo: 1, nota: '14', fecha: '29/01/2021' },
-  { no: 3, codigo: '062101061', descripcion: 'INTRODUCCIÓN A LA INGENIERÍA DE SISTEMAS E INFORMÁTICA', creditos: 3, ciclo: 1, nota: '14', fecha: '06/07/2021' },
-  { no: 4, codigo: '04150101', descripcion: 'LENGUAJE I', creditos: 4, ciclo: 1, nota: '14', fecha: '25/01/2021' },
+const cursosEjemplo: Curso[] = [
+    { codigo: "062101011", nombre: "LENGUAJE I(04 cred.)", ciclo: 1, nota: 11, nroVecesLlevado: "01" },
+    { codigo: "062101021", nombre: "MATEMÁTICA BÁSICA I(04 cred.)", ciclo: 1, nota: 16, nroVecesLlevado: "01" },
+    { codigo: "062101031", nombre: "MÉTODOS Y TÉCNICAS DE ESTUDIO(03 cred.)", ciclo: 1, nota: 12, nroVecesLlevado: "01" },
+    { codigo: "062101041", nombre: "ÉTICA Y LIDERAZGO(03 cred.)", ciclo: 1, nota: 14, nroVecesLlevado: "01" },
+    { codigo: "062101051", nombre: "PSICOLOGÍA GENERAL(03 cred.)", ciclo: 1, nota: 14, nroVecesLlevado: "01" },
+    { codigo: "062101061", nombre: "INTRODUCCIÓN A LA INGENIERÍA DE SISTEMAS E INFORMÁTICA(03 cred.)", ciclo: 1, nota: 12, nroVecesLlevado: "01" },
+    { codigo: "062102011", nombre: "LENGUAJE II(04 cred.)", ciclo: 2, nota: 12, prereq: "062101011", nroVecesLlevado: "01" },
+    { codigo: "062102021", nombre: "MATEMÁTICA BÁSICA II(04 cred.)", ciclo: 2, nota: 16, prereq: "062101021", nroVecesLlevado: "01" },
+    { codigo: "062102031", nombre: "ECOLOGÍA Y PROTECCIÓN DEL MEDIO AMBIENTE(03 cred.)", ciclo: 2, nota: 12, prereq: "062101031", nroVecesLlevado: "01" },
+    { codigo: "062102041", nombre: "SOCIOLOGÍA GENERAL(03 cred.)", ciclo: 2, nota: 14, prereq: "062101051", nroVecesLlevado: "01" },
+    { codigo: "062102051", nombre: "TECNOLOGÍA INFORMÁTICA(02 cred.)", ciclo: 2, nota: 16, prereq: "062101061", nroVecesLlevado: "01" },
+    { codigo: "062102062", nombre: "DESARROLLO PERSONAL(03 cred.)", ciclo: 2, nota: 13, prereq: "062101041", nroVecesLlevado: "01" },
 ];
 
-const CursosLlevados: React.FC = () => {
-  const [codigo, setCodigo] = useState('202210328');
-  const [rows] = useState(sample);
 
-  return (
-    <div className="cursos-llevados-root">
-      <h2 className="cursos-llevados-title">Cursos llevados</h2>
+const HistorialAcademico: React.FC = () => {
+    const [codigo, setCodigo] = useState('2025110403');
+    const [nombre, setNombre] = useState('ARMANDO ROJAS LUNA');
+    const [cargando, setCargando] = useState(false);
+    const [cursos, setCursos] = useState<Curso[]>(cursosEjemplo); 
+    const [cicloFiltro, setCicloFiltro] = useState<string>('');
+    const [busqueda, setBusqueda] = useState<string>('');
+    const [darkMode, setDarkMode] = useState(false);
 
-      <div className="cursos-llevados-filter">
-        <label>Código:</label>
-        <input value={codigo} onChange={e => setCodigo(e.target.value)} />
-        <button className="btn-show">Mostrar</button>
-      </div>
+    // Referencia para scroll al card de resultados
+    const resultadosRef = useRef<HTMLDivElement>(null);
 
-      <div className="cursos-llevados-card table-wrap">
-        <table className="cursos-table">
-          <thead>
-            <tr>
-              <th>Nº</th>
-              <th>Código</th>
-              <th>Descripción</th>
-              <th>Créd.</th>
-              <th>Ciclo</th>
-              <th>Nota</th>
-              <th>Fec.Exa.</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map(r => (
-              <tr key={r.no}>
-                <td>{r.no}</td>
-                <td>{r.codigo}</td>
-                <td className="desc">{r.descripcion}</td>
-                <td>{r.creditos}</td>
-                <td>{r.ciclo}</td>
-                <td>{r.nota}</td>
-                <td>{r.fecha}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
+    // Obtener ciclos únicos para el filtro
+    const ciclosUnicos = Array.from(new Set(cursos.map(c => c.ciclo))).sort((a, b) => a - b);
+
+    // Filtrado de cursos
+    const cursosFiltrados = cursos.filter(curso => {
+        const coincideCiclo = cicloFiltro === '' || String(curso.ciclo) === cicloFiltro;
+        const coincideBusqueda =
+            busqueda.trim() === '' ||
+            curso.nombre.toLowerCase().includes(busqueda.toLowerCase()) ||
+            curso.codigo.includes(busqueda) ||
+            (curso.especializacion && curso.especializacion.toLowerCase().includes(busqueda.toLowerCase()));
+        return coincideCiclo && coincideBusqueda;
+    });
+
+    const handleImprimir = () => {
+        window.print();
+    };
+
+    const { fechaStr, horaStr } = obtenerFechaHora();
+
+    return (
+        <div className="container historial-print">
+            <h2 className="historial-title">Cursos Llevados</h2>
+
+            {/* Card de resultados */}
+            <div className={`historial-card ${darkMode ? 'dark' : ''} historial-card-resultados`} ref={resultadosRef}>
+                <div className="historial-barra-superior">
+                    <div className="historial-nombre-usuario">
+                        <label className="historial-codigo-label">Apellidos y Nombres:</label>
+                        <input
+                            type="text"
+                            value={nombre}
+                            disabled
+                            className="historial-input-disabled historial-input-nombre-auto"
+                            size={Math.max(20, nombre.length + 2)}
+                            style={{ minWidth: '220px', maxWidth: '100%' }}
+                        />
+                    </div>
+                    <div className="historial-filtros-row">
+                        <div>
+                            <label htmlFor="busqueda">Buscar:</label>
+                            <input
+                                id="busqueda"
+                                type="text"
+                                placeholder="Buscar curso, código..."
+                                value={busqueda}
+                                onChange={e => setBusqueda(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="filtro-ciclo">Ciclo:</label>
+                            <select
+                                id="filtro-ciclo"
+                                value={cicloFiltro}
+                                onChange={e => setCicloFiltro(e.target.value)}
+                            >
+                                <option value="">Todos</option>
+                                {ciclosUnicos.map(ciclo => (
+                                    <option key={ciclo} value={ciclo}>{ciclo}</option>
+                                ))}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="historial-tabla-container">
+                    <table className="historial-tabla-cursos">
+                        <thead>
+                            <tr>
+                                <th>CÓDIGO</th>
+                                <th>CURSO</th>
+                                <th>CICLO</th>
+                                <th>NOTA</th>
+                                <th>PREREQ.</th>
+                                <th>PREREQ2.</th>
+                                <th>Nro Veces Llevado</th>
+                                <th>Especialización</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {cargando ? (
+                                <tr>
+                                    <td colSpan={8} className="center">Cargando...</td>
+                                </tr>
+                            ) : cursosFiltrados.length === 0 ? (
+                                <tr>
+                                    <td colSpan={8} className="center">No hay datos para mostrar.</td>
+                                </tr>
+                            ) : (
+                                cursosFiltrados.map((curso, idx) => (
+                                    <tr key={curso.codigo} className={idx % 2 ? 'row-par' : ''}>
+                                        <td>{curso.codigo}</td>
+                                        <td>{curso.nombre}</td>
+                                        <td>{curso.ciclo}</td>
+                                        <td>{curso.nota}</td>
+                                        <td>{curso.prereq || '-'}</td>
+                                        <td>{curso.prereq2 || '-'}</td>
+                                        <td>{curso.nroVecesLlevado}</td>
+                                        <td>{curso.especializacion || '-'}</td>
+                                    </tr>
+                                ))
+                            )}
+                        </tbody>
+                    </table>
+                </div>
+                {/* Mensaje y botón de imprimir */}
+                <div className="historial-mensaje-imprimir">
+                    <div className="historial-mensaje-electivo">
+                        <b>
+                            *Recuerde que también debe llevar cursos electivos para poder culminar su carrera a excepción de derecho.
+                        </b>
+                    </div>
+                    <div className="historial-footer">
+                        <div>
+                            Oficina de Matrícula {fechaStr}. Hora: {horaStr}
+                        </div>
+                        <button className="historial-btn-imprimir" onClick={handleImprimir}>
+                            <PrinterIcon className="historial-icono-impresora" />
+                            Imprimir
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 };
 
-export default CursosLlevados;
+export default HistorialAcademico;
