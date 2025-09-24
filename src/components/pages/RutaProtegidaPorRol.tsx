@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 
 const RutaProtegidaPorRol: React.FC<{ children: React.ReactNode; rolPermitido: string }> = ({ children, rolPermitido }) => {
   const { isAuthenticated, rol } = useAuth();

@@ -2,6 +2,7 @@ import React, { useState, Suspense } from 'react';
 import '../css/TramiteGenerar.css';
 
 import AnulacionNota from '../tramite/pages/AnulacionNota';
+import AnulacionTaller from '../tramite/pages/AnulacionTaller';
 
 const TIPOS_TRAMITE = [
   { value: '0', label: 'Seleccione un tipo de trámite' },
@@ -68,6 +69,63 @@ const TIPOS_TRAMITE = [
 // Se relaciona el value del select con el componente correspondiente
 const FORMULARIOS: Record<string, React.FC> = {
   '0162': AnulacionNota,
+  '0177': AnulacionTaller,
+  '0544': AnulacionNota,
+  '2225': AnulacionNota,
+  '1012': AnulacionNota,
+  '2433': AnulacionNota,
+  '0383': AnulacionNota,
+  '2221': AnulacionNota,
+  '1011': AnulacionNota,
+  '2013': AnulacionNota,
+  '0581': AnulacionNota,
+  '0375': AnulacionNota,
+  '2373': AnulacionNota,
+  '0003': AnulacionNota,
+  '2194': AnulacionNota,
+  '2449': AnulacionNota,
+  '0035': AnulacionNota,
+  '0080': AnulacionNota,
+  '0018': AnulacionNota,
+  '2384': AnulacionNota,
+  '0492': AnulacionNota,
+  '2438': AnulacionNota,
+  /*'1017': 'ConstanciaIngles',
+  '2490': 'ConstanciaInglesServicioPublicoSAP',
+  '0050': 'ConstanciaIngreso',
+  '1296': 'ConstanciaPrimeraMatricula',
+  '0096': 'ConstanciaQuintoSuperior',
+  '0564': 'ConstanciaTercioSuperior',
+  '2324': 'ConvalidacionPracticasPreProfesionales',
+  '1223': 'ConvalidacionCursoInglesServicioPublicoSAP',
+  '0376': 'Convalidaciones',
+  '1371': 'ConvalidacionesAlumnosOtrasUniversidades',
+  '2319': 'DesignacionDocenteAsesorTrabajoSuficienciaProfesional',
+  '1892': 'DesignacionJuradosRevisionTrabajoInvestigacionTesis',
+  '2415': 'DesignacionJuradosRevisionTrabajoSuficienciaProfesional',
+  '2265': 'DesignacionJuradosRevisionInformeFinalTrabajoInvestigacionBachiller',
+  '1955': 'DesignacionJuradosRevisionInformeFinalTrabajoInvestigacionTesis',
+  '1010': 'DesignacionDocenteAsesorTesis',
+  '2003': 'DevolucionDinero',
+  '0220': 'ExamenSubsanacion',
+  '0877': 'ExamenSubsanacionCATP',
+  '2104': 'ExamenSubsanacionSAP',
+  '1009': 'FechaHoraSustentacionTesis',
+  '2446': 'FechaHoraSustentacionTrabajoSuficiencia',
+  '1118': 'LlevarCruceHorarioUltimoCiclo',
+  '2646': 'LlevarExcesoCreditosUltimoSemestre',
+  '0377': 'LlevarCursoDirigido',
+  '0360': 'LlevarCursoParaleloEgresar',
+  '1340': 'PostergacionEstudios',
+  '2226': 'ProformaEstudiosPregrado',
+  '0333': 'Reincorporaciones',
+  '1331': 'ReinicioInscripcion',
+  '0534': 'RenunciaIngresoCarreraProfesional',
+  '0442': 'ReservaMatricula',
+  '1398': 'RetiroCurso',
+  '0382': 'RetiroSemestre',
+  '1926': 'TransferenciaPago',
+  '0986': 'ValidezReincorporacion',*/
 };
 
 const TramiteDocumentario: React.FC = () => {

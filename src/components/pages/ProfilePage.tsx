@@ -1,28 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import './ProfilePage.css';
+import '../css/ProfilePage.css';
 
 const ProfilePage = () => {
   const [userData, setUserData] = useState<any>(null);
   const [udhData, setUdhData] = useState<any>(null);
-  const [photo, setPhoto] = useState<string | null>(null);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
   const [photoModalOpen, setPhotoModalOpen] = useState(false);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const [photoFile, setPhotoFile] = useState<File | null>(null);
   const [photoError, setPhotoError] = useState<string | null>(null);
+  const [photo, setPhoto] = useState<string | null>(null);
 
   useEffect(() => {
     // Obtener datos del localStorage
     const usuario = JSON.parse(localStorage.getItem("usuario") || "{}");
     const datosUdh = JSON.parse(localStorage.getItem("datos_udh") || "{}");
-    const foto = localStorage.getItem("foto");
 
-    setUserData(usuario);
-    setUdhData(datosUdh);
-    setPhoto(foto);
-    // inicializar número telefónico si existe
-    if (datosUdh && datosUdh.celular) setPhoneNumber(datosUdh.celular);
+  setUserData(usuario);
+  setUdhData(datosUdh);
+  // inicializar foto si existe en usuario o datos_udh
+  const foto = usuario?.foto || datosUdh?.foto || null;
+  if (foto) setPhoto(foto);
+  // inicializar número telefónico si existe
+  if (datosUdh && datosUdh.celular) setPhoneNumber(datosUdh.celular);
   }, []);
   
   if (!userData || !udhData) return <div>Cargando...</div>;

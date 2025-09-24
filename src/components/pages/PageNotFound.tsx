@@ -1,5 +1,5 @@
 import React from "react";
-import "./PageNotFound.css";
+import "../css/PageNotFound.css";
 
 const PageNotFound: React.FC = () => (
   <div className="page-notfound-root">

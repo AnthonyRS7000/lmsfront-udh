@@ -1,7 +1,7 @@
 import { Bars3Icon, BellIcon } from '@heroicons/react/24/outline';
 import ThemeToggle from './ThemeToggle';
 
-import UserDropdown from '../features/students/UserDropdown';
+import UserDropdown from './UserDropdown';
 
 interface TopbarProps {
   onToggleSidebar: () => void;

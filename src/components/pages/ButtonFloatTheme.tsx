@@ -1,5 +1,5 @@
 import { SunIcon, MoonIcon } from '@heroicons/react/24/outline';
-import { useTheme } from '../hooks/useTheme';
+import { useTheme } from '../../hooks/useTheme';
 
 export default function ButtonFloatTheme() {
   const { isDark, toggleTheme } = useTheme();
