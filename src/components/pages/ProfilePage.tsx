@@ -5,18 +5,25 @@ const ProfilePage = () => {
   const [userData, setUserData] = useState<any>(null);
   const [udhData, setUdhData] = useState<any>(null);
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [saveMessage, setSaveMessage] = useState<string | null>(null);
   const [photoModalOpen, setPhotoModalOpen] = useState(false);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const [photoFile, setPhotoFile] = useState<File | null>(null);
   const [photoError, setPhotoError] = useState<string | null>(null);
+  const [photo, setPhoto] = useState<string | null>(null);
 
   useEffect(() => {
     // Obtener datos del localStorage
     const usuario = JSON.parse(localStorage.getItem("usuario") || "{}");
     const datosUdh = JSON.parse(localStorage.getItem("datos_udh") || "{}");
 
-    setUserData(usuario);
-    setUdhData(datosUdh);
+  setUserData(usuario);
+  setUdhData(datosUdh);
+  // inicializar foto si existe en usuario o datos_udh
+  const foto = usuario?.foto || datosUdh?.foto || null;
+  if (foto) setPhoto(foto);
+  // inicializar número telefónico si existe
+  if (datosUdh && datosUdh.celular) setPhoneNumber(datosUdh.celular);
   }, []);
   
   if (!userData || !udhData) return <div>Cargando...</div>;
@@ -50,8 +57,27 @@ const ProfilePage = () => {
   };
 
   const handlePhoneSubmit = () => {
-    // Aquí puedes agregar lógica para guardar el número
-    console.log('Número actualizado:', phoneNumber);
+    // Validación simple: mínimo 6 dígitos
+    const cleaned = (phoneNumber || '').trim();
+    if (!cleaned) {
+      setSaveMessage('Ingrese un número válido');
+      setTimeout(() => setSaveMessage(null), 3000);
+      return;
+    }
+
+    // Actualizar localStorage (datos_udh) y estado
+    const datos = { ...(udhData || {}), celular: cleaned };
+    try {
+      localStorage.setItem('datos_udh', JSON.stringify(datos));
+      setUdhData(datos);
+      setSaveMessage('Número actualizado');
+      setTimeout(() => setSaveMessage(null), 3000);
+      console.log('Número actualizado:', cleaned);
+    } catch (err) {
+      console.error(err);
+      setSaveMessage('Error al guardar');
+      setTimeout(() => setSaveMessage(null), 3000);
+    }
   };
 
   return (
@@ -178,6 +204,10 @@ const ProfilePage = () => {
               <div className="profile-help-text">
                 Puedes modificar este campo
               </div>
+              <div className="profile-save-row">
+                <button className="profile-save-btn" onClick={handlePhoneSubmit} disabled={phoneNumber === (udhData && udhData.celular)}>Actualizar</button>
+                <div className="profile-save-note">{saveMessage}</div>
+              </div>
             </div>
           </div>
 
@@ -196,7 +226,13 @@ const ProfilePage = () => {
                 </div>
                 <div className="photo-modal-body">
                   <div className="photo-preview">
-                    {photoPreview ? <img src={photoPreview} alt="Preview" /> : <div className="photo-placeholder">Vista previa</div>}
+                    {photoPreview ? (
+                      <img src={photoPreview} alt="Preview" />
+                    ) : photo ? (
+                      <img src={photo} alt="Foto actual" />
+                    ) : (
+                      <div className="photo-placeholder">Vista previa</div>
+                    )}
                   </div>
                   <div className="photo-controls">
                     <input type="file" accept="image/*" onChange={onPhotoSelected} />
@@ -226,6 +262,21 @@ const ProfilePage = () => {
             <span className="info-text">
               <strong>¡Importante!</strong> Mantén tu número celular actualizado para recibir notificaciones.
             </span>
+          </div>
+          {/* Sección: Invitación a completar ficha socioeconómica */}
+          <div className="profile-ficha-invite">
+            <div className="ficha-invite-card">
+              <div className="ficha-invite-left">
+                <div className="ficha-invite-icon">📋</div>
+                <div className="ficha-invite-copy">
+                  <div className="ficha-invite-title">Actualiza tu ficha socioeconómica</div>
+                  <div className="ficha-invite-sub">Mantén tus datos al día para acceder a beneficios y trámites.</div>
+                </div>
+              </div>
+              <div className="ficha-invite-actions">
+                <button className="btn-primary ficha-open-btn" onClick={() => { window.location.href = '/estudiante/ficha-socioeconomica'; }}>Completar ficha</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

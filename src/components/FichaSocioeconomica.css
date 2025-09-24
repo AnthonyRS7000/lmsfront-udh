@@ -1,0 +1,98 @@
+/* Estilos diseñados para recrear la Ficha Socioeconómica (imagen legacy) */
+.ficha-root { padding: 24px; font-family: Arial, Helvetica, sans-serif;
+  /* Theme variables scoped to the ficha only to avoid leaking the celeste to other views */
+  --bg: #0f1720;
+  --panel-bg: #bfe6ec;
+  --panel-border: #0b6b8a;
+  --text-primary: #07223b;
+  --header-blue: #0b6b8a;
+  --banner-yellow: #ffef57;
+}
+.ficha-container { max-width: 980px; margin: 0 auto; }
+
+/* Variant themes scoped inside the ficha. If your app toggles a .theme-dark or .theme-light class
+   on a parent element, prefer adding that class to the .ficha-root container instead of globally. */
+.ficha-root.theme-dark {
+  --bg: #0f1720;
+  --panel-bg: #bfe6ec;
+  --panel-border: #0b6b8a;
+  --text-primary: #e6eef3;
+  --header-blue: #063f57;
+  --banner-yellow: #ffef57;
+}
+.ficha-root.theme-light {
+  --bg: #ffffff;
+  --panel-bg: #dff4f6;
+  --panel-border: #0b6b8a;
+  --text-primary: #07223b;
+  --header-blue: #0b6b8a;
+  --banner-yellow: #ffef57;
+}
+
+.ficha-panel-outer { border: 3px solid #fff; box-shadow: 0 0 0 2px rgba(0,0,0,0.05) inset; }
+.ficha-header-blue { display:flex; align-items:center; background:var(--header-blue); color:#fff; padding:10px; }
+.ficha-header-blue .notice-red { background: #a90000; color: #fff; padding:6px 8px; margin-right:12px; font-size:13px; }
+.ficha-header-blue .title-big { font-size:28px; margin-left:auto; margin-right:auto; }
+
+.ficha-banner-yellow { background: var(--banner-yellow); color:var(--text-primary); padding:10px 12px; font-weight:700; }
+
+.ficha-panel { background: var(--panel-bg); border-top: 4px solid var(--panel-border); color: var(--text-primary); border: 1px solid rgba(255,255,255,0.8); }
+
+/* Panel B: mantener mismo fondo que A y eliminar borde/separación para continuidad */
+.ficha-panel-b { background: var(--panel-bg); border: none; margin-top: 0; box-shadow: none; }
+.ficha-panel-b .ficha-header-blue { background: transparent; }
+.ficha-panel-b h3 { color: #073741; }
+
+.ficha-row-table { display:grid; grid-template-columns: 40px 1fr; align-items:center; border-bottom:1px solid rgba(255,255,255,0.25); }
+.ficha-row-table.header-row { padding: 8px 12px; }
+.col-a { padding-left:6px; font-weight:700; }
+.col-main { padding: 8px 6px; }
+.meta { padding-bottom:8px; }
+.ficha-panel h3 { margin: 0; color: #073741; font-size:20px; border-bottom: 1px solid rgba(255,255,255,0.35); padding:8px 0 12px 0; }
+
+.legacy-table { display:flex; flex-direction:column; gap:0; padding:8px; }
+.legacy-row { display:grid; /* 5 columnas: indice | label | pequeño control | campo principal | campo lateral */
+  grid-template-columns: 36px 220px 120px 1fr 140px; gap:8px; align-items:start; border-top:2px solid rgba(255,255,255,0.95); padding:8px 12px; }
+.legacy-row:first-of-type { border-top: none; }
+.cell { padding:2px 6px; }
+.cell.index { color:var(--text-primary); font-weight:700; font-size:13px; text-align:left; }
+.cell.label { font-weight:700; color:var(--text-primary); font-size:13px; }
+
+.muted-label { display:block; font-size:12px; color:#073741; margin-bottom:6px; }
+.muted { font-size:12px; color:#073741; margin-top:6px; }
+
+/* Inputs y selects con estilo clásico -> blanco sobre panel celeste */
+.cell.field input, .cell.field select { background:#fff; border:1px solid rgba(0,0,0,0.18); padding:6px 8px; border-radius:3px; color:#07223b; font-size:13px; display:block; width:100%; box-sizing:border-box; }
+.cell.field select { height:30px; }
+
+/* Fecha: grupos de selects inline y más compactos */
+.legacy-row .cell.field select { margin-right:8px; }
+.legacy-row .cell.field select:nth-of-type(1), .legacy-row .cell.field select:nth-of-type(2), .legacy-row .cell.field select:nth-of-type(3) { max-width:90px; display:inline-block; }
+
+/* Small controls (third column) should be narrower and centered vertically */
+.legacy-row .cell.field:nth-child(3) input, .legacy-row .cell.field:nth-child(3) select { max-width:110px; }
+
+/* When a field spans multiple columns (manual overrides from JSX) keep it full width */
+.cell.field[style] input, .cell.field[style] select { width:100%; }
+
+.actions { display:flex; gap:8px; margin-top:10px; }
+.btn-primary { background:var(--header-blue); color:#fff; border:none; padding:6px 10px; border-radius:4px; cursor:pointer; font-size:13px; }
+.btn-secondary { background:#e6eef3; color:var(--text-primary); border:1px solid rgba(0,0,0,0.06); padding:6px 10px; border-radius:4px; cursor:pointer; font-size:13px; }
+
+/* Theme toggle */
+.theme-toggle { background: transparent; border: none; color: #fff; font-size:18px; margin-right:8px; cursor:pointer; }
+
+/* Declaración final y botones grandes */
+.aceptar-btn, .cancelar-btn { display:flex; flex-direction:column; align-items:center; gap:6px; border:none; background:transparent; cursor:pointer; }
+.aceptar-btn { color:#0b6b8a; }
+.cancelar-btn { color:#0b6b8a; }
+.aceptar-btn .icon-save, .cancelar-btn .icon-cancel { font-size:36px; background:#eef6f7; border-radius:6px; padding:12px; border:1px solid rgba(0,0,0,0.06); }
+
+@media (max-width: 600px) {
+  .aceptar-btn .icon-save, .cancelar-btn .icon-cancel { font-size:28px; padding:8px; }
+}
+
+@media (max-width: 900px) {
+  .legacy-row { grid-template-columns: 36px 1fr; }
+  .cell.label, .cell.field { grid-column: 2 / 3; }
+}

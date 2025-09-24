@@ -43,6 +43,8 @@ import {
   TramiteGradosTitulos as TramiteGradosTitulosTitulacion
 } from "./features/students/titulacion-graduados";
 
+import FichaSocioeconomica from './components/FichaSocioeconomica';
+
 // Servicios Universitarios
 import {
   CarnetSunedu,
@@ -139,6 +141,9 @@ function App() {
             {/* Trámite */}
             <Route path="/estudiante/tramite/generar" element={<TramiteGenerar />} />
             <Route path="/estudiante/tramite/seguimiento" element={<TramiteSeguimiento />} />
+
+            {/* Ficha socioeconómica */}
+            <Route path="/estudiante/ficha-socioeconomica" element={<FichaSocioeconomica />} />
 
             {/* Soporte y Defensoría */}
             <Route path="/estudiante/soporte/consultas-quejas" element={<ConsultasQuejas />} />
