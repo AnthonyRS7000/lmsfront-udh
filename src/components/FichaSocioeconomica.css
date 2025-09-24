@@ -5,6 +5,8 @@
   --panel-bg: #bfe6ec;
   --panel-border: #0b6b8a;
   --text-primary: #07223b;
+  /* muted helper text used by .muted-label and .muted (legible both themes) */
+  --muted: rgba(7,34,59,0.72);
   --header-blue: #0b6b8a;
   --banner-yellow: #ffef57;
 }
@@ -17,6 +19,8 @@
   --panel-bg: #bfe6ec;
   --panel-border: #0b6b8a;
   --text-primary: #e6eef3;
+  /* use Tailwind gray-500 for muted helper labels in dark theme */
+  --muted: #6B7280;
   --header-blue: #063f57;
   --banner-yellow: #ffef57;
 }
@@ -25,8 +29,23 @@
   --panel-bg: #dff4f6;
   --panel-border: #0b6b8a;
   --text-primary: #07223b;
+  /* slightly transparent dark muted for helper labels in light theme */
+  --muted: rgba(7,34,59,0.72);
   --header-blue: #0b6b8a;
   --banner-yellow: #ffef57;
+}
+
+/* Support common ways apps apply a dark theme on an ancestor element
+   so the ficha adapts even when the class/attribute isn't on .ficha-root itself */
+.theme-dark .ficha-root,
+body.theme-dark .ficha-root,
+html.theme-dark .ficha-root,
+[data-theme="dark"] .ficha-root,
+html[data-theme="dark"] .ficha-root,
+.dark .ficha-root,
+.dark-theme .ficha-root {
+  /* lighter muted color for readability on dark backgrounds */
+  --muted: #6B7280;
 }
 
 .ficha-panel-outer { border: 3px solid #fff; box-shadow: 0 0 0 2px rgba(0,0,0,0.05) inset; }
@@ -59,8 +78,8 @@
 .cell.index { color:var(--text-primary); font-weight:700; font-size:13px; text-align:left; }
 .cell.label { font-weight:700; color:var(--text-primary); font-size:13px; }
 
-.muted-label { display:block; font-size:12px; color:#073741; margin-bottom:6px; }
-.muted { font-size:12px; color:#073741; margin-top:6px; }
+.muted-label { display:block; font-size:12px; color:var(--muted); margin-bottom:6px; }
+.muted { font-size:12px; color:var(--muted); margin-top:6px; }
 
 /* Inputs y selects con estilo clásico -> blanco sobre panel celeste */
 .cell.field input, .cell.field select { background:#fff; border:1px solid rgba(0,0,0,0.18); padding:6px 8px; border-radius:3px; color:#07223b; font-size:13px; display:block; width:100%; box-sizing:border-box; }
@@ -106,6 +125,58 @@
   .cell.label, .cell.field { grid-column: 2 / 3; }
 }
 
+/* Modal styles used by Sección F editor */
+.ficha-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.35); display:flex; align-items:center; justify-content:center; z-index:1200; }
+.ficha-modal { background: var(--panel-bg); border:1px solid rgba(0,0,0,0.08); padding:18px; width:760px; max-width:calc(100% - 32px); border-radius:6px; box-shadow:0 8px 24px rgba(0,0,0,0.12); color:var(--text-primary); }
+.ficha-modal h3 { margin:0 0 12px 0; }
+.modal-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap:12px 24px; }
+.modal-grid label { display:flex; align-items:center; gap:8px; padding:6px 8px; background: rgba(255,255,255,0.6); border-radius:4px; }
+
+@media (max-width:700px) {
+  .ficha-modal { width:92%; }
+  .modal-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* Force light appearance inside the modal regardless of app theme.
+   We use explicit light colors and some !important rules to override
+   any dark-theme rules applied on ancestors. */
+.ficha-modal {
+  background: #dff4f6 !important; /* panel light */
+  color: #07223b !important; /* dark text */
+  border-color: #0b6b8a !important;
+}
+.ficha-modal, .ficha-modal * {
+  color: #07223b !important;
+}
+.ficha-modal .modal-grid label {
+  background: #ffffff !important;
+  color: #07223b !important;
+  border: 1px solid rgba(0,0,0,0.06) !important;
+}
+.ficha-modal input[type="checkbox"] {
+  accent-color: #0b6b8a; /* modern browsers */
+}
+.ficha-modal input, .ficha-modal select, .ficha-modal textarea {
+  background: #ffffff !important;
+  color: #07223b !important;
+  border: 1px solid rgba(0,0,0,0.12) !important;
+}
+.ficha-modal .btn-primary {
+  background: #0b6b8a !important;
+  color: #fff !important;
+  border: none !important;
+}
+.ficha-modal .btn-secondary {
+  background: #e6eef3 !important;
+  color: #07223b !important;
+  border: 1px solid rgba(0,0,0,0.06) !important;
+}
+
+/* Ensure muted labels inside modal are legible and don't pick dark-theme overrides */
+.ficha-modal .muted-label, .ficha-modal .muted {
+  color: rgba(7,34,59,0.72) !important;
+}
+
 /* Row-lugar: Departamento / Provincia / Distrito stacked visual style
    Each .cell.field in this row should show:
    - .muted-label (small header)
@@ -116,3 +187,75 @@
 .legacy-row.row-lugar .cell.field .muted-label { margin:0 0 4px 0; font-size:13px; }
 .legacy-row.row-lugar .cell.field select { min-width:140px; }
 .legacy-row.row-lugar .cell.field .selected-display { margin-top:4px; }
+
+/* Generic stacked field: label above control (used in several rows like emergencia and doc. identification) */
+.cell.field.stacked { display:flex; flex-direction:column; gap:6px; align-items:flex-start; }
+.cell.field.stacked .muted-label { margin:0 0 4px 0; font-size:13px; }
+.cell.field.stacked input,
+.cell.field.stacked select { min-width:140px; box-sizing:border-box; }
+.cell.field.stacked .selected-display { margin-top:4px; }
+
+/* Sección D - Servicios: presentar las 3 celdas de servicios como columnas
+   formateadas (no wrapping) para que los checkbox y sus labels queden en
+   columnas similares a la tabla legacy (imagen 1). */
+.legacy-row.servicios-row { grid-template-columns: 36px 260px 1fr 1fr 1fr; }
+.legacy-row.servicios-row .cell.field { display:flex; flex-direction:column; gap:8px; align-items:flex-start; }
+.legacy-row.servicios-row .cell.field label { display:flex; align-items:center; gap:8px; white-space:nowrap; color: var(--text-primary); }
+.legacy-row.servicios-row .cell.field label input[type="checkbox"] { margin-right:6px; transform:scale(1); }
+
+/* For smaller screens, stack like other rows but keep labels readable */
+@media (max-width: 900px) {
+  .legacy-row.servicios-row { grid-template-columns: 36px 1fr; }
+  .legacy-row.servicios-row .cell.field { flex-direction:row; flex-wrap:wrap; gap:12px; }
+  .legacy-row.servicios-row .cell.field label { white-space:normal; }
+}
+
+/* Row for E-1 (padres): display checkboxes inline and aligned with the label
+   so it resembles the compact table-like layout (image 2). */
+.legacy-row.padres-row { grid-template-columns: 36px 220px 1fr 220px 1fr; }
+.legacy-row.padres-row .cell.field { display:flex; align-items:center; gap:12px; }
+.legacy-row.padres-row .cell.field label { display:inline-flex; align-items:center; gap:8px; color: var(--text-primary); }
+.legacy-row.padres-row .cell.field label input[type="checkbox"] { transform:scale(1); }
+
+@media (max-width: 900px) {
+  .legacy-row.padres-row { grid-template-columns: 36px 1fr; }
+  .legacy-row.padres-row .cell.field { justify-content:flex-start; }
+}
+
+/* ------------------------------------------------------------------
+   Accessibility tweak: ensure helper/muted labels are legible in dark
+   themes. Some apps apply dark mode via different ancestor selectors
+   (body.theme-dark, .theme-dark, .dark, etc.). Add high-specificity
+   overrides so `.muted-label` and `.muted` use Tailwind gray-500 and
+   remain readable even when the global theme is dark. Use !important
+   to avoid accidental overrides from upstream theme rules.
+   ------------------------------------------------------------------ */
+.ficha-root.theme-dark .muted-label,
+.theme-dark .ficha-root .muted-label,
+body.theme-dark .ficha-root .muted-label,
+html.theme-dark .ficha-root .muted-label,
+.dark .ficha-root .muted-label,
+.dark-theme .ficha-root .muted-label {
+  color: #6B7280 !important; /* gray-500 */
+}
+
+.ficha-root.theme-dark .muted,
+.theme-dark .ficha-root .muted,
+body.theme-dark .ficha-root .muted,
+html.theme-dark .ficha-root .muted,
+.dark .ficha-root .muted,
+.dark-theme .ficha-root .muted {
+  color: #6B7280 !important; /* gray-500 */
+}
+
+/* Also ensure checkbox labels and inline labels inside .cell.field are readable
+   in dark themes (many labels are plain <label> elements containing the checkbox
+   and the text). Force gray-500 for those label texts only in dark variants. */
+.ficha-root.theme-dark .cell.field label,
+.theme-dark .ficha-root .cell.field label,
+body.theme-dark .ficha-root .cell.field label,
+html.theme-dark .ficha-root .cell.field label,
+.dark .ficha-root .cell.field label,
+.dark-theme .ficha-root .cell.field label {
+  color: #6B7280 !important;
+}

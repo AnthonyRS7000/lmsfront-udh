@@ -79,16 +79,12 @@ const FichaSocioeconomica: React.FC = () => {
   const onChange = (k: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setState(prev => ({ ...prev, [k]: e.target.value }));
   };
-
   
 
   const onToggleServicio = (key: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
     setState(prev => ({ ...prev, serviciosVivienda: { ...prev.serviciosVivienda, [key]: e.target.checked } }));
   };
 
-  const onToggleAptitud = (key: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
-    setState(prev => ({ ...prev, aptitudes: { ...prev.aptitudes, [key]: e.target.checked } } as any));
-  };
 
   const onChangeAptitud = (k: string) => (e: React.ChangeEvent<HTMLSelectElement>) => {
     setState(prev => ({ ...prev, aptitudes: { ...prev.aptitudes, [k]: e.target.value } } as any));
@@ -97,6 +93,31 @@ const FichaSocioeconomica: React.FC = () => {
   const onChangeEtnica = (k: string) => (e: React.ChangeEvent<HTMLSelectElement>) => {
     setState(prev => ({ ...prev, etnica: { ...prev.etnica, [k]: e.target.value } } as any));
   };
+
+  // Modal state for Sección F1 (Actividad Deportiva)
+  const [showModalF1, setShowModalF1] = useState(false);
+  const [modalAptitudes, setModalAptitudes] = useState(() => ({ ...initial.aptitudes }));
+
+  const openModalF1 = () => {
+    setModalAptitudes({ ...state.aptitudes });
+    setShowModalF1(true);
+  };
+  const closeModalF1 = () => setShowModalF1(false);
+  const toggleModalApt = (k: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    setModalAptitudes(prev => ({ ...prev, [k]: e.target.checked }));
+  };
+  const saveModalF1 = () => {
+    setState(prev => ({ ...prev, aptitudes: { ...prev.aptitudes, ...modalAptitudes } } as any));
+    setShowModalF1(false);
+  };
+
+  // Modal state for Sección F2 (Clubes)
+  const [showModalF2, setShowModalF2] = useState(false);
+  const [modalClubs, setModalClubs] = useState(() => ({ ...initial.aptitudes }));
+  const openModalF2 = () => { setModalClubs({ ...state.aptitudes }); setShowModalF2(true); };
+  const closeModalF2 = () => setShowModalF2(false);
+  const toggleModalClub = (k: string) => (e: React.ChangeEvent<HTMLInputElement>) => { setModalClubs(prev => ({ ...prev, [k]: e.target.checked })); };
+  const saveModalF2 = () => { setState(prev => ({ ...prev, aptitudes: { ...prev.aptitudes, ...modalClubs } } as any)); setShowModalF2(false); };
 
   const guardar = () => {
     localStorage.setItem('ficha_socioeconomica', JSON.stringify(state));
@@ -128,6 +149,53 @@ const FichaSocioeconomica: React.FC = () => {
               </div>
             </div>
 
+            {/* Modal para editar F1 */}
+            {showModalF1 && (
+              <div className="ficha-modal-overlay" role="dialog" aria-modal="true">
+                <div className="ficha-modal">
+                  <h3>Editar - Tipo de Actividad deportiva</h3>
+                  <div className="modal-grid">
+                    <label><input type="checkbox" checked={modalAptitudes.ningunoDeporte} onChange={toggleModalApt('ningunoDeporte')} /> Ninguno</label>
+                    <label><input type="checkbox" checked={modalAptitudes.voley} onChange={toggleModalApt('voley')} /> Vóley</label>
+                    <label><input type="checkbox" checked={modalAptitudes.natacion} onChange={toggleModalApt('natacion')} /> Natación</label>
+
+                    <label><input type="checkbox" checked={modalAptitudes.futbol} onChange={toggleModalApt('futbol')} /> Futbol</label>
+                    <label><input type="checkbox" checked={modalAptitudes.tennis} onChange={toggleModalApt('tennis')} /> Tennis</label>
+                    <label><input type="checkbox" checked={modalAptitudes.ciclismo} onChange={toggleModalApt('ciclismo')} /> Ciclismo</label>
+
+                    <label><input type="checkbox" checked={modalAptitudes.basquet} onChange={toggleModalApt('basquet')} /> Básquet</label>
+                    <label><input type="checkbox" checked={modalAptitudes.atletismo} onChange={toggleModalApt('atletismo')} /> Atletismo</label>
+                    <label><input type="checkbox" checked={modalAptitudes.otrosDeporte} onChange={toggleModalApt('otrosDeporte')} /> Otros</label>
+                  </div>
+                  <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end', marginTop: 12 }}>
+                    <button type="button" className="btn-secondary" onClick={closeModalF1}>Cancelar</button>
+                    <button type="button" className="btn-primary" onClick={saveModalF1}>Guardar</button>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {showModalF2 && (
+              <div className="ficha-modal-overlay" role="dialog" aria-modal="true">
+                <div className="ficha-modal">
+                  <h3>Editar - ¿Pertenece a algún club?</h3>
+                  <div className="modal-grid">
+                    <label><input type="checkbox" checked={modalClubs.ningunoClub} onChange={toggleModalClub('ningunoClub')} /> Ninguno</label>
+                    <label><input type="checkbox" checked={modalClubs.deportivoClub} onChange={toggleModalClub('deportivoClub')} /> Deportivo</label>
+                    <label><input type="checkbox" checked={modalClubs.religiosoClub} onChange={toggleModalClub('religiosoClub')} /> Religioso</label>
+
+                    <label><input type="checkbox" checked={modalClubs.culturalClub} onChange={toggleModalClub('culturalClub')} /> Cultural</label>
+                    <label><input type="checkbox" checked={modalClubs.artisticoClub} onChange={toggleModalClub('artisticoClub')} /> Artístico</label>
+                  </div>
+                  <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end', marginTop: 12 }}>
+                    <button type="button" className="btn-secondary" onClick={closeModalF2}>Cancelar</button>
+                    <button type="button" className="btn-primary" onClick={saveModalF2}>Guardar</button>
+                  </div>
+                </div>
+              </div>
+            )}
+
+        
             <form className="legacy-table">
               {/* Row 1 */}
               <div className="legacy-row row-1">
@@ -149,7 +217,7 @@ const FichaSocioeconomica: React.FC = () => {
               <div className="legacy-row">
                 <div className="cell index">2</div>
                 <div className="cell label">En caso de emergencia:</div>
-                <div className="cell field"><label className="muted-label">Nombre de la persona(emergencia):</label><input value={state.emergenciaNombre} onChange={onChange('emergenciaNombre')} /></div>
+                <div className="cell field stacked"><label className="muted-label">Nombre de la persona(emergencia):</label><input value={state.emergenciaNombre} onChange={onChange('emergenciaNombre')} /></div>
                 <div className="cell label">Teléfono (emergencia)</div>
                 <div className="cell field"><input value={state.emergenciaTelefono} onChange={onChange('emergenciaTelefono')} /></div>
               </div>
@@ -158,9 +226,9 @@ const FichaSocioeconomica: React.FC = () => {
               <div className="legacy-row">
                 <div className="cell index">3</div>
                 <div className="cell label">Doc. de Identificación</div>
-                <div className="cell field"><label className="muted-label">Tipo de Documento Id:</label><select value={state.documentoTipo} onChange={onChange('documentoTipo')}><option>DNI</option><option>CE</option></select></div>
-                <div className="cell field"><label className="muted-label">UBIGEO DNI:</label><input value={state.ubigeo} onChange={onChange('ubigeo')} /></div>
-                <div className="cell field"><label className="muted-label">N° de Documento</label><input value={state.documentoNumero} onChange={onChange('documentoNumero')} /></div>
+                <div className="cell field stacked"><label className="muted-label">Tipo de Documento Id:</label><select value={state.documentoTipo} onChange={onChange('documentoTipo')}><option>DNI</option><option>CE</option></select></div>
+                <div className="cell field stacked"><label className="muted-label">UBIGEO DNI:</label><input value={state.ubigeo} onChange={onChange('ubigeo')} /></div>
+                <div className="cell field stacked"><label className="muted-label">N° de Documento</label><input value={state.documentoNumero} onChange={onChange('documentoNumero')} /></div>
               </div>
 
               {/* Row 4 */}
@@ -398,7 +466,7 @@ const FichaSocioeconomica: React.FC = () => {
             </div>
 
             <form className="legacy-table" aria-label="Caracteristicas Vivienda">
-              <div className="legacy-row">
+              <div className="legacy-row servicios-row">
                 <div className="cell index">1</div>
                 <div className="cell label">Servicios con que dispone su vivienda</div>
                 <div className="cell field">
@@ -436,7 +504,7 @@ const FichaSocioeconomica: React.FC = () => {
             </div>
 
             <form className="legacy-table" aria-label="Caracteristicas Parentales">
-              <div className="legacy-row">
+              <div className="legacy-row padres-row">
                 <div className="cell index">1</div>
                 <div className="cell label">¿Viven sus padres?</div>
                 <div className="cell field">
@@ -484,34 +552,34 @@ const FichaSocioeconomica: React.FC = () => {
               <div className="legacy-row">
                 <div className="cell index">1</div>
                 <div className="cell label">Tipo de Actividad deportiva que practica</div>
-                <div className="cell field">
-                  <label><input type="checkbox" checked={state.aptitudes.ningunoDeporte} onChange={onToggleAptitud('ningunoDeporte')} /> Ninguno</label>
-                  <label style={{ marginLeft:12 }}><input type="checkbox" checked={state.aptitudes.voley} onChange={onToggleAptitud('voley')} /> Vóley</label>
-                  <label style={{ marginLeft:12 }}><input type="checkbox" checked={state.aptitudes.natacion} onChange={onToggleAptitud('natacion')} /> Natación</label>
-                </div>
-                <div className="cell field">
-                  <label><input type="checkbox" checked={state.aptitudes.futbol} onChange={onToggleAptitud('futbol')} /> Futbol</label>
-                  <label style={{ marginLeft:12 }}><input type="checkbox" checked={state.aptitudes.tennis} onChange={onToggleAptitud('tennis')} /> Tennis</label>
-                  <label style={{ marginLeft:12 }}><input type="checkbox" checked={state.aptitudes.ciclismo} onChange={onToggleAptitud('ciclismo')} /> Ciclismo</label>
-                </div>
-                <div className="cell field">
-                  <label><input type="checkbox" checked={state.aptitudes.basquet} onChange={onToggleAptitud('basquet')} /> Básquet</label>
-                  <label style={{ marginLeft:12 }}><input type="checkbox" checked={state.aptitudes.atletismo} onChange={onToggleAptitud('atletismo')} /> Atletismo</label>
-                  <label style={{ marginLeft:12 }}><input type="checkbox" checked={state.aptitudes.otrosDeporte} onChange={onToggleAptitud('otrosDeporte')} /> Otros</label>
+                <div className="cell field" style={{ gridColumn: '3 / 6', display: 'flex', alignItems: 'center', gap: 12 }}>
+                  <div style={{ color: 'var(--text-primary)', opacity: 0.9 }}>
+                    {state.aptitudes.ningunoDeporte ? 'Ninguno' : ''}
+                    {state.aptitudes.voley ? (state.aptitudes.ningunoDeporte ? ', Vóley' : 'Vóley') : ''}
+                    {state.aptitudes.natacion ? ', Natación' : ''}
+                    {state.aptitudes.futbol ? ( (state.aptitudes.ningunoDeporte || state.aptitudes.voley || state.aptitudes.natacion) ? ', Futbol' : 'Futbol') : ''}
+                    {state.aptitudes.tennis ? ', Tennis' : ''}
+                    {state.aptitudes.ciclismo ? ', Ciclismo' : ''}
+                    {state.aptitudes.basquet ? ', Básquet' : ''}
+                    {state.aptitudes.atletismo ? ', Atletismo' : ''}
+                    {state.aptitudes.otrosDeporte ? ', Otros' : ''}
+                  </div>
+                  <button type="button" className="btn-secondary" onClick={openModalF1}>Editar</button>
                 </div>
               </div>
 
               <div className="legacy-row">
                 <div className="cell index">2</div>
                 <div className="cell label">¿Pertenece usted a algún tipo de club?</div>
-                <div className="cell field">
-                  <label><input type="checkbox" checked={state.aptitudes.ningunoClub} onChange={onToggleAptitud('ningunoClub')} /> Ninguno</label>
-                  <label style={{ marginLeft:12 }}><input type="checkbox" checked={state.aptitudes.deportivoClub} onChange={onToggleAptitud('deportivoClub')} /> Deportivo</label>
-                  <label style={{ marginLeft:12 }}><input type="checkbox" checked={state.aptitudes.religiosoClub} onChange={onToggleAptitud('religiosoClub')} /> Religioso</label>
-                </div>
-                <div className="cell field">
-                  <label><input type="checkbox" checked={state.aptitudes.culturalClub} onChange={onToggleAptitud('culturalClub')} /> Cultural</label>
-                  <label style={{ marginLeft:12 }}><input type="checkbox" checked={state.aptitudes.artisticoClub} onChange={onToggleAptitud('artisticoClub')} /> Artístico</label>
+                <div className="cell field" style={{ gridColumn: '3 / 6', display: 'flex', alignItems: 'center', gap: 12 }}>
+                  <div style={{ color: 'var(--text-primary)', opacity: 0.9 }}>
+                    {state.aptitudes.ningunoClub ? 'Ninguno' : ''}
+                    {state.aptitudes.deportivoClub ? (state.aptitudes.ningunoClub ? ', Deportivo' : 'Deportivo') : ''}
+                    {state.aptitudes.religiosoClub ? ', Religioso' : ''}
+                    {state.aptitudes.culturalClub ? ( (state.aptitudes.ningunoClub || state.aptitudes.deportivoClub || state.aptitudes.religiosoClub) ? ', Cultural' : 'Cultural') : ''}
+                    {state.aptitudes.artisticoClub ? ', Artístico' : ''}
+                  </div>
+                  <button type="button" className="btn-secondary" onClick={openModalF2}>Editar</button>
                 </div>
               </div>
 
@@ -581,7 +649,6 @@ const FichaSocioeconomica: React.FC = () => {
       </div>
 
       <div className="actions">
-                <button type="button" className="btn-primary" onClick={guardar}>Guardar</button>
                 <button type="button" className="btn-secondary" onClick={() => navigate('/estudiante/perfil')}>Volver al perfil</button>
       </div>
 
