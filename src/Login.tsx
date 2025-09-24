@@ -13,7 +13,7 @@ import {
 
 function Login() {
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, isAuthenticated, rol } = useAuth();
   const [darkMode, setDarkMode] = useState(false);
   const images = [udh_img2, udh_img, udh_img3];
   const [currentImg, setCurrentImg] = useState(0);
@@ -54,6 +54,24 @@ function Login() {
       `width=${width},height=${height},left=${left},top=${top},resizable,scrollbars=yes,status=1`
     );
   };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      switch (rol.toLowerCase()) {
+        case "estudiante":
+          navigate("/estudiante");
+          break;
+        case "docente":
+          navigate("/docente");
+          break;
+        case "admin":
+          navigate("/admin");
+          break;
+        default:
+          navigate("/");
+      }
+    }
+  }, [isAuthenticated, rol, navigate]);
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {

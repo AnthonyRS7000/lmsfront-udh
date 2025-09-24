@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 type AuthContextType = {
   isAuthenticated: boolean;
@@ -19,29 +20,39 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem("token"));
   const [rol, setRol] = useState(localStorage.getItem("rol")?.toLowerCase() || "");
-
-  useEffect(() => {
-    const syncAuth = () => {
-      setIsAuthenticated(!!localStorage.getItem("token"));
-      setRol(localStorage.getItem("rol")?.toLowerCase() || "");
-    };
-    window.addEventListener("storage", syncAuth);
-    return () => window.removeEventListener("storage", syncAuth);
-  }, []);
+  const navigate = useNavigate();
 
   const login = (token: string, rol: string) => {
-    setIsAuthenticated(true);
-    setRol(rol.toLowerCase());
     localStorage.setItem("token", token);
     localStorage.setItem("rol", rol.toLowerCase());
+    setIsAuthenticated(true);
+    setRol(rol.toLowerCase());
+
+    window.dispatchEvent(new Event("storage"));
   };
 
   const logout = () => {
-    setIsAuthenticated(false);
-    setRol("");
     localStorage.removeItem("token");
     localStorage.removeItem("rol");
+    setIsAuthenticated(false);
+    setRol("");
+
+    window.dispatchEvent(new Event("storage"));
+    navigate("/login");
   };
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const token = localStorage.getItem("token");
+      const rol = localStorage.getItem("rol");
+
+      setIsAuthenticated(!!token);
+      setRol(rol || "");
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, rol, login, logout }}>

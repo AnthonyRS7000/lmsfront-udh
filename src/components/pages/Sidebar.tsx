@@ -113,6 +113,7 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
             submenus: [
               { name: 'matricula', label: 'Matrícula', path: '/estudiante/matricula' },
               { name: 'ver-horario', label: 'Ver Horario', path: '/estudiante/ver-horario' },
+              { name: 'mi-horario', label: 'Mi Horario', path: '/estudiante/mi-horario' },
               { name: 'reglamento', label: 'Reglamento del estudiante', path: '/estudiante/reglamento' },
             ],
           },
