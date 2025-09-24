@@ -18,22 +18,24 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem("token"));
-  const [rol, setRol] = useState(localStorage.getItem("rol") || "");
+  const [rol, setRol] = useState(localStorage.getItem("rol")?.toLowerCase() || "");
 
   useEffect(() => {
     const syncAuth = () => {
       setIsAuthenticated(!!localStorage.getItem("token"));
-      setRol(localStorage.getItem("rol") || "");
+      setRol(localStorage.getItem("rol")?.toLowerCase() || "");
     };
+
     window.addEventListener("storage", syncAuth);
     return () => window.removeEventListener("storage", syncAuth);
   }, []);
 
   const login = (token: string, rol: string) => {
+    const rolNormalizado = rol.toLowerCase();
     setIsAuthenticated(true);
-    setRol(rol);
+    setRol(rolNormalizado);
     localStorage.setItem("token", token);
-    localStorage.setItem("rol", rol);
+    localStorage.setItem("rol", rolNormalizado);
   };
 
   const logout = () => {
