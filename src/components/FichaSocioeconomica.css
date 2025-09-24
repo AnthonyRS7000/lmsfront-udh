@@ -52,7 +52,8 @@
 
 .legacy-table { display:flex; flex-direction:column; gap:0; padding:8px; }
 .legacy-row { display:grid; /* 5 columnas: indice | label | pequeño control | campo principal | campo lateral */
-  grid-template-columns: 36px 220px 120px 1fr 140px; gap:8px; align-items:start; border-top:2px solid rgba(255,255,255,0.95); padding:8px 12px; }
+  /* Make column 2 (label) and column 4 (label) the same fixed width; make data columns 3 and 5 equal (both flexible) */
+  grid-template-columns: 36px 220px 1fr 220px 1fr; gap:8px; align-items:start; border-top:2px solid rgba(255,255,255,0.95); padding:8px 12px; }
 .legacy-row:first-of-type { border-top: none; }
 .cell { padding:2px 6px; }
 .cell.index { color:var(--text-primary); font-weight:700; font-size:13px; text-align:left; }
@@ -65,9 +66,17 @@
 .cell.field input, .cell.field select { background:#fff; border:1px solid rgba(0,0,0,0.18); padding:6px 8px; border-radius:3px; color:#07223b; font-size:13px; display:block; width:100%; box-sizing:border-box; }
 .cell.field select { height:30px; }
 
+/* display box under dropdowns to mirror legacy layout (bigger text area) */
+.selected-display { background: #fff; border: 1px solid rgba(0,0,0,0.12); padding:6px 8px; margin-top:6px; border-radius:3px; font-size:13px; color:#07223b; display:inline-block; }
+
 /* Fecha: grupos de selects inline y más compactos */
 .legacy-row .cell.field select { margin-right:8px; }
 .legacy-row .cell.field select:nth-of-type(1), .legacy-row .cell.field select:nth-of-type(2), .legacy-row .cell.field select:nth-of-type(3) { max-width:90px; display:inline-block; }
+
+/* For rows where we set three equal columns (departamento/provincia/distrito) allow selects to expand */
+.legacy-row[style] .cell.field select { width:100%; box-sizing:border-box; padding:6px 8px; font-size:13px; height:34px; min-width:140px; }
+.legacy-row[style] .cell.field { display:flex; flex-direction:column; align-items:stretch; }
+.legacy-row[style] .cell.field .selected-display { width:100%; height:34px; line-height:18px; padding:6px 8px; box-sizing:border-box; min-width:140px; }
 
 /* Small controls (third column) should be narrower and centered vertically */
 .legacy-row .cell.field:nth-child(3) input, .legacy-row .cell.field:nth-child(3) select { max-width:110px; }
@@ -96,3 +105,14 @@
   .legacy-row { grid-template-columns: 36px 1fr; }
   .cell.label, .cell.field { grid-column: 2 / 3; }
 }
+
+/* Row-lugar: Departamento / Provincia / Distrito stacked visual style
+   Each .cell.field in this row should show:
+   - .muted-label (small header)
+   - select (dropdown)
+   - .selected-display (display box) beneath
+*/
+.legacy-row.row-lugar .cell.field { display:flex; flex-direction:column; gap:8px; align-items:flex-start; }
+.legacy-row.row-lugar .cell.field .muted-label { margin:0 0 4px 0; font-size:13px; }
+.legacy-row.row-lugar .cell.field select { min-width:140px; }
+.legacy-row.row-lugar .cell.field .selected-display { margin-top:4px; }

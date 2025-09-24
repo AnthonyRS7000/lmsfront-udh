@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './FichaSocioeconomica.css';
 
@@ -56,25 +56,31 @@ const initial = {
 const FichaSocioeconomica: React.FC = () => {
   const navigate = useNavigate();
   const [state, setState] = useState(initial);
+  // local displayed date input (dd/mm/yyyy) to support typing with auto-slashes
+  const [dateInput, setDateInput] = useState(() => {
+    const iso = initial.fechaNacimiento;
+    if (!iso) return '';
+    const [y, m, d] = iso.split('-');
+    return `${d.padStart(2, '0')}/${m.padStart(2, '0')}/${y}`;
+  });
+
+  useEffect(() => {
+    // keep displayed input in sync if state.fechaNacimiento is changed elsewhere
+    const iso = (state as any).fechaNacimiento;
+    if (!iso) return;
+    const parts = String(iso).split('-');
+    if (parts.length === 3) {
+      const [y, m, d] = parts;
+      const disp = `${d.padStart(2, '0')}/${m.padStart(2, '0')}/${y}`;
+      setDateInput(disp);
+    }
+  }, [state.fechaNacimiento]);
 
   const onChange = (k: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setState(prev => ({ ...prev, [k]: e.target.value }));
   };
 
-  const onChangeFecha = (part: 'dia' | 'mes' | 'anio') => (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setState(prev => {
-      const next = { ...prev } as any;
-      if (part === 'dia') next.fechaDia = e.target.value;
-      if (part === 'mes') next.fechaMes = e.target.value;
-      if (part === 'anio') next.fechaAnio = e.target.value;
-      // sincronizar fechaNacimiento en formato ISO
-      const dia = next.fechaDia.padStart(2, '0');
-      const mes = next.fechaMes.padStart(2, '0');
-      const anio = next.fechaAnio;
-      next.fechaNacimiento = `${anio}-${mes}-${dia}`;
-      return next;
-    });
-  };
+  
 
   const onToggleServicio = (key: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
     setState(prev => ({ ...prev, serviciosVivienda: { ...prev.serviciosVivienda, [key]: e.target.checked } }));
@@ -124,7 +130,7 @@ const FichaSocioeconomica: React.FC = () => {
 
             <form className="legacy-table">
               {/* Row 1 */}
-              <div className="legacy-row">
+              <div className="legacy-row row-1">
                 <div className="cell index">1</div>
                 <div className="cell label">Dirección</div>
                 <div className="cell field">
@@ -162,35 +168,91 @@ const FichaSocioeconomica: React.FC = () => {
                 <div className="cell index">4</div>
                 <div className="cell label">Fecha de Nacimiento</div>
                 <div className="cell field">
-                  <select value={state.fechaDia} onChange={onChangeFecha('dia')}>
-                    {Array.from({ length: 31 }, (_, i) => String(i + 1)).map(d => <option key={d} value={d}>{d}</option>)}
-                  </select>
-                  <select value={state.fechaMes} onChange={onChangeFecha('mes')}>
-                    {Array.from({ length: 12 }, (_, i) => String(i + 1)).map(m => <option key={m} value={m}>{m}</option>)}
-                  </select>
-                  <select value={state.fechaAnio} onChange={onChangeFecha('anio')}>
-                    {Array.from({ length: 60 }, (_, i) => String(2025 - i)).map(a => <option key={a} value={a}>{a}</option>)}
-                  </select>
+                  <input
+                    placeholder="dd/mm/yyyy"
+                    value={dateInput}
+                    onChange={(e) => {
+                      let v = e.target.value;
+                      // keep only digits and limit to 8 digits
+                      const digits = v.replace(/\D/g, '').slice(0, 8);
+                      const dd = digits.slice(0, 2);
+                      const mm = digits.slice(2, 4);
+                      const yyyy = digits.slice(4, 8);
+                      let out = dd;
+                      if (mm) out += '/' + mm;
+                      if (yyyy) out += '/' + yyyy;
+                      setDateInput(out);
+
+                      // when full date entered, validate ranges and sync to state
+                      if (digits.length === 8) {
+                        const dayN = parseInt(dd, 10);
+                        const monN = parseInt(mm, 10);
+                        const yearN = parseInt(yyyy, 10);
+                        const validDay = dayN >= 1 && dayN <= 31;
+                        const validMon = monN >= 1 && monN <= 12;
+                        const validYear = yearN >= 1900 && yearN <= 2100;
+                        if (validDay && validMon && validYear) {
+                          const iso = `${String(yearN).padStart(4, '0')}-${String(monN).padStart(2, '0')}-${String(dayN).padStart(2, '0')}`;
+                          setState((prev: any) => ({ ...prev, fechaNacimiento: iso, fechaDia: String(dayN).padStart(2, '0'), fechaMes: String(monN).padStart(2, '0'), fechaAnio: String(yearN) }));
+                        } else {
+                          // invalid date - don't sync full state; keep input for user to correct
+                        }
+                      } else {
+                        // partial or cleared - don't overwrite fechaNacimiento until full
+                        if (!out) {
+                          setState((prev: any) => ({ ...prev, fechaNacimiento: '', fechaDia: '', fechaMes: '', fechaAnio: '' }));
+                        }
+                      }
+                    }}
+                  />
                 </div>
                 <div className="cell label">Edad</div>
                 <div className="cell field"><select value={state.edad} onChange={onChange('edad')}><option>21</option><option>22</option></select></div>
               </div>
 
               {/* Row 5 */}
-              <div className="legacy-row">
+              <div className="legacy-row row-lugar">
                 <div className="cell index">5</div>
                 <div className="cell label">Lugar de Nacimiento</div>
-                <div className="cell field"><select value={state.departamento} onChange={onChange('departamento')}><option>NINGUNO</option><option>JUNÍN</option></select></div>
-                <div className="cell label">Provincia</div>
-                <div className="cell field"><select value={state.provincia} onChange={onChange('provincia')}><option>&lt;Seleccione&gt;</option><option>CHANCHAMAYO</option></select></div>
+                <div className="cell field">
+                  <div className="muted-label">Departamento</div>
+                  <select value={state.departamento} onChange={onChange('departamento')}>
+                    <option>NINGUNO</option>
+                    <option>JUNÍN</option>
+                  </select>
+                  <div className="selected-display" aria-live="polite">{state.departamento}</div>
+                </div>
+                <div className="cell field">
+                  <div className="muted-label">Provincia</div>
+                  <select value={state.provincia} onChange={onChange('provincia')}>
+                    <option>&lt;Seleccione&gt;</option>
+                    <option>CHANCHAMAYO</option>
+                  </select>
+                  <div className="selected-display" aria-live="polite">{state.provincia}</div>
+                </div>
+                <div className="cell field">
+                  <div className="muted-label">Distrito</div>
+                  <select value={state.distrito} onChange={onChange('distrito')}>
+                    <option>Ninguno</option>
+                    <option>SAN RAMON</option>
+                  </select>
+                  <div className="selected-display" aria-live="polite">{state.distrito}</div>
+                </div>
               </div>
 
               {/* Row 6 */}
               <div className="legacy-row">
                 <div className="cell index">6</div>
                 <div className="cell label">Tiempo que radica en esta Ciudad</div>
-                <div className="cell field"><input value={state.tiempoResidencia} onChange={onChange('tiempoResidencia')} /></div>
-                <div className="cell field"><select value={state.tiempoUnidad} onChange={onChange('tiempoUnidad')}><option>Años</option></select></div>
+                <div className="cell field">
+                  <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                    <input value={state.tiempoResidencia} onChange={onChange('tiempoResidencia')} style={{ maxWidth: 100 }} />
+                    <select value={state.tiempoUnidad} onChange={onChange('tiempoUnidad')} style={{ maxWidth: 110 }}>
+                      <option>Años</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="cell label">Sexo</div>
                 <div className="cell field"><select value={state.sexo} onChange={onChange('sexo')}><option>Masculino</option><option>Femenino</option></select></div>
               </div>
 
@@ -228,11 +290,6 @@ const FichaSocioeconomica: React.FC = () => {
                 <div className="cell field">&nbsp;</div>
                 <div className="cell label">&nbsp;</div>
                 <div className="cell field"><select value={state.discapacidad} onChange={onChange('discapacidad')}><option>Ninguno</option><option>Visual</option></select></div>
-              </div>
-
-              <div className="actions">
-                <button type="button" className="btn-primary" onClick={guardar}>Guardar</button>
-                <button type="button" className="btn-secondary" onClick={() => navigate('/estudiante/perfil')}>Volver al perfil</button>
               </div>
             </form>
           </div>
@@ -521,6 +578,11 @@ const FichaSocioeconomica: React.FC = () => {
             </form>
           </div>
         </div>
+      </div>
+
+      <div className="actions">
+                <button type="button" className="btn-primary" onClick={guardar}>Guardar</button>
+                <button type="button" className="btn-secondary" onClick={() => navigate('/estudiante/perfil')}>Volver al perfil</button>
       </div>
 
       {/* Declaración y botones de guardado */}
