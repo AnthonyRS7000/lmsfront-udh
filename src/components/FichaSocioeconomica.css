@@ -1,9 +1,6 @@
 /* Estilos diseñados para recrear la Ficha Socioeconómica (imagen legacy) */
-.ficha-root { padding: 24px; font-family: Arial, Helvetica, sans-serif; }
-.ficha-container { max-width: 980px; margin: 0 auto; }
-
-/* Theme variables */
-:root {
+.ficha-root { padding: 24px; font-family: Arial, Helvetica, sans-serif;
+  /* Theme variables scoped to the ficha only to avoid leaking the celeste to other views */
   --bg: #0f1720;
   --panel-bg: #bfe6ec;
   --panel-border: #0b6b8a;
@@ -11,7 +8,11 @@
   --header-blue: #0b6b8a;
   --banner-yellow: #ffef57;
 }
-.theme-dark {
+.ficha-container { max-width: 980px; margin: 0 auto; }
+
+/* Variant themes scoped inside the ficha. If your app toggles a .theme-dark or .theme-light class
+   on a parent element, prefer adding that class to the .ficha-root container instead of globally. */
+.ficha-root.theme-dark {
   --bg: #0f1720;
   --panel-bg: #bfe6ec;
   --panel-border: #0b6b8a;
@@ -19,7 +20,7 @@
   --header-blue: #063f57;
   --banner-yellow: #ffef57;
 }
-.theme-light {
+.ficha-root.theme-light {
   --bg: #ffffff;
   --panel-bg: #dff4f6;
   --panel-border: #0b6b8a;
