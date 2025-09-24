@@ -89,8 +89,8 @@ import PageNotFound from "./components/pages/PageNotFound";
 
 function App() {
   return (
-    <AuthProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <AuthProvider>
         <Routes>
           {/* Rutas públicas */}
           <Route path="/" element={<LandingPage />} />
@@ -207,8 +207,8 @@ function App() {
           {/* Página no encontrada */}
           <Route path="*" element={<PageNotFound />} />
         </Routes>
-      </BrowserRouter>
-    </AuthProvider>
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
 

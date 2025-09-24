@@ -38,7 +38,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setRol("");
 
     window.dispatchEvent(new Event("storage"));
-    navigate("/login");
   };
 
   useEffect(() => {
