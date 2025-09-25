@@ -137,6 +137,42 @@
   cursor: pointer;
   font-weight:700;
 }
+
+/* Light-mode specific overrides: ensure steps are readable in light theme
+   Apply only when ancestor does NOT have .dark to avoid affecting dark mode. */
+body:not(.dark) .tramites-root .step,
+html:not(.dark) .tramites-root .step,
+:root:not(.dark) .tramites-root .step {
+  color: #374151 !important; /* gray-700 for legibility in light mode */
+}
+
+body:not(.dark) .tramites-root .step[disabled],
+html:not(.dark) .tramites-root .step[disabled],
+:root:not(.dark) .tramites-root .step[disabled],
+body:not(.dark) .tramites-root .step:disabled,
+html:not(.dark) .tramites-root .step:disabled,
+:root:not(.dark) .tramites-root .step:disabled {
+  opacity: 0.85 !important;
+  color: #6b7280 !important; /* muted gray for disabled */
+}
+
+/* Active / done steps: keep white text on accent so contrast remains good */
+body:not(.dark) .tramites-root .step-active,
+html:not(.dark) .tramites-root .step-active,
+:root:not(.dark) .tramites-root .step-active,
+body:not(.dark) .tramites-root .step-done,
+html:not(.dark) .tramites-root .step-done,
+:root:not(.dark) .tramites-root .step-done {
+  color: #ffffff !important; /* keep white text for active/done */
+}
+
+/* Remove blue focus ring and keep a subtle green ring in light mode */
+body:not(.dark) .tramites-root .step:focus,
+html:not(.dark) .tramites-root .step:focus,
+:root:not(.dark) .tramites-root .step:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(58,197,170,0.12) !important;
+}
 .step[disabled], .step:disabled { opacity: 0.45; cursor: not-allowed; }
 .step-active { outline: 2px solid var(--accent-cyan); transform: translateY(-2px); }
 .step-done { background: linear-gradient(90deg, rgba(58,197,170,0.12), var(--panel-contrast)); border-color: var(--accent-cyan); }
@@ -236,6 +272,54 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
+}
+
+/* ------------------------------------------------------------------
+   Matricula-specific button styles (use Pantone colors from attachments)
+   - Default: #5A9E8D (img1)
+   - Hover / active: #ECC138 (img2)
+   Scoped under .tramites-root to avoid affecting other pages.
+   ------------------------------------------------------------------ */
+.tramites-root .matricula-btn, .tramites-root .btn-primary, .tramites-root .btn {
+  --matricula-base: #5A9E8D; /* exact base color */
+  --matricula-hover: #ECC138; /* exact hover color */
+  /* Force the exact colors and remove gradients/effects coming from other rules */
+  background: var(--matricula-base) !important;
+  background-image: none !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 10px 16px !important;
+  border-radius: 10px !important;
+  font-weight:700 !important;
+  cursor: pointer !important;
+  box-shadow: 0 8px 20px rgba(2,8,20,0.12) !important;
+  transition: background-color 180ms ease, transform 120ms ease, color 120ms ease !important;
+}
+
+/* Hover: switch to exact hover color, dark text for contrast */
+.tramites-root .matricula-btn:hover, .tramites-root .btn-primary:hover, .tramites-root .btn:hover {
+  background: var(--matricula-hover) !important;
+  color: #07223b !important; /* dark text on yellow */
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.12) !important;
+}
+
+/* Remove any blue browser/stylesheet outlines and replace with subtle ring using the hover color */
+.tramites-root .matricula-btn:focus, .tramites-root .btn-primary:focus, .tramites-root .btn:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(236,193,56,0.12) !important; /* subtle yellow ring */
+}
+
+.tramites-root .matricula-btn:active, .tramites-root .btn-primary:active, .tramites-root .btn:active {
+  transform: translateY(0px) scale(0.997) !important;
+}
+
+/* Smaller variant used when .btn-small is present */
+.tramites-root .btn-small { padding:6px 10px; border-radius:8px; font-size:0.95rem; }
+
+/* Ensure disabled buttons are visually distinct */
+.tramites-root .btn[disabled], .tramites-root .btn-disabled {
+  opacity: 0.56 !important; cursor: not-allowed !important; transform:none !important; box-shadow:none !important;
 }
 
 .modal-content {
