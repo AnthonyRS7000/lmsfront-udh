@@ -53,7 +53,7 @@ const initial = {
   }
 };
 
-const FichaSocioeconomica: React.FC = () => {
+const FichaSocioeconomica = (): JSX.Element => {
   const navigate = useNavigate();
   const [state, setState] = useState(initial);
   // local displayed date input (dd/mm/yyyy) to support typing with auto-slashes
@@ -81,9 +81,7 @@ const FichaSocioeconomica: React.FC = () => {
   };
   
 
-  const onToggleServicio = (key: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
-    setState(prev => ({ ...prev, serviciosVivienda: { ...prev.serviciosVivienda, [key]: e.target.checked } }));
-  };
+  // (previously used for inline checkboxes in D1) now replaced by modal flow
 
 
   const onChangeAptitud = (k: string) => (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -119,6 +117,14 @@ const FichaSocioeconomica: React.FC = () => {
   const toggleModalClub = (k: string) => (e: React.ChangeEvent<HTMLInputElement>) => { setModalClubs(prev => ({ ...prev, [k]: e.target.checked })); };
   const saveModalF2 = () => { setState(prev => ({ ...prev, aptitudes: { ...prev.aptitudes, ...modalClubs } } as any)); setShowModalF2(false); };
 
+  // Modal state for Sección D1 (Servicios de la vivienda) - mirror flow from F1
+  const [showModalD1, setShowModalD1] = useState(false);
+  const [modalServicios, setModalServicios] = useState(() => ({ ...initial.serviciosVivienda }));
+  const openModalD1 = () => { setModalServicios({ ...state.serviciosVivienda }); setShowModalD1(true); };
+  const closeModalD1 = () => setShowModalD1(false);
+  const toggleModalServicio = (k: string) => (e: React.ChangeEvent<HTMLInputElement>) => { setModalServicios(prev => ({ ...prev, [k]: e.target.checked })); };
+  const saveModalD1 = () => { setState(prev => ({ ...prev, serviciosVivienda: { ...prev.serviciosVivienda, ...modalServicios } } as any)); setShowModalD1(false); };
+
   const guardar = () => {
     localStorage.setItem('ficha_socioeconomica', JSON.stringify(state));
     alert('Ficha guardada (simulado)');
@@ -141,10 +147,18 @@ const FichaSocioeconomica: React.FC = () => {
           <div className="ficha-banner-yellow">POR FAVOR COMPLETE SU FICHA SOCIOECONOMICA PARA QUE PUEDA ACCEDER AL SISTEMA.</div>
 
           <div className="ficha-panel">
-            <div className="ficha-row-table header-row">
-              <div className="col-a">A</div>
+            {/* First header row: ficha número only */}
+            <div className="ficha-row-table header-row header-row--meta">
+              <div className="col-a">&nbsp;</div>
               <div className="col-main">
                 <div className="meta">Ficha Número: <strong>894491</strong></div>
+              </div>
+            </div>
+
+            {/* Second header row: section letter and title on same baseline */}
+            <div className="ficha-row-table header-row header-row--title">
+              <div className="col-a">A</div>
+              <div className="col-main">
                 <h3>Información Personal</h3>
               </div>
             </div>
@@ -195,6 +209,30 @@ const FichaSocioeconomica: React.FC = () => {
               </div>
             )}
 
+            {/* Modal para editar D1 - Servicios de la vivienda (mismo flujo que F1) */}
+            {showModalD1 && (
+              <div className="ficha-modal-overlay" role="dialog" aria-modal="true">
+                <div className="ficha-modal">
+                  <h3>Editar - Servicios de la vivienda</h3>
+                  <div className="modal-grid">
+                    <label><input type="checkbox" checked={modalServicios.agua} onChange={toggleModalServicio('agua')} /> Agua</label>
+                    <label><input type="checkbox" checked={modalServicios.telefono} onChange={toggleModalServicio('telefono')} /> Teléfono</label>
+                    <label><input type="checkbox" checked={modalServicios.computadora} onChange={toggleModalServicio('computadora')} /> Computadora</label>
+
+                    <label><input type="checkbox" checked={modalServicios.desague} onChange={toggleModalServicio('desague')} /> Desagüe</label>
+                    <label><input type="checkbox" checked={modalServicios.internet} onChange={toggleModalServicio('internet')} /> Internet</label>
+                    <label><input type="checkbox" checked={modalServicios.energia} onChange={toggleModalServicio('energia')} /> Energía eléctrica</label>
+
+                    <label><input type="checkbox" checked={modalServicios.tvCable} onChange={toggleModalServicio('tvCable')} /> Tv por Cable</label>
+                  </div>
+                  <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end', marginTop: 12 }}>
+                    <button type="button" className="btn-secondary" onClick={closeModalD1}>Cancelar</button>
+                    <button type="button" className="btn-primary" onClick={saveModalD1}>Guardar</button>
+                  </div>
+                </div>
+              </div>
+            )}
+
         
             <form className="legacy-table">
               {/* Row 1 */}
@@ -239,7 +277,7 @@ const FichaSocioeconomica: React.FC = () => {
                   <input
                     placeholder="dd/mm/yyyy"
                     value={dateInput}
-                    onChange={(e) => {
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                       let v = e.target.value;
                       // keep only digits and limit to 8 digits
                       const digits = v.replace(/\D/g, '').slice(0, 8);
@@ -469,18 +507,18 @@ const FichaSocioeconomica: React.FC = () => {
               <div className="legacy-row servicios-row">
                 <div className="cell index">1</div>
                 <div className="cell label">Servicios con que dispone su vivienda</div>
-                <div className="cell field">
-                  <label><input type="checkbox" checked={state.serviciosVivienda.agua} onChange={onToggleServicio('agua')} /> Agua</label>
-                  <label style={{ marginLeft:12 }}><input type="checkbox" checked={state.serviciosVivienda.telefono} onChange={onToggleServicio('telefono')} /> Telefono</label>
-                  <label style={{ marginLeft:12 }}><input type="checkbox" checked={state.serviciosVivienda.computadora} onChange={onToggleServicio('computadora')} /> Computadora</label>
-                </div>
-                <div className="cell field">
-                  <label><input type="checkbox" checked={state.serviciosVivienda.desague} onChange={onToggleServicio('desague')} /> Desagüe</label>
-                  <label style={{ marginLeft:12 }}><input type="checkbox" checked={state.serviciosVivienda.internet} onChange={onToggleServicio('internet')} /> Internet</label>
-                </div>
-                <div className="cell field">
-                  <label><input type="checkbox" checked={state.serviciosVivienda.energia} onChange={onToggleServicio('energia')} /> Energía electrica</label>
-                  <label style={{ marginLeft:12 }}><input type="checkbox" checked={state.serviciosVivienda.tvCable} onChange={onToggleServicio('tvCable')} /> Tv por Cable</label>
+                <div className="cell field" style={{ gridColumn: '3 / 6', display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 12, justifyContent: 'flex-start' }}>
+                  <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'nowrap', overflowX: 'auto', flex: '0 0 auto', minWidth: 0 }}>
+                    {state.serviciosVivienda.agua && <span className="selected-chip">Agua</span>}
+                    {state.serviciosVivienda.telefono && <span className="selected-chip">Telefono</span>}
+                    {state.serviciosVivienda.computadora && <span className="selected-chip">Computadora</span>}
+                    {state.serviciosVivienda.desague && <span className="selected-chip">Desagüe</span>}
+                    {state.serviciosVivienda.internet && <span className="selected-chip">Internet</span>}
+                    {state.serviciosVivienda.energia && <span className="selected-chip">Energía electrica</span>}
+                    {state.serviciosVivienda.tvCable && <span className="selected-chip">Tv por Cable</span>}
+                  </div>
+                  {/* Button placed immediately after chips so it stays left-aligned and in the same row */}
+                  <button type="button" className="btn-secondary" onClick={openModalD1} style={{ marginLeft: 8 }}>Editar</button>
                 </div>
               </div>
 
@@ -553,16 +591,16 @@ const FichaSocioeconomica: React.FC = () => {
                 <div className="cell index">1</div>
                 <div className="cell label">Tipo de Actividad deportiva que practica</div>
                 <div className="cell field" style={{ gridColumn: '3 / 6', display: 'flex', alignItems: 'center', gap: 12 }}>
-                  <div style={{ color: 'var(--text-primary)', opacity: 0.9 }}>
-                    {state.aptitudes.ningunoDeporte ? 'Ninguno' : ''}
-                    {state.aptitudes.voley ? (state.aptitudes.ningunoDeporte ? ', Vóley' : 'Vóley') : ''}
-                    {state.aptitudes.natacion ? ', Natación' : ''}
-                    {state.aptitudes.futbol ? ( (state.aptitudes.ningunoDeporte || state.aptitudes.voley || state.aptitudes.natacion) ? ', Futbol' : 'Futbol') : ''}
-                    {state.aptitudes.tennis ? ', Tennis' : ''}
-                    {state.aptitudes.ciclismo ? ', Ciclismo' : ''}
-                    {state.aptitudes.basquet ? ', Básquet' : ''}
-                    {state.aptitudes.atletismo ? ', Atletismo' : ''}
-                    {state.aptitudes.otrosDeporte ? ', Otros' : ''}
+                  <div>
+                    {state.aptitudes.ningunoDeporte && <span className="selected-chip">Ninguno</span>}
+                    {state.aptitudes.voley && <span className="selected-chip">Vóley</span>}
+                    {state.aptitudes.natacion && <span className="selected-chip">Natación</span>}
+                    {state.aptitudes.futbol && <span className="selected-chip">Futbol</span>}
+                    {state.aptitudes.tennis && <span className="selected-chip">Tennis</span>}
+                    {state.aptitudes.ciclismo && <span className="selected-chip">Ciclismo</span>}
+                    {state.aptitudes.basquet && <span className="selected-chip">Básquet</span>}
+                    {state.aptitudes.atletismo && <span className="selected-chip">Atletismo</span>}
+                    {state.aptitudes.otrosDeporte && <span className="selected-chip">Otros</span>}
                   </div>
                   <button type="button" className="btn-secondary" onClick={openModalF1}>Editar</button>
                 </div>
@@ -572,12 +610,12 @@ const FichaSocioeconomica: React.FC = () => {
                 <div className="cell index">2</div>
                 <div className="cell label">¿Pertenece usted a algún tipo de club?</div>
                 <div className="cell field" style={{ gridColumn: '3 / 6', display: 'flex', alignItems: 'center', gap: 12 }}>
-                  <div style={{ color: 'var(--text-primary)', opacity: 0.9 }}>
-                    {state.aptitudes.ningunoClub ? 'Ninguno' : ''}
-                    {state.aptitudes.deportivoClub ? (state.aptitudes.ningunoClub ? ', Deportivo' : 'Deportivo') : ''}
-                    {state.aptitudes.religiosoClub ? ', Religioso' : ''}
-                    {state.aptitudes.culturalClub ? ( (state.aptitudes.ningunoClub || state.aptitudes.deportivoClub || state.aptitudes.religiosoClub) ? ', Cultural' : 'Cultural') : ''}
-                    {state.aptitudes.artisticoClub ? ', Artístico' : ''}
+                  <div>
+                    {state.aptitudes.ningunoClub && <span className="selected-chip">Ninguno</span>}
+                    {state.aptitudes.deportivoClub && <span className="selected-chip">Deportivo</span>}
+                    {state.aptitudes.religiosoClub && <span className="selected-chip">Religioso</span>}
+                    {state.aptitudes.culturalClub && <span className="selected-chip">Cultural</span>}
+                    {state.aptitudes.artisticoClub && <span className="selected-chip">Artístico</span>}
                   </div>
                   <button type="button" className="btn-secondary" onClick={openModalF2}>Editar</button>
                 </div>
