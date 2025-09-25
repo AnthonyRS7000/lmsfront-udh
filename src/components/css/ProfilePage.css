@@ -24,6 +24,9 @@
   
   --profile-shadow-primary: 0 2px 8px rgba(0, 0, 0, 0.1);
   --profile-shadow-focus: 0 0 0 3px rgba(6, 182, 212, 0.1);
+  /* Branding colors (user provided) */
+  --brand-green: #5A9E8D; /* Pantone 3275 U */
+  --brand-gold: #ECC138;  /* Pantone 122 U */
 }
 
 /* Tema oscuro - coincide exactamente con ThemeToggle */
@@ -121,6 +124,105 @@
   margin: 0 auto;
 }
 
+/* Card wrapper to visually separate the form (match style from image 2) */
+.profile-card {
+  /* Use theme variables so the card matches the topbar/panels */
+  background: var(--profile-bg-secondary, var(--panel-bg, #2f3740));
+  border: 1px solid var(--border-soft, rgba(255,255,255,0.03));
+  border-radius: 12px;
+  padding: 28px;
+  /* softer shadow so card doesn't read too dark */
+  box-shadow: 0 6px 16px rgba(2,6,23,0.28);
+  backdrop-filter: blur(3px);
+}
+
+/* Inputs inside the card adopt a darker filled style */
+.profile-card .profile-form-input {
+  background: var(--panel-contrast, rgba(2,6,23,0.12));
+  border: 1px solid var(--border-soft, rgba(255,255,255,0.04));
+  color: var(--profile-text-primary);
+  padding: 14px 16px;
+  border-radius: 8px;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.16);
+}
+
+/* Make editable inputs (like phone) darker and clearer */
+
+/* Editable input: default = light theme appearance */
+.profile-card .profile-form-input.editable {
+  background: rgba(255,255,255,0.95); /* light background by default */
+  color: var(--profile-text-primary);
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+/* Placeholder for default (light) theme */
+.profile-card .profile-form-input.editable::placeholder {
+  color: rgba(17,24,39,0.45);
+}
+
+/* Focus style (light) */
+.profile-card .profile-form-input.editable:focus {
+  outline: none;
+  box-shadow: 0 4px 14px rgba(2,6,23,0.06);
+  border-color: rgba(16,24,40,0.12);
+}
+
+/* Dark theme override: ensure inputs are dark and legible when .dark is present */
+.dark .profile-card .profile-form-input.editable {
+  background: rgba(2,6,23,0.28); /* darker fill for dark theme */
+  color: var(--profile-text-on-accent, #e6eef6);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.dark .profile-card .profile-form-input.editable::placeholder {
+  color: rgba(255,255,255,0.6);
+}
+
+.dark .profile-card .profile-form-input.editable:focus {
+  outline: none;
+  box-shadow: 0 4px 18px rgba(23,160,134,0.08), inset 0 2px 6px rgba(0,0,0,0.18);
+  border-color: var(--profile-border-accent, rgba(23,160,134,0.75));
+}
+
+/* Fallbacks covering different theme toggles: body/html class or data-attribute */
+html.dark .profile-card .profile-form-input.editable,
+body.dark .profile-card .profile-form-input.editable,
+html[data-theme="dark"] .profile-card .profile-form-input.editable,
+body[data-theme="dark"] .profile-card .profile-form-input.editable {
+  background: rgba(2,6,23,0.28);
+  color: var(--profile-text-on-accent, #e6eef6);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+html.dark .profile-card .profile-form-input.editable::placeholder,
+body.dark .profile-card .profile-form-input.editable::placeholder,
+html[data-theme="dark"] .profile-card .profile-form-input.editable::placeholder,
+body[data-theme="dark"] .profile-card .profile-form-input.editable::placeholder {
+  color: rgba(255,255,255,0.6);
+}
+
+html.dark .profile-card .profile-form-input.editable:focus,
+body.dark .profile-card .profile-form-input.editable:focus,
+html[data-theme="dark"] .profile-card .profile-form-input.editable:focus,
+body[data-theme="dark"] .profile-card .profile-form-input.editable:focus {
+  outline: none;
+  box-shadow: 0 4px 18px rgba(23,160,134,0.08), inset 0 2px 6px rgba(0,0,0,0.18);
+  border-color: var(--profile-border-accent, rgba(23,160,134,0.75));
+}
+
+.profile-card .profile-form-label {
+  color: var(--profile-text-tertiary);
+  font-weight: 600;
+  text-transform: none;
+  margin-bottom: 8px;
+}
+
+.profile-card .profile-form-row { gap: 22px; }
+
+@media (max-width: 768px) {
+  .profile-card { padding: 18px; }
+}
+
 /* Encabezado simple del perfil */
 .profile-header {
   display: flex;
@@ -153,11 +255,37 @@
 }
 
 /* Título principal en la parte superior, similar a Trámites de Matrícula */
-.profile-root { text-align: center; margin-bottom: 6px; position: absolute; left: 50%; transform: translateX(-50%); top: 80px; width: min(1100px, 94%); z-index: 30; }
-.profile-title { font-size: 2.2rem; font-weight: 700; text-align: center; margin-bottom: 26px; color: var(--title-color, var(--profile-text-primary)); }
+/* Coloca el título más cerca del topbar en anchos de escritorio */
+.profile-root { text-align: center; margin-bottom: 6px; position: absolute; left: 50%; transform: translateX(-50%); top: 28px; width: min(1100px, 94%); z-index: 30; }
 
-/* Empuja el contenido para dejar espacio al título superior */
-.profile-content { padding-top: 180px; }
+.profile-title { font-size: 2.2rem; font-weight: 700; text-align: center; margin: 0 0 28px 0; color: var(--title-color, var(--profile-text-primary)); }
+
+/* Empuja el contenido para dejar espacio al título superior; aumentamos margen entre título y formulario */
+.profile-content { padding-top: 88px; }
+
+/* Ajustes finos para pantallas grandes */
+@media (min-width: 1200px) {
+  .profile-root { top: 36px; }
+  .profile-content { padding-top: 96px; }
+  .profile-title { margin-bottom: 32px; }
+}
+
+@media (min-width: 1400px) {
+  .profile-root { top: 40px; width: min(1200px, 94%); }
+  .profile-content { padding-top: 104px; }
+  .profile-title { margin-bottom: 34px; }
+}
+
+/* Ajustes finos para pantallas muy grandes: reducir aún más el espacio sin tocar móviles */
+@media (min-width: 1400px) {
+  .profile-root { top: 56px; width: min(1200px, 94%); }
+  .profile-content { padding-top: 100px; }
+}
+
+@media (min-width: 1800px) {
+  .profile-root { top: 48px; width: min(1400px, 94%); }
+  .profile-content { padding-top: 96px; }
+}
 
 /* Filas del formulario */
 .profile-form-row {
@@ -274,6 +402,39 @@
 .btn-secondary { background: transparent; color: var(--profile-text-primary); border:1px solid var(--profile-border-primary); padding:8px 12px; border-radius:8px; cursor:pointer; }
 .photo-error { color: var(--danger, #b00020); font-size:12px; margin-top:6px; }
 
+/* En pantallas grandes, hacer los botones de las tarjetas más prominentes y con color verde medio */
+@media (min-width: 1024px) {
+  .ficha-invite-card .btn-primary,
+  .ficha-invite-card .ficha-open-btn,
+  .profile-info-message .photo-open-btn,
+  .photo-open-btn {
+    /* gradient from brand green to a slightly darker tone */
+    background: linear-gradient(180deg, var(--brand-green), #4F9580);
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: 700;
+    color: #ffffff;
+    box-shadow: 0 8px 20px rgba(90, 158, 141, 0.18);
+    transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease;
+  }
+
+  .ficha-invite-card .btn-primary:hover,
+  .ficha-invite-card .ficha-open-btn:hover,
+  .profile-info-message .photo-open-btn:hover,
+  .photo-open-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(90, 158, 141, 0.22);
+    background: var(--brand-gold); /* cambia al color 2 en hover */
+    color: #0b0b0b; /* texto más oscuro sobre el dorado para contraste */
+  }
+
+  /* Asegurar que el ancho del botón no sea demasiado pequeño en tarjetas */
+  .ficha-invite-actions .btn-primary,
+  .ficha-invite-actions .ficha-open-btn {
+    min-width: 140px;
+  }
+}
+
 /* Mensaje de información */
 .profile-info-message {
   display: flex;
@@ -377,12 +538,68 @@
 }
 
 @media (max-width: 600px) {
-  .profile-root { top: 40px; }
-  .profile-content { padding-top: 110px; }
-  .profile-title { font-size: 1.6rem; }
+  /* On small screens keep the title in-flow so it doesn't overlap form fields */
+  .profile-root {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 100%;
+    padding: 18px 12px; /* more breathing room vertically */
+    margin: 0 auto 8px;
+    z-index: 1;
+    text-align: center; /* center the title on phones */
+  }
+
+  /* Pull content up under the title (smaller top padding) */
+  .profile-content {
+    padding-top: 12px; /* minimal gap between title block and content */
+  }
+
+  .profile-title {
+    font-size: 1.6rem;
+    text-align: center;
+    margin: 0;
+    line-height: 1.1;
+  }
 }
 
 @media (max-width: 1024px) {
+  .profile-save-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.75rem;
+  }
+
+  .profile-save-btn {
+    background: linear-gradient(180deg, #22c1a1 0%, #17a086 100%);
+    border: none;
+    color: white;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 6px 14px rgba(23,160,134,0.12);
+    transition: transform 120ms ease, box-shadow 120ms ease, opacity 120ms ease;
+  }
+
+  .profile-save-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .profile-save-btn:active {
+    transform: translateY(1px);
+  }
+
+  .profile-save-note {
+    font-size: 0.95rem;
+    color: var(--accent, #cdefe0);
+    min-width: 160px;
+  }
   .profile-form-row {
     gap: 20px;
   }
@@ -392,9 +609,81 @@
   }
 }
 
+/* Invitación a completar ficha socioeconómica */
+.profile-ficha-invite { margin-top: 18px; }
+.ficha-invite-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 8px;
+  background: var(--profile-bg-secondary);
+  border: 1px solid var(--profile-border-primary);
+  box-shadow: 0 6px 18px rgba(2,6,23,0.25);
+}
+.ficha-invite-left { display:flex; gap:12px; align-items:center; }
+.ficha-invite-icon { font-size: 28px; }
+.ficha-invite-title { font-weight:700; color: var(--profile-text-primary); }
+.ficha-invite-sub { font-size: 0.95rem; color: var(--profile-text-tertiary); }
+.ficha-invite-actions { display:flex; align-items:center; }
+.ficha-open-btn { padding: 10px 16px; border-radius:8px; background: linear-gradient(180deg,var(--profile-bg-active),#17a086); color:var(--profile-text-on-accent); border:none; cursor:pointer; font-weight:700; }
+
+@media (max-width: 680px) {
+  .ficha-invite-card { flex-direction: column; align-items: stretch; }
+  .ficha-invite-actions { justify-content: flex-end; }
+}
+
 /* Transiciones suaves para el cambio de tema */
 * {
   transition-property: background-color, border-color, color, box-shadow, opacity;
   transition-duration: 0.3s;
   transition-timing-function: ease;
+}
+
+/* Forzar botón 'Actualizar' a color dorado de marca en claro/oscuro y sin cambio en hover */
+.profile-save-row .profile-save-btn {
+  /* usar la variable de marca dorada para ambos temas */
+  background: var(--brand-gold) !important;
+  color: #0b0b0b !important; /* texto oscuro para contraste */
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12) !important;
+  transform: none !important;
+}
+
+.profile-save-row .profile-save-btn:hover,
+.profile-save-row .profile-save-btn:focus {
+  /* no cambiar color al pasar el cursor ni al enfocar */
+  background: var(--brand-gold) !important;
+  color: #0b0b0b !important;
+  transform: none !important;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.14) !important;
+}
+
+/* Strong dark-mode override: asegurar fondo oscuro y texto legible en inputs editables */
+.dark .profile-card .profile-form-input.editable,
+html.dark .profile-card .profile-form-input.editable,
+body.dark .profile-card .profile-form-input.editable,
+html[data-theme="dark"] .profile-card .profile-form-input.editable,
+body[data-theme="dark"] .profile-card .profile-form-input.editable {
+  background: rgba(2,6,23,0.28) !important;
+  color: var(--profile-text-on-accent, #e6eef6) !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+}
+
+.dark .profile-card .profile-form-input.editable::placeholder,
+html.dark .profile-card .profile-form-input.editable::placeholder,
+body.dark .profile-card .profile-form-input.editable::placeholder,
+html[data-theme="dark"] .profile-card .profile-form-input.editable::placeholder,
+body[data-theme="dark"] .profile-card .profile-form-input.editable::placeholder {
+  color: rgba(255,255,255,0.6) !important;
+}
+
+.dark .profile-card .profile-form-input.editable:focus,
+html.dark .profile-card .profile-form-input.editable:focus,
+body.dark .profile-card .profile-form-input.editable:focus,
+html[data-theme="dark"] .profile-card .profile-form-input.editable:focus,
+body[data-theme="dark"] .profile-card .profile-form-input.editable:focus {
+  outline: none !important;
+  box-shadow: 0 4px 18px rgba(23,160,134,0.08), inset 0 2px 6px rgba(0,0,0,0.18) !important;
+  border-color: var(--profile-border-accent, rgba(23,160,134,0.75)) !important;
 }
