@@ -83,16 +83,12 @@ function Login() {
 
 
       if (!allowedOrigins.includes(event.origin)) {
-        console.warn("🚨 Origen no permitido:", event.origin);
+        console.warn("Origen no permitido:", event.origin);
         return;
       }
 
-      // Validar estructura del mensaje
-      if (!event.data || typeof event.data !== 'object') {
-        return;
-      }
+      if (!event.data || typeof event.data !== "object") return;
 
-      // Manejar errores
       if (event.data.type === "google-auth-error") {
         alert("Error en la autenticación: " + (event.data.message || "Error desconocido"));
         return;
@@ -123,7 +119,6 @@ function Login() {
         localStorage.setItem("usuario", JSON.stringify(usuario));
         localStorage.setItem("datos_udh", JSON.stringify(datos_udh));
         localStorage.setItem("foto", foto);
-        localStorage.setItem("rol", usuario.rol);
         localStorage.setItem("rol", usuario.rol);
 
         console.log("Guardado en localStorage:", {
@@ -204,6 +199,9 @@ function Login() {
                 <a href="#" className="login-help-link">
                   Mira esta guía.
                 </a>
+                <a href="#" className="login-help-link">
+                  Mira esta guía.
+                </a>
               </p>
             </div>
             <div className="login-corner top-left"></div>
@@ -227,3 +225,4 @@ function Login() {
 }
 
 export default Login;
+
