@@ -3,19 +3,26 @@ const API_URL = import.meta.env.VITE_API_URL;
 export const ApiService = {
   get: async (endpoint: string, options: RequestInit = {}) => {
     try {
-      const token = localStorage.getItem("token"); // Obtén el token del almacenamiento local
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("Token no disponible. Por favor, inicia sesión.");
+      }
+
       const response = await fetch(`${API_URL}${endpoint}`, {
         ...options,
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // Incluye el token en el encabezado
+          Authorization: `Bearer ${token}`,
           ...options.headers,
         },
-        credentials: "include", // Incluye cookies si es necesario
+        credentials: "include",
       });
 
       if (!response.ok) {
         if (response.status === 401) {
+          // Redirigir al usuario a la página de inicio de sesión si el token expira
+          localStorage.removeItem("token"); // Eliminar el token inválido
+          window.location.href = "/login"; // Redirigir al inicio de sesión
           throw new Error("No autorizado. Por favor, inicia sesión nuevamente.");
         }
         if (response.status === 403) {
@@ -34,6 +41,10 @@ export const ApiService = {
   post: async (endpoint: string, body: any, options: RequestInit = {}) => {
     try {
       const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("Token no disponible. Por favor, inicia sesión.");
+      }
+
       const response = await fetch(`${API_URL}${endpoint}`, {
         method: "POST",
         headers: {
@@ -67,6 +78,10 @@ export const ApiService = {
   put: async (endpoint: string, body: any, options: RequestInit = {}) => {
     try {
       const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("Token no disponible. Por favor, inicia sesión.");
+      }
+
       const response = await fetch(`${API_URL}${endpoint}`, {
         method: "PUT",
         headers: {
@@ -93,6 +108,10 @@ export const ApiService = {
   delete: async (endpoint: string, options: RequestInit = {}) => {
     try {
       const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("Token no disponible. Por favor, inicia sesión.");
+      }
+
       const response = await fetch(`${API_URL}${endpoint}`, {
         method: "DELETE",
         headers: {

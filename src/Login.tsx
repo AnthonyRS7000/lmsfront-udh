@@ -6,10 +6,8 @@ import udh_img from "./assets/1.jpg";
 import udh_img2 from "./assets/3.jpg";
 import udh_img3 from "./assets/4.jpg";
 import udh_logo from "./assets/logo.png";
-import {
-  MoonIcon as MoonIconSolid,
-  SunIcon as SunIconSolid,
-} from "@heroicons/react/24/solid";
+import { MoonIcon, SunIcon } from "@heroicons/react/24/solid";
+
 
 function Login() {
   const navigate = useNavigate();
@@ -214,9 +212,9 @@ function Login() {
           title={darkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
         >
           {darkMode ? (
-            <SunIconSolid style={{ width: 24, height: 24 }} />
+            <SunIcon style={{ width: 24, height: 24 }} />
           ) : (
-            <MoonIconSolid style={{ width: 24, height: 24 }} />
+            <MoonIcon style={{ width: 24, height: 24 }} />
           )}
         </button>
       </div>
