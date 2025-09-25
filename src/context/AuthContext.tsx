@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 type AuthContextType = {
   isAuthenticated: boolean;
@@ -20,7 +19,6 @@ export const useAuth = () => useContext(AuthContext);
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem("token"));
   const [rol, setRol] = useState(localStorage.getItem("rol")?.toLowerCase() || "");
-  const navigate = useNavigate();
 
   const login = (token: string, rol: string) => {
     localStorage.setItem("token", token);
@@ -34,6 +32,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("rol");
+    localStorage.removeItem("usuario");
+    localStorage.removeItem("datos_udh");
+    localStorage.removeItem("foto");
     setIsAuthenticated(false);
     setRol("");
 

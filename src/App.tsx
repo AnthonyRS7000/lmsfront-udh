@@ -20,6 +20,7 @@ import ProfilePage from "./components/pages/ProfilePage";
 import {
   Matricula,
   VerHorario,
+  MiHorario,
   Reglamento
 } from "./features/students/gestion-matricula";
 
@@ -109,6 +110,7 @@ function App() {
             <Route path="/estudiante/perfil" element={<ProfilePage />} />
             <Route path="/estudiante/matricula" element={<Matricula />} />
             <Route path="/estudiante/ver-horario" element={<VerHorario />} />
+            <Route path="/estudiante/mi-horario" element={<MiHorario />} />
             <Route path="/estudiante/reglamento" element={<Reglamento />} />
             <Route path="/estudiante/progreso_academico" element={<div />} />
 

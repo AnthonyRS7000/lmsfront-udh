@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import '../css/UserDropdown.css';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from "../../context/AuthContext";
 
 // Datos del usuario mock
 const getUserDataFromLocalStorage = () => {
@@ -20,6 +21,7 @@ const UserDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
   // Obtener datos del usuario desde localStorage
   const userData = getUserDataFromLocalStorage();
@@ -45,11 +47,8 @@ const UserDropdown = () => {
   // Manejar cierre de sesión
   const handleLogout = () => {
     setIsOpen(false);
-    localStorage.removeItem('token'); // Limpia el token
-    localStorage.removeItem('usuario'); // Limpia los datos del usuario
-    localStorage.removeItem('datos_udh'); // Limpia los datos UDH
-    localStorage.removeItem('foto'); // Limpia la foto
-    navigate('/login'); // Redirige al login
+    logout();
+    navigate("/login");
   };
 
   return (
