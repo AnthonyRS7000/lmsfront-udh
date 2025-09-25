@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../css/ProfilePage.css';
 
 const ProfilePage = () => {
@@ -25,6 +26,8 @@ const ProfilePage = () => {
   // inicializar número telefónico si existe
   if (datosUdh && datosUdh.celular) setPhoneNumber(datosUdh.celular);
   }, []);
+
+  const navigate = useNavigate();
   
   if (!userData || !udhData) return <div>Cargando...</div>;
 
@@ -89,6 +92,7 @@ const ProfilePage = () => {
       {/* Contenido principal del perfil */}
       <div className="profile-content">
         <div className="profile-form-container">
+          <div className="profile-card">
           
           {/* Fila 1: Nombres y Apellido Paterno */}
           <div className="profile-form-row">
@@ -197,9 +201,9 @@ const ProfilePage = () => {
                 type="tel" 
                 className="profile-form-input editable" 
                 value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPhoneNumber(e.target.value)}
                 onBlur={handlePhoneSubmit}
-                onKeyPress={(e) => e.key === 'Enter' && handlePhoneSubmit()}
+                onKeyPress={(e: React.KeyboardEvent<HTMLInputElement>) => e.key === 'Enter' && handlePhoneSubmit()}
               />
               <div className="profile-help-text">
                 Puedes modificar este campo
@@ -211,11 +215,7 @@ const ProfilePage = () => {
             </div>
           </div>
 
-          {/* Sección Subir Fotografía */}
-          <div className="profile-photo-section">
-            <button type="button" className="photo-open-btn" onClick={() => setPhotoModalOpen(true)}>Subir Fotografía</button>
-            <div className="photo-instructions">Asegúrate que la foto cumpla las indicaciones: formato .jpg, fondo blanco, tamaño 240x288px.</div>
-          </div>
+          {/* Sección Subir Fotografía (integrada más abajo en profile-info-message) */}
 
           {photoModalOpen && (
             <div className="modal-overlay" role="dialog" aria-modal="true">
@@ -256,12 +256,24 @@ const ProfilePage = () => {
             </div>
           )}
 
-          {/* Mensaje de información */}
-          <div className="profile-info-message">
-            <span className="info-icon">⚠️</span>
-            <span className="info-text">
-              <strong>¡Importante!</strong> Mantén tu número celular actualizado para recibir notificaciones.
-            </span>
+          {/* Tarjeta estilo 'ficha' para Fotografía (misma organización que la invitación de ficha socioeconómica) */}
+          <div className="ficha-invite-card">
+            <div className="ficha-invite-left">
+              <div className="ficha-invite-icon">📸</div>
+              <div className="ficha-invite-copy">
+                <div className="ficha-invite-title">Fotografía de perfil</div>
+                <div className="ficha-invite-sub">Sube una foto recomendada 240x288px, fondo blanco, formato JPG o PNG.</div>
+              </div>
+            </div>
+            <div className="ficha-invite-actions">
+              <button
+                className="btn-primary ficha-open-btn"
+                type="button"
+                onClick={() => setPhotoModalOpen(true)}
+              >
+                Subir Fotografía
+              </button>
+            </div>
           </div>
           {/* Sección: Invitación a completar ficha socioeconómica */}
           <div className="profile-ficha-invite">
@@ -274,13 +286,22 @@ const ProfilePage = () => {
                 </div>
               </div>
               <div className="ficha-invite-actions">
-                <button className="btn-primary ficha-open-btn" onClick={() => { window.location.href = '/estudiante/ficha-socioeconomica'; }}>Completar ficha</button>
+                <button
+                  className="btn-primary ficha-open-btn"
+                  onClick={() => {
+                    // use client-side navigation to avoid a full page reload (no white flash)
+                    navigate('/estudiante/ficha-socioeconomica');
+                  }}
+                >
+                  Completar ficha
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
   );
 };
 
