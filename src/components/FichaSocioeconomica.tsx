@@ -648,21 +648,17 @@ const FichaSocioeconomica: React.FC = () => {
         </div>
       </div>
 
-      <div className="actions">
-                <button type="button" className="btn-secondary" onClick={() => navigate('/estudiante/perfil')}>Volver al perfil</button>
-      </div>
-
       {/* Declaración y botones de guardado */}
-      <div style={{ textAlign: 'center', marginTop: 18 }}>
-        <div style={{ color: '#c2185b', fontSize: 20, fontWeight: 600 }}>Declaro bajo juramento que los datos que he consignado son veraces, sujetandome a las normas de la Universidad en el caso de comprobarse lo contrario.</div>
-        <div style={{ marginTop: 12, display: 'flex', justifyContent: 'center', gap: 40 }}>
+      <div className="declaration">
+        <p className="declaration-text">Declaro bajo juramento que los datos que he consignado son veraces, sujetandome a las normas de la Universidad en el caso de comprobarse lo contrario.</p>
+        <div className="declaration-actions">
           <button type="button" className="aceptar-btn" onClick={guardar} aria-label="Aceptar">
-            <div className="icon-save">💾</div>
-            <div>ACEPTAR</div>
+            <span className="icon-save" aria-hidden>💾</span>
+            <span className="btn-label">ACEPTAR</span>
           </button>
           <button type="button" className="cancelar-btn" onClick={() => navigate('/estudiante/perfil')} aria-label="Cancelar">
-            <div className="icon-cancel">❌</div>
-            <div>CANCELAR</div>
+            <span className="icon-cancel" aria-hidden>❌</span>
+            <span className="btn-label">CANCELAR</span>
           </button>
         </div>
       </div>

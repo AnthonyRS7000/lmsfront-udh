@@ -110,15 +110,45 @@ html[data-theme="dark"] .ficha-root,
 /* Theme toggle */
 .theme-toggle { background: transparent; border: none; color: #fff; font-size:18px; margin-right:8px; cursor:pointer; }
 
-/* Declaración final y botones grandes */
-.aceptar-btn, .cancelar-btn { display:flex; flex-direction:column; align-items:center; gap:6px; border:none; background:transparent; cursor:pointer; }
-.aceptar-btn { color:#0b6b8a; }
-.cancelar-btn { color:#0b6b8a; }
-.aceptar-btn .icon-save, .cancelar-btn .icon-cancel { font-size:36px; background:#eef6f7; border-radius:6px; padding:12px; border:1px solid rgba(0,0,0,0.06); }
 
-@media (max-width: 600px) {
-  .aceptar-btn .icon-save, .cancelar-btn .icon-cancel { font-size:28px; padding:8px; }
+/* Declaración final y botones - versión más sobria y coherente con Matricula.css */
+.declaration { text-align: center; margin-top: 18px; padding: 12px 8px; }
+.declaration-text { color: var(--title-color, #0b1726); font-size: 18px; font-weight: 700; margin: 0 0 12px 0; max-width: 920px; margin-left: auto; margin-right: auto; }
+.declaration-actions { display:flex; justify-content:center; gap:28px; margin-top:8px; }
+
+/* Botones más discretos: tamaño moderado, icono en un badge con sombra sutil */
+.aceptar-btn, .cancelar-btn { display:flex; flex-direction:column; align-items:center; gap:8px; border:none; background:transparent; cursor:pointer; text-decoration:none; }
+.aceptar-btn { color: var(--button-green, #2f8f7a); }
+.cancelar-btn { color: var(--muted, #6b7280); }
+.aceptar-btn .icon-save, .cancelar-btn .icon-cancel {
+  font-size:24px; /* más contenida */
+  background: var(--panel-contrast, #ffffff); /* badge claro */
+  border-radius:8px;
+  padding:10px;
+  border:1px solid var(--border-soft, rgba(0,0,0,0.06));
+  box-shadow: 0 8px 20px rgba(2,8,20,0.12);
 }
+.aceptar-btn .btn-label, .cancelar-btn .btn-label { font-size:13px; color:var(--muted); margin-top:6px; letter-spacing:0.4px; }
+
+/* Volver al perfil: top-right but toned down */
+.actions.actions-top { justify-content: flex-end; margin-top: 12px; }
+.actions.actions-top .back-button {
+  background: linear-gradient(180deg, rgba(11,107,138,0.95), rgba(11,107,138,0.85));
+  color: #ffffff;
+  border: none;
+  padding:8px 12px;
+  border-radius:8px;
+  font-size:13px;
+  box-shadow: 0 8px 20px rgba(2,8,20,0.12);
+}
+.actions.actions-top .back-button:hover { transform: translateY(-2px); }
+
+@media (max-width: 900px) {
+  .declaration-text { font-size:16px; padding:0 10px; }
+  .declaration-actions { gap: 18px; }
+  .aceptar-btn .icon-save, .cancelar-btn .icon-cancel { font-size:20px; padding:8px; }
+}
+
 
 @media (max-width: 900px) {
   .legacy-row { grid-template-columns: 36px 1fr; }
