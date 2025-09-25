@@ -1,0 +1,291 @@
+/* Estilos diseñados para recrear la Ficha Socioeconómica (imagen legacy) */
+.ficha-root { padding: 24px; font-family: Arial, Helvetica, sans-serif;
+  /* Theme variables scoped to the ficha only to avoid leaking the celeste to other views */
+  --bg: #0f1720;
+  --panel-bg: #bfe6ec;
+  --panel-border: #0b6b8a;
+  --text-primary: #07223b;
+  /* muted helper text used by .muted-label and .muted (legible both themes) */
+  --muted: rgba(7,34,59,0.72);
+  --header-blue: #0b6b8a;
+  --banner-yellow: #ffef57;
+}
+.ficha-container { max-width: 980px; margin: 0 auto; }
+
+/* Variant themes scoped inside the ficha. If your app toggles a .theme-dark or .theme-light class
+   on a parent element, prefer adding that class to the .ficha-root container instead of globally. */
+.ficha-root.theme-dark {
+  --bg: #0f1720;
+  --panel-bg: #bfe6ec;
+  --panel-border: #0b6b8a;
+  --text-primary: #e6eef3;
+  /* use Tailwind gray-500 for muted helper labels in dark theme */
+  --muted: #6B7280;
+  --header-blue: #063f57;
+  --banner-yellow: #ffef57;
+}
+.ficha-root.theme-light {
+  --bg: #ffffff;
+  --panel-bg: #dff4f6;
+  --panel-border: #0b6b8a;
+  --text-primary: #07223b;
+  /* slightly transparent dark muted for helper labels in light theme */
+  --muted: rgba(7,34,59,0.72);
+  --header-blue: #0b6b8a;
+  --banner-yellow: #ffef57;
+}
+
+/* Support common ways apps apply a dark theme on an ancestor element
+   so the ficha adapts even when the class/attribute isn't on .ficha-root itself */
+.theme-dark .ficha-root,
+body.theme-dark .ficha-root,
+html.theme-dark .ficha-root,
+[data-theme="dark"] .ficha-root,
+html[data-theme="dark"] .ficha-root,
+.dark .ficha-root,
+.dark-theme .ficha-root {
+  /* lighter muted color for readability on dark backgrounds */
+  --muted: #6B7280;
+}
+
+.ficha-panel-outer { border: 3px solid #fff; box-shadow: 0 0 0 2px rgba(0,0,0,0.05) inset; }
+.ficha-header-blue { display:flex; align-items:center; background:var(--header-blue); color:#fff; padding:10px; }
+.ficha-header-blue .notice-red { background: #a90000; color: #fff; padding:6px 8px; margin-right:12px; font-size:13px; }
+.ficha-header-blue .title-big { font-size:28px; margin-left:auto; margin-right:auto; }
+
+.ficha-banner-yellow { background: var(--banner-yellow); color:var(--text-primary); padding:10px 12px; font-weight:700; }
+
+.ficha-panel { background: var(--panel-bg); border-top: 4px solid var(--panel-border); color: var(--text-primary); border: 1px solid rgba(255,255,255,0.8); }
+
+/* Panel B: mantener mismo fondo que A y eliminar borde/separación para continuidad */
+.ficha-panel-b { background: var(--panel-bg); border: none; margin-top: 0; box-shadow: none; }
+.ficha-panel-b .ficha-header-blue { background: transparent; }
+.ficha-panel-b h3 { color: #073741; }
+
+.ficha-row-table { display:grid; grid-template-columns: 40px 1fr; align-items:center; border-bottom:1px solid rgba(255,255,255,0.25); }
+.ficha-row-table.header-row { padding: 8px 12px; }
+.col-a { padding-left:6px; font-weight:700; }
+.col-main { padding: 8px 6px; }
+.meta { padding-bottom:8px; }
+.ficha-panel h3 { margin: 0; color: #073741; font-size:20px; border-bottom: 1px solid rgba(255,255,255,0.35); padding:8px 0 12px 0; }
+
+.legacy-table { display:flex; flex-direction:column; gap:0; padding:8px; }
+.legacy-row { display:grid; /* 5 columnas: indice | label | pequeño control | campo principal | campo lateral */
+  /* Make column 2 (label) and column 4 (label) the same fixed width; make data columns 3 and 5 equal (both flexible) */
+  grid-template-columns: 36px 220px 1fr 220px 1fr; gap:8px; align-items:start; border-top:2px solid rgba(255,255,255,0.95); padding:8px 12px; }
+.legacy-row:first-of-type { border-top: none; }
+.cell { padding:2px 6px; }
+.cell.index { color:var(--text-primary); font-weight:700; font-size:13px; text-align:left; }
+.cell.label { font-weight:700; color:var(--text-primary); font-size:13px; }
+
+.muted-label { display:block; font-size:12px; color:var(--muted); margin-bottom:6px; }
+.muted { font-size:12px; color:var(--muted); margin-top:6px; }
+
+/* Inputs y selects con estilo clásico -> blanco sobre panel celeste */
+.cell.field input, .cell.field select { background:#fff; border:1px solid rgba(0,0,0,0.18); padding:6px 8px; border-radius:3px; color:#07223b; font-size:13px; display:block; width:100%; box-sizing:border-box; }
+.cell.field select { height:30px; }
+
+/* display box under dropdowns to mirror legacy layout (bigger text area) */
+.selected-display { background: #fff; border: 1px solid rgba(0,0,0,0.12); padding:6px 8px; margin-top:6px; border-radius:3px; font-size:13px; color:#07223b; display:inline-block; }
+
+/* Fecha: grupos de selects inline y más compactos */
+.legacy-row .cell.field select { margin-right:8px; }
+.legacy-row .cell.field select:nth-of-type(1), .legacy-row .cell.field select:nth-of-type(2), .legacy-row .cell.field select:nth-of-type(3) { max-width:90px; display:inline-block; }
+
+/* For rows where we set three equal columns (departamento/provincia/distrito) allow selects to expand */
+.legacy-row[style] .cell.field select { width:100%; box-sizing:border-box; padding:6px 8px; font-size:13px; height:34px; min-width:140px; }
+.legacy-row[style] .cell.field { display:flex; flex-direction:column; align-items:stretch; }
+.legacy-row[style] .cell.field .selected-display { width:100%; height:34px; line-height:18px; padding:6px 8px; box-sizing:border-box; min-width:140px; }
+
+/* Small controls (third column) should be narrower and centered vertically */
+.legacy-row .cell.field:nth-child(3) input, .legacy-row .cell.field:nth-child(3) select { max-width:110px; }
+
+/* When a field spans multiple columns (manual overrides from JSX) keep it full width */
+.cell.field[style] input, .cell.field[style] select { width:100%; }
+
+.actions { display:flex; gap:8px; margin-top:10px; }
+.btn-primary { background:var(--header-blue); color:#fff; border:none; padding:6px 10px; border-radius:4px; cursor:pointer; font-size:13px; }
+.btn-secondary { background:#e6eef3; color:var(--text-primary); border:1px solid rgba(0,0,0,0.06); padding:6px 10px; border-radius:4px; cursor:pointer; font-size:13px; }
+
+/* Theme toggle */
+.theme-toggle { background: transparent; border: none; color: #fff; font-size:18px; margin-right:8px; cursor:pointer; }
+
+
+/* Declaración final y botones - versión más sobria y coherente con Matricula.css */
+.declaration { text-align: center; margin-top: 18px; padding: 12px 8px; }
+.declaration-text { color: var(--title-color, #0b1726); font-size: 18px; font-weight: 700; margin: 0 0 12px 0; max-width: 920px; margin-left: auto; margin-right: auto; }
+.declaration-actions { display:flex; justify-content:center; gap:28px; margin-top:8px; }
+
+/* Botones más discretos: tamaño moderado, icono en un badge con sombra sutil */
+.aceptar-btn, .cancelar-btn { display:flex; flex-direction:column; align-items:center; gap:8px; border:none; background:transparent; cursor:pointer; text-decoration:none; }
+.aceptar-btn { color: var(--button-green, #2f8f7a); }
+.cancelar-btn { color: var(--muted, #6b7280); }
+.aceptar-btn .icon-save, .cancelar-btn .icon-cancel {
+  font-size:24px; /* más contenida */
+  background: var(--panel-contrast, #ffffff); /* badge claro */
+  border-radius:8px;
+  padding:10px;
+  border:1px solid var(--border-soft, rgba(0,0,0,0.06));
+  box-shadow: 0 8px 20px rgba(2,8,20,0.12);
+}
+.aceptar-btn .btn-label, .cancelar-btn .btn-label { font-size:13px; color:var(--muted); margin-top:6px; letter-spacing:0.4px; }
+
+/* Volver al perfil: top-right but toned down */
+.actions.actions-top { justify-content: flex-end; margin-top: 12px; }
+.actions.actions-top .back-button {
+  background: linear-gradient(180deg, rgba(11,107,138,0.95), rgba(11,107,138,0.85));
+  color: #ffffff;
+  border: none;
+  padding:8px 12px;
+  border-radius:8px;
+  font-size:13px;
+  box-shadow: 0 8px 20px rgba(2,8,20,0.12);
+}
+.actions.actions-top .back-button:hover { transform: translateY(-2px); }
+
+@media (max-width: 900px) {
+  .declaration-text { font-size:16px; padding:0 10px; }
+  .declaration-actions { gap: 18px; }
+  .aceptar-btn .icon-save, .cancelar-btn .icon-cancel { font-size:20px; padding:8px; }
+}
+
+
+@media (max-width: 900px) {
+  .legacy-row { grid-template-columns: 36px 1fr; }
+  .cell.label, .cell.field { grid-column: 2 / 3; }
+}
+
+/* Modal styles used by Sección F editor */
+.ficha-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.35); display:flex; align-items:center; justify-content:center; z-index:1200; }
+.ficha-modal { background: var(--panel-bg); border:1px solid rgba(0,0,0,0.08); padding:18px; width:760px; max-width:calc(100% - 32px); border-radius:6px; box-shadow:0 8px 24px rgba(0,0,0,0.12); color:var(--text-primary); }
+.ficha-modal h3 { margin:0 0 12px 0; }
+.modal-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap:12px 24px; }
+.modal-grid label { display:flex; align-items:center; gap:8px; padding:6px 8px; background: rgba(255,255,255,0.6); border-radius:4px; }
+
+@media (max-width:700px) {
+  .ficha-modal { width:92%; }
+  .modal-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* Force light appearance inside the modal regardless of app theme.
+   We use explicit light colors and some !important rules to override
+   any dark-theme rules applied on ancestors. */
+.ficha-modal {
+  background: #dff4f6 !important; /* panel light */
+  color: #07223b !important; /* dark text */
+  border-color: #0b6b8a !important;
+}
+.ficha-modal, .ficha-modal * {
+  color: #07223b !important;
+}
+.ficha-modal .modal-grid label {
+  background: #ffffff !important;
+  color: #07223b !important;
+  border: 1px solid rgba(0,0,0,0.06) !important;
+}
+.ficha-modal input[type="checkbox"] {
+  accent-color: #0b6b8a; /* modern browsers */
+}
+.ficha-modal input, .ficha-modal select, .ficha-modal textarea {
+  background: #ffffff !important;
+  color: #07223b !important;
+  border: 1px solid rgba(0,0,0,0.12) !important;
+}
+.ficha-modal .btn-primary {
+  background: #0b6b8a !important;
+  color: #fff !important;
+  border: none !important;
+}
+.ficha-modal .btn-secondary {
+  background: #e6eef3 !important;
+  color: #07223b !important;
+  border: 1px solid rgba(0,0,0,0.06) !important;
+}
+
+/* Ensure muted labels inside modal are legible and don't pick dark-theme overrides */
+.ficha-modal .muted-label, .ficha-modal .muted {
+  color: rgba(7,34,59,0.72) !important;
+}
+
+/* Row-lugar: Departamento / Provincia / Distrito stacked visual style
+   Each .cell.field in this row should show:
+   - .muted-label (small header)
+   - select (dropdown)
+   - .selected-display (display box) beneath
+*/
+.legacy-row.row-lugar .cell.field { display:flex; flex-direction:column; gap:8px; align-items:flex-start; }
+.legacy-row.row-lugar .cell.field .muted-label { margin:0 0 4px 0; font-size:13px; }
+.legacy-row.row-lugar .cell.field select { min-width:140px; }
+.legacy-row.row-lugar .cell.field .selected-display { margin-top:4px; }
+
+/* Generic stacked field: label above control (used in several rows like emergencia and doc. identification) */
+.cell.field.stacked { display:flex; flex-direction:column; gap:6px; align-items:flex-start; }
+.cell.field.stacked .muted-label { margin:0 0 4px 0; font-size:13px; }
+.cell.field.stacked input,
+.cell.field.stacked select { min-width:140px; box-sizing:border-box; }
+.cell.field.stacked .selected-display { margin-top:4px; }
+
+/* Sección D - Servicios: presentar las 3 celdas de servicios como columnas
+   formateadas (no wrapping) para que los checkbox y sus labels queden en
+   columnas similares a la tabla legacy (imagen 1). */
+.legacy-row.servicios-row { grid-template-columns: 36px 260px 1fr 1fr 1fr; }
+.legacy-row.servicios-row .cell.field { display:flex; flex-direction:column; gap:8px; align-items:flex-start; }
+.legacy-row.servicios-row .cell.field label { display:flex; align-items:center; gap:8px; white-space:nowrap; color: var(--text-primary); }
+.legacy-row.servicios-row .cell.field label input[type="checkbox"] { margin-right:6px; transform:scale(1); }
+
+/* For smaller screens, stack like other rows but keep labels readable */
+@media (max-width: 900px) {
+  .legacy-row.servicios-row { grid-template-columns: 36px 1fr; }
+  .legacy-row.servicios-row .cell.field { flex-direction:row; flex-wrap:wrap; gap:12px; }
+  .legacy-row.servicios-row .cell.field label { white-space:normal; }
+}
+
+/* Row for E-1 (padres): display checkboxes inline and aligned with the label
+   so it resembles the compact table-like layout (image 2). */
+.legacy-row.padres-row { grid-template-columns: 36px 220px 1fr 220px 1fr; }
+.legacy-row.padres-row .cell.field { display:flex; align-items:center; gap:12px; }
+.legacy-row.padres-row .cell.field label { display:inline-flex; align-items:center; gap:8px; color: var(--text-primary); }
+.legacy-row.padres-row .cell.field label input[type="checkbox"] { transform:scale(1); }
+
+@media (max-width: 900px) {
+  .legacy-row.padres-row { grid-template-columns: 36px 1fr; }
+  .legacy-row.padres-row .cell.field { justify-content:flex-start; }
+}
+
+/* ------------------------------------------------------------------
+   Accessibility tweak: ensure helper/muted labels are legible in dark
+   themes. Some apps apply dark mode via different ancestor selectors
+   (body.theme-dark, .theme-dark, .dark, etc.). Add high-specificity
+   overrides so `.muted-label` and `.muted` use Tailwind gray-500 and
+   remain readable even when the global theme is dark. Use !important
+   to avoid accidental overrides from upstream theme rules.
+   ------------------------------------------------------------------ */
+.ficha-root.theme-dark .muted-label,
+.theme-dark .ficha-root .muted-label,
+body.theme-dark .ficha-root .muted-label,
+html.theme-dark .ficha-root .muted-label,
+.dark .ficha-root .muted-label,
+.dark-theme .ficha-root .muted-label {
+  color: #6B7280 !important; /* gray-500 */
+}
+
+.ficha-root.theme-dark .muted,
+.theme-dark .ficha-root .muted,
+body.theme-dark .ficha-root .muted,
+html.theme-dark .ficha-root .muted,
+.dark .ficha-root .muted,
+.dark-theme .ficha-root .muted {
+  color: #6B7280 !important; /* gray-500 */
+}
+
+/* Also ensure checkbox labels and inline labels inside .cell.field are readable
+   in dark themes (many labels are plain <label> elements containing the checkbox
+   and the text). Force gray-500 for those label texts only in dark variants. */
+.ficha-root.theme-dark .cell.field label,
+.theme-dark .ficha-root .cell.field label,
+body.theme-dark .ficha-root .cell.field label,
+html.theme-dark .ficha-root .cell.field label,
+.dark .ficha-root .cell.field label,
+.dark-theme .ficha-root .cell.field label {
+  color: #6B7280 !important;
+}

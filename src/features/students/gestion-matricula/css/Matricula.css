@@ -8,9 +8,23 @@
 :root {
   /* Tema claro (valores por defecto) */
   --page-bg: linear-gradient(180deg,#f3f4f6 0%, #eef2f7 100%);
+  /* Espaciado estándar para títulos de páginas (puedes reutilizar estas variables en otras vistas)
+     --page-title-space-above: espacio (margin-top) entre el TopBar y el título de la página
+     --page-title-space-below: espacio (margin-bottom) entre el título y el contenido inmediato
+     Valores actuales: arriba 12px, abajo 20px */
+  --page-title-space-above: 12px;
+  --page-title-space-below: 20px;
   --page-bg-solid: #f6f7f9;
   --panel-bg: #ffffff;       /* tarjetas en claro */
   --panel-contrast: #f3f4f6;
+  /* variables para la franja de acento (accent stripe) */
+  --accent-stripe-width: 6px;
+  --accent-stripe-gap: 12px;
+  --accent-stripe-radius: 8px;
+  --accent-stripe-color-start: #3ac5aa;
+  --accent-stripe-color-end: #5a9e8d;
+  /* padding adicional a la izquierda del contenido dentro de la tarjeta (texto/botones) */
+  --card-content-left-padding: 20px;
   --accent-cyan: #3ac5aa;
   --button-green: #5a9e8d;
   --button-green-2: #4a8e7d;
@@ -44,8 +58,10 @@
 /* Contenedor principal */
 .tramites-root {
   max-width: 1180px;
-  margin: 28px auto;
-  padding: 36px 40px;
+  /* reducir espacio superior para acercar el título al TopBar */
+  margin: var(--page-title-space-above) auto;
+  /* menor padding-top pero mantener padding horizontal; el padding-bottom se controla más abajo */
+  padding: 18px 40px;
   font-family: 'Roboto', Inter, system-ui, -apple-system, 'Segoe UI', Arial;
   color: var(--text);
   /* usar fondo transparente para heredar el fondo global del layout */
@@ -57,7 +73,8 @@
   font-size: 2.2rem;
   font-weight: 700;
   text-align: center;
-  margin-bottom: 26px;
+  /* espacio ligeramente mayor entre título y contenido para mejor separación visual */
+  margin-bottom: var(--page-title-space-below);
 }
 
 /* aplicar color específico al título para mayor contraste */
@@ -77,27 +94,41 @@
   box-shadow: var(--shadow-lg);
   position: relative;
   border: 1px solid var(--border-soft);
-  overflow: visible;
+  /* ocultar overflow para que pseudo-elementos queden contenidos y evitar líneas/parches visibles */
+  overflow: hidden;
 }
 
 /* franja izquierda */
 .tramites-card::before {
   content: '';
   position: absolute;
-  left: 14px;
-  top: 14px;
-  bottom: 14px;
-  width: 6px;
-  background: linear-gradient(180deg, var(--accent-cyan), #5a9e8d);
-  border-radius: 6px;
+  /* franja interior redondeada (alineada hacia el borde interior izquierdo) */
+  left: var(--accent-stripe-gap);
+  top: var(--accent-stripe-gap);
+  bottom: var(--accent-stripe-gap);
+  width: var(--accent-stripe-width);
+  background: linear-gradient(180deg, var(--accent-stripe-color-start), var(--accent-stripe-color-end));
+  border-radius: var(--accent-stripe-radius);
+  pointer-events: none;
 }
 
-.tramites-card-header { padding-left: 40px; }
+/* Quitar la franja vertical en los contenedores (imagen 1) cuando se desee ocultarla */
+.tramites-card--no-stripe::before,
+.tramites-card.no-stripe::before {
+  display: none;
+}
+
+/* Regla opcional por tarjeta para ocultar la franja cuando se necesite */
+.tramites-card.hide-stripe::before {
+  display: none !important;
+}
+
+.tramites-card-header { padding-left: calc(var(--accent-stripe-gap) + var(--accent-stripe-width) + var(--card-content-left-padding)); }
 .tramites-card-header h2{ margin:0; font-size:1.15rem; font-weight:700; color:var(--text); }
-.tramites-card-body { padding-left: 40px; margin-top:12px; color:var(--muted); }
+.tramites-card-body { padding-left: calc(var(--accent-stripe-gap) + var(--accent-stripe-width) + var(--card-content-left-padding)); margin-top:12px; color:var(--muted); }
 
 /* Barra de pasos (3 secciones) */
-.steps-bar { display:flex; gap:10px; align-items:center; margin: 18px 0; padding-left:40px; }
+.steps-bar { display:flex; gap:10px; align-items:center; margin: 18px 0; padding-left: calc(var(--accent-stripe-gap) + var(--accent-stripe-width) + var(--card-content-left-padding)); }
 .step {
   padding: 10px 14px;
   border-radius: 8px;
@@ -110,7 +141,7 @@
 .step-active { outline: 2px solid var(--accent-cyan); transform: translateY(-2px); }
 .step-done { background: linear-gradient(90deg, rgba(58,197,170,0.12), var(--panel-contrast)); border-color: var(--accent-cyan); }
 
-.steps-content { padding-left:40px; margin-top:12px; }
+.steps-content { padding-left: calc(var(--accent-stripe-gap) + var(--accent-stripe-width) + var(--card-content-left-padding)); margin-top:12px; }
 .doc-view { background: var(--panel-bg); padding:18px; border-radius:10px; border:1px solid var(--border-soft); }
 .doc-title { font-weight:800; font-size:1.05rem; margin:0 0 8px 0; color:var(--title-color); }
 .doc-body { color:var(--muted); margin-bottom:12px; }
@@ -125,7 +156,7 @@
 .process-table tbody tr:hover { background: rgba(0,0,0,0.03); }
 
 /* Botón principal verde */
-.action-center { display:flex; justify-content:flex-start; padding-left:40px; margin-top:14px; }
+.action-center { display:flex; justify-content:flex-start; padding-left: calc(var(--accent-stripe-gap) + var(--accent-stripe-width) + var(--card-content-left-padding)); margin-top:14px; }
 .btn-primary {
   background: linear-gradient(180deg, var(--button-green), var(--button-green-2));
   color: #fff;
@@ -147,7 +178,7 @@
 }
 
 /* Grid de selección (placeholder) */
-.seleccion-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:14px; margin-top:14px; padding-left:40px; }
+.seleccion-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:14px; margin-top:14px; padding-left: calc(var(--accent-stripe-gap) + var(--accent-stripe-width) + var(--card-content-left-padding)); }
 .seleccion-item { background: var(--panel-contrast); padding:14px; border-radius:10px; border:1px solid var(--border-soft); color:var(--text); }
 .seleccion-nombre{ font-weight:700; }
 
@@ -157,7 +188,7 @@
 @media (max-width: 1024px) { .tramites-root{ padding:24px; } .tramites-title{ font-size:1.9rem; } }
 @media (max-width: 640px) {
   .tramites-root{ padding:12px; margin:12px auto; }
-  .tramites-title{ font-size:1.4rem; text-align:left; }
+  .tramites-title{ font-size:1.4rem; text-align:center; }
   .tramites-card{ padding:16px; }
   .tramites-card::before{ left:12px; top:12px; bottom:12px; }
   .tramites-card-header, .tramites-card-body, .action-center, .seleccion-grid{ padding-left:20px; }
