@@ -84,43 +84,45 @@ const VerHorario: React.FC = () => {
             Ver mi Horario
           </button>
         </div>
-        <table className="ver-horario-table">
-          <thead>
-            <tr>
-              <th>CÓDIGO</th>
-              <th>CURSO</th>
-              <th>SECCIÓN</th>
-              <th>CICLO</th>
-              <th>LUNES</th>
-              <th>MARTES</th>
-              <th>MIÉRCOLES</th>
-              <th>JUEVES</th>
-              <th>VIERNES</th>
-              <th>SÁBADO</th>
-              <th>DOMINGO</th>
-            </tr>
-          </thead>
-          <tbody>
-            {horariosFiltrados.map((horario, index) => (
-              <tr
-                key={horario.codigo}
-                className={index % 2 === 0 ? "row-par" : "row-impar"}
-              >
-                <td>{horario.codigo}</td>
-                <td>{horario.curso}</td>
-                <td>{horario.seccion}</td>
-                <td>{horario.ciclo}</td>
-                <td>{horario.lunes}</td>
-                <td>{horario.martes}</td>
-                <td>{horario.miercoles}</td>
-                <td>{horario.jueves}</td>
-                <td>{horario.viernes}</td>
-                <td>{horario.sabado}</td>
-                <td>{horario.domingo}</td>
+        <div className="mi-horario-table-container">
+          <table className="ver-horario-table">
+            <thead>
+              <tr>
+                <th>CÓDIGO</th>
+                <th>CURSO</th>
+                <th>SECCIÓN</th>
+                <th>CICLO</th>
+                <th>LUNES</th>
+                <th>MARTES</th>
+                <th>MIÉRCOLES</th>
+                <th>JUEVES</th>
+                <th>VIERNES</th>
+                <th>SÁBADO</th>
+                <th>DOMINGO</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {horariosFiltrados.map((horario, index) => (
+                <tr
+                  key={horario.codigo}
+                  className={index % 2 === 0 ? "row-par" : "row-impar"}
+                >
+                  <td>{horario.codigo}</td>
+                  <td>{horario.curso}</td>
+                  <td>{horario.seccion}</td>
+                  <td>{horario.ciclo}</td>
+                  <td>{horario.lunes}</td>
+                  <td>{horario.martes}</td>
+                  <td>{horario.miercoles}</td>
+                  <td>{horario.jueves}</td>
+                  <td>{horario.viernes}</td>
+                  <td>{horario.sabado}</td>
+                  <td>{horario.domingo}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

@@ -972,7 +972,7 @@
 
 .nav-submenu-link-copiloto:hover {
   background-color: #e6f2ef;
-  color: #3d3c3b;
+  color: #4d8579;
 }
 
 .dark .nav-submenu-link-copiloto:hover {
@@ -981,8 +981,8 @@
 }
 
 .nav-submenu-link-copiloto.active {
-  background-color: #5a9e8d;
-  color: #ffffff;
+  background-color: #e6f2ef;
+  color: #4d8579;
   font-weight: 500;
 }
 

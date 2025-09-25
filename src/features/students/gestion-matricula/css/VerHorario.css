@@ -1,18 +1,15 @@
 /* Contenedor principal */
-.ver-horario-container,
-.mi-horario-container {
-  margin: 20px auto;
-  padding: 20px;
-  max-width: 1200px;
+.ver-horario-container {
+  margin: 40px auto;
+  padding: 0px 20px;
 }
 
 /* Título */
-.ver-horario-title,
-.mi-horario-title {
+.ver-horario-title {
   text-align: center;
   font-size: 2rem;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   color: #3d3c3b;
 }
 
@@ -59,31 +56,33 @@
 }
 
 /* Card */
-.ver-horario-card,
-.mi-horario-card {
+.ver-horario-card {
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
+  width: auto;
+  border-left: 7px solid #ecc138;
 }
 
 /* Tabla */
-.ver-horario-table,
-.mi-horario-table {
+.ver-horario-table{
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden; 
+  overflow-x: auto;
 }
 
-.ver-horario-table th,
-.mi-horario-table th {
+.ver-horario-table th{
   background-color: #ecc138;
   color: #3d3c3b;
   padding: 10px;
   text-align: center;
 }
 
-.ver-horario-table td,
-.mi-horario-table td {
+.ver-horario-table td {
   padding: 10px;
   text-align: center;
 }
@@ -96,7 +95,6 @@
   background-color: #ffffff;
 }
 
-.ver-horario-table tr:hover,
-.mi-horario-table tr:hover {
+.ver-horario-table tr:hover{
   background-color: #eaf4f1;
 }

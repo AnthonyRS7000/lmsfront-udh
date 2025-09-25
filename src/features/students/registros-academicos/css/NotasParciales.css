@@ -63,6 +63,68 @@
   background: #417265;
 }
 
+/* Spinner */
+.spinner-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.spinner {
+  margin: 0 auto;
+  width: 3rem;
+  height: 3rem;
+  border: 0.4rem solid #f3f3f3;
+  border-top: 0.4rem solid #89c7b7;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Input y botón */
+.filter-group {
+  display: flex;
+  align-items: center;
+}
+
+.notas-input-semestre {
+  padding: 5px 10px;
+  border: 1px solid #cfd8dc;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #3d3c3b;
+  width: 50px;
+  height: 20px;
+}
+
+.notas-input-semestre:focus {
+  border-color: #ecc138;
+  outline: none;
+  box-shadow: 0 0 0 1px rgba(236, 193, 56, 0.5);
+}
+
+.notas-button {
+  margin-left: 10px;
+  padding: 5px 15px;
+  background-color: #89c7b7;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.notas-button:hover {
+  background-color: #6fb1a2;
+}
+
 /* Tabla */
 .notas-tabla-wrapper {
   overflow-x: auto;
@@ -104,6 +166,13 @@
 
 .notas-tabla-notas td.notas-promedio {
   vertical-align: middle;
+}
+
+.promedio-container {
+  display: flex; /* Usar flexbox para alinear los elementos */
+  flex-direction: row; /* Asegurar que los elementos estén en fila */
+  align-items: center; /* Centrar verticalmente los elementos */
+  gap: 5px; /* Espaciado entre los elementos */
 }
 
 /* Alerta */
