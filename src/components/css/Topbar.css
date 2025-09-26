@@ -1,0 +1,98 @@
+/* Estilos para el Topbar - botón Aula Virtual tipo tarjeta */
+.topbar-aula-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 7px;
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 200ms ease, box-shadow 200ms ease, transform 160ms ease;
+  position: relative;
+  z-index: 10;
+  background: linear-gradient(135deg, #f3f4f6 0%, #e6eef3 100%); /* from-gray-100 to-gray-200 */
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+  border: 2px solid rgba(0,0,0,0.08);
+}
+
+/* Hover / focus */
+.topbar-aula-btn:hover, .topbar-aula-btn:focus {
+  background: linear-gradient(135deg, #f1cc7a 0%, #d6b459 100%);
+  color: #07223b;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(16,24,40,0.12);
+}
+
+/* Apply the same subtle lift to the theme toggle button */
+.theme-toggle:hover {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 6px 18px rgba(16,24,40,0.12);
+}
+
+.dark .theme-toggle:hover {
+  box-shadow: 0 8px 20px rgba(2,6,23,0.55);
+}
+
+/* Force theme-toggle to use the same hover background as Aula Virtual (light) */
+.theme-toggle:hover {
+  background: linear-gradient(135deg, #f1cc7a 0%, #d6b459 100%) !important;
+  color: #07223b !important;
+}
+
+/* And for dark mode, match the Aula Virtual dark hover (hover only) */
+.dark .theme-toggle:hover {
+  background: linear-gradient(135deg, #3b4753 0%, #0f1720 100%) !important;
+  color: #ffffff !important;
+}
+
+/* Focus-visible: show ring/outline but do not change background so the button doesn't stay colored after click */
+.theme-toggle:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(241,204,122,0.12), 0 6px 18px rgba(16,24,40,0.12);
+}
+.dark .theme-toggle:focus-visible {
+  box-shadow: 0 0 0 4px rgba(241,204,122,0.08), 0 8px 20px rgba(2,6,23,0.55);
+}
+
+/* Dark mode support: assumes a parent .dark on body or root */
+.dark .topbar-aula-btn {
+  /* Match ThemeToggle dark appearance: gradient, subtle border and shadow */
+  background: linear-gradient(135deg, #374151 0%, #111827 100%); /* like ThemeToggle */
+  border: 1px solid #4b5563; /* same border color used by ThemeToggle */
+  color: #ffffff; /* white text like ThemeToggle */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* match ThemeToggle shadow */
+}
+.dark .topbar-aula-btn:hover, .dark .topbar-aula-btn:focus {
+  /* Hover in dark: slightly lift and increase contrast while keeping ThemeToggle feel */
+  background: linear-gradient(135deg, #3b4753 0%, #0f1720 100%);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(2,6,23,0.55);
+}
+
+/* make focus ring clearer in dark mode */
+.topbar-aula-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(241,204,122,0.08), 0 6px 18px rgba(16,24,40,0.12);
+}
+
+.topbar-aula-btn svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.dark .topbar-aula-btn svg,
+.dark .topbar-aula-btn {
+  color: #e6eef3;
+}
+
+.dark .topbar-aula-btn svg { stroke: currentColor; }
+
+.topbar-aula-label { font-weight:600; font-size:14px; }
+
+/* small adjustments for compact view */
+@media (max-width: 640px) {
+  .topbar-aula-label { display:none; }
+  .topbar-aula-btn { padding:6px; }
+}

@@ -17,7 +17,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="relative z-10 flex items-center justify-center overflow-hidden focus:outline-none transition-all duration-200 hover:scale-105"
+      className="theme-toggle relative z-10 flex items-center justify-center overflow-hidden focus:outline-none transition-all duration-200 hover:scale-105"
       style={{
         width: '40px',
         height: '40px',
