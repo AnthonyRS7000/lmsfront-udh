@@ -1,17 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { ApiService } from "../../../../components/pages/ApiService";
 import '../css/HistorialAcademico.css';
 import { PrinterIcon } from '@heroicons/react/24/outline';
-
-interface Curso {
-    codigo: string;
-    nombre: string;
-    ciclo: number;
-    nota: number;
-    prereq?: string;
-    prereq2?: string;
-    nroVecesLlevado: string;
-    especializacion?: string;
-}
+import Homero from "../../../../assets/homero-pensando.png";
 
 const obtenerFechaHora = () => {
     const fecha = new Date();
@@ -21,30 +12,23 @@ const obtenerFechaHora = () => {
     return { fechaStr, horaStr };
 };
 
-const cursosEjemplo: Curso[] = [
-    { codigo: "062101011", nombre: "LENGUAJE I(04 cred.)", ciclo: 1, nota: 11, nroVecesLlevado: "01" },
-    { codigo: "062101021", nombre: "MATEMÁTICA BÁSICA I(04 cred.)", ciclo: 1, nota: 16, nroVecesLlevado: "01" },
-    { codigo: "062101031", nombre: "MÉTODOS Y TÉCNICAS DE ESTUDIO(03 cred.)", ciclo: 1, nota: 12, nroVecesLlevado: "01" },
-    { codigo: "062101041", nombre: "ÉTICA Y LIDERAZGO(03 cred.)", ciclo: 1, nota: 14, nroVecesLlevado: "01" },
-    { codigo: "062101051", nombre: "PSICOLOGÍA GENERAL(03 cred.)", ciclo: 1, nota: 14, nroVecesLlevado: "01" },
-    { codigo: "062101061", nombre: "INTRODUCCIÓN A LA INGENIERÍA DE SISTEMAS E INFORMÁTICA(03 cred.)", ciclo: 1, nota: 12, nroVecesLlevado: "01" },
-    { codigo: "062102011", nombre: "LENGUAJE II(04 cred.)", ciclo: 2, nota: 12, prereq: "062101011", nroVecesLlevado: "01" },
-    { codigo: "062102021", nombre: "MATEMÁTICA BÁSICA II(04 cred.)", ciclo: 2, nota: 16, prereq: "062101021", nroVecesLlevado: "01" },
-    { codigo: "062102031", nombre: "ECOLOGÍA Y PROTECCIÓN DEL MEDIO AMBIENTE(03 cred.)", ciclo: 2, nota: 12, prereq: "062101031", nroVecesLlevado: "01" },
-    { codigo: "062102041", nombre: "SOCIOLOGÍA GENERAL(03 cred.)", ciclo: 2, nota: 14, prereq: "062101051", nroVecesLlevado: "01" },
-    { codigo: "062102051", nombre: "TECNOLOGÍA INFORMÁTICA(02 cred.)", ciclo: 2, nota: 16, prereq: "062101061", nroVecesLlevado: "01" },
-    { codigo: "062102062", nombre: "DESARROLLO PERSONAL(03 cred.)", ciclo: 2, nota: 13, prereq: "062101041", nroVecesLlevado: "01" },
-];
-
-
 const HistorialAcademico: React.FC = () => {
+    const [cursos, setCursos] = useState([]); 
+    const [udhData, setUdhData] = useState<any>(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
+
     const [codigo, setCodigo] = useState('2025110403');
     const [nombre, setNombre] = useState('ARMANDO ROJAS LUNA');
-    const [cargando, setCargando] = useState(false);
-    const [cursos, setCursos] = useState<Curso[]>(cursosEjemplo); 
+    
     const [cicloFiltro, setCicloFiltro] = useState<string>('');
     const [busqueda, setBusqueda] = useState<string>('');
     const [darkMode, setDarkMode] = useState(false);
+
+    useEffect(() => {
+        const datosUdh = JSON.parse(localStorage.getItem("datos_udh") || "{}");
+        setUdhData(datosUdh);
+    }, []);
 
     // Referencia para scroll al card de resultados
     const resultadosRef = useRef<HTMLDivElement>(null);

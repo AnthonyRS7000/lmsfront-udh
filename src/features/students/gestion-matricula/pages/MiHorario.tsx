@@ -1,14 +1,34 @@
 import React, { useState, useEffect } from "react";
 import { ApiService } from "../../../../components/pages/ApiService";
 import "../css/MiHorario.css";
-import Homero from "../../../../assets/homero-pensando.png";
+import DatosNoEncontrados from "../../../../components/pages/DatosNoEncontrados";
+import Loading from "../../../../components/pages/Loading"
+import Tablas from "../../../../components/pages/Tablas";
+import Titulo from "../../../../components/pages/TituloPage";
+import Card from "../../../../components/pages/Card";
+
+const calcularSemestre = (): string => {
+    const fechaActual = new Date();
+    const año = fechaActual.getFullYear();
+    const mes = fechaActual.getMonth() + 1; // Los meses en JavaScript son 0-indexados
+
+    if (mes >= 1 && mes <= 3) {
+        return `${año}-0`;
+    } else if (mes >= 4 && mes <= 7) {
+        return `${año}-1`;
+    } else if (mes >= 8 && mes <= 11) {
+        return `${año}-2`;
+    } else {
+        return `${año}-2`;
+    }
+};
 
 const MiHorario: React.FC = () => {
     const [miHorario, setMiHorario] = useState([]);
     const [udhData, setUdhData] = useState<any>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
-    const [semestre, setSemestre] = useState("2025-2");
+    const [semestre, setSemestre] = useState(calcularSemestre());
 
     useEffect(() => {
         const datosUdh = JSON.parse(localStorage.getItem("datos_udh") || "{}");
@@ -41,84 +61,60 @@ const MiHorario: React.FC = () => {
         }
     };
 
+    // Encabezados de la tabla
+    const headers = ["CÓDIGO", "CURSO", "CICLO", "CRÉD.", "HORARIO", "SEC."];
+
+    // Filas de la tabla
+    const rows = miHorario.map((horario) => [
+        horario.codigo_curso,
+        horario.nombre_curso,
+        horario.ciclo,
+        horario.creditos,
+        [
+        horario.lunes,
+        horario.martes,
+        horario.miercoles,
+        horario.jueves,
+        horario.viernes,
+        horario.sabado,
+        horario.domingo,
+        ]
+        .filter((dia) => dia)
+        .map((dia, i) => <div key={i}>{dia}</div>),
+        horario.seccion,
+    ]);
+
     return (
         <div className="mi-horario-container">
-        <h1 className="mi-horario-title">Mi Horario</h1>
-        <div className="mi-horario-card">
-            <div className="mi-horario-filters">
-            <div className="filter-group">
-                <label htmlFor="ciclo-input">Cilco:</label>
-                <input
-                id="ciclo-input"
-                type="text"
-                value={semestre}
-                onChange={(e) => setSemestre(e.target.value)}
-                className="mi-horario-input"
-                placeholder="Ejemplo: 2025-2"
-                />
-                <button
-                className="mi-horario-button"
-                onClick={fetchHorario}
-                >
-                Ver
-                </button>
-            </div>
-            </div>
-            {loading ? (
-            <div className="spinner-container">
-                <div className="spinner" role="status">
-                <span className="visually-hidden">Loading...</span>
+            <Titulo titulo="Mi Horario" />
+            <Card>
+                <div className="mi-horario-filters">
+                    <div className="filter-group">
+                        <label htmlFor="ciclo-input">Cilco:</label>
+                        <input
+                        id="ciclo-input"
+                        type="text"
+                        value={semestre}
+                        onChange={(e) => setSemestre(e.target.value)}
+                        className="mi-horario-input"
+                        placeholder="2025-2"
+                        />
+                        <button
+                        className="mi-horario-button"
+                        onClick={fetchHorario}
+                        >
+                        Ver
+                        </button>
+                    </div>
                 </div>
-            </div>
-            ) : error ? (
-            <div className="error-container">
-                <img
-                src={Homero}
-                alt="homero-pensando"
-                className="error-image"
-                />
-                <p className="error-message">
-                Datos no encontrados o no te encuentras registrado en el presente ciclo
-                </p>
-            </div>
-            ) : (
-            <div className="mi-horario-table-container">
-                <table className="mi-horario-table">
-                <thead>
-                    <tr>
-                    <th>CÓDIGO</th>
-                    <th>CURSO</th>
-                    <th>CICLO</th>
-                    <th>CRÉD.</th>
-                    <th>HORARIO</th>
-                    <th>SEC.</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {miHorario.map((horario, index) => (
-                    <tr
-                        key={horario.codigo_curso}
-                        className={index % 2 === 0 ? "row-par" : "row-impar"}
-                    >
-                        <td>{horario.codigo_curso}</td>
-                        <td>{horario.nombre_curso}</td>
-                        <td>{horario.ciclo}</td>
-                        <td>{horario.creditos}</td>
-                        <td>
-                        {[horario.lunes, horario.martes, horario.miercoles, horario.jueves, horario.viernes, horario.sabado, horario.domingo]
-                            .filter((dia) => dia)
-                            .map((dia, i) => (
-                            <div key={i}>{dia}</div>
-                            ))}
-                        </td>
-                        <td>{horario.seccion}</td>
-                    </tr>
-                    ))}
-                </tbody>
-                </table>
-            </div>
-            )}
-        </div>
+                {loading ? (
+                    <Loading />
+                ) : error ? (
+                    <DatosNoEncontrados />
+                ) : (
+                    <Tablas headers={headers} rows={rows} className="mi-horario-table-container" />
+                )}
+            </Card>
         </div>
     );
 };
