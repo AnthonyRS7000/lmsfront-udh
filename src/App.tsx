@@ -29,7 +29,6 @@ import {
   CursosLlevados,
   MiAsistencia,
   NotasParciales,
-  EvaluacionDiaria,
   HistorialAcademico,
   PlanDeEstudios,
   MallaCurricular,
@@ -120,7 +119,6 @@ function App() {
             <Route path="/estudiante/cursos-llevados" element={<CursosLlevados />} />
             <Route path="/estudiante/mi-asistencia" element={<MiAsistencia />} />
             <Route path="/estudiante/notas-parciales" element={<NotasParciales />} />
-            <Route path="/estudiante/evaluacion-diaria" element={<EvaluacionDiaria />} />
             <Route path="/estudiante/historial-academico" element={<HistorialAcademico />} />
             <Route path="/estudiante/plan-de-estudios" element={<PlanDeEstudios />} />
             <Route path="/estudiante/malla-curricular" element={<MallaCurricular />} />
