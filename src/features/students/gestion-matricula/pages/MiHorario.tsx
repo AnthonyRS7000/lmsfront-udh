@@ -112,7 +112,7 @@ const MiHorario: React.FC = () => {
                 ) : error ? (
                     <DatosNoEncontrados />
                 ) : (
-                    <Tablas headers={headers} rows={rows} className="mi-horario-table-container" />
+                    <Tablas headers={headers} rows={rows} />
                 )}
             </Card>
         </div>

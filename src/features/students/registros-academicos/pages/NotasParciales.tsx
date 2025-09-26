@@ -21,7 +21,7 @@ const NotasParciales: React.FC = () => {
     useEffect(() => {
         const datosUdh = JSON.parse(localStorage.getItem("datos_udh") || "{}");
         setUdhData(datosUdh);
-        setNombre(datosUdh.apellido_paterno+" "+datosUdh.apellido_materno+", "+datosUdh.nombres);
+        setNombre(datosUdh.apellido_paterno+" "+datosUdh.apellido_materno+", "+datosUdh.nombres || "");
     }, []);
 
     useEffect(() => {
