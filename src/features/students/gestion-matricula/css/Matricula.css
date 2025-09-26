@@ -173,6 +173,22 @@ html:not(.dark) .tramites-root .step:focus,
   outline: none !important;
   box-shadow: 0 0 0 3px rgba(58,197,170,0.12) !important;
 }
+
+/* Improve legibility: make step text darker and bolder when active/hover in light mode
+   This only applies in light mode (selectors use :not(.dark)) so dark theme is untouched. */
+body:not(.dark) .tramites-root .step-active,
+html:not(.dark) .tramites-root .step-active,
+:root:not(.dark) .tramites-root .step-active,
+body:not(.dark) .tramites-root .step-done,
+html:not(.dark) .tramites-root .step-done,
+:root:not(.dark) .tramites-root .step-done,
+body:not(.dark) .tramites-root .step:hover,
+html:not(.dark) .tramites-root .step:hover,
+:root:not(.dark) .tramites-root .step:hover {
+  color: #a4a1a6 !important; /* darker green for strong contrast in light mode */
+  font-weight: 800 !important;
+  opacity: 1 !important;
+}
 .step[disabled], .step:disabled { opacity: 0.45; cursor: not-allowed; }
 .step-active { outline: 2px solid var(--accent-cyan); transform: translateY(-2px); }
 .step-done { background: linear-gradient(90deg, rgba(58,197,170,0.12), var(--panel-contrast)); border-color: var(--accent-cyan); }
