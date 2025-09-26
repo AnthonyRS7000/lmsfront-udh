@@ -42,7 +42,7 @@ export default function Topbar({ onToggleSidebar, isSidebarOpen }: TopbarProps) 
         {/* Lado derecho */}
         <div className="topbar-right">
           {/* Aula Virtual link (replaces notifications) */}
-          <a className="topbar-aula-btn" title="Aula Virtual" aria-label="Abrir Aula Virtual" href="http://localhost:5175/estudiante/inicio">
+          <a className="topbar-aula-btn" title="Aula Virtual" aria-label="Abrir Aula Virtual" href="http://localhost:5174/estudiante/inicio">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
               <rect x="3" y="4" width="18" height="12" rx="2" ry="2"></rect>
               <path d="M8 20h8"></path>
