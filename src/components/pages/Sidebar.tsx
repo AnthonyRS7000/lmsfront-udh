@@ -125,7 +125,7 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
               { name: 'cursos-llevados', label: 'Cursos llevados', path: '/estudiante/cursos-llevados' },
               { name: 'mi-asistencia', label: 'Mi Asistencia', path: '/estudiante/mi-asistencia' },
               { name: 'notas-parciales', label: 'Notas Parciales', path: '/estudiante/notas-parciales' },
-              { name: 'evaluacion-diaria', label: 'Evaluación Diaria', path: '/estudiante/evaluacion-diaria' },
+              // { name: 'evaluacion-diaria', label: 'Evaluación Diaria', path: '/estudiante/evaluacion-diaria' },
               { name: 'historial-academico', label: 'Historial Académico', path: '/estudiante/historial-academico' },
               { name: 'plan-de-estudios', label: 'Plan de Estudios', path: '/estudiante/plan-de-estudios' },
               { name: 'malla-curricular', label: 'Malla curricular', path: '/estudiante/malla-curricular' },

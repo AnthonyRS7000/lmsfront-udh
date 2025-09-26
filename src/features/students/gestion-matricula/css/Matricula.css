@@ -86,30 +86,17 @@
 .text-azul { color: #2b5566; }
 
 /* Tarjeta principal */
+
 .tramites-card {
-  background: var(--panel-bg); /* usar color sólido por tema */
+  background: var(--panel-bg);
   border-radius: 12px;
   padding: 22px 22px 26px 22px;
   margin-bottom: 22px;
   box-shadow: var(--shadow-lg);
   position: relative;
   border: 1px solid var(--border-soft);
-  /* ocultar overflow para que pseudo-elementos queden contenidos y evitar líneas/parches visibles */
+  border-left: 7px solid #5A9E8D;
   overflow: hidden;
-}
-
-/* franja izquierda */
-.tramites-card::before {
-  content: '';
-  position: absolute;
-  /* franja interior redondeada (alineada hacia el borde interior izquierdo) */
-  left: var(--accent-stripe-gap);
-  top: var(--accent-stripe-gap);
-  bottom: var(--accent-stripe-gap);
-  width: var(--accent-stripe-width);
-  background: linear-gradient(180deg, var(--accent-stripe-color-start), var(--accent-stripe-color-end));
-  border-radius: var(--accent-stripe-radius);
-  pointer-events: none;
 }
 
 /* Quitar la franja vertical en los contenedores (imagen 1) cuando se desee ocultarla */
