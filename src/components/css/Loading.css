@@ -1,0 +1,36 @@
+/* Spinner */
+.spinner-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.spinner {
+  margin: 0 auto; /* Centrar el spinner dentro del contenedor */
+  width: 3rem;
+  height: 3rem;
+  border: 0.4rem solid #f3f3f3; /* Color del borde externo */
+  border-top: 0.4rem solid #89c7b7; /* Color del borde superior */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
