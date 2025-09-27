@@ -1,9 +1,9 @@
 /* Congresos y Otros - estilos alineados con InscripcionIdiomaExtranjero */
-.congresos-otros-root { max-width: 1180px; margin: 18px auto; padding: 28px 40px; }
-.congresos-otros-title { font-size: 2.2rem; font-weight:700; color:var(--title-color); text-align:center; margin-bottom:18px; }
-.congresos-otros-card { background: var(--panel-bg); border-radius:12px; padding:22px; border:1px solid var(--border-soft); box-shadow: var(--shadow-lg); position:relative; }
-.congresos-otros-card::before { content: ''; position:absolute; left:14px; top:14px; bottom:14px; width:6px; background: linear-gradient(180deg, var(--accent-cyan), rgba(58,197,170,0.6)); border-radius:6px; }
-.congresos-otros-card .tramites-card-body { padding-left:40px; color:var(--muted); }
+.congresos-otros-root { max-width: 1180px; margin: 18px auto 0; padding: 28px 40px; }
+.congresos-otros-title { font-size: 2.2rem; font-weight:700; color:var(--title-color); text-align:center; margin: 0 0 18px 0; }
+.congresos-otros-card { background: var(--panel-bg); border-radius:12px; padding:22px; border:1px solid var(--border-soft); box-shadow: var(--shadow-lg); position:relative; border-left: 8px solid #5a9e8d; overflow:hidden; }
+.congresos-otros-card::before { display:none !important; }
+.congresos-otros-card .tramites-card-body { padding-left: calc(var(--accent-stripe-gap,12px) + 8px + var(--card-content-left-padding,20px)); color:var(--muted); }
 .congresos-otros-title { margin-bottom: 18px; }
 
 /* Reuse select style (carnet-select) from InscripcionIdiomaExtranjero */
@@ -43,6 +43,6 @@
 .modal-body { padding: 16px 18px; color: var(--muted); }
 
 @media (max-width: 768px) {
-	.congresos-otros-title { font-size:1.4rem; text-align:left; }
+	.congresos-otros-title { font-size:1.4rem; text-align:center; }
 	.congresos-otros-card { padding:14px; }
 }

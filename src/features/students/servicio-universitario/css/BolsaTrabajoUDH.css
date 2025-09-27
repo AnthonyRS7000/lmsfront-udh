@@ -1,15 +1,81 @@
-/* Estilos para BolsaTrabajoUDH - siguen las variables y patrones de Matricula.css */
-.bolsa-trabajo-root { padding: 18px 20px; max-width: 1180px; margin: 18px auto; }
-.bolsa-trabajo-title { font-size: 2.2rem; font-weight:700; color: var(--title-color); margin-bottom:18px; text-align:center; }
-.bolsa-trabajo-card { background: var(--panel-bg); padding:18px; border-radius:12px; border:1px solid var(--border-soft); box-shadow: var(--shadow-lg); position:relative; }
-.bolsa-trabajo-card::before { content: ''; position:absolute; left:14px; top:14px; bottom:14px; width:8px; background: linear-gradient(180deg, var(--accent-cyan), rgba(58,197,170,0.6)); border-radius:6px; }
-.bolsa-trabajo-card .tramites-card-body { padding-left: 40px; }
+/* Estilos para BolsaTrabajoUDH - derivados de Matricula.css y scopeados a .bolsa-trabajo-* */
+.bolsa-trabajo-root {
+  max-width: 1180px;
+  /* reducir espacio superior para acercar el título al TopBar (ajuste visual) */
+  margin: 6px auto; /* aproximación visual a Matricula */
+  padding: 18px 40px;
+  font-family: 'Roboto', Inter, system-ui, -apple-system, 'Segoe UI', Arial;
+  color: var(--text);
+  background: transparent;
+  padding-bottom: 120px; /* espacio inferior para que se vea la franja */
+}
+
+.bolsa-trabajo-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: var(--page-title-space-below,20px);
+  color: var(--title-color);
+}
+
+.bolsa-trabajo-card {
+  background: var(--panel-bg);
+  border-radius: 12px;
+  padding: 22px 22px 26px 22px;
+  margin-bottom: 22px;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  border: 1px solid var(--border-soft);
+  border-left: 8px solid #5a9e8d; /* bolsa usa 8px como se pidió */
+  overflow: hidden;
+}
+
+.bolsa-trabajo-card-header { padding-left: calc(var(--accent-stripe-gap,12px) + var(--accent-stripe-width,6px) + var(--card-content-left-padding,20px)); }
+.bolsa-trabajo-card-header h2, .bolsa-trabajo-card-header h3 { margin:0; font-size:1.15rem; font-weight:700; color:var(--text); }
+.bolsa-trabajo-card-body { padding-left: calc(var(--accent-stripe-gap,12px) + var(--accent-stripe-width,6px) + var(--card-content-left-padding,20px)); margin-top:12px; color:var(--muted); }
 
 .bolsa-trabajo-card p { margin: 8px 0 12px 0; color: var(--muted); font-size:1rem; }
 
-.bolsa-trabajo-card .action-center { padding-left: 40px; }
+.bolsa-trabajo-action-center { display:flex; justify-content:flex-start; padding-left: calc(var(--accent-stripe-gap,12px) + var(--accent-stripe-width,6px) + var(--card-content-left-padding,20px)); margin-top:14px; }
+
+/* Scoped primary button styles (copy from Matricula, but scoped to this page) */
+.bolsa-trabajo-root .btn-primary, .bolsa-trabajo-root .bolsa-trabajo-btn-primary {
+  --matricula-base: #5A9E8D; /* base color */
+  --matricula-hover: #ECC138; /* hover color */
+  background: var(--matricula-base) !important;
+  background-image: none !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 10px 16px !important;
+  border-radius: 10px !important;
+  font-weight:700 !important;
+  cursor: pointer !important;
+  box-shadow: 0 8px 20px rgba(2,8,20,0.12) !important;
+  transition: background-color 180ms ease, transform 120ms ease, color 120ms ease !important;
+}
+
+.bolsa-trabajo-root .btn-primary:hover, .bolsa-trabajo-root .bolsa-trabajo-btn-primary:hover {
+  background: var(--matricula-hover) !important;
+  color: #07223b !important; /* dark text on yellow */
+  transform: translateY(-2px) !important;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.12) !important;
+}
+
+.bolsa-trabajo-root .btn-primary:focus, .bolsa-trabajo-root .bolsa-trabajo-btn-primary:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(236,193,56,0.12) !important;
+}
+
+.bolsa-trabajo-root .btn-primary:active, .bolsa-trabajo-root .bolsa-trabajo-btn-primary:active {
+  transform: translateY(0px) scale(0.997) !important;
+}
+
+/* Smaller variant */
+.bolsa-trabajo-root .btn-small { padding:6px 10px; border-radius:8px; font-size:0.95rem; }
 
 @media (max-width: 768px) {
   .bolsa-trabajo-title { font-size: 1.4rem; text-align:left; }
-  .bolsa-trabajo-card { padding: 14px; }
+  .bolsa-trabajo-card { padding:16px; }
+  .bolsa-trabajo-card::before{ left:12px; top:12px; bottom:12px; }
+  .bolsa-trabajo-card-header, .bolsa-trabajo-card-body, .bolsa-trabajo-action-center{ padding-left:20px; }
 }

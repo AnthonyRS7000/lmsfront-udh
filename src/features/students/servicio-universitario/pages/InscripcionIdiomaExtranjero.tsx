@@ -13,7 +13,7 @@ const InscripcionIdiomaExtranjero: React.FC = () => {
 
   return (
     <div className="tramites-root inscripcion-idioma-root">
-      <h1 className="tramites-title">SELECCIONE EL PROGRAMA:</h1>
+      <h1 className="tramites-title">Selecciones el Programa:</h1>
 
       <div className="tramites-card inscripcion-idioma-card">
         <div className="tramites-card-header">
