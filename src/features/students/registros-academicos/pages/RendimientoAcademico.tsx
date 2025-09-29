@@ -1,30 +1,12 @@
 import React, { useEffect, useState, useRef  } from 'react';
-import { EyeIcon } from '@heroicons/react/24/outline';
+import { ApiService } from "../../../../components/pages/ApiService";
 import '../css/RendimientoAcademico.css';
-
-// Simulación de datos de la API
-const datosUsuario = {
-  codigo: '2018110403',
-  apellidosNombres: 'CALDERON SOBRADO, JAHIR WALTHER',
-  programa: 'INGENIERÍA DE SISTEMAS E INFORMÁTICA'
-};
-
-const datosRendimiento = [
-  { semestre: '2025-1', promedio: 11.0000, creditos: 9, cursos: 3 },
-  { semestre: '2025-0', promedio: 12.0000, creditos: 6, cursos: 2 },
-  { semestre: '2024-2', promedio: 14.2500, creditos: 12, cursos: 4 },
-  { semestre: '2024-1', promedio: 13.7500, creditos: 12, cursos: 4 },
-  { semestre: '2024-0', promedio: 12.5000, creditos: 6, cursos: 2 },
-  { semestre: '2023-2', promedio: 10.1875, creditos: 16, cursos: 5 },
-  { semestre: '2023-1', promedio: 14.6154, creditos: 22, cursos: 7 },
-  { semestre: '2022-2', promedio: 11.4615, creditos: 18, cursos: 7 },
-  { semestre: '2022-1', promedio: 13.1667, creditos: 18, cursos: 6 },
-  { semestre: '2021-2', promedio: 12.2857, creditos: 21, cursos: 7 },
-  { semestre: '2019-2', promedio: 10.3333, creditos: 18, cursos: 6 },
-  { semestre: '2019-1', promedio: 9.1905, creditos: 21, cursos: 7 },
-  { semestre: '2018-2', promedio: 13.1000, creditos: 20, cursos: 6 },
-  { semestre: '2018-1', promedio: 13.9500, creditos: 20, cursos: 6 },
-];
+import TituloPage from "../../../../components/pages/TituloPage";
+import DatosNoEncontrados from "../../../../components/pages/DatosNoEncontrados";
+import Loading from "../../../../components/pages/Loading";
+import Tablas from "../../../../components/pages/Tablas";
+import Card from "../../../../components/pages/Card";
+import { EyeIcon } from '@heroicons/react/24/outline';
 
 const datosDetalle = {
   pertenencia: {
@@ -40,95 +22,148 @@ const datosDetalle = {
   ]
 };
 
+const obtenerFechaHora = () => {
+    const fecha = new Date();
+    const opciones: Intl.DateTimeFormatOptions = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+    };
+    const fechaStr = fecha.toLocaleDateString("es-PE", opciones);
+    const horaStr = fecha.toLocaleTimeString("es-PE", { hour12: false });
+    return { fechaStr, horaStr };
+};
+
 const RendimientoAcademico: React.FC = () => {
-  const [usuario, setUsuario] = useState<any>(null);
-  const [rendimiento, setRendimiento] = useState<any[]>([]);
+  const [rendimiento, setRendimiento] = useState([]);
+  const [udhData, setUdhData] = useState<any>(null);
+  const [loading, setLoading] = useState(false);
+  const [loadingDetalles, setLoadingDetalles] = useState(false);
+  const [error, setError] = useState(false);
+  
   const [detalle, setDetalle] = useState<any | null>(null);
   const [mostrarDetalle, setMostrarDetalle] = useState(false);
   const [semestreSeleccionado, setSemestreSeleccionado] = useState<string | null>(null);
 
   const detalleRef = useRef<HTMLDivElement>(null);
 
-  // Simula fetch de datos
   useEffect(() => {
-    // Aquí iría tu fetch real
-    setUsuario(datosUsuario);
-    setRendimiento(datosRendimiento);
+    const datosUdh = JSON.parse(localStorage.getItem("datos_udh") || "{}");
+    setUdhData(datosUdh);
   }, []);
+
+  useEffect(() => {
+      if (udhData && udhData.codigo) {
+      fetchRendimiento();
+      }
+  }, [udhData]);
+
+  const fetchRendimiento = async () => {
+    try {
+      setLoading(true);
+      const codigoAlumno = udhData?.codigo;
+      const data_rendimiento = await ApiService.get(`/estudiantes/rendimiento-academico?codalu=${codigoAlumno}`);
+      if (data_rendimiento.data.data && data_rendimiento.status === "error") {
+        setError(true);
+        setRendimiento([]);
+      } else {
+        setRendimiento(data_rendimiento.data.data);
+        setError(false);
+      }
+    } catch (error) {
+      console.error("Error al cargar los datos de rendimiento:", error);
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // Cuando seleccionas un semestre, simula fetch de detalle
   const handleVerDetalle = (semestre: string) => {
-    setSemestreSeleccionado(semestre);
-    setDetalle(datosDetalle); // Aquí iría tu fetch real por semestre
     setMostrarDetalle(true);
-    // 2. Espera a que el card se muestre y haz scroll
-    setTimeout(() => {
-      detalleRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, 200);
+    setSemestreSeleccionado(semestre);
+    setDetalle(datosDetalle); 
   };
+
+  useEffect(() => {
+    if (!loading && mostrarDetalle && detalleRef.current) {
+      detalleRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [loading, mostrarDetalle]);
+
+  const { fechaStr, horaStr } = obtenerFechaHora();
+
+  const headersRendimiento = ["Semestre", "Promedio x Semestre", "Cantidad de Créditos", "Cantidad de Cursos", "Acción"];
+
+  const rowRendimiento = rendimiento.map((r: any) => [
+    r.semsem,
+    r.Ponderado.toFixed(2),
+    r.cred,
+    r.cant,
+    <button className="rend-acad-btn-ver" onClick={() => handleVerDetalle(r.semsem)}>
+      <EyeIcon style={{ width: 18, height: 18, marginRight: 4 }} />
+      Ver
+    </button>
+  ]);
+
+  const headersRanking = ["Semestre", "Promedio Ponderado", "Ubicación", "Total Alumnos"];
+
+  const rowRanking = detalle ? detalle.rankingPromocion.map((r: any) => [
+    r.semestre,
+    r.promedio.toFixed(4),
+    r.ubicacion,
+    r.total
+  ]) : [];
+
+  const headersPromedioGlobal = ["Resultado"];
+
+  const rowPromedioGlobal = detalle ? [[detalle.promedioGlobal]] : [];
+
+  const headersRankingEgresados = ["Semestre Egreso", "Promedio Ponderado Promocional*", "Ubicación", "Total Alumnos"];
+
+  const rowRankingEgresados = detalle ? detalle.rankingEgresados.map((r: any) => [
+    r.semestre,
+    r.promedio.toFixed(4),
+    r.ubicacion,
+    r.total
+  ]) : [];
 
   return (
     <div className="rend-acad-root">
-      <h2 className="rend-acad-title">Rendimiento Academico</h2>
+      <TituloPage titulo="Rendimiento Academico" />
       {/* Card de datos usuario */}
-      <div className="rend-acad-card rend-acad-card-user">
+      <Card>
         <div className="rend-acad-row">
           <label className="rend-acad-label">Código:</label>
-          <input className="rend-acad-input" value={usuario?.codigo || ''} disabled />
+          <input className="rend-acad-input" value={udhData?.codigo || ''} disabled />
         </div>
         <div className="rend-acad-row">
           <label className="rend-acad-label">Apellidos y Nombres:</label>
-          <input className="rend-acad-input" value={usuario?.apellidosNombres || ''} disabled />
+          <input className="rend-acad-input" value={`${udhData?.apellido_paterno} ${udhData?.apellido_materno}, ${udhData?.nombres}` || ''} disabled />
         </div>
         <div className="rend-acad-row">
           <label className="rend-acad-label">Programa Académico:</label>
-          <input className="rend-acad-input" value={usuario?.programa || ''} disabled />
+          <input className="rend-acad-input" value={udhData?.programa || ''} disabled />
         </div>
-      </div>
+      </Card>
 
-      {/* Card de tabla de rendimiento */}
-      <div className="rend-acad-card rend-acad-card-tabla">
+      <Card>
         <h3 className="rend-acad-table-title">1. Rendimiento Académico</h3>
-        <div className="rend-acad-table-wrapper">
-          <table className="rend-acad-table">
-            <thead>
-              <tr>
-                <th>Semestre</th>
-                <th>Promedio x Semestre</th>
-                <th>Cantidad de Créditos</th>
-                <th>Cantidad de Cursos</th>
-                <th>Acción</th>
-              </tr>
-            </thead>
-            <tbody>
-              {rendimiento.map((r, idx) => (
-                <tr key={r.semestre}>
-                  <td>{r.semestre}</td>
-                  <td>{r.promedio.toFixed(4)}</td>
-                  <td>{r.creditos}</td>
-                  <td>{r.cursos}</td>
-                  <td>
-                    <button
-                      className="rend-acad-btn-ver"
-                      onClick={() => handleVerDetalle(r.semestre)}
-                    >
-                      <EyeIcon style={{ width: 18, height: 18, marginRight: 4 }} />
-                      Ver
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        {loading ? (
+          <Loading />
+        ) : error ? (
+          <DatosNoEncontrados />
+        ) : (
+          <Tablas headers={headersRendimiento} rows={rowRendimiento} />
+        )}
         <div className="rend-acad-table-foot">
           * Para el Ranking de Promoción y la Pertenencia al Tercio, Cuarto y Quinto Superior se considera a partir de 19 créditos y cursos aprobados.
         </div>
-      </div>
+      </Card>
 
-      {/* Card de detalle (solo si mostrarDetalle) */}
       {mostrarDetalle && detalle && (
-        <div className="rend-acad-card rend-acad-card-detalle" ref={detalleRef} >
+        <Card ref={detalleRef} >
           <h3 className="rend-acad-table-title">2. Pertenencia al Tercio, Cuarto y Quinto Superior:</h3>
           <div className="rend-acad-alert">
             {detalle.pertenencia.califica ? (
@@ -139,75 +174,38 @@ const RendimientoAcademico: React.FC = () => {
           </div>
 
           <h3 className="rend-acad-table-title">3. Ranking de Promoción:</h3>
-          <div className="rend-acad-table-wrapper">
-            <table className="rend-acad-table">
-              <thead>
-                <tr>
-                  <th>Semestre</th>
-                  <th>Promedio Ponderado</th>
-                  <th>Ubicación</th>
-                  <th>Total Alumnos</th>
-                </tr>
-              </thead>
-              <tbody>
-                {detalle.rankingPromocion.map((r: any) => (
-                  <tr key={r.semestre}>
-                    <td>{r.semestre}</td>
-                    <td>{r.promedio.toFixed(6)}</td>
-                    <td>{r.ubicacion}</td>
-                    <td>{r.total}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          {loadingDetalles ? (
+            <Loading />
+          ) : error ? (
+            <DatosNoEncontrados />
+          ) : ( 
+            <Tablas headers={headersRanking} rows={rowRanking} />
+          )}
 
           <h3 className="rend-acad-table-title">4. Promedio Ponderado Global:</h3>
-          <div className="rend-acad-table-wrapper">
-            <table className="rend-acad-table">
-              <thead>
-                <tr>
-                  <th>Resultado</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{detalle.promedioGlobal}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          {loadingDetalles ? (
+            <Loading />
+          ) : error ? (
+            <DatosNoEncontrados />
+          ) : ( 
+            <Tablas headers={headersPromedioGlobal} rows={rowPromedioGlobal} />
+          )}
 
           <h3 className="rend-acad-table-title">5. RANKING EGRESADOS (SERUM):</h3>
-          <div className="rend-acad-table-wrapper">
-            <table className="rend-acad-table">
-              <thead>
-                <tr>
-                  <th>Semestre Egreso</th>
-                  <th>Promedio Ponderado Promocional*</th>
-                  <th>Ubicación</th>
-                  <th>Total Alumnos</th>
-                </tr>
-              </thead>
-              <tbody>
-                {detalle.rankingEgresados.map((r: any) => (
-                  <tr key={r.semestre}>
-                    <td>{r.semestre}</td>
-                    <td>{r.promedio.toFixed(4)}</td>
-                    <td>{r.ubicacion}</td>
-                    <td>{r.total}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          {loadingDetalles ? (
+            <Loading />
+          ) : error ? (
+            <DatosNoEncontrados />
+          ) : ( 
+            <Tablas headers={headersRankingEgresados} rows={rowRankingEgresados} />
+          )}
           <div className="rend-acad-table-foot">
             *Promedio Ponderado Promocional (PPP): Es la nota que la universidad determina como resultado de la sumatoria del producto de las notas aprobadas y desaprobadas de las asignaturas desarrolladas durante el pregrado que INCLUYE LA NOTA DEL INTERNADO. (Resol.Ministerial 514-2024/MINSA, 31/07/2024)
           </div>
           <div className="rend-acad-table-foot" style={{ textAlign: "center", color: "#222", fontSize: "0.98rem" }}>
-            Oficina de Informática viernes, 12 de setiembre de 2025. Hora: 11:39:49
+            Oficina de Matrícula {fechaStr}. Hora: {horaStr}
           </div>
-        </div>
+        </Card>
       )}
     </div>
   );

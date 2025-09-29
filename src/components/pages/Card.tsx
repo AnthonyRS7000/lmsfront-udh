@@ -6,8 +6,8 @@ interface CardProps {
   className?: string; // Clase adicional para estilos personalizados
 }
 
-const Card: React.FC<CardProps> = ({ children, className }) => {
-  return <div className={`card-container ${className || ""}`}>{children}</div>;
-};
+const Card = React.forwardRef<HTMLDivElement, CardProps>(({ children, className }, ref) => {
+  return <div ref={ref} className={`card-container ${className || ""}`}>{children}</div>;
+});
 
 export default Card;

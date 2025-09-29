@@ -1,36 +1,8 @@
 .rend-acad-root {
-  max-width: 950px;
+  max-width: auto;
   margin: 0 auto;
   padding: 32px 12px;
 }
-
-.rend-acad-title {
-  color: #5a9e8d;
-  font-size: 2.2rem;
-  font-weight: 700;
-  text-align: center;
-  margin: 0px 0px 26px 0px;
-  letter-spacing: 1px;
-}
-
-.rend-acad-card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(44, 62, 80, 0.08);
-  padding: 24px 24px 18px 24px;
-  margin-bottom: 24px;
-}
-
-.rend-acad-card-user {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  gap: 5px;
-  align-items: start;
-  border-bottom: 6px solid #5a9e8d;
-  border-right: 6px solid #5a9e8d;
-}
-
 .rend-acad-row {
   width: 100%;
   display: flex;
@@ -55,43 +27,11 @@
   width: 100%;
 }
 
-.rend-acad-card-tabla {
-  border-bottom: 6px solid #5a9e8d;
-  border-right: 6px solid #5a9e8d;
-}
-
 .rend-acad-table-title {
   font-size: 1.1rem;
   font-weight: 700;
   color: #222;
   margin-bottom: 10px;
-}
-
-.rend-acad-table-wrapper {
-  overflow-x: auto;
-  border-radius: 15px;
-}
-
-.rend-acad-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.97rem;
-  margin-bottom: 8px;
-}
-
-.rend-acad-table th {
-  background: #5a9e8d;
-  color: #fff;
-  font-weight: 700;
-  padding: 8px 4px;
-  text-align: center;
-}
-
-.rend-acad-table td {
-  padding: 8px 4px;
-  border-bottom: 1px solid #e0e0e0;
-  text-align: center;
-  vertical-align: middle;
 }
 
 .rend-acad-btn-ver {
@@ -116,11 +56,6 @@
   font-size: 0.98rem;
   color: #222;
   margin-top: 8px;
-}
-
-.rend-acad-card-detalle {
-  border-bottom: 6px solid #5a9e8d;
-  border-right: 6px solid #5a9e8d;
 }
 
 .rend-acad-alert {

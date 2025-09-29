@@ -4,41 +4,6 @@
   padding: 0 32px;
 }
 
-.asistencia-card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(44, 62, 80, 0.08);
-  padding: 20px 20px 20px 35px;
-  margin-bottom: 24px;
-  position: relative;
-}
-
-.asistencia-card::before {
-  content: '';
-  position: absolute;
-  left: 14px;
-  top: 14px;
-  bottom: 14px;
-  width: 6px;
-  border-radius: 4px;
-}
-
-.asistencia-card-estudiante::before {
-  background: #5a9e8d;
-}
-
-.asistencia-card-estudiante {
-  margin-bottom: 18px;
-}
-
-.asistencia-datos-estudiante {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px 32px;
-  align-items: center;
-  font-size: 1.1rem;
-}
-
 .asistencia-estudiante-header {
   display: flex;
   justify-content: center;
@@ -106,47 +71,12 @@
   background: #4a8e7d;
 }
 
-.asistencia-card-cursos {
-  margin-bottom: 18px;
-  border-bottom: 6px solid #ecc138;
-  border-right: 6px solid #ecc138;
-}
-
 .asistencia-titulo-cursos {
   font-size: 1.2rem;
   font-weight: 700;
   color: #ecc138;
   margin-bottom: 12px;
   text-align: center;
-}
-
-.asistencia-tabla-cursos {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 1rem;
-}
-
-.asistencia-tabla-cursos th {
-  background: #ecc138;
-  color: #fff;
-  font-weight: 700;
-  padding: 8px 4px;
-  text-align: center;
-}
-
-.asistencia-tabla-cursos td {
-  padding: 8px 4px;
-  border-bottom: 1px solid #e0e0e0;
-  text-align: center;
-  vertical-align: top;
-}
-
-.asistencia-tabla-cursos tr:nth-child(even) {
-  background: #fef9e7;
-}
-
-.asistencia-tabla-cursos tr:nth-child(odd) {
-  background: #fff;
 }
 
 .asistencia-btn-ver {
@@ -174,12 +104,6 @@
   height: 18px;
 }
 
-.asistencia-card-asistencia {
-  margin-bottom: 18px;
-  border-bottom: 6px solid #5a9e8d;
-  border-right: 6px solid #5a9e8d;
-}
-
 .asistencia-titulo-asistencia {
   font-size: 1.2rem;
   font-weight: 700;
@@ -188,45 +112,20 @@
   text-align: center;
 }
 
-.asistencia-tabla-asistencia {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 1rem;
-  margin-bottom: 18px;
-}
-
-.asistencia-tabla-asistencia th {
-  background: #5a9e8d;
-  color: #fff;
-  font-weight: 700;
-  padding: 8px 4px;
-  text-align: center;
-}
-
-.asistencia-tabla-asistencia td {
-  padding: 8px 4px;
-  border-bottom: 1px solid #e0e0e0;
-  text-align: center;
-}
-
-.asistencia-tabla-asistencia tr:nth-child(even) {
-  background: #cfe5de;
-}
-
-.asistencia-tabla-asistencia tr:nth-child(odd) {
-  background: #fff;
-}
-
 .asistencia-resumen-asistencia {
   margin-top: 10px;
   text-align: center;
+  align-items: center;
   font-size: 1.1rem;
   color: #222;
+  display: flex;
+  flex-direction: column; 
 }
 
 .asistencia-btn-imprimir {
+  width: 135px;
   margin-top: 12px;
-  padding: 7px 22px;
+  padding: auto;
   font-size: 16px;
   border-radius: 5px;
   border: 1px solid #888;

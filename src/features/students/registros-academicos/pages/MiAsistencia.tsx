@@ -1,241 +1,206 @@
-import React, { useState, useRef } from 'react';
-import { EyeIcon, PrinterIcon } from '@heroicons/react/24/outline';
-import '../css/MiAsistencia.css';
+import React, { useState, useEffect, useRef } from "react";
+import { ApiService } from "../../../../components/pages/ApiService";
+import "../css/MiAsistencia.css";
+import TituloPage from "../../../../components/pages/TituloPage";
+import DatosNoEncontrados from "../../../../components/pages/DatosNoEncontrados";
+import Loading from "../../../../components/pages/Loading";
+import Tablas from "../../../../components/pages/Tablas";
+import Card from "../../../../components/pages/Card";
+import { EyeIcon, PrinterIcon } from "@heroicons/react/24/outline";
 
-// Datos de ejemplo (simulan respuesta de API)
-const estudianteEjemplo = {
-  nombre: 'CALDERON SOBRADO, JAHIR WALTHER',
-  codigo: '2018110403',
-  semestre: '2025-1',
-  sede: 'HUÁNUCO',
-  plan: '2021',
-};
+const calcularSemestre = (): string => {
+  const fechaActual = new Date();
+  const año = fechaActual.getFullYear();
+  const mes = fechaActual.getMonth() + 1;
 
-const cursosEjemplo = [
-  {
-    codigo: '062110043',
-    curso: 'FORMULACIÓN Y EVALUACIÓN DE PROYECTOS DE INVERSIÓN\nDocente\n--',
-    ciclo: '10',
-    creditos: '3',
-    seccion: 'A',
-    horario: [
-      'Lunes: 09:30-11:00->P2-301 Presencial',
-      'Martes 08:00-09:30->P2-205 Presencial',
-    ],
-  },
-  {
-    codigo: '062110052',
-    curso: 'SEMINARIO DE TESIS III\nDocente\n--',
-    ciclo: '10',
-    creditos: '3',
-    seccion: 'A',
-    horario: [
-      'Lunes: 19:15-21:30->P2-301 Presencial',
-      'Miércoles: 17:45-19:15->P2-301 Presencial',
-    ],
-  },
-  {
-    codigo: '062110072',
-    curso: 'TRABAJO DE INVESTIGACIÓN\nDocente\n--',
-    ciclo: '10',
-    creditos: '3',
-    seccion: 'A',
-    horario: [
-      'Lunes: 17:00-19:15->P2-301 Presencial',
-      'Martes 17:45-19:15->P2-301 Presencial',
-    ],
-  },
-];
-
-const asistenciaEjemplo = {
-  resumen: {
-    total: 25,
-    asistencias: 0,
-    inasistencias: 25,
-    porcentajeInasist: 100,
-    curso: 'INGENIERÍA INVERSA',
-  },
-  detalle: [
-    { fecha: '3/01/2024', dia: 'Miércoles', entrada: '08:00', salida: '11:00', asistio: true },
-    { fecha: '8/01/2024', dia: 'Lunes', entrada: '08:00', salida: '11:00', asistio: false },
-    { fecha: '10/01/2024', dia: 'Miércoles', entrada: '08:00', salida: '11:00', asistio: false },
-    { fecha: '15/01/2024', dia: 'Lunes', entrada: '08:00', salida: '11:00', asistio: false },
-    { fecha: '17/01/2024', dia: 'Miércoles', entrada: '08:00', salida: '11:00', asistio: false },
-    { fecha: '22/01/2024', dia: 'Lunes', entrada: '08:00', salida: '11:00', asistio: false },
-    { fecha: '24/01/2024', dia: 'Miércoles', entrada: '08:00', salida: '11:00', asistio: false },
-    { fecha: '29/01/2024', dia: 'Lunes', entrada: '08:00', salida: '11:00', asistio: false },
-    { fecha: '31/01/2024', dia: 'Miércoles', entrada: '08:00', salida: '11:00', asistio: false },
-    { fecha: '5/02/2024', dia: 'Lunes', entrada: '08:00', salida: '11:00', asistio: false },
-    { fecha: '7/02/2024', dia: 'Miércoles', entrada: '08:00', salida: '11:00', asistio: false },
-    { fecha: '12/02/2024', dia: 'Lunes', entrada: '08:00', salida: '11:00', asistio: false },
-    { fecha: '14/02/2024', dia: 'Miércoles', entrada: '08:00', salida: '11:00', asistio: false },
-    { fecha: '19/02/2024', dia: 'Lunes', entrada: '08:00', salida: '11:00', asistio: false },
-    { fecha: '21/02/2024', dia: 'Miércoles', entrada: '08:00', salida: '11:00', asistio: false },
-    { fecha: '26/02/2024', dia: 'Lunes', entrada: '08:00', salida: '11:00', asistio: false },
-    { fecha: '28/02/2024', dia: 'Miércoles', entrada: '08:00', salida: '11:00', asistio: false },
-    { fecha: '4/03/2024', dia: 'Lunes', entrada: '08:00', salida: '11:00', asistio: false },
-    { fecha: '6/03/2024', dia: 'Miércoles', entrada: '08:00', salida: '11:00', asistio: false },
-    { fecha: '11/03/2024', dia: 'Lunes', entrada: '08:00', salida: '11:00', asistio: false },
-    { fecha: '13/03/2024', dia: 'Miércoles', entrada: '08:00', salida: '11:00', asistio: false },
-    { fecha: '18/03/2024', dia: 'Lunes', entrada: '08:00', salida: '11:00', asistio: false },
-  ],
+  if (mes >= 1 && mes <= 3) {
+    return `${año}-0`;
+  } else if (mes >= 4 && mes <= 7) {
+    return `${año}-1`;
+  } else if (mes >= 8 && mes <= 11) {
+    return `${año}-2`;
+  } else {
+    return `${año}-2`;
+  }
 };
 
 const MiAsistencia: React.FC = () => {
-  const [semestre, setSemestre] = useState('2025-1');
+  const [cursos, setCursos] = useState([]);
+  const [asistencia, setAsistencia] = useState([]);
+  const [udhData, setUdhData] = useState<any>(null);
+  const [loading, setLoading] = useState(false);
+  const [loadingAsistencia, setLoadingAsistencia] = useState(false); 
+  const [error, setError] = useState(false);
+  const [semestre, setSemestre] = useState(calcularSemestre());
   const [mostrarTabla, setMostrarTabla] = useState(false);
-  const [cursoSeleccionado, setCursoSeleccionado] = useState<string | null>(null);
-  const [asistencia, setAsistencia] = useState<any>(null);
+  const [mostrarTabla1, setMostrarTabla1] = useState(false);
 
-  //Esto es sin api
   const cardCursosRef = useRef<HTMLDivElement>(null);
   const cardAsistenciaRef = useRef<HTMLDivElement>(null);
 
-  // Simulación de llamada a API al presionar "Mostrar"
-  const handleMostrar = () => {
-    setMostrarTabla(true);
-    setCursoSeleccionado(null);
-    setAsistencia(null); // Aquí iría la llamada real a la API
-    setTimeout(() => {
-      cardCursosRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, 100); // Espera a que el card se renderice
+  useEffect(() => {
+    const datosUdh = JSON.parse(localStorage.getItem("datos_udh") || "{}");
+    setUdhData(datosUdh);
+  }, []);
+
+  const fetchCursos = async () => {
+    try {
+      setLoading(true);
+      const codigoAlumno = udhData?.codigo;
+      const data_cursos = await ApiService.get(`/horario/${codigoAlumno}/${semestre}`);
+      if (data_cursos.data && data_cursos.status === "error") {
+        setError(true);
+        setCursos([]);
+      } else {
+        setCursos(data_cursos.data);
+        setError(false);
+      }
+    } catch (error) {
+      console.error("Error al cargar los cursos:", error);
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  // Simulación de llamada a API al presionar "Ver" asistencia
-  const handleVerAsistencia = (codigo: string) => {
-    setCursoSeleccionado(codigo);
-    setAsistencia(asistenciaEjemplo); // Aquí iría la llamada real a la API
-    setTimeout(() => {
-    cardAsistenciaRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
+  const fetchAsistencia = async (codigoCurso: string, seccion: string, codigoPeriodo: string) => {
+    try {
+      setLoadingAsistencia(true); // Usar estado independiente para asistencia
+      const codigoAlumno = udhData?.codigo;
+      const data_asistencia = await ApiService.get(
+        `/estudiantes/asistencia?codalu=${codigoAlumno}&semsem=${semestre}&codcur=${codigoCurso}&secsem=${seccion}&codper=${codigoPeriodo}`
+      );
+      if (data_asistencia.data.data && data_asistencia.status === "error") {
+        setError(true);
+        setAsistencia([]);
+      } else {
+        setAsistencia(data_asistencia.data.data);
+        setError(false);
+      }
+    } catch (error) {
+      console.error("Error al cargar la asistencia:", error);
+      setError(true);
+    } finally {
+      setLoadingAsistencia(false); // Finalizar carga de asistencia
+    }
   };
+
+  const handleMostrar = () => {
+    setMostrarTabla(true);
+    fetchCursos();
+  };
+
+  useEffect(() => {
+    if (!loading && mostrarTabla && cardCursosRef.current) {
+      cardCursosRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [loading, mostrarTabla]);
+
+  const handleVerAsistencia = (codigoCurso: string, seccion: string, codigoPeriodo: string) => {
+    setMostrarTabla1(true);
+    fetchAsistencia(codigoCurso, seccion, codigoPeriodo);
+  };
+
+  useEffect(() => {
+    if (!loadingAsistencia && mostrarTabla1 && cardAsistenciaRef.current) {
+      cardAsistenciaRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [loadingAsistencia, mostrarTabla1]);
 
   const handleImprimir = () => {
     window.print();
   };
 
+  const headersCursos = ["CÓDIGO", "CURSO", "CICLO", "CRÉD.", "SEC.", "ASISTENCIA"];
+  const rowsCursos = cursos.map((curso: any) => [
+    curso.codigo_curso,
+    <div className="curso-nombre">
+      <div className="curso-nombre-principal">{curso.nombre_curso.split("\n")[0]}</div>
+      <div className="curso-horario">
+        {[curso.lunes, curso.martes, curso.miercoles, curso.jueves, curso.viernes, curso.sabado, curso.domingo]
+          .filter((dia) => dia)
+          .map((dia, i) => (
+            <div key={i}>{dia}</div>
+          ))}
+      </div>
+    </div>,
+    curso.ciclo,
+    curso.creditos,
+    curso.seccion,
+    <button className="asistencia-btn-ver" onClick={() => handleVerAsistencia(curso.codigo_curso, curso.seccion, curso.codper)}>
+      <EyeIcon className="asistencia-icono-ojo" />
+      Ver
+    </button>,
+  ]);
+
+  const headersAsistencia = ["Fecha", "Día", "Entrada", "Salida", "¿Asistió?"];
+  const rowsAsistencia = asistencia?.map((item: any) => [
+    item.fechaasis,
+    item.NomDia,
+    item.HE,
+    item.HS,
+    <input type="checkbox" checked={item.asis} readOnly />,
+  ]);
+
   return (
     <div className="asistencia-container asistencia-print">
-        <h2 className="malla-title">Mi Asistencia</h2>
-        {/* Card de datos del estudiante */}
-        <div className="asistencia-card asistencia-card-estudiante">
-            <div className="asistencia-estudiante-header">
-                <div className="asistencia-nombre-estudiante">{estudianteEjemplo.nombre}</div>
-            </div>
-            <div className="asistencia-estudiante-info">
-                <div><b>CÓDIGO:</b> {estudianteEjemplo.codigo}</div>
-                <div><b>SEDE:</b> {estudianteEjemplo.sede}</div>
-                <div><b>PLAN:</b> {estudianteEjemplo.plan}</div>
-            </div>
-            <div className="asistencia-estudiante-semestre">
-                <b>SEMESTRE:</b>
-                <input
-                type="text"
-                value={semestre}
-                onChange={e => setSemestre(e.target.value)}
-                className="asistencia-input-semestre"
-                style={{ width: 80, marginLeft: 8, marginRight: 8 }}
-                />
-                <button className="asistencia-btn-mostrar" onClick={handleMostrar}>Mostrar</button>
-            </div>
+      <TituloPage titulo="Mi Asistencia" />
+      <Card>
+        <div className="asistencia-estudiante-header">
+          <div className="asistencia-nombre-estudiante">{udhData?.apellido_paterno} {udhData?.apellido_materno}, {udhData?.nombres}</div>
         </div>
+        <div className="asistencia-estudiante-info">
+          <div><b>CÓDIGO:</b> {udhData?.codigo}</div>
+          <div><b>SEDE:</b> HUÁNUCO*</div>
+          <div><b>PLAN:</b> 2021*</div>
+        </div>
+        <div className="asistencia-estudiante-semestre">
+          <b>SEMESTRE:</b>
+          <input
+            type="text"
+            value={semestre}
+            onChange={(e) => setSemestre(e.target.value)}
+            className="asistencia-input-semestre"
+          />
+          <button className="asistencia-btn-mostrar" onClick={handleMostrar}>Mostrar</button>
+        </div>
+      </Card>
 
-        {/* Card de tabla de cursos */}
-        {mostrarTabla && (
-            <div className="asistencia-card asistencia-card-cursos" ref={cardCursosRef}>
-            <h3 className="asistencia-titulo-cursos">MI HORARIO/ASISTENCIA</h3>
-            <table className="asistencia-tabla-cursos">
-                <thead>
-                <tr>
-                    <th>CÓDIGO</th>
-                    <th>CURSO</th>
-                    <th>CICLO</th>
-                    <th>CRÉD.</th>
-                    <th>SEC.</th>
-                    <th>ASISTENCIA</th>
-                </tr>
-                </thead>
-                <tbody>
-                {cursosEjemplo.map(curso => (
-                    <tr key={curso.codigo} className={curso.codigo === cursoSeleccionado ? 'asistencia-selected' : ''}>
-                    <td>{curso.codigo}</td>
-                    <td>
-                        <div style={{ fontWeight: 600, color: '#ecc138' }}>
-                        {curso.curso.split('\n')[0]}
-                        </div>
-                        {/*<div style={{ fontWeight: 700, color: '#000' }}>
-                        {curso.curso.split('\n')[1]}
-                        </div>
-                        <div style={{ color: '#333', fontSize: '0.95em' }}>
-                        {curso.curso.split('\n')[2]}
-                        </div>*/}
-                        <div style={{ color: '#3d3c3b', fontSize: '0.95em', marginTop: 4 }}>
-                        {curso.horario.map((h, i) => (
-                            <div key={i}>{h}</div>
-                        ))}
-                        </div>
-                    </td>
-                    <td>{curso.ciclo}</td>
-                    <td>{curso.creditos}</td>
-                    <td>{curso.seccion}</td>
-                    <td>
-                        <button className="asistencia-btn-ver" onClick={() => handleVerAsistencia(curso.codigo)}>
-                        <EyeIcon className="asistencia-icono-ojo" />
-                        Ver
-                        </button>
-                    </td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
-            </div>
-        )}
+      {mostrarTabla && (
+        <Card ref={cardCursosRef}>
+          <h3 className="asistencia-titulo-cursos">MI HORARIO/ASISTENCIA</h3>
+          {loading ? <Loading /> : error ? <DatosNoEncontrados /> : <Tablas headers={headersCursos} rows={rowsCursos} />}
+        </Card>
+      )}
 
-        {/* Card de asistencia */}
-        {cursoSeleccionado && asistencia && (
-            <div className="asistencia-card asistencia-card-asistencia" ref={cardAsistenciaRef}>
-            <h3 className="asistencia-titulo-asistencia">REPORTE DE ASISTENCIA</h3>
-            <table className="asistencia-tabla-asistencia">
-                <thead>
-                <tr>
-                    <th>Fecha</th>
-                    <th>Día</th>
-                    <th>Entrada</th>
-                    <th>Salida</th>
-                    <th>¿Asistió?</th>
-                </tr>
-                </thead>
-                <tbody>
-                {asistencia.detalle.map((item: any, idx: number) => (
-                    <tr key={idx}>
-                    <td>{item.fecha}</td>
-                    <td>{item.dia}</td>
-                    <td>{item.entrada}</td>
-                    <td>{item.salida}</td>
-                    <td>
-                        <input type="checkbox" checked={item.asistio} readOnly />
-                    </td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
-            <div className="asistencia-resumen-asistencia">
+      {mostrarTabla1 && (
+        <Card ref={cardAsistenciaRef}>
+          <h3 className="asistencia-titulo-asistencia">REPORTE DE ASISTENCIA</h3>
+          {loadingAsistencia ? (
+            <Loading />
+          ) : error ? (
+            <DatosNoEncontrados />
+          ) : (
+            <>
+              <Tablas headers={headersAsistencia} rows={rowsAsistencia} />
+              <div className="asistencia-resumen-asistencia">
                 <span>
-                TOTAL: {asistencia.resumen.total} | Asistencias: {asistencia.resumen.asistencias} | Inasistencias: {asistencia.resumen.inasistencias} | % Inasist.: {asistencia.resumen.porcentajeInasist.toFixed(2)}
+                  TOTAL: {String(asistencia[0]?.Total)}  Asistencias: {String(asistencia[0]?.Asist)} 
+                  {" "}
+                  Inasistencias: {String(asistencia[0]?.Inasi)}  Inasist.%:{" "}
+                  {((asistencia[0]?.Inasi / asistencia[0]?.Total) * 100).toFixed(2)}%
                 </span>
-                <div style={{ textAlign: 'center', fontWeight: 500, marginTop: 4 }}>
-                {asistencia.resumen.curso}
-                </div>
                 <button className="asistencia-btn-imprimir" onClick={handleImprimir}>
-                Imprimir
-                <PrinterIcon className="asistencia-icono-impresora" />
+                  <PrinterIcon className="asistencia-icono-impresora" />
+                  Imprimir
                 </button>
-            </div>
-            </div>
-        )}
-        </div>
-    );
+              </div>
+            </>
+          )}
+        </Card>
+      )}
+    </div>
+  );
 };
 
 export default MiAsistencia;
-
