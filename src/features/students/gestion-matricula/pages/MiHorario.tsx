@@ -29,6 +29,7 @@ const MiHorario: React.FC = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [semestre, setSemestre] = useState(calcularSemestre());
+    const [isHorarioFetched, setIsHorarioFetched] = useState(false);
 
     useEffect(() => {
         const datosUdh = JSON.parse(localStorage.getItem("datos_udh") || "{}");
@@ -36,10 +37,11 @@ const MiHorario: React.FC = () => {
     }, []);
 
     useEffect(() => {
-    if (udhData && udhData.codigo) {
-        fetchHorario(); // Llamar a la función de consulta
+    if (udhData && udhData.codigo && !isHorarioFetched) {
+        fetchHorario();
+        setIsHorarioFetched(true);
         }
-    }, [udhData]);
+    }, [udhData, isHorarioFetched]);
 
     const fetchHorario = async () => {
         if (!udhData || !udhData.codigo) {

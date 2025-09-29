@@ -3,7 +3,8 @@ import "../css/Tablas.css";
 
 interface TablasProps {
   headers: string[]; // Encabezados de la tabla
-  rows: Array<Array<string | JSX.Element>>; // Filas de la tabla
+  rows: any[][];
+  //rows: Array<Array<string | JSX.Element>>; // Filas de la tabla
   //className?: string; // Clase adicional para estilos personalizados
 }
 
@@ -32,4 +33,4 @@ const Tablas: React.FC<TablasProps> = ({ headers, rows }) => {
   );
 };
 
-export default Tablas;
+export default React.memo(Tablas);
