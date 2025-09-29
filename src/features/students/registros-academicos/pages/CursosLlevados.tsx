@@ -125,7 +125,7 @@ const CursosLlevados: React.FC = () => {
 
     return (
         <div className="cursos-llevados-container">
-            <TituloPage titulo="Historial Académico" />
+            <TituloPage titulo="Cursos Llevados" />
             <Card>
                 <div className="cursos-llevados-barra-superior">
                     <div className="cursos-llevados-filtros-row">

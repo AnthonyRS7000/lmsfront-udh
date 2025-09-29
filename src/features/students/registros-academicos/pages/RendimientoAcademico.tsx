@@ -131,7 +131,7 @@ const RendimientoAcademico: React.FC = () => {
 
   return (
     <div className="rend-acad-root">
-      <TituloPage titulo="Rendimiento Academico" />
+      <TituloPage titulo="Rendimiento Académico" />
       {/* Card de datos usuario */}
       <Card>
         <div className="rend-acad-row">
