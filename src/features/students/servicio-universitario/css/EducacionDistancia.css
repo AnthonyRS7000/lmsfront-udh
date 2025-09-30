@@ -1,13 +1,14 @@
 /* Estilos para Educación a Distancia - reproducen el patrón de BolsaTrabajoUDH */
-.educacion-distancia-root { padding: 18px 20px; max-width: 1180px; margin: 18px auto; }
+
+.educacion-distancia-root { padding: 18px 40px; max-width: 1180px; margin: 6px auto; }
 .educacion-distancia-title { font-size: 2.2rem; font-weight:700; color: var(--title-color); margin-bottom:18px; text-align:center; }
-.educacion-distancia-card { background: var(--panel-bg); padding:18px; border-radius:12px; border:1px solid var(--border-soft); box-shadow: var(--shadow-lg); position:relative; }
-.educacion-distancia-card::before { content: ''; position:absolute; left:14px; top:14px; bottom:14px; width:8px; background: linear-gradient(180deg, var(--accent-cyan), rgba(58,197,170,0.6)); border-radius:6px; }
-.educacion-distancia-card .tramites-card-body { padding-left: 40px; }
+.educacion-distancia-card { background: var(--panel-bg); padding:18px; border-radius:12px; border:1px solid var(--border-soft); box-shadow: var(--shadow-lg); position:relative; border-left: 8px solid #5a9e8d; overflow:hidden; }
+.educacion-distancia-card::before { display:none !important; }
+.educacion-distancia-card .tramites-card-header, .educacion-distancia-card .tramites-card-body { padding-left: calc(var(--accent-stripe-gap,12px) + 8px + var(--card-content-left-padding,20px)); }
 
 .educacion-distancia-card p { margin: 8px 0 12px 0; color: var(--muted); font-size:1rem; }
 
-.educacion-distancia-card .action-center { padding-left: 40px; }
+.educacion-distancia-card .action-center { display:flex; justify-content:flex-start; }
 
 @media (max-width: 768px) {
 	.educacion-distancia-title { font-size: 1.4rem; text-align:left; }

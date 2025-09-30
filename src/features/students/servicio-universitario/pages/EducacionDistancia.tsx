@@ -4,7 +4,7 @@ import '../css/EducacionDistancia.css';
 const EducacionDistancia: React.FC = () => {
   return (
     <div className="tramites-root educacion-distancia-root">
-      <h2 className="tramites-title educacion-distancia-title">EDUCACIÓN A DISTANCIA</h2>
+      <h2 className="tramites-title educacion-distancia-title">Educación a Distancia</h2>
 
       <div className="tramites-card educacion-distancia-card">
         <div className="tramites-card-header">

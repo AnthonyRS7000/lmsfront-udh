@@ -3,10 +3,10 @@ import '../css/CongresosOtros.css';
 
 const CongresosOtros: React.FC = () => {
 	return (
-		<div className="tramites-root congresos-otros-root">
-			<h2 className="tramites-title congresos-otros-title">CONGRESOS, CONFERENCIAS Y TALLERES</h2>
+		<div className="congresos-otros-root">
+			<h2 className="congresos-otros-title">Congresos, Conferencias Y Talleres</h2>
 
-			<div className="tramites-card congresos-otros-card">
+			<div className="congresos-otros-card">
 				<div className="tramites-card-header">
 					<h3 style={{ margin: 0, fontWeight: 800, color: 'var(--title-color)' }}>Seleccione una opción</h3>
 				</div>

@@ -1,9 +1,9 @@
 
 /* Inscripcion Idioma — estilos alineados con Matricula.css */
-.inscripcion-idioma-root { max-width: 1180px; margin: 18px auto; padding: 28px 40px; }
-.inscripcion-idioma-card { background: var(--panel-bg); border-radius:12px; padding:22px; border:1px solid var(--border-soft); box-shadow: var(--shadow-lg); position:relative; }
-.inscripcion-idioma-card::before { content: ''; position:absolute; left:14px; top:14px; bottom:14px; width:6px; background: linear-gradient(180deg, var(--accent-cyan), rgba(58,197,170,0.6)); border-radius:6px; }
-.inscripcion-idioma-body { padding-left:40px; color:var(--muted); }
+.inscripcion-idioma-root { max-width: 1180px; margin: 6px auto; padding: 28px 40px; }
+.inscripcion-idioma-card { background: var(--panel-bg); border-radius:12px; padding:22px; border:1px solid var(--border-soft); box-shadow: var(--shadow-lg); position:relative; border-left: 8px solid #5a9e8d; }
+.inscripcion-idioma-card::before { display: none !important; }
+.inscripcion-idioma-body { padding-left: calc(var(--accent-stripe-gap,12px) + 8px + var(--card-content-left-padding,20px)); color:var(--muted); }
 .inscripcion-idioma-title { font-size:2.2rem; font-weight:700; color:var(--title-color); text-align:center; margin-bottom:18px; }
 
 /* Reutilizar select desde CarnetSunedu */
