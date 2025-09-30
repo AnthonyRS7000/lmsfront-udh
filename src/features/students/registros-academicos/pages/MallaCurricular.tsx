@@ -27,7 +27,10 @@ const MallaCurricular: React.FC = () => {
 
   return (
     <div className="malla-container">
-      <h2 className="malla-title">Malla Curricular</h2>
+      {/* Usar estilos de TituloPage */}
+      <div className="titulo-page-container">
+        <h1 className="titulo-page">Malla Curricular</h1>
+      </div>
       <div className="malla-card">
         <h3 className="malla-carrera">{nombreCarrera}</h3>
         {cargando ? (

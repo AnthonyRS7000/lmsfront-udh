@@ -135,7 +135,10 @@ const TramiteDocumentario: React.FC = () => {
   const Formulario = FORMULARIOS[tipoTramite];
   return (
     <div className="tramite-documentario-root">
-      <h2 className="rend-acad-title">Generar Trámite Documentario</h2>
+      {/* Usar estilos de TituloPage */}
+      <div className="titulo-page-container">
+        <h1 className="titulo-page">Generar Trámite Documentario</h1>
+      </div>
       {/* Card de selección de trámite */}
       <div className="tramite-documentario-card tramite-documentario-card-select">
         <label className="tramite-documentario-label" htmlFor="tipo-tramite">

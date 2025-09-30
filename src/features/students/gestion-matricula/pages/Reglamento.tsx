@@ -25,7 +25,10 @@ const Reglamento: React.FC = () => {
   
   return (
     <div className="reglamento-container">
-      <h2 className="reglamento-title">Reglamento Del Estudiante</h2>
+      {/* Usar estilos de TituloPage */}
+      <div className="titulo-page-container">
+        <h1 className="titulo-page">Reglamento Del Estudiante</h1>
+      </div>
       <div className="reglamento-card">
         <div className="reglamento-info">
           {cargando ? (

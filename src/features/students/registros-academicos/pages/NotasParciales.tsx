@@ -92,7 +92,10 @@ const NotasParciales: React.FC = () => {
     
     return (
         <div className="notas-container">
-            <h2 className="notas-titulo">Notas Parciales</h2>
+            {/* Usar estilos de TituloPage */}
+                <div className="titulo-page-container">
+                    <h1 className="titulo-page">Notas Parciales</h1>
+                </div>
 
             {/* Modal de advertencia por veces llevado */}
             {showModal && (

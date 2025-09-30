@@ -1,10 +1,13 @@
 import React from 'react';
 import '../css/ConsultaRegistroGradosTitulos.css';
+import '../../../../components/css/TituloPage.css';
 
 const ConsultaRegistroGradosTitulos: React.FC = () => {
   return (
     <div className="tramites-root consulta-registros-root">
-      <h2 className="tramites-title consulta-registros-title">CONSULTA REGISTRO DE GRADOS Y TÍTULOS</h2>
+      <div className="titulo-page-container">
+        <h2 className="titulo-page">Consulta de Registro de Grados y Títulos</h2>
+      </div>
 
       <div className="tramites-card consulta-registros-card">
         <div className="tramites-card-header">

@@ -1,8 +1,15 @@
 /* Seguimiento de Trámite - emula estilos de CongresosOtros */
 .tramite-seguimiento-root { max-width: 1180px; margin: 18px auto; padding: 28px 40px; }
 .tramite-seguimiento-title { font-size: 2.2rem; font-weight:700; color:var(--title-color); text-align:center; margin-bottom:18px; }
-.tramite-seguimiento-card { background: var(--panel-bg); border-radius:12px; padding:22px; border:1px solid var(--border-soft); box-shadow: var(--shadow-lg); position:relative; }
-.tramite-seguimiento-card::before { content: ''; position:absolute; left:14px; top:14px; bottom:14px; width:6px; background: linear-gradient(180deg, var(--accent-cyan), rgba(58,197,170,0.6)); border-radius:6px; }
+.tramite-seguimiento-card {
+	background: var(--panel-bg);
+	border-radius: 12px;
+	padding: 22px;
+	border: 1px solid var(--border-soft);
+	box-shadow: var(--shadow-lg);
+	position: relative;
+	border-left: 7px solid #5a9e8d;
+}
 .tramite-seguimiento-card .tramites-card-body { padding-left:40px; color:var(--muted); }
 
 /* reuse select */
