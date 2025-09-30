@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import '../css/Matricula.css';
 import ProcessMatriculaPage from './ProcessMatriculaPage';
+import TituloPage from '../../../../components/pages/TituloPage';
+import Card from '../../../../components/pages/Card';
 
 const Matricula: React.FC = () => {
   const [reciboGenerado, setReciboGenerado] = useState<boolean>(false);
@@ -24,9 +26,9 @@ const Matricula: React.FC = () => {
 
   return (
     <div className="tramites-root">
-      <h1 className="tramites-title">Trámites de Matrícula</h1>
+      <TituloPage titulo="Trámites de Matrícula" />
 
-      <section className="tramites-card">
+      <Card className="tramites-card">
         <div className="tramites-card-header">
           <h2>1. Generar recibo de matrícula</h2>
         </div>
@@ -40,9 +42,9 @@ const Matricula: React.FC = () => {
             {reciboGenerado ? 'Recibo generado' : 'Generar recibo de matrícula'}
           </button>
         </div>
-      </section>
+      </Card>
 
-      <section className="tramites-card">
+      <Card className="tramites-card">
         <div className="tramites-card-header">
           <h2>2. Bienvenido al proceso de matrícula</h2>
         </div>
@@ -104,7 +106,7 @@ const Matricula: React.FC = () => {
             </div>
           )}
         </div>
-      </section>
+      </Card>
     </div>
   );
 };

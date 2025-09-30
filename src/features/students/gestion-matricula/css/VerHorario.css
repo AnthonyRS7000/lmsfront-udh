@@ -2,15 +2,7 @@
 .ver-horario-container {
   margin: 40px auto;
   padding: 0px 20px;
-}
-
-/* Título */
-.ver-horario-title {
-  text-align: center;
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 24px;
-  color: #3d3c3b;
+  max-width: auto;
 }
 
 /* Filtros */
@@ -53,48 +45,4 @@
 
 .ver-horario-button:hover {
   background-color: #6fb1a2;
-}
-
-/* Card */
-.ver-horario-card {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  width: auto;
-  border-left: 7px solid #ecc138;
-}
-
-/* Tabla */
-.ver-horario-table{
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  border-radius: 12px;
-  overflow: hidden; 
-  overflow-x: auto;
-}
-
-.ver-horario-table th{
-  background-color: #ecc138;
-  color: #3d3c3b;
-  padding: 10px;
-  text-align: center;
-}
-
-.ver-horario-table td {
-  padding: 10px;
-  text-align: center;
-}
-
-.row-par {
-  background-color: #f2f9f7;
-}
-
-.row-impar {
-  background-color: #ffffff;
-}
-
-.ver-horario-table tr:hover{
-  background-color: #eaf4f1;
 }

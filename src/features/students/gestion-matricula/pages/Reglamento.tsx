@@ -1,35 +1,45 @@
 import React, { useEffect, useState } from 'react';
 import '../css/Reglamento.css';
+import TituloPage from '../../../../components/pages/TituloPage';
+import Card from '../../../../components/pages/Card';
+import Loading from '../../../../components/pages/Loading';
+import DatosNoEncontrados from '../../../../components/pages/DatosNoEncontrados';
+
 
 const Reglamento: React.FC = () => {
 
   const [pdfUrl, setPdfUrl] = useState(''); // Variable para el link del PDF
-  const [cargando, setCargando] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     // Simulación de llamada a API
     const fetchData = async () => {
-      setCargando(true);
       try {
+        setLoading(true);
         // Reemplaza por tu endpoint real
         const response = await fetch('/api/malla-curricular');
         const data = await response.json();
         setPdfUrl(data.pdfUrl || 'http://www.udh.edu.pe/doc/reglamentoestudiospregrado.pdf');
       } catch (error) {
         setPdfUrl('http://www.udh.edu.pe/doc/reglamentoestudiospregrado.pdf');
+        //setError(true);
+      }finally {
+        setLoading(false);
       }
-      setCargando(false);
     };
     fetchData();
   }, []);
   
   return (
     <div className="reglamento-container">
-      <h2 className="reglamento-title">Reglamento Del Estudiante</h2>
-      <div className="reglamento-card">
+      <TituloPage titulo="Reglamento Del Estudiante" />
+      <Card>
         <div className="reglamento-info">
-          {cargando ? (
-            <div className="malla-cargando">Cargando PDF...</div>
+          {loading ? (
+            <Loading />
+          ) : error ? (
+            <DatosNoEncontrados />
           ) : (
             <div className="malla-pdf-viewer">
               <iframe
@@ -42,8 +52,7 @@ const Reglamento: React.FC = () => {
             </div>
           )}
         </div>
-        {/* Puedes agregar aquí más contenido, enlaces o documentos */}
-      </div>
+      </Card>
     </div>
   );
 };

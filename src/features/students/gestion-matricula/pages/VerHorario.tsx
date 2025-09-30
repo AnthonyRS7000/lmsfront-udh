@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/VerHorario.css";
+import TituloPage from "../../../../components/pages/TituloPage";
+import DatosNoEncontrados from "../../../../components/pages/DatosNoEncontrados";
+import Loading from "../../../../components/pages/Loading";
+import Tablas from "../../../../components/pages/Tablas";
+import Card from "../../../../components/pages/Card";
 
 const VerHorario: React.FC = () => {
   const [ciclo, setCiclo] = useState("1");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const navigate = useNavigate();
 
   // Datos simulados
@@ -57,11 +64,27 @@ const VerHorario: React.FC = () => {
     (horario) => horario.ciclo === ciclo
   );
 
+  const headersHorario = ["CÓDIGO", "CURSO", "SECCIÓN", "CICLO", "LUNES", "MARTES", "MIÉRCOLES", "JUEVES", "VIERNES", "SÁBADO", "DOMINGO"];
+
+  const rowsHorario = horariosFiltrados.map((horario) => [
+    horario.codigo,
+    horario.curso,
+    horario.seccion,
+    horario.ciclo,
+    horario.lunes,
+    horario.martes,
+    horario.miercoles,
+    horario.jueves,
+    horario.viernes,
+    horario.sabado,
+    horario.domingo,
+  ]);
+
   return (
     <div className="ver-horario-container">
-      <h1 className="ver-horario-title">Ver Horarios</h1>
+      <TituloPage titulo="Cursos Llevados" />
       
-      <div className="ver-horario-card">
+      <Card>
         <div className="ver-horario-filters">
           <div className="filter-group">
             <label htmlFor="ciclo-select">Filtrar por Ciclo:</label>
@@ -84,46 +107,14 @@ const VerHorario: React.FC = () => {
             Ver mi Horario
           </button>
         </div>
-        <div className="mi-horario-table-container">
-          <table className="ver-horario-table">
-            <thead>
-              <tr>
-                <th>CÓDIGO</th>
-                <th>CURSO</th>
-                <th>SECCIÓN</th>
-                <th>CICLO</th>
-                <th>LUNES</th>
-                <th>MARTES</th>
-                <th>MIÉRCOLES</th>
-                <th>JUEVES</th>
-                <th>VIERNES</th>
-                <th>SÁBADO</th>
-                <th>DOMINGO</th>
-              </tr>
-            </thead>
-            <tbody>
-              {horariosFiltrados.map((horario, index) => (
-                <tr
-                  key={horario.codigo}
-                  className={index % 2 === 0 ? "row-par" : "row-impar"}
-                >
-                  <td>{horario.codigo}</td>
-                  <td>{horario.curso}</td>
-                  <td>{horario.seccion}</td>
-                  <td>{horario.ciclo}</td>
-                  <td>{horario.lunes}</td>
-                  <td>{horario.martes}</td>
-                  <td>{horario.miercoles}</td>
-                  <td>{horario.jueves}</td>
-                  <td>{horario.viernes}</td>
-                  <td>{horario.sabado}</td>
-                  <td>{horario.domingo}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+        {loading ? (
+          <Loading />
+        ) : error ? (
+          <DatosNoEncontrados />
+        ) : (
+          <Tablas headers={headersHorario} rows={rowsHorario} />
+        )}
+      </Card>
     </div>
   );
 };

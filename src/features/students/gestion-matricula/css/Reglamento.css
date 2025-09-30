@@ -3,26 +3,3 @@
   margin: 0 auto;
   padding: 32px 12px;
 }
-
-.reglamento-title {
-  text-align: center;
-  color: #5a9e8d;
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 24px;
-}
-
-.reglamento-card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(44, 62, 80, 0.08);
-  padding: 24px 24px 18px 24px;
-  margin-bottom: 24px;
-  border-left: 6px solid #5a9e8d;
-}
-
-.reglamento-info {
-  font-size: 1.05rem;
-  color: #3d3c3b;
-  margin-bottom: 10px;
-}
