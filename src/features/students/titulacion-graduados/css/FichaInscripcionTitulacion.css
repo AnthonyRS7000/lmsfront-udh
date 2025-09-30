@@ -1,8 +1,15 @@
 /* Ficha Inscripción Titulación - estilos basados en BolsaTrabajoUDH */
 .ficha-titulacion-root { padding: 18px 20px; max-width: 1180px; margin: 18px auto; }
 .ficha-titulacion-title { font-size: 2.2rem; font-weight:700; color: var(--title-color); margin-bottom:18px; text-align:center; }
-.ficha-titulacion-card { background: var(--panel-bg); padding:18px; border-radius:12px; border:1px solid var(--border-soft); box-shadow: var(--shadow-lg); position:relative; }
-.ficha-titulacion-card::before { content: ''; position:absolute; left:14px; top:14px; bottom:14px; width:8px; background: linear-gradient(180deg, var(--accent-cyan), rgba(58,197,170,0.6)); border-radius:6px; }
+.ficha-titulacion-card {
+  background: var(--panel-bg);
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  border-left: 7px solid #5a9e8d;
+}
 .ficha-titulacion-card .tramites-card-body { padding-left: 40px; }
 
 .ficha-titulacion-card p { margin: 8px 0 12px 0; color: var(--muted); font-size:1rem; }

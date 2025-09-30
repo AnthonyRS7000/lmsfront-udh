@@ -64,7 +64,10 @@ const PlanDeEstudios: React.FC = () => {
 
   return (
     <div className="plan-estudios-root">
-      <h2 className="plan-estudios-title">Plan de Estudios</h2>
+      {/* Usar estilos de TituloPage */}
+      <div className="titulo-page-container">
+        <h1 className="titulo-page">Plan de Estudios</h1>
+      </div>
       <div className="plan-estudios-card">
         <div className="plan-estudios-filtros">
           <label htmlFor="programa" className="plan-estudios-label">Programa:</label>

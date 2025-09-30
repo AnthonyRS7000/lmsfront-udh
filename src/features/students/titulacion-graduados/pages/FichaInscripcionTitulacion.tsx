@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import '../css/FichaInscripcionTitulacion.css';
+import '../../../../components/css/TituloPage.css';
 
 const FichaInscripcionTitulacion: React.FC = () => {
   const [accede, setAccede] = useState<'si' | 'no' | ''>('');
 
   return (
     <div className="tramites-root ficha-titulacion-root">
-      <h2 className="tramites-title ficha-titulacion-title">FICHA DE INSCRIPCIÓN PARA TITULACIÓN</h2>
+      <div className="titulo-page-container">
+        <h2 className="titulo-page">Ficha de Inscripción para Titulación</h2>
+      </div>
 
       <div className="tramites-card ficha-titulacion-card">
         <div className="tramites-card-header">

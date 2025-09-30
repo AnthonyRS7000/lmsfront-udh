@@ -59,7 +59,10 @@ const VerHorario: React.FC = () => {
 
   return (
     <div className="ver-horario-container">
-      <h1 className="ver-horario-title">Ver Horarios</h1>
+      {/* Usar estilos de TituloPage */}
+      <div className="titulo-page-container">
+        <h1 className="titulo-page">Ver Horarios</h1>
+      </div>
       
       <div className="ver-horario-card">
         <div className="ver-horario-filters">

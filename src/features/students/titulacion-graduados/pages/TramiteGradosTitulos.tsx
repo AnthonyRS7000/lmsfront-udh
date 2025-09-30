@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../css/TramiteGradosTitulos.css';
+import '../../../../components/css/TituloPage.css';
 
 const pdfPath = '/src/features/students/titulacion-graduados/comision de grados y titulos.pdf';
 
@@ -8,7 +9,9 @@ const TramiteGradosTitulos: React.FC = () => {
 
   return (
     <div className="tramites-root tramite-grados-root">
-      <h2 className="tramites-title tramite-grados-title">TRÁMITES DE GRADOS Y TÍTULOS</h2>
+      <div className="titulo-page-container">
+        <h2 className="titulo-page">Trámite de Grados  Títulos</h2>
+      </div>
 
       <div className="tramites-card tramite-grados-card">
         <div className="tramites-card-header">
