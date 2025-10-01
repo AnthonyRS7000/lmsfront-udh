@@ -28,7 +28,7 @@
 }
 
 .ver-horario-select:focus {
-  border-color: #ecc138;
+  border-color: #5A9E8D;
   outline: none;
   box-shadow: 0 0 0 1px rgba(236, 193, 56, 0.5);
 }

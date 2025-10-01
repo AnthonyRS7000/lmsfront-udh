@@ -4,7 +4,10 @@ import '../css/TramiteSeguimiento.css';
 const TramiteSeguimiento: React.FC = () => {
 	return (
 		<div className="tramites-root tramite-seguimiento-root">
-			<h2 className="tramites-title tramite-seguimiento-title">SEGUIMIENTO DE TRÁMITE</h2>
+						{/* Usar estilos de TituloPage */}
+						<div className="titulo-page-container">
+							<h1 className="titulo-page">Seguimiento de Trámite</h1>
+						</div>
 
 			<div className="tramites-card tramite-seguimiento-card">
 				<div className="tramites-card-header">
