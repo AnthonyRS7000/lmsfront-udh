@@ -27,22 +27,20 @@
   color: #3d3c3b;
 }
 
-.ver-horario-select:focus {
-  border-color: #5A9E8D;
-  outline: none;
-  box-shadow: 0 0 0 1px rgba(236, 193, 56, 0.5);
-}
-
-.ver-horario-button {
-  padding: 10px 20px;
-  background-color: #89c7b7;
-  color: #fff;
-  border: none;
+.ver-horario-select option {
+  background-color: #f9f9f9; /* Fondo de las opciones */
+  color: #3d3c3b; /* Color del texto de las opciones */
+  border: 1px solid #5a9e8d;
   border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
 }
 
-.ver-horario-button:hover {
-  background-color: #6fb1a2;
+.ver-horario-select:focus {
+  border-color: #5a9e8d;
+  outline: none;
+  box-shadow: 0 0 0 1px rgba(90, 158, 141, 0.5);
+}
+
+.ver-horario-select option:hover {
+  background-color: #5a9e8d; /* Fondo al pasar el cursor sobre una opción */
+  cursor: pointer;
 }

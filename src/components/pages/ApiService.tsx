@@ -19,7 +19,7 @@ export const ApiService = {
       });
 
       if (!response.ok) {
-        if (response.status === 401) {
+        if (response.status === 405) {
           // Redirigir al usuario a la página de inicio de sesión si el token expira
           localStorage.removeItem("token"); // Eliminar el token inválido
           window.location.href = "/login"; // Redirigir al inicio de sesión

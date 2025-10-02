@@ -1,0 +1,35 @@
+.button-principal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 5px 10px 5px 10px;
+    background-color: #5a9e8d;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-principal:hover {   
+    background-color: #417265;
+}
+
+.button-principal:active {
+    background-color: #417265;
+}
+
+.button-icon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+.button-text {
+    display: inline-block;
+}

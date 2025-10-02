@@ -6,6 +6,8 @@ import Loading from "../../../../components/pages/Loading"
 import Tablas from "../../../../components/pages/Tablas";
 import Titulo from "../../../../components/pages/TituloPage";
 import Card from "../../../../components/pages/Card";
+import ButtonPrincipal from "../../../../components/pages/ButtonPrincipal";
+import { EyeIcon } from "@heroicons/react/24/outline";
 
 const calcularSemestre = (): string => {
     const fechaActual = new Date();
@@ -101,12 +103,11 @@ const MiHorario: React.FC = () => {
                         className="mi-horario-input"
                         placeholder="2025-2"
                         />
-                        <button
-                        className="mi-horario-button"
-                        onClick={fetchHorario}
-                        >
-                        Ver
-                        </button>
+                        <ButtonPrincipal
+                            icon={<EyeIcon />}
+                            text="Ver"
+                            onClick={fetchHorario}
+                        />
                     </div>
                 </div>
                 {loading ? (

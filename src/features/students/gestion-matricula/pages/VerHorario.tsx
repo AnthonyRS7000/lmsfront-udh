@@ -6,6 +6,8 @@ import DatosNoEncontrados from "../../../../components/pages/DatosNoEncontrados"
 import Loading from "../../../../components/pages/Loading";
 import Tablas from "../../../../components/pages/Tablas";
 import Card from "../../../../components/pages/Card";
+import ButtonPrincipal from "../../../../components/pages/ButtonPrincipal";
+import { CalendarDateRangeIcon, EyeIcon } from "@heroicons/react/24/outline";
 
 const VerHorario: React.FC = () => {
   const [ciclo, setCiclo] = useState("1");
@@ -80,6 +82,8 @@ const VerHorario: React.FC = () => {
     horario.domingo,
   ]);
 
+  
+
   return (
     <div className="ver-horario-container">
       <TituloPage titulo="Cursos Llevados" />
@@ -100,12 +104,11 @@ const VerHorario: React.FC = () => {
               <option value="4">4</option>
             </select>
           </div>
-          <button
-            className="ver-horario-button"
-            onClick={() => navigate("/estudiante/mi-horario")}
-          >
-            Ver mi Horario
-          </button>
+          <ButtonPrincipal
+              icon={<CalendarDateRangeIcon />}
+              text="Ver mi Horario"
+              onClick={() => navigate("/estudiante/mi-horario")}
+          />
         </div>
         {loading ? (
           <Loading />

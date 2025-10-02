@@ -30,27 +30,14 @@
   border-radius: 5px;
   background-color: #fff;
   color: #3d3c3b;
+  margin-right: 7px;
 }
 
 .mi-horario-input:focus {
-  border-color: #ecc138;
+  border-color: #5a9e8d;
   outline: none;
-  box-shadow: 0 0 0 1px rgba(236, 193, 56, 0.5);
+  box-shadow: 0 0 0 1px rgba(90, 158, 141, 0.5);
 }
 
-.mi-horario-button {
-  margin-left: 10px;
-  padding: 5px 15px;
-  background-color: #89c7b7;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.mi-horario-button:hover {
-  background-color: #6fb1a2;
-}
 
 

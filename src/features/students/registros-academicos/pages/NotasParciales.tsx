@@ -3,13 +3,15 @@ import { ApiService } from "../../../../components/pages/ApiService";
 import "../css/NotasParciales.css";
 import { ClipboardIcon, InformationCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Homero from "../../../../assets/homero-pensando.png";
+import TituloPage from "../../../../components/pages/TituloPage";
+import Card from "../../../../components/pages/Card";
 
 const NotasParciales: React.FC = () => {
-    const [notas, setNotas] = useState([]); // Inicializar como un array vacío
+    const [notas, setNotas] = useState([]); 
     const [udhData, setUdhData] = useState<any>(null);
     const [nombre, setNombre] = useState("");
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(false); // Estado para manejar errores
+    const [error, setError] = useState(false);
     const [semestre, setSemestre] = useState("2025-2");
 
     const [showModal, setShowModal] = useState(false);
@@ -92,10 +94,7 @@ const NotasParciales: React.FC = () => {
     
     return (
         <div className="notas-container">
-            {/* Usar estilos de TituloPage */}
-                <div className="titulo-page-container">
-                    <h1 className="titulo-page">Notas Parciales</h1>
-                </div>
+            <TituloPage titulo="Notas Parciales" />
 
             {/* Modal de advertencia por veces llevado */}
             {showModal && (
@@ -146,7 +145,7 @@ const NotasParciales: React.FC = () => {
             )}
 
             {/* Card */}
-            <div className="notas-card notas-header">
+            <Card>
                 <div className="notas-datos-row">
                     <div className="notas-info">
                         <label className="notas-codigo-label">Apellidos y Nombres:</label>
@@ -247,7 +246,7 @@ const NotasParciales: React.FC = () => {
                     </table>
                 </div>
                 )}
-            </div>
+            </Card>
             {/* Card info advertencia */}
             <div className="notas-card notas-info-extra">
                 <div className="notas-info-extra-header">

@@ -130,16 +130,10 @@ const CursosLlevados: React.FC = () => {
                 <div className="cursos-llevados-barra-superior">
                     <div className="cursos-llevados-filtros-row">
                         <div>
-                            <label className="cursos-llevados-codigo-label">
+                            <label>
                                 Apellidos y Nombres:
                             </label>
-                            <input
-                                type="text"
-                                value={nombre}
-                                disabled
-                                className="cursos-llevados-input-disabled"
-                                size={Math.max(30, nombre.length + 2)}
-                            />
+                            {nombre}
                         </div>
                         <div>
                             <label htmlFor="busqueda">Buscar:</label>
@@ -149,14 +143,12 @@ const CursosLlevados: React.FC = () => {
                                 placeholder="Buscar curso, código..."
                                 value={busqueda}
                                 onChange={(e) => setBusqueda(e.target.value)}
-                                className="cursos-llevados-input"
                             />
                             <label htmlFor="filtro-ciclo">Ciclo:</label>
                             <select
                                 id="filtro-ciclo"
                                 value={cicloFiltro}
                                 onChange={(e) => setCicloFiltro(e.target.value)}
-                                className="cursos-llevados-input"
                             >
                                 <option value="">Todos</option>
                                 {ciclosUnicos.map((ciclo) => (

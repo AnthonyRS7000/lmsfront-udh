@@ -25,6 +25,7 @@
 .cursos-llevados-filtros-row label {
   font-weight: 600;
   margin-right: 6px;
+  margin-left: 10px;
   color: #3d3c3b;
 }
 
@@ -37,13 +38,14 @@
   font-size: 15px;
   background-color: #fff;
   color: #3d3c3b;
+  margin-right: 10px;
 }
 
 .cursos-llevados-filtros-row input:focus,
 .cursos-llevados-filtros-row select:focus {
-  border-color: #ecc138;
+  border-color: #5a9e8d;
   outline: none;
-  box-shadow: 0 0 0 1px rgba(236, 193, 56, 0.5);
+  box-shadow: 0 0 0 1px rgba(90, 158, 141, 0.5);
 }
 
 /* Estilo para el input de "Apellidos y Nombres" */
