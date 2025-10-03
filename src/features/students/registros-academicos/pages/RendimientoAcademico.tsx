@@ -8,20 +8,6 @@ import Tablas from "../../../../components/pages/Tablas";
 import Card from "../../../../components/pages/Card";
 import { EyeIcon } from '@heroicons/react/24/outline';
 
-const datosDetalle = {
-  pertenencia: {
-    califica: false,
-    mensaje: "No califica para Tercio, Cuarto ni Quinto Superior. Tiene que haber llevado mas de 19 creditos o puede que haya desaprobado por lo menos un curso en el semestre seleccionado;"
-  },
-  rankingPromocion: [
-    { semestre: '2025-1', promedio: 11.000000, ubicacion: 6, total: 13 }
-  ],
-  promedioGlobal: 12.9484,
-  rankingEgresados: [
-    { semestre: '2025-1', promedio: 12.0500, ubicacion: 9, total: 27 }
-  ]
-};
-
 const obtenerFechaHora = () => {
     const fecha = new Date();
     const opciones: Intl.DateTimeFormatOptions = {
@@ -41,9 +27,11 @@ const RendimientoAcademico: React.FC = () => {
   const [userData, setUserData] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [loadingDetalles, setLoadingDetalles] = useState(false);
+  const [loadingRanking, setLoadingRanking] = useState(false);
   const [error, setError] = useState(false);
   
-  const [detalle, setDetalle] = useState<any | null>(null);
+  const [detalle, setDetalle] = useState([]); 
+  const [ranking, setRanking] = useState([]); 
   const [mostrarDetalle, setMostrarDetalle] = useState(false);
   const [semestreSeleccionado, setSemestreSeleccionado] = useState<string | null>(null);
 
@@ -82,11 +70,54 @@ const RendimientoAcademico: React.FC = () => {
     }
   };
 
-  // Cuando seleccionas un semestre, simula fetch de detalle
+  const fetchDetalle = async (semestre: string) => {
+    try {
+      setLoadingDetalles(true);
+      const codigoAlumno = udhData?.codigo;
+      const escuela = udhData?.codesc;
+      const sede = udhData?.sedalu;
+      const data_detalle = await ApiService.get(`/estudiantes/rendimiento-tercio?codalu=${codigoAlumno}&semsem=${semestre}&codesc=${escuela}&sede=${sede}`);
+      if (data_detalle.data.status === "error") {
+        setDetalle([]);
+      } else {
+        setDetalle(data_detalle.data.data);
+        setError(false);
+      }
+    } catch (error) {
+      console.error("Error al cargar los datos de detalle:", error);
+      setError(true);
+    } finally {
+      setLoadingDetalles(false);
+    }
+  };
+
+  const fetchRanking = async (semestre: string) => {
+    try {
+      setLoadingRanking(true);
+      const codigoAlumno = udhData?.codigo;
+      const escuela = udhData?.codesc;
+      const sede = udhData?.sedalu;
+      const data_ranking = await ApiService.get(`/estudiantes/ranking-promocion?codalu=${codigoAlumno}&semsem=${semestre}&codesc=${escuela}&sede=${sede}`);
+      if (data_ranking.data.status === "error") {
+        setError(true);
+        setRanking([]);
+      } else {
+        setError(false);
+        setRanking(data_ranking.data.data);
+      }
+    } catch (error) {
+      console.error("Error al cargar los datos de ranking:", error);
+      setError(true);
+    } finally {
+      setLoadingRanking(false);
+    }
+  };
+
   const handleVerDetalle = (semestre: string) => {
+    fetchDetalle(semestre);
+    fetchRanking(semestre);
     setMostrarDetalle(true);
     setSemestreSeleccionado(semestre);
-    setDetalle(datosDetalle); 
   };
 
   useEffect(() => {
@@ -98,7 +129,6 @@ const RendimientoAcademico: React.FC = () => {
   const { fechaStr, horaStr } = obtenerFechaHora();
 
   const headersRendimiento = ["Semestre", "Promedio x Semestre", "Cantidad de Créditos", "Cantidad de Cursos", "Acción"];
-
   const rowRendimiento = rendimiento.map((r: any) => [
     r.semsem,
     r.Ponderado.toFixed(2),
@@ -110,26 +140,36 @@ const RendimientoAcademico: React.FC = () => {
     </button>
   ]);
 
-  const headersRanking = ["Semestre", "Promedio Ponderado", "Ubicación", "Total Alumnos"];
-
-  const rowRanking = detalle ? detalle.rankingPromocion.map((r: any) => [
-    r.semestre,
-    r.promedio.toFixed(4),
+  const headersDetalle = ["Semestre", "Promedio Ponderado", "Ubicación", "Total Alumnos", "Tercio Superior", "Cuarto Superior", "Quinto Superior"];
+  const rowDetalle = detalle.map((r: any) => [
+    semestreSeleccionado,
+    r.prom.toFixed(4),
     r.ubicacion,
-    r.total
-  ]) : [];
+    r.Total,
+    r.tercio ? "Sí" : "No",
+    r.cuarto ? "Sí" : "No",
+    r.quinto ? "Sí" : "No"
+  ]);
+
+  const headersRanking = ["Semestre", "Promedio Ponderado", "Ubicación", "Total Alumnos"];
+  const rowRanking = ranking.map((r: any) => [
+    semestreSeleccionado,
+    r.prompond.toFixed(4),
+    r.ubicacion,
+    r.Total
+  ]);
 
   const headersPromedioGlobal = ["Resultado"];
-
-  const rowPromedioGlobal = detalle ? [[detalle.promedioGlobal]] : [];
+  const rowPromedioGlobal = ranking.map((r: any) => [
+    r.PonderadoGlobal.toFixed(4)
+  ]);
 
   const headersRankingEgresados = ["Semestre Egreso", "Promedio Ponderado Promocional*", "Ubicación", "Total Alumnos"];
-
-  const rowRankingEgresados = detalle ? detalle.rankingEgresados.map((r: any) => [
-    r.semestre,
-    r.promedio.toFixed(4),
+  const rowRankingEgresados = detalle ? detalle.map((r: any) => [
+    semestreSeleccionado,
+    r.prom.toFixed(4), 
     r.ubicacion,
-    r.total
+    r.Total,
   ]) : [];
 
   return (
@@ -165,19 +205,21 @@ const RendimientoAcademico: React.FC = () => {
         </div>
       </Card>
 
-      {mostrarDetalle && detalle && (
+      {mostrarDetalle && (
         <Card ref={detalleRef} >
           <h3 className="rend-acad-table-title">2. Pertenencia al Tercio, Cuarto y Quinto Superior:</h3>
-          <div className="rend-acad-alert">
-            {detalle.pertenencia.califica ? (
-              <span>Califica para Tercio, Cuarto o Quinto Superior.</span>
-            ) : (
-              <span>{detalle.pertenencia.mensaje}</span>
-            )}
-          </div>
+          {loadingDetalles ? (
+            <Loading />
+          ) : detalle.length > 0 ? (
+            <Tablas headers={headersDetalle} rows={rowDetalle} />
+          ) : ( 
+            <div className="rend-acad-alert">
+              <span>No califica para Tercio, Cuarto ni Quinto Superior. Tiene que haber llevado más de 19 créditos o puede que haya desaprobado por lo menos un curso en el semestre seleccionado.</span>
+            </div>
+          )}
 
           <h3 className="rend-acad-table-title">3. Ranking de Promoción:</h3>
-          {loadingDetalles ? (
+          {loadingRanking ? (
             <Loading />
           ) : error ? (
             <DatosNoEncontrados />
@@ -186,7 +228,7 @@ const RendimientoAcademico: React.FC = () => {
           )}
 
           <h3 className="rend-acad-table-title">4. Promedio Ponderado Global:</h3>
-          {loadingDetalles ? (
+          {loadingRanking ? (
             <Loading />
           ) : error ? (
             <DatosNoEncontrados />
