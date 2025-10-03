@@ -2,9 +2,28 @@ import React, { useEffect, useState, useRef } from "react";
 import { ApiService } from "../../../../components/pages/ApiService";
 import "../css/NotasParciales.css";
 import { ClipboardIcon, InformationCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import Homero from "../../../../assets/homero-pensando.png";
 import TituloPage from "../../../../components/pages/TituloPage";
 import Card from "../../../../components/pages/Card";
+import ButtonPrincipal from "../../../../components/pages/ButtonPrincipal";
+import Tablas from "../../../../components/pages/Tablas";
+import DatosNoEncontrados from "../../../../components/pages/DatosNoEncontrados";
+import Loading from "../../../../components/pages/Loading";
+
+const calcularSemestre = (): string => {
+  const fechaActual = new Date();
+  const año = fechaActual.getFullYear();
+  const mes = fechaActual.getMonth() + 1;
+
+  if (mes >= 1 && mes <= 3) {
+    return `${año}-0`;
+  } else if (mes >= 4 && mes <= 7) {
+    return `${año}-1`;
+  } else if (mes >= 8 && mes <= 11) {
+    return `${año}-2`;
+  } else {
+    return `${año}-2`;
+  }
+};
 
 const NotasParciales: React.FC = () => {
     const [notas, setNotas] = useState([]); 
@@ -12,7 +31,7 @@ const NotasParciales: React.FC = () => {
     const [nombre, setNombre] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
-    const [semestre, setSemestre] = useState("2025-2");
+    const [semestre, setSemestre] = useState(calcularSemestre());
 
     const [showModal, setShowModal] = useState(false);
     const [showModalInasistencia, setShowModalInasistencia] = useState(false);
@@ -22,13 +41,14 @@ const NotasParciales: React.FC = () => {
 
     useEffect(() => {
         const datosUdh = JSON.parse(localStorage.getItem("datos_udh") || "{}");
+        const nombresUser = JSON.parse(localStorage.getItem("usuario") || "{}");
         setUdhData(datosUdh);
-        setNombre(datosUdh.apellido_paterno+" "+datosUdh.apellido_materno+", "+datosUdh.nombres || "");
+        setNombre(`${nombresUser.apellidos}, ${nombresUser.nombres}`);
     }, []);
 
     useEffect(() => {
         if (udhData && udhData.codigo) {
-        fetchNotas(); // Llamar a la función de consulta
+        fetchNotas();
         }
     }, [udhData]);
         
@@ -39,15 +59,13 @@ const NotasParciales: React.FC = () => {
         return;
         }
         try {
-        setLoading(true); // Mostrar el spinner mientras se realiza la consulta
+        setLoading(true); 
         const codigoAlumno = udhData.codigo;
         const data_notas = await ApiService.get(`/estudiantes/notas?codalu=${codigoAlumno}&semsem=${semestre}`);
-        if (data_notas.data && data_notas.data.status === "error") {
-            // Si la API devuelve un error en la propiedad "data"
+        if (!data_notas.data || data_notas.status === "error" || data_notas.data.status === "error") {
             setError(true);
-            setNotas([]); // Asegurarse de que las notas estén vacías
+            setNotas([]); 
         } else {
-            // Si la API devuelve datos válidos
             setNotas(data_notas.data);
             setError(false);
         }
@@ -60,6 +78,7 @@ const NotasParciales: React.FC = () => {
     };
 
     // Mostrar los modales según condiciones
+    // Mejorar la logica con otra api
     useEffect(() => {
         if (!loading && notas.length > 0) {
             // Modal de advertencia por veces llevado
@@ -91,7 +110,30 @@ const NotasParciales: React.FC = () => {
         if (valor < 20) return "#e6b800"; // amarillo
         return "#d32f2f"; // rojo
     };
-    
+
+    const headersNotas = [
+        "Código", "Curso", "Sec.", "TA1", "TA2", "TA3", "TA4", "PTA", "EMC", "EFC", "SUS", "Promedio (Letras)", "Inasistencia"
+    ];
+    const rowsNotas = notas.map((nota: any) => [
+        nota.codigo_curso,
+        nota.nombre_curso,
+        nota.seccion,
+        nota.TA1,
+        nota.TA2,
+        nota.TA3,
+        nota.TA4,
+        nota.PTA,
+        nota.EMC,
+        nota.EFC,
+        nota.SUS,
+        <div className="promedio-container" style={{ color: getPromedioColor(nota.pfin) }}>
+            <span>{nota.pfin}</span>
+            <span>({nota.pfinL.trim()})</span>
+            <span>{getPromedioIcon(nota.pfin)}</span>
+        </div>,
+        <span style={{ color: getInasistenciaColor(nota.PorcInasis) }}>{nota.PorcInasis}</span>
+    ]);
+
     return (
         <div className="notas-container">
             <TituloPage titulo="Notas Parciales" />
@@ -147,104 +189,32 @@ const NotasParciales: React.FC = () => {
             {/* Card */}
             <Card>
                 <div className="notas-datos-row">
-                    <div className="notas-info">
-                        <label className="notas-codigo-label">Apellidos y Nombres:</label>
-                        <input
-                        type="text"
-                        value={nombre}
-                        disabled
-                        className="notas-input-nombre"
-                        size={Math.max(30, nombre.length + 2)}
-                        />
+                    <div>
+                        <label >Apellidos y Nombres:</label>
+                        {nombre}
                     </div>
-                    <div className="notas-selector">
-                        <label htmlFor="semestre" className="notas-label-semestre">Semestre:</label>
-                        <div className="filter-group">
-                        <input
-                            id="semestre-input"
-                            type="text"
-                            value={semestre}
-                            onChange={(e) => setSemestre(e.target.value)}
-                            className="notas-input-semestre"
-                            placeholder="2025-2"
-                        />
-                        <button
-                            className="notas-button"
-                            onClick={fetchNotas} // Llamar a la función de consulta al presionar el botón
-                        >
-                            Ver
-                        </button>
+                    <div className="notas-datos-row">
+                        <label htmlFor="semestre" >Semestre:</label>
+                        <div className="notas-filter-group">
+                            <input
+                                id="semestre-input"
+                                type="text"
+                                value={semestre}
+                                onChange={(e) => setSemestre(e.target.value)}
+                                className="notas-input-semestre"
+                                placeholder={calcularSemestre()}
+                            />
+                            <ButtonPrincipal icon={<ClipboardIcon />} text="Ver" onClick={fetchNotas} />
                         </div>
                     </div>
                 </div>
 
                 {loading ? (
-                <div className="spinner-container">
-                    <div className="spinner" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                    </div>
-                </div>
+                    <Loading />
                 ) : error ? (
-                <div className="error-container">
-                    <img
-                    src={Homero}
-                    alt="homero-pensando"
-                    className="error-image"
-                    />
-                    <p className="error-message">
-                    Datos no encontrados o no te encuentras registrado en el presente ciclo
-                    </p>
-                </div>
+                <DatosNoEncontrados />
                 ) : (
-                /* Tabla */
-                <div className="notas-tabla-wrapper">
-                    <table className="notas-tabla-notas">
-                        <thead>
-                        <tr>
-                            <th>Código</th>
-                            <th>Curso</th>
-                            <th>Sec.</th>
-                            <th>TA1</th>
-                            <th>TA2</th>
-                            <th>TA3</th>
-                            <th>TA4</th>
-                            <th>PTA</th>
-                            <th>EMC</th>
-                            <th>EFC</th>
-                            <th>SUS</th>
-                            <th>Promedio<br />(Letras)</th>
-                            <th>Inasistencia</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            {Array.isArray(notas) && notas.map((nota, index) => (
-                            <tr key={nota.codigo_curso}
-                            className={index % 2 === 0 ? "row-par" : "row-impar"}
-                            >
-                                <td>{nota.codigo_curso}</td>
-                                <td className="notas-descripcion">{nota.nombre_curso}</td>
-                                <td>{nota.seccion}</td>
-                                <td>{nota.TA1}</td>
-                                <td>{nota.TA2}</td>
-                                <td>{nota.TA3}</td>
-                                <td>{nota.TA4}</td>
-                                <td>{nota.PTA}</td>
-                                <td>{nota.EMC}</td>
-                                <td>{nota.EFC}</td>
-                                <td>{nota.SUS}</td>
-                                <td>
-                                <div className="promedio-container" style={{ color: getPromedioColor(nota.pfin) }}>
-                                    <span>{nota.pfin}</span>
-                                    <span>({nota.pfinL.trim()})</span>
-                                    <span>{getPromedioIcon(nota.pfin)}</span>
-                                </div>
-                                </td>
-                                <td style={{ color: getInasistenciaColor(nota.PorcInasis) }}>{nota.PorcInasis}</td>
-                            </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
+                <Tablas headers={headersNotas} rows={rowsNotas} />
                 )}
             </Card>
             {/* Card info advertencia */}

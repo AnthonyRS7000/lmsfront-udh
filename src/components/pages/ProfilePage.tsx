@@ -12,6 +12,7 @@ const ProfilePage = () => {
   const [photoFile, setPhotoFile] = useState<File | null>(null);
   const [photoError, setPhotoError] = useState<string | null>(null);
   const [photo, setPhoto] = useState<string | null>(null);
+  
 
   useEffect(() => {
     // Obtener datos del localStorage
@@ -24,7 +25,7 @@ const ProfilePage = () => {
   const foto = usuario?.foto || datosUdh?.foto || null;
   if (foto) setPhoto(foto);
   // inicializar número telefónico si existe
-  if (datosUdh && datosUdh.celular) setPhoneNumber(datosUdh.celular);
+  if (datosUdh && datosUdh.telefono) setPhoneNumber(datosUdh.telefono);
   }, []);
 
   const navigate = useNavigate();
@@ -62,14 +63,20 @@ const ProfilePage = () => {
   const handlePhoneSubmit = () => {
     // Validación simple: mínimo 6 dígitos
     const cleaned = (phoneNumber || '').trim();
-    if (!cleaned) {
+    if (!cleaned || cleaned.length < 6) {
       setSaveMessage('Ingrese un número válido');
       setTimeout(() => setSaveMessage(null), 3000);
       return;
     }
 
+    if (udhData && udhData.telefono === cleaned) {
+      setSaveMessage('El número ingresado es el mismo que el actual');
+      setTimeout(() => setSaveMessage(null), 3000);
+      return;
+    }
+
     // Actualizar localStorage (datos_udh) y estado
-    const datos = { ...(udhData || {}), celular: cleaned };
+    const datos = { ...(udhData || {}), telefono: cleaned };
     try {
       localStorage.setItem('datos_udh', JSON.stringify(datos));
       setUdhData(datos);
@@ -82,6 +89,8 @@ const ProfilePage = () => {
       setTimeout(() => setSaveMessage(null), 3000);
     }
   };
+  const [apellido_paterno, apellido_materno] = userData.apellidos.split(' ');
+  
 
   return (
     <div className="profile-container">
@@ -101,7 +110,7 @@ const ProfilePage = () => {
               <input 
                 type="text" 
                 className="profile-form-input" 
-                value={udhData.nombres || ""}
+                value={userData.nombres || ""}
                 readOnly
               />
             </div>
@@ -110,7 +119,7 @@ const ProfilePage = () => {
               <input 
                 type="text" 
                 className="profile-form-input" 
-                value={udhData.apellido_paterno || ""}
+                value={apellido_paterno || ""}
                 readOnly
               />
             </div>
@@ -123,7 +132,7 @@ const ProfilePage = () => {
               <input 
                 type="text" 
                 className="profile-form-input" 
-                value={udhData.apellido_materno || ""}
+                value={apellido_materno || ""}
                 readOnly
               />
             </div>
@@ -132,7 +141,7 @@ const ProfilePage = () => {
               <input 
                 type="text" 
                 className="profile-form-input" 
-                value={udhData.dni || ""}
+                value={udhData.documento || ""}
                 readOnly
               />
             </div>
@@ -145,7 +154,7 @@ const ProfilePage = () => {
               <input 
                 type="text" 
                 className="profile-form-input" 
-                value={udhData.facultad || ""}
+                value={udhData.codfac || ""}
                 readOnly
               />
             </div>
@@ -154,7 +163,7 @@ const ProfilePage = () => {
               <input 
                 type="text" 
                 className="profile-form-input" 
-                value={udhData.programa || ""}
+                value={udhData.escuela || ""}
                 readOnly
               />
             </div>
@@ -176,7 +185,7 @@ const ProfilePage = () => {
               <input 
                 type="email" 
                 className="profile-form-input" 
-                value={udhData.codigo ? `${udhData.codigo}@udh.edu.pe` : ""}
+                value={userData.email || ""}
                 readOnly
               />
             </div>
@@ -189,7 +198,7 @@ const ProfilePage = () => {
               <input 
                 type="text" 
                 className="profile-form-input" 
-                value="HUÁNUCO"
+                value={udhData.sedalu || "Huanuco"}
                 readOnly
               />
             </div>
@@ -209,7 +218,7 @@ const ProfilePage = () => {
                 Puedes modificar este campo
               </div>
               <div className="profile-save-row">
-                <button className="profile-save-btn" onClick={handlePhoneSubmit} disabled={phoneNumber === (udhData && udhData.celular)}>Actualizar</button>
+                <button className="profile-save-btn" onClick={handlePhoneSubmit} disabled={phoneNumber === (udhData && udhData.telefono)}>Actualizar</button>
                 <div className="profile-save-note">{saveMessage}</div>
               </div>
             </div>

@@ -38,6 +38,7 @@ const obtenerFechaHora = () => {
 const RendimientoAcademico: React.FC = () => {
   const [rendimiento, setRendimiento] = useState([]);
   const [udhData, setUdhData] = useState<any>(null);
+  const [userData, setUserData] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [loadingDetalles, setLoadingDetalles] = useState(false);
   const [error, setError] = useState(false);
@@ -50,7 +51,9 @@ const RendimientoAcademico: React.FC = () => {
 
   useEffect(() => {
     const datosUdh = JSON.parse(localStorage.getItem("datos_udh") || "{}");
+    const datosUser = JSON.parse(localStorage.getItem("usuario") || "{}");
     setUdhData(datosUdh);
+    setUserData(datosUser);
   }, []);
 
   useEffect(() => {
@@ -64,7 +67,7 @@ const RendimientoAcademico: React.FC = () => {
       setLoading(true);
       const codigoAlumno = udhData?.codigo;
       const data_rendimiento = await ApiService.get(`/estudiantes/rendimiento-academico?codalu=${codigoAlumno}`);
-      if (data_rendimiento.data.data && data_rendimiento.status === "error") {
+      if (data_rendimiento.data.data && data_rendimiento.data.status === "error") {
         setError(true);
         setRendimiento([]);
       } else {
@@ -140,11 +143,11 @@ const RendimientoAcademico: React.FC = () => {
         </div>
         <div className="rend-acad-row">
           <label className="rend-acad-label">Apellidos y Nombres:</label>
-          <input className="rend-acad-input" value={`${udhData?.apellido_paterno} ${udhData?.apellido_materno}, ${udhData?.nombres}` || ''} disabled />
+          <input className="rend-acad-input" value={`${userData?.apellidos}, ${userData?.nombres}` || ''} disabled />
         </div>
         <div className="rend-acad-row">
           <label className="rend-acad-label">Programa Académico:</label>
-          <input className="rend-acad-input" value={udhData?.programa || ''} disabled />
+          <input className="rend-acad-input" value={udhData?.escuela || ''} disabled />
         </div>
       </Card>
 

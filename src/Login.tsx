@@ -93,24 +93,11 @@ function Login() {
       }
 
       if (event.data.type === "google-auth-success") {
-        const { token, usuario, datos_udh, foto, state } = event.data;
+        const { token, usuario, datos_udh, foto} = event.data;
 
         if (!token || !usuario || !usuario.rol || !datos_udh) {
           alert("Datos de autenticación incompletos");
           return;
-        }
-
-        if (state) {
-          try {
-            const decodedState = JSON.parse(atob(state));
-            const timeDiff = Date.now() - decodedState.timestamp;
-            if (timeDiff > 5 * 60 * 1000) {
-              alert("Sesión expirada, intenta nuevamente");
-              return;
-            }
-          } catch (e) {
-            console.warn("State inválido");
-          }
         }
 
         localStorage.setItem("token", token);
@@ -125,7 +112,7 @@ function Login() {
           usuario,
         });
 
-        login(token, usuario.rol);
+        login(token, usuario);
 
         switch (usuario.rol?.toLowerCase()) {
           case "estudiante":
@@ -194,9 +181,6 @@ function Login() {
               </button>
               <p className="login-help">
                 ¿Necesitas ayuda?{" "}
-                <a href="#" className="login-help-link">
-                  Mira esta guía.
-                </a>
                 <a href="#" className="login-help-link">
                   Mira esta guía.
                 </a>

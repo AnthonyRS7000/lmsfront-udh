@@ -6,167 +6,52 @@
   color: #3d3c3b;
 }
 
-.notas-titulo {
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 18px;
-  color: #5a9e8d;
-}
-
-/* Card Header */
-.notas-card.notas-header {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  margin-bottom: 1.5rem;
-  border-bottom: 6px solid #5a9e8d;
-  border-right: 6px solid #5a9e8d;
-}
-.notas-card.notas-header h2 {
-  color: #5a9e8d;
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 0.75rem;
-}
+/* Filtros alineados en línea */
 .notas-datos-row {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: flex-start;
-  gap: 2.5rem;
-  margin-bottom: 1.2rem;
+  gap: 2px;
+  flex-wrap: wrap;
 }
 
-/* Selector */
-.notas-selector {
+.notas-filter-group {
   display: flex;
-  gap: 0.5rem;
   align-items: center;
 }
-.notas-selector select {
-  padding: 0.5rem;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-}
-.notas-selector button {
-  background: #5a9e8d;
-  color: #fff;
+/* Estilo para los labels */
+.notas-datos-row label {
   font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-.notas-selector button:hover {
-  background: #417265;
+  margin-right: 6px;
+  margin-left: 10px;
+  color: #3d3c3b;
 }
 
-/* Spinner */
-.spinner-container {
-  text-align: center;
-  padding: 20px;
+/* Estilo para los inputs y selects */
+.notas-datos-row input,
+.notas-datos-row select {
+  padding: 5px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 5px;
+  font-size: 15px;
+  background-color: #fff;
+  color: #3d3c3b;
+  margin-right: 10px;
 }
 
-.spinner {
-  margin: 0 auto;
-  width: 3rem;
-  height: 3rem;
-  border: 0.4rem solid #f3f3f3;
-  border-top: 0.4rem solid #89c7b7;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.notas-datos-row input:focus,
+.notas-datos-row select:focus {
+  border-color: #5a9e8d;
+  outline: none;
+  box-shadow: 0 0 0 1px rgba(90, 158, 141, 0.5);
 }
 
 /* Input y botón */
-.filter-group {
-  display: flex;
-  align-items: center;
-}
-
 .notas-input-semestre {
-  padding: 5px 10px;
-  border: 1px solid #cfd8dc;
-  border-radius: 5px;
-  background-color: #fff;
-  color: #3d3c3b;
   width: 50px;
   height: 20px;
 }
 
-.notas-input-semestre:focus {
-  border-color: #ecc138;
-  outline: none;
-  box-shadow: 0 0 0 1px rgba(236, 193, 56, 0.5);
-}
-
-.notas-button {
-  margin-left: 10px;
-  padding: 5px 15px;
-  background-color: #89c7b7;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.notas-button:hover {
-  background-color: #6fb1a2;
-}
-
-/* Tabla */
-.notas-tabla-wrapper {
-  overflow-x: auto;
-}
-.notas-tabla-notas {
-  width: 100%;
-  border-collapse: collapse;
-  border-radius: 12px;
-  overflow: hidden;
-  font-size: 0.9rem;
-}
-.notas-tabla-notas thead {
-  background: #5a9e8d;
-  color: white;
-}
-.notas-tabla-notas th,
-.notas-tabla-notas td {
-  padding: 0.75rem;
-  text-align: center;
-}
-.notas-tabla-notas tbody tr:nth-child(odd) {
-  background: #f9fafb;
-}
-.notas-tabla-notas tbody tr:hover {
-  background: #e6f2ef;
-}
-.notas-descripcion {
-  text-align: left;
-  font-weight: 500;
-}
-.notas-promedio {
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  text-align: center;
-}
-
-.notas-tabla-notas td.notas-promedio {
-  vertical-align: middle;
-}
 
 .promedio-container {
   display: flex; /* Usar flexbox para alinear los elementos */
@@ -189,8 +74,10 @@
   margin-bottom: 0.5rem;
 }
 
+.notas-datos {
+}
+
 /* Inputs y labels */
-.notas-codigo-label,
 .notas-label-semestre {
   font-size: 1rem;
   font-weight: 600;
@@ -205,15 +92,6 @@
   font-size: 1rem;
   font-weight: 500;
   padding: 2px 6px;
-}
-
-.notas-select-semestre {
-  font-size: 1rem;
-  padding: 2px 8px;
-  border-radius: 5px;
-  border: 1px solid #bdbdbd;
-  background: #fff;
-  color: #3d3c3b;
 }
 
 .notas-modal-overlay {

@@ -8,7 +8,7 @@
 .historial-barra-superior {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 5px;
   margin-bottom: 18px;
 }
 
@@ -21,7 +21,7 @@
   flex-wrap: wrap; /* Permitir que los elementos se ajusten si no caben */
 }
 
-/* Estilo para el contenedor de "Apellidos y Nombres" */
+
 .historial-nombre-usuario {
   display: flex;
   align-items: center; /* Alinear verticalmente */
@@ -29,7 +29,6 @@
 }
 
 /* Estilo para los labels */
-.historial-filtros-row label,
 .historial-nombre-usuario label {
   font-weight: 600;
   color: #3d3c3b;
@@ -37,8 +36,7 @@
 
 /* Estilo para los inputs y selects */
 .historial-filtros-row input,
-.historial-filtros-row select,
-.historial-nombre-usuario input {
+.historial-filtros-row select {
   padding: 5px 10px;
   border: 1px solid #d1d5db;
   border-radius: 5px;
@@ -48,21 +46,19 @@
 }
 
 .historial-filtros-row input:focus,
-.historial-filtros-row select:focus,
-.historial-nombre-usuario input:focus {
-  border-color: #ecc138;
+.historial-filtros-row select:focus {
+  border-color: #5a9e8d;
   outline: none;
-  box-shadow: 0 0 0 1px rgba(236, 193, 56, 0.5);
+  box-shadow: 0 0 0 1px rgba(90, 158, 141, 0.5);
 }
 
-/* Estilo para el input de "Apellidos y Nombres" */
-.historial-input-disabled {
-  border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
-  font-size: 1rem;
-  background-color: #f9f9f9;
-  color: #3d3c3b;
-  width: 100%;
-  max-width: 300px;
+.historial-footer {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 15px;
+  color: #222;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }

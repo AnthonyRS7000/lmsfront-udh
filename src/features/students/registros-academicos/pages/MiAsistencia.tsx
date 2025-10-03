@@ -29,6 +29,7 @@ const MiAsistencia: React.FC = () => {
   const [cursos, setCursos] = useState([]);
   const [asistencia, setAsistencia] = useState([]);
   const [udhData, setUdhData] = useState<any>(null);
+  const [nombreEstudiante, setNombreEstudiante] = useState("");
   const [loading, setLoading] = useState(false);
   const [loadingAsistencia, setLoadingAsistencia] = useState(false); 
   const [error, setError] = useState(false);
@@ -41,19 +42,21 @@ const MiAsistencia: React.FC = () => {
 
   useEffect(() => {
     const datosUdh = JSON.parse(localStorage.getItem("datos_udh") || "{}");
+    const nombresUser = JSON.parse(localStorage.getItem("usuario") || "{}");
     setUdhData(datosUdh);
+    setNombreEstudiante(`${nombresUser.apellidos}, ${nombresUser.nombres}`);
   }, []);
 
   const fetchCursos = async () => {
     try {
       setLoading(true);
       const codigoAlumno = udhData?.codigo;
-      const data_cursos = await ApiService.get(`/horario/${codigoAlumno}/${semestre}`);
-      if (data_cursos.data && data_cursos.status === "error") {
+      const data_cursos = await ApiService.get(`/horario?codalu=${codigoAlumno}&semsem=${semestre}`);
+      if (!data_cursos.horario || data_cursos.status === "error" || data_cursos.horario.length === 0) {
         setError(true);
         setCursos([]);
       } else {
-        setCursos(data_cursos.data);
+        setCursos(data_cursos.horario);
         setError(false);
       }
     } catch (error) {
@@ -66,12 +69,12 @@ const MiAsistencia: React.FC = () => {
 
   const fetchAsistencia = async (codigoCurso: string, seccion: string, codigoPeriodo: string) => {
     try {
-      setLoadingAsistencia(true); // Usar estado independiente para asistencia
+      setLoadingAsistencia(true);
       const codigoAlumno = udhData?.codigo;
       const data_asistencia = await ApiService.get(
         `/estudiantes/asistencia?codalu=${codigoAlumno}&semsem=${semestre}&codcur=${codigoCurso}&secsem=${seccion}&codper=${codigoPeriodo}`
       );
-      if (data_asistencia.data.data && data_asistencia.status === "error") {
+      if (!data_asistencia.data.data || data_asistencia.data.data.length === 0 || data_asistencia.data.status === "error") {
         setError(true);
         setAsistencia([]);
       } else {
@@ -82,7 +85,7 @@ const MiAsistencia: React.FC = () => {
       console.error("Error al cargar la asistencia:", error);
       setError(true);
     } finally {
-      setLoadingAsistencia(false); // Finalizar carga de asistencia
+      setLoadingAsistencia(false); 
     }
   };
 
@@ -153,7 +156,7 @@ const MiAsistencia: React.FC = () => {
       <TituloPage titulo="Mi Asistencia" />
       <Card>
         <div className="asistencia-estudiante-header">
-          <div className="asistencia-nombre-estudiante">{udhData?.apellido_paterno} {udhData?.apellido_materno}, {udhData?.nombres}</div>
+          <div className="asistencia-nombre-estudiante">{nombreEstudiante}</div>
         </div>
         <div className="asistencia-estudiante-info">
           <div><b>CÓDIGO:</b> {udhData?.codigo}</div>

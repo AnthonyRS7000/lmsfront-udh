@@ -46,7 +46,7 @@ const MiHorario: React.FC = () => {
     }, [udhData, isHorarioFetched]);
 
     const fetchHorario = async () => {
-        if (!udhData || !udhData.codigo) {
+        if (!udhData || !udhData.codigo || !semestre) {
         setLoading(false);
         setError(true);
         return;
@@ -54,9 +54,14 @@ const MiHorario: React.FC = () => {
         try {
         setLoading(true); // Mostrar el spinner mientras se realiza la consulta
         const codigoAlumno = udhData.codigo;
-        const data = await ApiService.get(`/horario/${codigoAlumno}/${semestre}`);
-        setMiHorario(data.data);
-        setError(false);
+        const data = await ApiService.get(`/horario?codalu=${codigoAlumno}&semsem=${semestre}`);
+        if (!data.horario || data.status === "error" || data.horario.length === 0 ) {
+            setError(true);
+            setMiHorario([]);
+        } else {
+            setMiHorario(data.horario);
+            setError(false);
+        }
         } catch (error) {
         console.error("Error al cargar mi horario:", error);
         setError(true);

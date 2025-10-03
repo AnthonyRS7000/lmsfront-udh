@@ -31,14 +31,13 @@ const HistorialAcademico: React.FC = () => {
     const [busqueda, setBusqueda] = useState<string>("");
 
     useEffect(() => {
-        const datosUdh = JSON.parse(localStorage.getItem("datos_udh") || "{}");
-        setUdhData(datosUdh);
+        const usuario = JSON.parse(localStorage.getItem("usuario") || "{}");
+        const datos_udh = JSON.parse(localStorage.getItem("datos_udh") || "{}");
+        setUdhData(datos_udh);
         setNombre(
-        datosUdh.apellido_paterno +
-            " " +
-            datosUdh.apellido_materno +
+        usuario.apellidos +
             ", " +
-            datosUdh.nombres || ""
+            usuario.nombres || ""
         );
     }, []);
 
@@ -128,12 +127,7 @@ const HistorialAcademico: React.FC = () => {
             <div className="historial-filtros-row">
                 <div className="historial-nombre-usuario">
                     <label>Apellidos y Nombres:</label>
-                    <input
-                        type="text"
-                        value={nombre}
-                        disabled
-                        size={Math.max(20, nombre.length + 2)}
-                    />
+                    {nombre}
                 </div>
                 <div className="historial-nombre-usuario">
                     <label htmlFor="busqueda">Buscar:</label>
