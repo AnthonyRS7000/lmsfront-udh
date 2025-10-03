@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { ApiService } from "../../../../components/pages/ApiService";
 import "../css/NotasParciales.css";
-import { ClipboardIcon, InformationCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { ClipboardIcon, EyeIcon, InformationCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import TituloPage from "../../../../components/pages/TituloPage";
 import Card from "../../../../components/pages/Card";
 import ButtonPrincipal from "../../../../components/pages/ButtonPrincipal";
@@ -204,7 +204,7 @@ const NotasParciales: React.FC = () => {
                                 className="notas-input-semestre"
                                 placeholder={calcularSemestre()}
                             />
-                            <ButtonPrincipal icon={<ClipboardIcon />} text="Ver" onClick={fetchNotas} />
+                            <ButtonPrincipal icon={<EyeIcon />} text="Ver" onClick={fetchNotas} />
                         </div>
                     </div>
                 </div>
