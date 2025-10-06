@@ -44,3 +44,44 @@
   background-color: #5a9e8d; /* Fondo al pasar el cursor sobre una opción */
   cursor: pointer;
 }
+
+/* Modo responsive */
+@media (max-width: 768px) {
+  .ver-horario-container {
+    padding: 0px 10px; /* Reduce el padding para pantallas pequeñas */
+  }
+
+  .ver-horario-filters {
+    flex-direction: column; /* Coloca los filtros en una columna */
+    align-items: flex-start; /* Alinea los filtros a la izquierda */
+  }
+
+  .filter-group {
+    width: 100%; /* Asegura que los filtros ocupen todo el ancho disponible */
+    margin-bottom: 15px; /* Espaciado entre grupos */
+  }
+
+  .filter-group label {
+    font-size: 12px; /* Reduce el tamaño de fuente para pantallas pequeñas */
+  }
+
+  .ver-horario-select {
+    width: 100%; /* Asegura que el select ocupe todo el ancho disponible */
+    font-size: 12px; /* Reduce el tamaño de fuente para pantallas pequeñas */
+  }
+}
+
+@media (max-width: 480px) {
+  .ver-horario-container {
+    padding: 0px 5px; /* Reduce aún más el padding para pantallas muy pequeñas */
+  }
+
+  .filter-group label {
+    font-size: 10px; /* Ajusta el tamaño de fuente para pantallas muy pequeñas */
+  }
+
+  .ver-horario-select {
+    font-size: 10px; /* Ajusta el tamaño de fuente para pantallas muy pequeñas */
+    padding: 4px 8px; /* Reduce el padding para pantallas muy pequeñas */
+  }
+}

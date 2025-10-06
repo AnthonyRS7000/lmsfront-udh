@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/pages/Layout";
-import LandingPage from "./pages/LandingPage";
 import Login from "./Login";
 
 // Contexto de autenticación
@@ -95,7 +94,7 @@ function App() {
       <AuthProvider>
         <Routes>
           {/* Rutas públicas */}
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
           <Route path="/auth/callback" element={<AuthCallback />} />
 

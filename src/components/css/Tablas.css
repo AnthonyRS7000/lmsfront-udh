@@ -34,3 +34,32 @@
 .tabla tr:hover {
   background-color: #eaf4f1;
 }
+
+
+@media (max-width: 768px) {
+  .tabla-container {
+    margin: 10px 0; /* Reducir margen para pantallas pequeñas */
+  }
+
+  .tabla th,
+  .tabla td {
+    padding: 8px; /* Reducir padding para pantallas pequeñas */
+    font-size: 12px; /* Ajustar tamaño de fuente */
+  }
+
+  .tabla {
+    width: 100%; /* Asegurar que la tabla ocupe todo el ancho disponible */
+  }
+}
+
+@media (max-width: 480px) {
+  .tabla th,
+  .tabla td {
+    padding: 6px; /* Reducir aún más el padding para pantallas muy pequeñas */
+    font-size: 10px; /* Ajustar tamaño de fuente para pantallas muy pequeñas */
+  }
+
+  .tabla-container {
+    margin: 5px 0; /* Reducir margen para pantallas muy pequeñas */
+  }
+}
