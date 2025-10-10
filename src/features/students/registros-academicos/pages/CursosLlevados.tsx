@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { cache } from "../../../../components/pages/Cache";
 import { ApiService } from "../../../../components/pages/ApiService";
 import "../css/CursosLlevados.css";
 import TituloPage from "../../../../components/pages/TituloPage";
@@ -26,9 +27,13 @@ const CursosLlevados: React.FC = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [nombre, setNombre] = useState("");
+    const [ultimaConsulta, setUltimaConsulta] = useState<{ fechaStr: string; horaStr: string }>(obtenerFechaHora());
 
     const [cicloFiltro, setCicloFiltro] = useState<string>("");
     const [busqueda, setBusqueda] = useState<string>("");
+
+    const CACHE_KEY = "cursosLlevados";
+    const CACHE_EXPIRATION_MINUTES = 10;
 
     useEffect(() => {
         const usuario = JSON.parse(localStorage.getItem("usuario") || "{}");
@@ -43,7 +48,13 @@ const CursosLlevados: React.FC = () => {
 
     useEffect(() => {
         if (udhData && udhData.codigo) {
-        fetchCursos(); // Llamar a la función de consulta
+            const cachedData = cache.get(CACHE_KEY);
+            if (cachedData) {
+                setCursos(cachedData);
+                setError(false);
+            } else {
+                fetchCursos();
+            }
         }
     }, [udhData]);
 
@@ -54,19 +65,19 @@ const CursosLlevados: React.FC = () => {
         return;
         }
         try {
-        setLoading(true); // Mostrar el spinner mientras se realiza la consulta
+        setLoading(true);
         const codigoAlumno = udhData.codigo;
         const data_cursos = await ApiService.get(
             `/estudiantes/cursos-llevados?codalu=${codigoAlumno}`
         );
         if (data_cursos.data && data_cursos.status === "error") {
-            // Si la API devuelve un error en la propiedad "data"
             setError(true);
-            setCursos([]); // Asegurarse de que los cursos estén vacíos
+            setCursos([]);
         } else {
-            // Si la API devuelve datos válidos
             setCursos(data_cursos.data);
             setError(false);
+            cache.set(CACHE_KEY, data_cursos.data, CACHE_EXPIRATION_MINUTES);
+            setUltimaConsulta(obtenerFechaHora());
         }
         } catch (error) {
         console.error("Error al cargar los cursos:", error);
@@ -96,8 +107,6 @@ const CursosLlevados: React.FC = () => {
 
         return coincideCiclo && coincideBusqueda;
     });
-
-    const { fechaStr, horaStr } = obtenerFechaHora();
 
     // Encabezados de la tabla
     const headers = [
@@ -170,7 +179,7 @@ const CursosLlevados: React.FC = () => {
 
                 <div className="cursos-llevados-footer">
                     <div>
-                        Oficina de Matrícula {fechaStr}. Hora: {horaStr}
+                        Oficina de Matrícula {ultimaConsulta.fechaStr}. Hora: {ultimaConsulta.horaStr}
                     </div>
                 </div>
             </Card>

@@ -106,7 +106,7 @@ const VerHorario: React.FC = () => {
           </div>
           <ButtonPrincipal
               icon={<CalendarDateRangeIcon />}
-              text="Ver mi Horario"
+              text="Mi Horario"
               onClick={() => navigate("/estudiante/mi-horario")}
           />
         </div>

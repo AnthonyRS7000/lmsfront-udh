@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../css/Reglamento.css';
 import TituloPage from '../../../../components/pages/TituloPage';
 import Card from '../../../../components/pages/Card';
 import Loading from '../../../../components/pages/Loading';
-import DatosNoEncontrados from '../../../../components/pages/DatosNoEncontrados';
+import { EyeIcon } from '@heroicons/react/24/outline';
+import ButtonPrincipal from '../../../../components/pages/ButtonPrincipal';
 
 
 const Reglamento: React.FC = () => {
@@ -11,24 +12,32 @@ const Reglamento: React.FC = () => {
   const [pdfUrl, setPdfUrl] = useState(''); // Variable para el link del PDF
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Simulación de llamada a API
     const fetchData = async () => {
       try {
         setLoading(true);
-        // Reemplaza por tu endpoint real
-        const response = await fetch('/api/malla-curricular');
+        /*const response = await fetch('/api/malla-curricular');
         const data = await response.json();
-        setPdfUrl(data.pdfUrl || 'http://www.udh.edu.pe/doc/reglamentoestudiospregrado.pdf');
-      } catch (error) {
+        setPdfUrl(data.pdfUrl);*/
         setPdfUrl('http://www.udh.edu.pe/doc/reglamentoestudiospregrado.pdf');
-        //setError(true);
+      } catch (error) {
+        setError(true);
       }finally {
         setLoading(false);
       }
     };
     fetchData();
+
+     // Detectar si el dispositivo es móvil
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768); // Cambia el estado según el ancho de la pantalla
+    };
+
+    handleResize(); // Ejecutar al cargar la página
+    window.addEventListener('resize', handleResize); // Escuchar cambios de tamaño
+    return () => window.removeEventListener('resize', handleResize); // Limpiar el evento
   }, []);
   
   return (
@@ -39,14 +48,22 @@ const Reglamento: React.FC = () => {
           {loading ? (
             <Loading />
           ) : error ? (
-            <DatosNoEncontrados />
+            <div>No se encontró el reglamento.</div>
+          ) : isMobile ? (
+            <div className="reglamento-download">
+              <ButtonPrincipal
+                icon={<EyeIcon />}
+                text="Ver"
+                onClick={() => window.open(pdfUrl, '_blank')}
+              />
+            </div>
           ) : (
-            <div className="malla-pdf-viewer">
+            <div className="reglamento-pdf-viewer">
               <iframe
                 src={pdfUrl}
-                title="Malla Curricular PDF"
+                title="Reglamento PDF"
                 width="100%"
-                height="980px"
+                height="100%"
                 frameBorder="0"
               />
             </div>

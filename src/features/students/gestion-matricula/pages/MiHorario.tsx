@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { cache } from "../../../../components/pages/Cache";
 import { ApiService } from "../../../../components/pages/ApiService";
 import "../css/MiHorario.css";
 import DatosNoEncontrados from "../../../../components/pages/DatosNoEncontrados";
@@ -6,7 +7,6 @@ import Loading from "../../../../components/pages/Loading"
 import Tablas from "../../../../components/pages/Tablas";
 import Titulo from "../../../../components/pages/TituloPage";
 import Card from "../../../../components/pages/Card";
-import ButtonPrincipal from "../../../../components/pages/ButtonPrincipal";
 import { EyeIcon } from "@heroicons/react/24/outline";
 
 const calcularSemestre = (): string => {
@@ -33,6 +33,9 @@ const MiHorario: React.FC = () => {
     const [semestre, setSemestre] = useState(calcularSemestre());
     const [isHorarioFetched, setIsHorarioFetched] = useState(false);
 
+    const CACHE_KEY = `miHorario_${semestre}`;
+    const CACHE_EXPIRATION_MINUTES = 10;
+
     useEffect(() => {
         const datosUdh = JSON.parse(localStorage.getItem("datos_udh") || "{}");
         setUdhData(datosUdh);
@@ -40,19 +43,25 @@ const MiHorario: React.FC = () => {
 
     useEffect(() => {
     if (udhData && udhData.codigo && !isHorarioFetched) {
-        fetchHorario();
         setIsHorarioFetched(true);
+        const cachedData = cache.get(CACHE_KEY); // Verificar si hay datos en caché
+        if (cachedData) {
+            setMiHorario(cachedData); // Cargar datos desde el caché
+            setError(false);
+        } else {
+            fetchHorario(); // Consumir la API si no hay datos en caché
         }
+    }
     }, [udhData, isHorarioFetched]);
 
     const fetchHorario = async () => {
         if (!udhData || !udhData.codigo || !semestre) {
-        setLoading(false);
         setError(true);
         return;
         }
+
         try {
-        setLoading(true); // Mostrar el spinner mientras se realiza la consulta
+        setLoading(true);
         const codigoAlumno = udhData.codigo;
         const data = await ApiService.get(`/horario?codalu=${codigoAlumno}&semsem=${semestre}`);
         if (!data.horario || data.status === "error" || data.horario.length === 0 ) {
@@ -61,12 +70,23 @@ const MiHorario: React.FC = () => {
         } else {
             setMiHorario(data.horario);
             setError(false);
+            cache.set(CACHE_KEY, data.horario, CACHE_EXPIRATION_MINUTES);
         }
         } catch (error) {
         console.error("Error al cargar mi horario:", error);
         setError(true);
         } finally {
-        setLoading(false); // Ocultar el spinner después de la consulta
+        setLoading(false);
+        }
+    };
+
+    const handleVerClick = () => {
+        const cachedData = cache.get(CACHE_KEY); // Verificar si hay datos en caché
+        if (cachedData) {
+        setMiHorario(cachedData); // Cargar datos desde el caché
+        setError(false);
+        } else {
+        fetchHorario(); // Consumir la API si no hay datos en caché
         }
     };
 
@@ -99,7 +119,7 @@ const MiHorario: React.FC = () => {
             <Card>
                 <div className="mi-horario-filters">
                     <div className="filter-group">
-                        <label htmlFor="ciclo-input">Cilco:</label>
+                        <label htmlFor="ciclo-input">Ciclo:</label>
                         <input
                         id="ciclo-input"
                         type="text"
@@ -108,11 +128,14 @@ const MiHorario: React.FC = () => {
                         className="mi-horario-input"
                         placeholder="2025-2"
                         />
-                        <ButtonPrincipal
-                            icon={<EyeIcon />}
-                            text="Ver"
-                            onClick={fetchHorario}
-                        />
+                        <button
+                            className="mi-horario-btn"
+                            onClick={handleVerClick}
+                            disabled={loading}
+                        >
+                            <EyeIcon className="mi-horario-icon" />
+                            Ver
+                        </button>
                     </div>
                 </div>
                 {loading ? (

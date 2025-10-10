@@ -1,8 +1,7 @@
 /* Contenedor principal */
 .ver-horario-container {
-  margin: 40px auto;
-  padding: 0px 20px;
-  max-width: auto;
+  margin: 40px 0px;
+  width: auto;
 }
 
 /* Filtros */
@@ -47,13 +46,10 @@
 
 /* Modo responsive */
 @media (max-width: 768px) {
-  .ver-horario-container {
-    padding: 0px 10px; /* Reduce el padding para pantallas pequeñas */
-  }
 
   .ver-horario-filters {
     flex-direction: column; /* Coloca los filtros en una columna */
-    align-items: flex-start; /* Alinea los filtros a la izquierda */
+    align-items: center; /* Alinea los filtros al centro */
   }
 
   .filter-group {
@@ -72,8 +68,16 @@
 }
 
 @media (max-width: 480px) {
-  .ver-horario-container {
-    padding: 0px 5px; /* Reduce aún más el padding para pantallas muy pequeñas */
+
+  .ver-horario-filters {
+    flex-direction: row;
+    margin-bottom: 10px;
+  }
+
+  .filter-group {
+    width: auto;
+    margin-right: 15px;
+    margin-bottom: 0px;
   }
 
   .filter-group label {
@@ -81,6 +85,7 @@
   }
 
   .ver-horario-select {
+    width: auto;
     font-size: 10px; /* Ajusta el tamaño de fuente para pantallas muy pequeñas */
     padding: 4px 8px; /* Reduce el padding para pantallas muy pequeñas */
   }

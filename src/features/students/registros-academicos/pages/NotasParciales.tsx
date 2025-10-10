@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { cache } from "../../../../components/pages/Cache";
 import { ApiService } from "../../../../components/pages/ApiService";
 import "../css/NotasParciales.css";
 import { ClipboardIcon, EyeIcon, InformationCircleIcon, XMarkIcon } from "@heroicons/react/24/outline";
@@ -36,8 +37,10 @@ const NotasParciales: React.FC = () => {
     const [showModal, setShowModal] = useState(false);
     const [showModalInasistencia, setShowModalInasistencia] = useState(false);
 
-    // Referencia para hacer scroll al card de advertencia
     const advertenciaRef = useRef<HTMLDivElement>(null);
+
+    const CACHE_KEY = `notasParciales_${semestre}`;
+    const CACHE_EXPIRATION_MINUTES = 10;
 
     useEffect(() => {
         const datosUdh = JSON.parse(localStorage.getItem("datos_udh") || "{}");
@@ -48,16 +51,17 @@ const NotasParciales: React.FC = () => {
 
     useEffect(() => {
         if (udhData && udhData.codigo) {
-        fetchNotas();
+            const cachedData = cache.get(CACHE_KEY);
+            if (cachedData) {
+                setNotas(cachedData);
+                setError(false);
+            } else {
+                fetchNotas();
+            }
         }
     }, [udhData]);
         
     const fetchNotas = async () => {
-        if (!udhData || !udhData.codigo) {
-        setLoading(false);
-        setError(true);
-        return;
-        }
         try {
         setLoading(true); 
         const codigoAlumno = udhData.codigo;
@@ -68,6 +72,7 @@ const NotasParciales: React.FC = () => {
         } else {
             setNotas(data_notas.data);
             setError(false);
+            cache.set(CACHE_KEY, data_notas.data, CACHE_EXPIRATION_MINUTES);
         }
         } catch (error) {
         console.error("Error al cargar las notas:", error);
@@ -109,6 +114,16 @@ const NotasParciales: React.FC = () => {
         if (valor < 10) return "#388e3c"; // verde
         if (valor < 20) return "#e6b800"; // amarillo
         return "#d32f2f"; // rojo
+    };
+
+    const handleVerClick = () => {
+        const cachedData = cache.get(CACHE_KEY);
+        if (cachedData) {
+            setNotas(cachedData);
+            setError(false);
+        } else {
+            fetchNotas();
+        }
     };
 
     const headersNotas = [
@@ -204,7 +219,7 @@ const NotasParciales: React.FC = () => {
                                 className="notas-input-semestre"
                                 placeholder={calcularSemestre()}
                             />
-                            <ButtonPrincipal icon={<EyeIcon />} text="Ver" onClick={fetchNotas} />
+                            <ButtonPrincipal icon={<EyeIcon />} text="Ver" onClick={handleVerClick} />
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-/* Estilos para el Topbar - botón Aula Virtual tipo tarjeta */
+/* Estilos para el botón Aula Virtual */
 .topbar-aula-btn {
   display: inline-flex;
   align-items: center;
@@ -7,72 +7,33 @@
   border-radius: 12px;
   text-decoration: none;
   color: inherit;
-  transition: background-color 200ms ease, box-shadow 200ms ease, transform 160ms ease, border-color 200ms;
-  position: relative;
-  z-index: 10;
   background: linear-gradient(135deg, #f3f4f6 0%, #e6eef3 100%);
-  box-shadow: 0 2px 8px rgba(16,24,40,0.04);
+  box-shadow: 0 2px 8px rgba(16, 24, 40, 0.04);
   border: 1.5px solid #cfd4db;
+  transition: background-color 200ms ease, box-shadow 200ms ease, transform 160ms ease;
 }
 
-/* Hover / focus */
-.topbar-aula-btn:hover, .topbar-aula-btn:focus {
+.topbar-aula-btn:hover,
+.topbar-aula-btn:focus {
   background: linear-gradient(135deg, #f1cc7a 0%, #d6b459 100%);
   color: #07223b;
   transform: translateY(-1px);
-  box-shadow: 0 6px 18px rgba(16,24,40,0.12);
+  box-shadow: 0 6px 18px rgba(16, 24, 40, 0.12);
 }
 
-/* Apply the same subtle lift to the theme toggle button */
-.theme-toggle:hover {
-  transform: translateY(-1px) scale(1.02);
-  box-shadow: 0 6px 18px rgba(16,24,40,0.12);
-}
-
-.dark .theme-toggle:hover {
-  box-shadow: 0 8px 20px rgba(2,6,23,0.55);
-}
-
-/* Force theme-toggle to use the same hover background as Aula Virtual (light) */
-.theme-toggle:hover {
-  background: linear-gradient(135deg, #f1cc7a 0%, #d6b459 100%) !important;
-  color: #07223b !important;
-}
-
-/* And for dark mode, match the Aula Virtual dark hover (hover only) */
-.dark .theme-toggle:hover {
-  background: linear-gradient(135deg, #3b4753 0%, #0f1720 100%) !important;
-  color: #ffffff !important;
-}
-
-/* Focus-visible: show ring/outline but do not change background so the button doesn't stay colored after click */
-.theme-toggle:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 4px rgba(241,204,122,0.12), 0 6px 18px rgba(16,24,40,0.12);
-}
-.dark .theme-toggle:focus-visible {
-  box-shadow: 0 0 0 4px rgba(241,204,122,0.08), 0 8px 20px rgba(2,6,23,0.55);
-}
-
-/* Dark mode support: assumes a parent .dark on body or root */
 .dark .topbar-aula-btn {
-  background: linear-gradient(135deg, #374151 0%, #111827 100%);
-  border: 1.5px solid #4b5563;
+  background: linear-gradient(135deg, #2A2A2A 0%, #111827 100%);
+  border: 1.5px solid #3A3A3A;
   color: #ffffff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
 }
-.dark .topbar-aula-btn:hover, .dark .topbar-aula-btn:focus {
-  /* Hover in dark: slightly lift and increase contrast while keeping ThemeToggle feel */
+
+.dark .topbar-aula-btn:hover,
+.dark .topbar-aula-btn:focus {
   background: linear-gradient(135deg, #3b4753 0%, #0f1720 100%);
   color: #ffffff;
   transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(2,6,23,0.55);
-}
-
-/* make focus ring clearer in dark mode */
-.topbar-aula-btn:focus {
-  outline: none;
-  box-shadow: 0 0 0 4px rgba(241,204,122,0.08), 0 6px 18px rgba(16,24,40,0.12);
+  box-shadow: 0 8px 20px rgba(2, 6, 23, 0.55);
 }
 
 .topbar-aula-btn svg {
@@ -81,36 +42,54 @@
   flex-shrink: 0;
 }
 
-.dark .topbar-aula-btn svg,
-.dark .topbar-aula-btn {
-  color: #e6eef3;
+.topbar-aula-label {
+  font-weight: 600;
+  font-size: 14px;
 }
 
-.dark .topbar-aula-btn svg { stroke: currentColor; }
-
-.topbar-aula-label { font-weight:600; font-size:14px; }
-
-/* small adjustments for compact view */
 @media (max-width: 640px) {
-  .topbar-aula-label { display:none; }
-  .topbar-aula-btn { padding:6px; }
+  .topbar-aula-label {
+    display: none;
+  }
+  .topbar-aula-btn {
+    padding: 6px;
+  }
 }
 
-
-/* Reglas para el tamaño del theme-toggle */
 .theme-toggle {
-  width: 36px;
-  height: 36px;
-  min-width: 36px;
-  min-height: 36px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
-  box-sizing: border-box;
+  overflow: hidden;
+  transition: all 200ms ease;
+  border: 1px solid;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
-.theme-toggle img, .theme-toggle svg {
-  width: 20px !important;
-  height: 20px !important;
+
+.theme-toggle.light {
+  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+  border-color: #d1d5db;
+  color: #111827;
+}
+
+.theme-toggle.light:hover {
+  background: linear-gradient(135deg, #f1cc7a 0%, #d6b459 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(16, 24, 40, 0.12);
+}
+
+.theme-toggle.dark {
+  background: linear-gradient(135deg, #2A2A2A 0%, #111827 100%);
+  border-color: #3A3A3A;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.theme-toggle.dark:hover {
+  background: linear-gradient(135deg, #3b4753 0%, #0f1720 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.55);
 }

@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 5px 10px 5px 10px;
+    padding: 10px 20px;
     background-color: #5a9e8d;
     color: #fff;
     border: none;
@@ -32,4 +32,46 @@
 
 .button-text {
     display: inline-block;
+}
+
+.dark .button-principal {
+    background-color: #3C7E6E;
+    color: #fff;
+}
+
+.dark .button-principal:hover {   
+    background-color: #417265;
+}
+
+.dark .button-principal:active {
+    background-color: #417265;
+}
+
+@media (max-width: 768px) {
+    .button-principal {
+        padding: 8px 12px; /* Aumenta el padding para pantallas pequeñas */
+        font-size: 0.9rem; /* Reduce el tamaño de fuente */
+        gap: 6px; /* Reduce el espacio entre el texto y el ícono */
+    }
+
+    .button-icon {
+        width: 18px; /* Reduce el tamaño del ícono */
+        height: 18px;
+        font-size: 1rem; /* Ajusta el tamaño del ícono */
+    }
+}
+
+@media (max-width: 480px) {
+    .button-principal {
+        display: inline-flex;
+        padding: 6px 10px;
+        font-size: 0.8rem; 
+        gap: 4px; 
+    }
+
+    .button-icon {
+        width: 16px; 
+        height: 16px;
+        font-size: 0.9rem; 
+    }
 }
