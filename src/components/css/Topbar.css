@@ -1,3 +1,144 @@
+/* Topbar styles - EXACTOS COMO UDH */
+.topbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.topbar-toggle {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  color: #111827;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dark .topbar-toggle {
+  color: #f9fafb;
+}
+
+.topbar-toggle:hover {
+  background: linear-gradient(135deg, #f1cc7a 0%, #d6b459 100%);
+  color: #000;
+}
+
+.dark .topbar-toggle:hover {
+  color: #f9fafb;
+  background: linear-gradient(135deg, #3b4753 0%, #0f1720 100%);
+}
+
+.topbar-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.125rem;
+  transition: color 0.1s ease;
+}
+
+.dark .topbar-title {
+  color: #f9fafb;
+}
+
+.topbar-subtitle {
+  font-size: 0.875rem;
+  color: #6b7280;
+  transition: color 0.1s ease;
+}
+
+.dark .topbar-subtitle {
+  color: #9ca3af;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem; /* Reducido de 0.75rem a 0.5rem para juntar más como Copiloto */
+}
+
+.topbar-notification {
+  position: relative;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  color: #6b7280;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topbar-notification:hover {
+  color: #111827;
+  background-color: #f3f4f6;
+}
+
+.dark .topbar-notification:hover {
+  color: #f9fafb;
+  background-color: #374151;
+}
+
+.notification-dot {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  display: block;
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 50%;
+  background-color: #ef4444;
+  border: 1px solid #ffffff;
+}
+
+.topbar-user {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0rem 0rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.1s ease;
+}
+
+.topbar-user:hover {
+  background-color: #f9fafb;
+}
+
+.dark .topbar-user:hover {
+  background-color: #374151;
+}
+
+.topbar-user-avatar {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #e5e7eb;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.topbar-user-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  transition: color 0.1s ease;
+}
+
+.dark .topbar-user-name {
+  color: #d1d5db;
+}
 /* Estilos para el botón Aula Virtual */
 .topbar-aula-btn {
   display: inline-flex;
@@ -7,16 +148,16 @@
   border-radius: 12px;
   text-decoration: none;
   color: inherit;
-  background: linear-gradient(135deg, #f3f4f6 0%, #e6eef3 100%);
+  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
   box-shadow: 0 2px 8px rgba(16, 24, 40, 0.04);
-  border: 1.5px solid #cfd4db;
+  border: 1.5px solid #d1d5db;
   transition: background-color 200ms ease, box-shadow 200ms ease, transform 160ms ease;
 }
 
 .topbar-aula-btn:hover,
 .topbar-aula-btn:focus {
   background: linear-gradient(135deg, #f1cc7a 0%, #d6b459 100%);
-  color: #07223b;
+  color: #000;
   transform: translateY(-1px);
   box-shadow: 0 6px 18px rgba(16, 24, 40, 0.12);
 }
@@ -52,7 +193,8 @@
     display: none;
   }
   .topbar-aula-btn {
-    padding: 6px;
+    padding: 9.5px;
+    border-radius: 50%;
   }
 }
 
@@ -92,4 +234,19 @@
   background: linear-gradient(135deg, #3b4753 0%, #0f1720 100%);
   transform: translateY(-1px);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.55);
+}
+
+/* Estilos para los íconos del tema */
+.theme-icon {
+  width: 20px;
+  height: 20px;
+  transition: filter 200ms ease;
+}
+
+.theme-icon-dark {
+  filter: invert(100%) brightness(100%); /* Cambiar el color a blanco */
+}
+
+.theme-icon-light {
+  filter: none; /* Mantener el color original */
 }

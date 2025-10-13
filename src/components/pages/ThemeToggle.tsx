@@ -25,14 +25,12 @@ export default function ThemeToggle() {
             src={TemaClaro} 
             alt="Tema Claro" 
             className="theme-icon-light"
-            style={{ width: '20px', height: '20px' }}
           />
         ) : (
           <img 
             src={TemaOscuro} 
             alt="Tema Oscuro" 
             className="theme-icon-dark"
-            style={{ width: '20px', height: '20px' }}
           />
         )}
     </button>

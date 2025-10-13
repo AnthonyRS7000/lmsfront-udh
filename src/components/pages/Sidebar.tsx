@@ -34,9 +34,11 @@ const getCurrentRole = (pathname: string): string => {
 const getUserDataFromLocalStorage = () => {
   const usuario = JSON.parse(localStorage.getItem("usuario") || "{}");
   const foto = localStorage.getItem("foto");
+  const nombre= usuario.nombres.split(' ')[0];
 
   return {
-    full_name: `${usuario.nombres} ${usuario.apellidos}`,
+    nombre: `${nombre}`,
+    apellidos: `${usuario.apellidos}`,
     role: usuario.rol,
     image: foto || '',
   };
@@ -423,7 +425,7 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
               <div className="user-avatar-copiloto">
                 <img
                   src={currentUser.image}
-                  alt={currentUser.full_name}
+                  alt={currentUser.nombre}
                   className="user-avatar-image"
                 />
               </div>
@@ -431,7 +433,9 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
               {/* Información del usuario */}
               <div className="user-info-text">
                 <h2 className="user-name-copiloto">
-                  {currentUser.full_name}
+                  {currentUser.nombre}
+                  <br/>
+                  {currentUser.apellidos}
                 </h2>
                 <p className="user-role-copiloto">
                   {currentUser.role}
@@ -464,14 +468,15 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
                       <span className="nav-section-label-copiloto group-hover:translate-x-2 transition-transform duration-300">
                         {section.label}
                       </span>
+                      {section.submenus.length > 0 && (
+                        openSections.includes(section.name) ? (
+                          <ChevronDownIcon className="nav-chevron-copiloto rotate-180 transition-transform duration-300" />
+                        ) : (
+                          <ChevronRightIcon className="nav-chevron-copiloto transition-transform duration-300" />
+                        )
+                      )}
                     </div>
-                    {section.submenus.length > 0 && (
-                      openSections.includes(section.name) ? (
-                        <ChevronDownIcon className="nav-chevron-copiloto rotate-180 transition-transform duration-300" />
-                      ) : (
-                        <ChevronRightIcon className="nav-chevron-copiloto transition-transform duration-300" />
-                      )
-                    )}
+                    
                   </button>
 
                   {/* Submenús - ANIMACIÓN COPILOTO */}
