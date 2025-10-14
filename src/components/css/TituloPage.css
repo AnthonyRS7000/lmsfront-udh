@@ -1,6 +1,6 @@
 .titulo-page-container {
-  margin-top: var(--page-title-space-above, 12px);
-  margin-bottom: var(--page-title-space-below, 20px);
+  margin-top: 12px;
+  margin-bottom: 20px;
   text-align: center;
 }
 

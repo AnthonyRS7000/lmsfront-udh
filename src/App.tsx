@@ -16,6 +16,7 @@ import AdministrativoDashboard from "./features/administrativo/pages/Administrat
 
 // Importar páginas del módulo Gestión de Matrícula
 import ProfilePage from "./components/pages/ProfilePage";
+import Perfil from "./components/pages/Perfil"
 import {
   Matricula,
   VerHorario,
@@ -107,7 +108,7 @@ function App() {
             <Route path="/estudiante" element={<EstudianteDashboard />} />
             {/* Gestión de Matrícula */}
             <Route path="/perfil" element={<ProfilePage />} />
-            <Route path="/estudiante/perfil" element={<ProfilePage />} />
+            <Route path="/estudiante/perfil" element={<Perfil />} />
             <Route path="/estudiante/matricula" element={<Matricula />} />
             <Route path="/estudiante/ver-horario" element={<VerHorario />} />
             <Route path="/estudiante/mi-horario" element={<MiHorario />} />

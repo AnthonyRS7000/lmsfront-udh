@@ -1,0 +1,261 @@
+/* Contenedor principal */
+.perfil-container {
+  margin: 40px 0px;
+  align-items: center;
+}
+
+.perfil-div {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.perfil-content {
+  display: flex;
+  max-width: 1000px;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Fila y grupo */
+.perfil-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 15px;
+  gap: 30px;
+}
+
+.perfil-group {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Etiquetas */
+.perfil-label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #6b7280;
+}
+
+.dark .perfil-label {
+  color: #E4E6EB;
+}
+
+/* Inputs generales */
+.perfil-input {
+  padding: 14px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #f3f4f6;
+  color: #9ca3af; /* Color deshabilitado */
+  font-size: 14px;
+  cursor: not-allowed;
+  box-shadow: inset 0 2px 6px #00000029;
+}
+
+.perfil-input:focus {
+  border-color: #5a9e8d;
+  outline: none;
+  box-shadow: 0 0 0 1px rgba(90, 158, 141, 0.5);
+}
+
+.dark .perfil-input {
+  background-color: #0f1115;
+  color: #5A5D62; /* Color deshabilitado en modo dark */
+  border: 1px solid #374151;
+}
+
+.dark .perfil-input:focus {
+  border-color: #3C7E6E;
+  box-shadow: 0 0 0 1px rgba(60, 126, 110, 0.5);
+}
+
+/* Input editable */
+.perfil-input.editable {
+  cursor: text;
+  color: #111827; /* Color habilitado */
+}
+
+.perfil-input.editable:hover {
+  border-color: #5a9e8d; /* Hover igual al focus */
+}
+
+.dark .perfil-input.editable {
+  color: #E4E6EB; /* Color habilitado en modo dark */
+}
+
+.dark .perfil-input.editable:hover {
+  border-color: #3C7E6E; /* Hover igual al focus en modo dark */
+}
+
+/* Asterisco requerido */
+.perfil-required {
+  color: #dc2626;
+}
+
+/* Botón guardar */
+.perfil-save-row {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.perfil-save-btn {
+  background-color: #5a9e8d;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.perfil-save-btn-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.perfil-save-btn:hover {
+  background-color: #417265;
+}
+
+.dark .perfil-save-btn {
+  background-color: #3C7E6E;
+}
+
+.dark .perfil-save-btn:hover {
+  background-color: #417265;
+}
+
+.perfil-save-note {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* Ayuda */
+.perfil-help {
+  font-size: 12px;
+  color: #6b7280;
+  font-style: italic;
+}
+
+/* Fotografía y ficha */
+.perfil-photo-card,
+.perfil-ficha-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.perfil-photo-left,
+.perfil-ficha-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.perfil-photo-icon,
+.perfil-ficha-icon {
+  font-size: 28px;
+}
+
+.perfil-photo-title,
+.perfil-ficha-title {
+  font-weight: 700;
+}
+
+.perfil-photo-sub,
+.perfil-ficha-sub {
+  font-size: 0.95rem;
+  color: #6b7280;
+}
+
+.dark .perfil-photo-title,
+.dark .perfil-photo-sub,
+.dark .perfil-ficha-title,
+.dark .perfil-ficha-sub {
+  color: #E4E6EB;
+}
+
+.perfil-photo-btn,
+.perfil-ficha-btn {
+  background-color: #5a9e8d;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.perfil-photo-btn:hover,
+.perfil-ficha-btn:hover {
+  background-color: #417265;
+}
+
+.dark .perfil-photo-btn,
+.dark .perfil-ficha-btn {
+  background-color: #3C7E6E;
+}
+
+.dark .perfil-photo-btn:hover,
+.dark .perfil-ficha-btn:hover {
+  background-color: #417265;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .perfil-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .perfil-content {
+    padding: 10px;
+  }
+
+  .perfil-photo-card,
+  .perfil-ficha-card {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 15px;
+  }
+
+  .perfil-save-btn,
+  .perfil-photo-btn,
+  .perfil-ficha-btn {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .perfil-container {
+    margin: 20px 0;
+  }
+
+  .perfil-row {
+    gap: 10px;
+  }
+
+  .perfil-save-btn,
+  .perfil-photo-btn,
+  .perfil-ficha-btn {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}

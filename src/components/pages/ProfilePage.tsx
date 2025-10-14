@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../css/ProfilePage.css';
+import TituloPage from './TituloPage';
 
 const ProfilePage = () => {
   const [userData, setUserData] = useState<any>(null);
@@ -94,9 +95,7 @@ const ProfilePage = () => {
 
   return (
     <div className="profile-container">
-      <div className="profile-root">
-        <h1 className="profile-title">Mi Perfil</h1>
-      </div>
+      <TituloPage titulo="Mi Perfil" />
 
       {/* Contenido principal del perfil */}
       <div className="profile-content">

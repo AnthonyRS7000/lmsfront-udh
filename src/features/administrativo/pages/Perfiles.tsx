@@ -24,7 +24,6 @@ import {
   ClipboardDocumentListIcon,
   WrenchScrewdriverIcon
 } from "@heroicons/react/24/outline";
-import "../css/perfiles.css";
 
 // Componente para renderizar íconos minimalistas
 const IconoPerfil = ({ tipo, className = "" }: { tipo: string; className?: string }) => {
