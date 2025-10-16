@@ -86,7 +86,7 @@ const VerHorario: React.FC = () => {
 
   return (
     <div className="ver-horario-container">
-      <TituloPage titulo="Cursos Llevados" />
+      <TituloPage titulo="Ver Horarios" />
       
       <Card>
         <div className="ver-horario-filters">
@@ -106,7 +106,7 @@ const VerHorario: React.FC = () => {
           </div>
           <ButtonPrincipal
               icon={<CalendarDateRangeIcon />}
-              text="Ver mi Horario"
+              text="Mi Horario"
               onClick={() => navigate("/estudiante/mi-horario")}
           />
         </div>

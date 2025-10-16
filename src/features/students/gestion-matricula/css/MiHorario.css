@@ -1,7 +1,7 @@
 /* Contenedor principal */
 .mi-horario-container {
-  margin: 40px auto;
-  padding: 0px 20px;
+  margin: 40px 0px;
+  width: auto;
 }
 
 /* Filtros */
@@ -39,5 +39,52 @@
   box-shadow: 0 0 0 1px rgba(90, 158, 141, 0.5);
 }
 
+.mi-horario-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 5px 10px 5px 10px;;
+    background-color: #5a9e8d;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
+.mi-horario-btn:hover {   
+    background-color: #417265;
+}
 
+.mi-horario-btn:active {
+    background-color: #417265;
+}
+
+.mi-horario-icon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+.button-text {
+    display: inline-block;
+}
+
+@media (max-width: 480px) {
+    .mi-horario-btn {
+        padding: 6px 10px;
+        font-size: 0.8rem; 
+        gap: 4px; 
+    }
+
+    .mi-horario-icon {
+        width: 16px; 
+        height: 16px;
+        font-size: 0.9rem; 
+    }
+}

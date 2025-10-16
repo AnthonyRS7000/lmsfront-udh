@@ -34,3 +34,53 @@
 .tabla tr:hover {
   background-color: #eaf4f1;
 }
+
+/* Modo oscuro */
+.dark .tabla th {
+  background-color: #3C7E6E; 
+  color: #fff;
+}
+
+.dark .tabla td {
+  color: #EAEAEA;
+}
+
+.dark .tabla tr:nth-child(even) {
+  background-color: #232323;
+}
+
+.dark .tabla tr:nth-child(odd) {
+  background-color: #2A2A2A;
+}
+
+.dark .tabla tr:hover {
+  background-color: #343434;
+}
+
+@media (max-width: 768px) {
+  .tabla-container {
+    margin: 10px 0;
+  }
+
+  .tabla th,
+  .tabla td {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .tabla {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .tabla th,
+  .tabla td {
+    padding: 6px; /* Reducir aún más el padding para pantallas muy pequeñas */
+    font-size: 10px; /* Ajustar tamaño de fuente para pantallas muy pequeñas */
+  }
+
+  .tabla-container {
+    margin: 5px 0; /* Reducir margen para pantallas muy pequeñas */
+  }
+}

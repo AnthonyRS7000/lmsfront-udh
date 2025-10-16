@@ -1,7 +1,10 @@
+import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const ApiService = {
-  get: async (endpoint: string, options: RequestInit = {}) => {
+  get: async (endpoint: string, options: RequestInit = {}, navigate: any) => {
     try {
       const token = localStorage.getItem("token");
       if (!token) {
@@ -19,10 +22,10 @@ export const ApiService = {
       });
 
       if (!response.ok) {
+        const { logout } = useAuth();
         if (response.status === 405) {
-          // Redirigir al usuario a la página de inicio de sesión si el token expira
-          localStorage.removeItem("token"); // Eliminar el token inválido
-          window.location.href = "/login"; // Redirigir al inicio de sesión
+          logout();
+          navigate("/login");
           throw new Error("No autorizado. Por favor, inicia sesión nuevamente.");
         }
         if (response.status === 403) {
