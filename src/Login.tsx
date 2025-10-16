@@ -109,13 +109,6 @@ function Login() {
         localStorage.setItem("foto", foto);
         localStorage.setItem("rol", usuario.rol);
         
-         console.log("Datos guardados en localStorage:", {
-        token,
-        usuario,
-        datos_udh,
-        foto,
-        rol: usuario.rol,
-      });
         login(token, usuario);
 
         switch (usuario.rol?.toLowerCase()) {
