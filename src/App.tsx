@@ -64,17 +64,7 @@ import {
   ConsentimientoInformado,
 } from './features/students/soporte-defensoria';
 
-import Cursos from "./features/docente/pages/Cursos";
-import SubirSilabo from './features/docente/pages/SubirSilabo';
-import GestionHorarios from "./features/docente/pages/GestionHorarios";
-import ReportesActividad from "./features/docente/pages/ReportesActividad";
-import RegistroCalificaciones from "./features/docente/pages/RegistroCalificaciones";
-import FirmaActas from "./features/docente/pages/FirmaActas";
-import GestionCursos from "./features/docente/pages/GestionCursos";
-import VerCursoGestionCursos from "./features/docente/pages/VerCursoGestionCursos";
-import CrearEvaluaciones from "./features/docente/pages/CrearEvaluaciones";
-import Evaluaciones from "./features/docente/pages/Evaluaciones";
-import SeguimientoEstudiante from "./features/docente/pages/SeguimientoEstudiante";
+import BibliotecasVirtuales from "./features/docente/pages/BibliotecasVirtuales";
 
 import PlanificacionCursos from "./features/administrativo/pages/PlanificacionCursos";
 import AsignacionDocentes from "./features/administrativo/pages/AsignacionDocentes";
@@ -151,23 +141,14 @@ function App() {
           </Route>
 
           <Route element={
-            <RutaProtegidaPorRol rolPermitido="docente">
+            /*<RutaProtegidaPorRol rolPermitido="docente">
               <Layout />
-            </RutaProtegidaPorRol>
+            </RutaProtegidaPorRol>*/
+            <Layout />
           }>
             <Route path="/docente" element={<DocenteDashboard />} />
             {/* Rutas para docente */}
-            <Route path="/docente/asignacion-cursos" element={<Cursos />} />
-            <Route path="/docente/subir-silabo/:cursoId" element={<SubirSilabo />} />
-            <Route path="/docente/gestion-horarios" element={<GestionHorarios />} />
-            <Route path="/docente/reportes-actividad" element={<ReportesActividad />} />
-            <Route path="/docente/registro-calificaciones" element={<RegistroCalificaciones />} />
-            <Route path="/docente/firma-actas" element={<FirmaActas />} />
-            <Route path="/docente/gestion-cursos" element={<GestionCursos />} />
-            <Route path="/docente/ver-curso/:id" element={<VerCursoGestionCursos />} />
-            <Route path="/docente/crear-evaluaciones" element={<CrearEvaluaciones />} />
-            <Route path="/docente/evaluaciones" element={<Evaluaciones />} />
-            <Route path="/docente/seguimiento-estudiantes" element={<SeguimientoEstudiante />} />
+            <Route path="/docente/bibliotecas-virtuales" element={<BibliotecasVirtuales />} />
           </Route>
 
           <Route element={
