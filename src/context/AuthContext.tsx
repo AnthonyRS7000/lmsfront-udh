@@ -29,8 +29,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setIsAuthenticated(true);
     setRol(usuario.rol?.toLowerCase() || "");
 
-    window.dispatchEvent(new Event("storage"));
-  };
+  // Disparar eventos para actualizar otros componentes
+  window.dispatchEvent(new Event("storage"));
+  window.dispatchEvent(new Event("user-updated")); // 👈 Nuevo
+};
 
   const logout = () => {
     localStorage.clear();

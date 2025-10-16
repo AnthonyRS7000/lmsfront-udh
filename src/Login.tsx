@@ -74,8 +74,11 @@ function Login() {
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
       const allowedOrigins = [
+        "http://127.0.0.1:8000",
         "http://localhost:5173",
         "http://127.0.0.1:5173",
+        "http://localhost:5174",
+        "http://127.0.0.1:5174",
         "https://lmsback.sistemasudh.com",
         "https://lms.sistemasudh.com",
       ];
@@ -105,7 +108,14 @@ function Login() {
         localStorage.setItem("datos_udh", JSON.stringify(datos_udh));
         localStorage.setItem("foto", foto);
         localStorage.setItem("rol", usuario.rol);
-
+        
+         console.log("Datos guardados en localStorage:", {
+        token,
+        usuario,
+        datos_udh,
+        foto,
+        rol: usuario.rol,
+      });
         login(token, usuario);
 
         switch (usuario.rol?.toLowerCase()) {
