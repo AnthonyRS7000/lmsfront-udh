@@ -1,7 +1,5 @@
-// removed Bars3Icon import; using inline SVG for the menu toggle to avoid typing issues
 import ThemeToggle from './ThemeToggle';
 import '../css/Topbar.css';
-
 import UserDropdown from './UserDropdown';
 
 interface TopbarProps {
@@ -9,13 +7,57 @@ interface TopbarProps {
   isSidebarOpen: boolean;
 }
 
-// Mock user data - EXACTO COMO UDH
-/* const mockUser = {
-  full_name: 'ARMANDO ROJAS LUNA',
-  email: 'armando.estudiante@udh.edu.pe',
-  role: 'estudiante',
-  image: 'https://ui-avatars.com/api/?name=Armando+Rojas&background=39B49E&color=fff',
-}; */
+const handleAbrirAula = () => {
+  const targetUrl = "http://localhost:5174/sso/receive";
+
+  const token = localStorage.getItem("auth_token") || localStorage.getItem("token");
+  const google_token = localStorage.getItem("google_token");
+  
+  let usuario = null;
+  let datos_udh = null;
+
+  try {
+    usuario = JSON.parse(localStorage.getItem("usuario") || "null");
+    datos_udh = JSON.parse(localStorage.getItem("datos_udh") || "null");
+  } catch (e) {
+    console.error("Error parseando datos del usuario:", e);
+  }
+
+  const foto = localStorage.getItem("foto") || usuario?.foto || usuario?.image || null;
+  const rol = localStorage.getItem("rol") || usuario?.rol || usuario?.role || "Estudiante";
+
+  // Validar que tenemos al menos el token
+  if (!token) {
+    alert("No estás autenticado. Por favor, inicia sesión primero.");
+    return;
+  }
+
+  const payload = {
+    token,
+    google_token,
+    usuario,
+    datos_udh,
+    foto,
+    rol
+  };
+
+  try {
+    const encoded = btoa(JSON.stringify(payload));
+    const fullUrl = `${targetUrl}#${encoded}`;
+    
+    console.log("➡️ Redirigiendo a Aula Virtual con datos:", {
+      tiene_token: !!token,
+      tiene_google_token: !!google_token,
+      tiene_usuario: !!usuario,
+      url: fullUrl.substring(0, 50) + "..."
+    });
+
+    window.location.href = fullUrl;
+  } catch (error) {
+    console.error("Error al redirigir:", error);
+    alert("Error al abrir el Aula Virtual");
+  }
+};
 
 export default function Topbar({ onToggleSidebar, isSidebarOpen }: TopbarProps) {
   return (
@@ -35,100 +77,30 @@ export default function Topbar({ onToggleSidebar, isSidebarOpen }: TopbarProps) 
               </svg>
             </button>
           )}
-
-          
         </div>
 
         {/* Lado derecho */}
         <div className="topbar-right">
-          {/* Aula Virtual link (replaces notifications) */}
-         {/*  <a className="topbar-aula-btn" title="Aula Virtual" aria-label="Abrir Aula Virtual" href="https://udhvirtual.sistemasudh.com/estudiante/inicio"> */}
-         <button
-           className="topbar-aula-btn"
-           title="Aula Virtual"
-           aria-label="Abrir Aula Virtual"
-           onClick={() => {
-             const targetOrigin = 'http://localhost:5174';
-             const targetUrl = `${targetOrigin}/estudiante/inicio`;
-             const win = window.open(targetUrl, '_blank');
-
-             // Guardar referencia accesible globalmente para poder notificar logout más tarde
-             try {
-               (window as any).aulavirtualWindow = win;
-             } catch {}
-
-             if (!win) return;
-
-             // Construir payload con token + datos de usuario desde localStorage
-             const token = localStorage.getItem('auth_token') || localStorage.getItem('token');
-             let usuario = null;
-             let datos_udh = null;
-             let foto = null;
-             let rol = null;
-             try {
-               usuario = JSON.parse(localStorage.getItem('usuario') || 'null');
-             } catch { usuario = null; }
-             try {
-               datos_udh = JSON.parse(localStorage.getItem('datos_udh') || 'null');
-             } catch { datos_udh = null; }
-             foto = localStorage.getItem('foto') || null;
-             rol = localStorage.getItem('rol') || usuario?.rol || null;
-
-             const payload = { token, usuario, datos_udh, foto, rol };
-
-             const onMessage = (e: MessageEvent) => {
-               if (e.source === win && e.data?.type === 'READY_FOR_TOKEN') {
-                 // Enviar payload completo
-                 win.postMessage({ type: 'AUTH_PAYLOAD', payload }, targetOrigin);
-                 window.removeEventListener('message', onMessage);
-               }
-             };
-
-             window.addEventListener('message', onMessage);
-
-            // Vigilar cierre de la ventana remota y limpiar la referencia
-            const checkClosed = () => {
-              try {
-                if ((window as any).aulavirtualWindow && (window as any).aulavirtualWindow.closed) {
-                  (window as any).aulavirtualWindow = null;
-                  clearInterval(checkInterval);
-                }
-              } catch {
-                clearInterval(checkInterval);
-              }
-            };
-            const checkInterval = setInterval(checkClosed, 700);
-            // limpiar referencia si la pestaña principal se cierra/recarrega
-            window.addEventListener('beforeunload', () => {
-              try { (window as any).aulavirtualWindow = null; } catch {}
-            });
-           }}
-         >
-           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-             <rect x="3" y="4" width="18" height="12" rx="2" ry="2"></rect>
-             <path d="M8 20h8"></path>
-             <path d="M12 16v4"></path>
-           </svg>
-           <span className="topbar-aula-label">Aula Virtual</span>
-         </button>
+          {/* Aula Virtual button */}
+          <button
+            className="topbar-aula-btn"
+            title="Aula Virtual"
+            aria-label="Abrir Aula Virtual"
+            onClick={handleAbrirAula}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              <rect x="3" y="4" width="18" height="12" rx="2" ry="2"></rect>
+              <path d="M8 20h8"></path>
+              <path d="M12 16v4"></path>
+            </svg>
+            <span className="topbar-aula-label">Aula Virtual</span>
+          </button>
 
           {/* Selector de tema */}
           <ThemeToggle />
 
           {/* Usuario */}
           <UserDropdown />
-          {/* <div className="topbar-user">
-            <div className="topbar-user-avatar">
-              <img
-                src={mockUser.image}
-                alt={mockUser.full_name}
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              />
-            </div>
-            <span className="topbar-user-name">
-              {mockUser.full_name.split(' ')[0]}
-            </span>
-          </div> */}
         </div>
       </div>
     </header>

@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import { BookOpenIcon, ClipboardDocumentListIcon, CalendarIcon, ChartBarIcon } from '@heroicons/react/24/outline';
 
 const estudianteStats = [
@@ -32,6 +33,74 @@ const estudianteStats = [
 ];
 
 export default function EstudianteDashboard() {
+  const [cursos, setCursos] = useState<string[] | null>(null);
+  const [loadingCursos, setLoadingCursos] = useState(false);
+  const [errorCursos, setErrorCursos] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchCursos() {
+      setLoadingCursos(true);
+      setErrorCursos(null);
+      try {
+        // Usar proxy Vite: petición relativa al dev server (evita doble /api)
+        const res = await fetch('/api/classroom/cursos', {
+           credentials: 'include',
+           headers: {
+             'Accept': 'application/json',
+             'X-Requested-With': 'XMLHttpRequest'
+           }
+         });
+
+        // Estado HTTP específico
+        if (res.status === 401 || res.status === 403) {
+          setErrorCursos('No autenticado / sin permisos (401/403). Verifica sesión o token.');
+          setCursos([]);
+          return;
+        }
+
+        // Detecta redirección a login (backend puede devolver HTML)
+        if (res.redirected && res.url.includes('/login')) {
+          setErrorCursos('No autenticado. Redirigido a login.');
+          setCursos([]);
+          return;
+        }
+
+        const contentType = res.headers.get('content-type') || '';
+
+        if (!res.ok) {
+          const text = await res.text();
+          throw new Error(`${res.status} ${res.statusText} - ${text.slice(0, 200)}`);
+        }
+
+        if (contentType.includes('application/json')) {
+          const data = await res.json();
+          const nombres = Array.isArray(data.cursos ? data.cursos : data) ? (data.cursos ?? data).map((c: any) => c.nombre ?? c.name ?? c.title ?? c) : [];
+          setCursos(nombres);
+        } else {
+          const text = await res.text();
+          if (text.trim().startsWith('<') && (text.toLowerCase().includes('<!doctype') || text.toLowerCase().includes('<html'))) {
+            setErrorCursos('La respuesta del servidor es HTML (probablemente la página de login). Verifica la autenticación y que las cookies/cabeceras se envían.');
+            setCursos([]);
+          } else {
+            try {
+              const data = JSON.parse(text);
+              const nombres = Array.isArray(data.cursos ? data.cursos : data) ? (data.cursos ?? data).map((c: any) => c.nombre ?? c.name ?? c.title ?? c) : [];
+              setCursos(nombres);
+            } catch (e) {
+              setErrorCursos('Respuesta inesperada del servidor.');
+              setCursos([]);
+            }
+          }
+        }
+      } catch (err: any) {
+        setErrorCursos(err.message || 'Error al obtener cursos');
+      } finally {
+        setLoadingCursos(false);
+      }
+    }
+    fetchCursos();
+  }, []);
+
   return (
     <div style={{
       padding: '2rem',
@@ -157,7 +226,9 @@ export default function EstudianteDashboard() {
               flexDirection: 'column',
               gap: '0.75rem'
             }}>
-              {['Cálculo I', 'Programación Web', 'Base de Datos', 'Inglés Técnico'].map((curso, index) => (
+              {loadingCursos && <div>Cargando cursos...</div>}
+              {errorCursos && <div style={{ color: 'red' }}>{errorCursos}</div>}
+              {(cursos ?? ['Cálculo I', 'Programación Web', 'Base de Datos', 'Inglés Técnico']).map((curso, index) => (
                 <div key={index} style={{
                   display: 'flex',
                   alignItems: 'center',
