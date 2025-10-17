@@ -1,0 +1,174 @@
+/* Contenedor principal */
+.card-items-container {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Modo Dark */
+.dark .card-items-container {
+    background-color: #1E2127; /* Fondo oscuro */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Sombra más intensa */
+}
+
+/* Header */
+.card-items-header {
+    text-align: center;
+}
+
+.card-items-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #374151;
+}
+
+.dark .card-items-title {
+    color: #E4E6EB; /* Color del texto en modo oscuro */
+}
+
+/* Content */
+.card-items-content {
+    text-align: center;
+}
+
+.card-items-image {
+    width: 200px; /* La imagen ocupa todo el ancho disponible */
+    height: 200px; /* Mantiene la proporción de la imagen */
+    object-fit: contain; /* Ajusta la imagen dentro del espacio disponible */
+    margin-bottom: 10px;
+}
+
+.card-items-description {
+    font-size: 0.95rem;
+    color: #6b7280;
+}
+
+.dark .card-items-description {
+    color: #E4E6EB; /* Color del texto en modo oscuro */
+}
+
+/* Footer */
+.card-items-footer {
+    text-align: center;
+}
+
+.card-items-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.card-items-button {
+    font-size: 0.9rem;
+}
+
+.card-items-footer-text {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+.dark .card-items-footer-text {
+    color: #E4E6EB; /* Color del texto en modo oscuro */
+}
+
+/* Footer div */
+.card-items-footer-text-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.dark .card-items-footer-text-div {
+    color: #E4E6EB; /* Color del texto en modo oscuro */
+}
+
+/* Footer link */
+.card-items-footer-text-a {
+    margin-top: 5px;
+    display: flex; /* Usar flexbox para alinear ícono y texto */
+    justify-content: center;
+    align-items: center; /* Centrar verticalmente el ícono y el texto */
+    gap: 5px; /* Espaciado entre el ícono y el texto */
+    font-size: 0.85rem;
+    color: #5a9e8d;
+}
+
+.dark .card-items-footer-text-a {
+    color: #3C7E6E; /* Color del enlace en modo oscuro */
+}
+
+/* Modo responsive */
+@media (max-width: 1024px) {
+    .card-items-container {
+        padding: 18px; /* Ajustar padding para pantallas grandes */
+    }
+
+    .card-items-title {
+        font-size: 1.1rem; /* Ajustar tamaño de fuente para pantallas grandes */
+    }
+
+    .card-items-description {
+        font-size: 0.9rem; /* Ajustar tamaño de fuente para pantallas grandes */
+    }
+
+    .card-items-buttons {
+        gap: 8px; /* Reducir espacio entre botones */
+    }
+
+    .card-items-footer-text {
+        font-size: 0.8rem; /* Ajustar tamaño de fuente para pantallas grandes */
+    }
+}
+
+@media (max-width: 768px) {
+    .card-items-container {
+        padding: 15px; /* Reducir padding para pantallas medianas */
+    }
+
+    .card-items-title {
+        font-size: 1rem; /* Reducir tamaño de fuente para pantallas medianas */
+    }
+
+    .card-items-description {
+        font-size: 0.85rem; /* Reducir tamaño de fuente para pantallas medianas */
+    }
+
+    .card-items-buttons {
+        flex-direction: column; /* Colocar botones en una columna */
+        gap: 8px; /* Reducir espacio entre botones */
+    }
+
+    .card-items-footer-text {
+        font-size: 0.75rem; /* Reducir tamaño de fuente para pantallas medianas */
+    }
+}
+
+@media (max-width: 480px) {
+    .card-items-container {
+        padding: 10px; /* Reducir padding para pantallas pequeñas */
+    }
+
+    .card-items-title {
+        font-size: 0.9rem; /* Reducir tamaño de fuente para pantallas pequeñas */
+    }
+
+    .card-items-description {
+        font-size: 0.8rem; /* Reducir tamaño de fuente para pantallas pequeñas */
+    }
+
+    .card-items-buttons {
+        flex-direction: column; /* Colocar botones en una columna */
+        gap: 5px; /* Reducir espacio entre botones */
+    }
+
+    .card-items-footer-text {
+        font-size: 0.7rem; /* Reducir tamaño de fuente para pantallas pequeñas */
+    }
+}

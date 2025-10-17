@@ -1,8 +1,7 @@
 /* Contenedor principal */
 .ver-horario-container {
-  margin: 40px auto;
-  padding: 0px 20px;
-  max-width: auto;
+  margin: 40px 0px;
+  width: auto;
 }
 
 /* Filtros */
@@ -43,4 +42,79 @@
 .ver-horario-select option:hover {
   background-color: #5a9e8d; /* Fondo al pasar el cursor sobre una opción */
   cursor: pointer;
+}
+
+/* Modo Dark */
+.dark .ver-horario-container {
+  background-color: #0f1115; /* Fondo del contenedor en modo oscuro */
+}
+
+.dark .filter-group label {
+  color: #E4E6EB; /* Color del texto de las etiquetas en modo oscuro */
+}
+
+.dark .ver-horario-select {
+  background-color: #1E2127; /* Fondo del select en modo oscuro */
+  color: #E4E6EB; /* Color del texto en el select en modo oscuro */
+  border: 1px solid #3C7E6E; /* Borde del select en modo oscuro */
+}
+
+.dark .ver-horario-select option {
+  background-color: #232323; /* Fondo de las opciones en modo oscuro */
+  color: #E4E6EB; /* Color del texto de las opciones en modo oscuro */
+  border: 1px solid #3C7E6E;
+}
+
+.dark .ver-horario-select:focus {
+  border-color: #417265; /* Color del borde al enfocar en modo oscuro */
+  box-shadow: 0 0 0 1px rgba(65, 114, 101, 0.5);
+}
+
+.dark .ver-horario-select option:hover {
+  background-color: #3C7E6E; /* Fondo al pasar el cursor sobre una opción en modo oscuro */
+}
+
+/* Modo responsive */
+@media (max-width: 768px) {
+  .ver-horario-filters {
+    flex-direction: column; /* Coloca los filtros en una columna */
+    align-items: center; /* Alinea los filtros al centro */
+  }
+
+  .filter-group {
+    width: 100%; /* Asegura que los filtros ocupen todo el ancho disponible */
+    margin-bottom: 15px; /* Espaciado entre grupos */
+  }
+
+  .filter-group label {
+    font-size: 12px; /* Reduce el tamaño de fuente para pantallas pequeñas */
+  }
+
+  .ver-horario-select {
+    width: 100%; /* Asegura que el select ocupe todo el ancho disponible */
+    font-size: 12px; /* Reduce el tamaño de fuente para pantallas pequeñas */
+  }
+}
+
+@media (max-width: 480px) {
+  .ver-horario-filters {
+    flex-direction: row;
+    margin-bottom: 10px;
+  }
+
+  .filter-group {
+    width: auto;
+    margin-right: 15px;
+    margin-bottom: 0px;
+  }
+
+  .filter-group label {
+    font-size: 10px; /* Ajusta el tamaño de fuente para pantallas muy pequeñas */
+  }
+
+  .ver-horario-select {
+    width: auto;
+    font-size: 10px; /* Ajusta el tamaño de fuente para pantallas muy pequeñas */
+    padding: 4px 8px; /* Reduce el padding para pantallas muy pequeñas */
+  }
 }

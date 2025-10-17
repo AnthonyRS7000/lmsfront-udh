@@ -4,12 +4,21 @@
   padding: 0px 20px;
 }
 
+/* Modo Dark */
+.dark .cursos-llevados-container {
+  color: #E4E6EB; /* Color del texto en modo oscuro */
+}
+
 /* --- Barra superior y filtros --- */
 .cursos-llevados-barra-superior {
   display: flex;
   flex-direction: column;
   gap: 5px;
   margin-bottom: 18px;
+}
+
+.dark .cursos-llevados-barra-superior {
+  background-color: #232323; /* Fondo oscuro para la barra superior */
 }
 
 /* Filtros alineados en línea */
@@ -21,12 +30,20 @@
   flex-wrap: wrap;
 }
 
+.dark .cursos-llevados-filtros-row {
+  background-color: #1E2127; /* Fondo oscuro para los filtros */
+}
+
 /* Estilo para los labels */
 .cursos-llevados-filtros-row label {
   font-weight: 600;
   margin-right: 6px;
   margin-left: 10px;
   color: #3d3c3b;
+}
+
+.dark .cursos-llevados-filtros-row label {
+  color: #E4E6EB; /* Color del texto en modo oscuro */
 }
 
 /* Estilo para los inputs y selects */
@@ -41,11 +58,24 @@
   margin-right: 10px;
 }
 
+.dark .cursos-llevados-filtros-row input,
+.dark .cursos-llevados-filtros-row select {
+  background-color: #0f1115; /* Fondo oscuro para inputs y selects */
+  color: #E4E6EB; /* Color del texto en modo oscuro */
+  border: 1px solid #3C7E6E; /* Borde en modo oscuro */
+}
+
 .cursos-llevados-filtros-row input:focus,
 .cursos-llevados-filtros-row select:focus {
   border-color: #5a9e8d;
   outline: none;
   box-shadow: 0 0 0 1px rgba(90, 158, 141, 0.5);
+}
+
+.dark .cursos-llevados-filtros-row input:focus,
+.dark .cursos-llevados-filtros-row select:focus {
+  border-color: #3C7E6E;
+  box-shadow: 0 0 0 1px rgba(60, 126, 110, 0.5);
 }
 
 /* Estilo para el input de "Apellidos y Nombres" */
@@ -60,6 +90,11 @@
   max-width: 300px;
 }
 
+.dark .cursos-llevados-input-disabled {
+  background-color: #0f1115; /* Fondo oscuro */
+  color: #5A5D62; /* Color del texto en modo oscuro */
+}
+
 /* Footer */
 .cursos-llevados-footer {
   margin-top: 10px;
@@ -70,4 +105,44 @@
   flex-direction: column;
   align-items: center;
   gap: 10px;
+}
+
+.dark .cursos-llevados-footer {
+  color: #E4E6EB; /* Color del texto en modo oscuro */
+}
+
+/* Modo responsive */
+@media (max-width: 768px) {
+  .cursos-llevados-barra-superior {
+    flex-direction: column; /* Colocar la barra superior en una columna */
+    gap: 10px; /* Espaciado entre elementos */
+  }
+
+  .cursos-llevados-filtros-row {
+    flex-direction: column; /* Colocar los filtros en una columna */
+    gap: 10px; /* Espaciado entre filtros */
+  }
+
+  .cursos-llevados-input-disabled {
+    max-width: 100%; /* Asegurar que el input ocupe todo el ancho disponible */
+  }
+}
+
+@media (max-width: 480px) {
+  .cursos-llevados-container {
+    padding: 10px; /* Reducir padding para pantallas pequeñas */
+  }
+
+  .cursos-llevados-barra-superior {
+    gap: 8px; /* Reducir espaciado para pantallas pequeñas */
+  }
+
+  .cursos-llevados-filtros-row {
+    gap: 8px; /* Reducir espaciado entre filtros */
+  }
+
+  .cursos-llevados-input-disabled {
+    font-size: 0.9rem; /* Reducir tamaño de fuente para pantallas pequeñas */
+    padding: 4px 8px; /* Reducir padding para pantallas pequeñas */
+  }
 }

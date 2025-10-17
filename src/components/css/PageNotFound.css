@@ -1,11 +1,18 @@
+/* Contenedor principal */
 .page-notfound-root {
-  min-height: 70vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #f7fafc;
 }
 
+/* Modo Dark */
+.dark .page-notfound-root {
+  background: #1E2127; /* Fondo oscuro */
+}
+
+/* Card */
 .page-notfound-card {
   background: #fff;
   border-radius: 16px;
@@ -15,6 +22,13 @@
   max-width: 400px;
 }
 
+/* Modo Dark para Card */
+.dark .page-notfound-card {
+  background: #232323; /* Fondo oscuro para el card */
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3); /* Sombra más intensa */
+}
+
+/* Título */
 .page-notfound-title {
   font-size: 4rem;
   color: #5a9e8d;
@@ -22,6 +36,12 @@
   font-weight: 800;
 }
 
+/* Modo Dark para Título */
+.dark .page-notfound-title {
+  color: #3C7E6E; /* Color del título en modo oscuro */
+}
+
+/* Subtítulo */
 .page-notfound-subtitle {
   font-size: 1.5rem;
   color: #222;
@@ -29,12 +49,24 @@
   font-weight: 700;
 }
 
+/* Modo Dark para Subtítulo */
+.dark .page-notfound-subtitle {
+  color: #E4E6EB; /* Color del subtítulo en modo oscuro */
+}
+
+/* Texto */
 .page-notfound-text {
   color: #3d3c3b;
   margin-bottom: 2rem;
   font-size: 1.1rem;
 }
 
+/* Modo Dark para Texto */
+.dark .page-notfound-text {
+  color: #CFCFCF; /* Color del texto en modo oscuro */
+}
+
+/* Enlace */
 .page-notfound-link {
   display: inline-block;
   background: #5a9e8d;
@@ -47,6 +79,65 @@
   transition: background 0.2s;
 }
 
+/* Hover para Enlace */
 .page-notfound-link:hover {
   background: #417265;
+}
+
+/* Modo Dark para Enlace */
+.dark .page-notfound-link {
+  background: #3C7E6E; /* Fondo oscuro para el enlace */
+}
+
+.dark .page-notfound-link:hover {
+  background: #417265; /* Hover en modo oscuro */
+}
+
+/* Modo Responsive */
+@media (max-width: 768px) {
+  .page-notfound-card {
+    padding: 36px 24px; /* Reducir padding para pantallas medianas */
+    max-width: 350px; /* Ajustar ancho máximo */
+  }
+
+  .page-notfound-title {
+    font-size: 3rem; /* Reducir tamaño de fuente para pantallas medianas */
+  }
+
+  .page-notfound-subtitle {
+    font-size: 1.3rem; /* Reducir tamaño de fuente para pantallas medianas */
+  }
+
+  .page-notfound-text {
+    font-size: 1rem; /* Reducir tamaño de fuente para pantallas medianas */
+  }
+
+  .page-notfound-link {
+    padding: 8px 24px; /* Reducir padding para pantallas medianas */
+    font-size: 0.9rem; /* Reducir tamaño de fuente para pantallas medianas */
+  }
+}
+
+@media (max-width: 480px) {
+  .page-notfound-card {
+    padding: 24px 16px; /* Reducir padding para pantallas pequeñas */
+    max-width: 300px; /* Ajustar ancho máximo */
+  }
+
+  .page-notfound-title {
+    font-size: 2.5rem; /* Reducir tamaño de fuente para pantallas pequeñas */
+  }
+
+  .page-notfound-subtitle {
+    font-size: 1.2rem; /* Reducir tamaño de fuente para pantallas pequeñas */
+  }
+
+  .page-notfound-text {
+    font-size: 0.9rem; /* Reducir tamaño de fuente para pantallas pequeñas */
+  }
+
+  .page-notfound-link {
+    padding: 6px 20px; /* Reducir padding para pantallas pequeñas */
+    font-size: 0.8rem; /* Reducir tamaño de fuente para pantallas pequeñas */
+  }
 }

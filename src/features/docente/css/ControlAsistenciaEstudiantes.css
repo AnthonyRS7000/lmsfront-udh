@@ -1,0 +1,157 @@
+/* Contenedor principal */
+.control-asistencia-container {
+  margin: 40px;
+  width: auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Título principal */
+.control-asistencia-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #374151;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Filtros */
+.control-asistencia-filters {
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  gap: 80px;
+  margin-bottom: 20px;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.filter-group label {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #374151;
+}
+
+.control-asistencia-select,
+.control-asistencia-input {
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #374151;
+}
+
+.control-asistencia-date {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.control-asistencia-icon {
+  width: 24px;
+  height: 24px;
+  color: #6b7280;
+}
+
+/* Botón para grabar asistencia */
+.control-asistencia-actions {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Mensaje o tabla */
+.control-asistencia-info {
+  text-align: center;
+  color: #6b7280;
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.tabla-container {
+  margin-top: 20px;
+}
+
+/* Botón para exportar */
+.control-asistencia-export {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Footer */
+.control-asistencia-footer {
+  text-align: center;
+  font-size: 1rem;
+  color: #6b7280;
+  margin-top: 20px;
+}
+
+/* Modo Dark */
+.dark .control-asistencia-container {
+  background-color: #1E2127;
+  color: #E4E6EB;
+}
+
+.dark .control-asistencia-title {
+  color: #E4E6EB;
+}
+
+.dark .filter-group label {
+  color: #E4E6EB;
+}
+
+.dark .control-asistencia-select,
+.dark .control-asistencia-input {
+  background-color: #232323;
+  color: #E4E6EB;
+  border: 1px solid #3C7E6E;
+}
+
+.dark .control-asistencia-icon {
+  color: #3C7E6E;
+}
+
+.dark .control-asistencia-info {
+  color: #CFCFCF;
+}
+
+.dark .control-asistencia-footer {
+  color: #CFCFCF;
+}
+
+/* Modo Responsive */
+@media (max-width: 768px) {
+  .control-asistencia-filters {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .control-asistencia-actions,
+  .control-asistencia-export {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .control-asistencia-title {
+    font-size: 1.5rem;
+  }
+
+  .filter-group label {
+    font-size: 0.9rem;
+  }
+
+  .control-asistencia-select,
+  .control-asistencia-input {
+    font-size: 0.9rem;
+    padding: 6px 10px;
+  }
+
+  .control-asistencia-footer {
+    font-size: 0.9rem;
+  }
+}

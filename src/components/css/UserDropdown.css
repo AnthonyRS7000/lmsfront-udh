@@ -9,15 +9,21 @@
   position: absolute;
   top: 100%;
   right: 0;
-  background: #2d3748;
+  background: #ffffff;
   border-radius: 4px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  border: 1px solid #4a5568;
+  border: 1px solid #e5e7eb;
   min-width: 160px;
   z-index: 1000;
   margin-top: 4px;
   overflow: hidden;
   animation: slideDown 0.15s ease-out;
+}
+
+.dark .user-dropdown-menu {
+  background: #1B1E24;
+  border: 1px solid #2B2E34;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
 }
 
 @keyframes slideDown {
@@ -32,7 +38,7 @@
 }
 
 .dropdown-content {
-  padding: 8px 0;
+  padding: 8px 8px;
 }
 
 /* Ocultar información del usuario - no la necesitamos */
@@ -55,13 +61,18 @@
   border: none;
   background: none;
   cursor: pointer;
-  border-radius: 0;
+  border-radius: 12px;
   font-size: 14px;
   font-weight: 400;
-  color: #e2e8f0;
+  color: #000;
   transition: background-color 0.2s ease;
   text-align: left;
-  border-bottom: 1px solid #4a5568;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.dark .dropdown-btn {
+  color: #f9fafb;
+  border-bottom: 1px solid #3A3A3A;
 }
 
 .dropdown-btn:last-child {
@@ -69,8 +80,13 @@
 }
 
 .dropdown-btn:hover {
-  background-color: #4a5568;
-  color: #ffffff;
+  background: linear-gradient(135deg, #f1cc7a 0%, #d6b459 100%);
+  color: #000;
+}
+
+.dark .dropdown-btn:hover {
+  background: linear-gradient(135deg, #3b4753 0%, #0f1720 100%);
+  color: #f9fafb;
 }
 
 .dropdown-btn span {
@@ -78,18 +94,6 @@
   width: 16px;
   display: flex;
   justify-content: center;
-}
-
-/* Botón específico de perfil */
-.profile-btn:hover {
-  background-color: #4a5568;
-  color: #ffffff;
-}
-
-/* Botón específico de logout */
-.logout-btn:hover {
-  background-color: #4a5568;
-  color: #ffffff;
 }
 
 /* Responsivo */

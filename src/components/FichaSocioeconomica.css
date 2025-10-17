@@ -152,8 +152,8 @@ form[aria-label="Variable Etnica"] .cell.field { display: flex; align-items: cen
 .btn-primary { background:var(--header-blue); color:#fff; border:none; padding:6px 10px; border-radius:4px; cursor:pointer; font-size:13px; }
 .btn-secondary { background:#e6eef3; color:var(--text-primary); border:1px solid rgba(0,0,0,0.06); padding:6px 10px; border-radius:4px; cursor:pointer; font-size:13px; }
 
-/* Theme toggle */
-.theme-toggle { background: transparent; border: none; color: #fff; font-size:18px; margin-right:8px; cursor:pointer; }
+/* Theme toggle *
+.theme-toggle { background: transparent; border: none; color: #fff; font-size:18px; margin-right:8px; cursor:pointer; }*/
 
 
 /* Declaración final y botones - versión más sobria y coherente con Matricula.css */

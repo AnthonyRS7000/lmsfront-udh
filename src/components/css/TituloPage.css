@@ -1,6 +1,6 @@
 .titulo-page-container {
-  margin-top: var(--page-title-space-above, 12px);
-  margin-bottom: var(--page-title-space-below, 20px);
+  margin-top: 12px;
+  margin-bottom: 20px;
   text-align: center;
 }
 
@@ -8,15 +8,36 @@
   font-size: 2.2rem;
   font-weight: 700;
   text-align: center;
-  color: var(--title-color, #3D3C3B);
+  color: #3D3C3B;
   letter-spacing: -0.5px;
   line-height: 1.15;
   transition: color 0.18s ease;
 }
 
-/* Soporte para tema oscuro: si el body o root tiene la clase .dark, cambia el color del título */
-body.dark .titulo-page,
-html.dark .titulo-page,
-:root.dark .titulo-page {
-  color: var(--title-color, #cfe8f5);
+.dark .titulo-page {
+  color: #FFFFFF;
+}
+
+@media (max-width: 768px) {
+  .titulo-page {
+    font-size: 1.8rem;
+    line-height: 1.2;
+  }
+
+  .titulo-page-container {
+    margin-top: 8px;
+    margin-bottom: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .titulo-page {
+    font-size: 1.5rem; 
+    line-height: 1.3;
+  }
+
+  .titulo-page-container {
+    margin-top: 6px;
+    margin-bottom: 12px;
+  }
 }

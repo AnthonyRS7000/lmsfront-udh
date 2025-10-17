@@ -1,0 +1,69 @@
+/* Fuente Quicksand para labels */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+/* SCROLLBAR ESPECÍFICO PARA SIDEBAR - COMO COPILOTO */
+.admin-sidebar, .admin-sidebar-desktop {
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(204, 204, 204, 0.3) transparent !important;
+}
+
+.admin-sidebar::-webkit-scrollbar, 
+.admin-sidebar-desktop::-webkit-scrollbar {
+  width: 10px !important;
+  background: transparent !important;
+}
+
+.admin-sidebar::-webkit-scrollbar-track, 
+.admin-sidebar-desktop::-webkit-scrollbar-track {
+  background: transparent !important;
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.admin-sidebar::-webkit-scrollbar-thumb, 
+.admin-sidebar-desktop::-webkit-scrollbar-thumb {
+  background: rgba(204, 204, 204, 0.1) !important;
+  border-radius: 0.5px !important;
+  border: none !important;
+}
+
+.admin-sidebar::-webkit-scrollbar-thumb:hover, 
+.admin-sidebar-desktop::-webkit-scrollbar-thumb:hover {
+  background: rgba(204, 204, 204, 0.2) !important;
+}
+
+/* ELIMINAR TODOS LOS BOTONES DEL SCROLLBAR DEL SIDEBAR */
+.admin-sidebar::-webkit-scrollbar-button, 
+.admin-sidebar-desktop::-webkit-scrollbar-button,
+.admin-sidebar::-webkit-scrollbar-button:single-button:vertical:decrement,
+.admin-sidebar::-webkit-scrollbar-button:single-button:vertical:increment,
+.admin-sidebar-desktop::-webkit-scrollbar-button:single-button:vertical:decrement,
+.admin-sidebar-desktop::-webkit-scrollbar-button:single-button:vertical:increment {
+  display: none !important;
+  height: 0 !important;
+  width: 0 !important;
+}
+
+.admin-sidebar::-webkit-scrollbar-corner, 
+.admin-sidebar-desktop::-webkit-scrollbar-corner {
+  display: none !important;
+  background: transparent !important;
+}
+
+/* Para modo oscuro */
+.dark .admin-sidebar::-webkit-scrollbar-thumb,
+.dark .admin-sidebar-desktop::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.1) !important;
+}
+
+.dark .admin-sidebar::-webkit-scrollbar-thumb:hover,
+.dark .admin-sidebar-desktop::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.2) !important;
+}
+
+/* Estilos para íconos del ThemeToggle */
+/* Tema oscuro - ícono invertido para contraste como Copiloto */
+.dark .theme-icon-dark {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%) !important;
+}

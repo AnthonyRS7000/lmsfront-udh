@@ -65,15 +65,27 @@ export default function Topbar({ onToggleSidebar, isSidebarOpen }: TopbarProps) 
       <div className="topbar-container">
         {/* Lado izquierdo */}
         <div className="topbar-left">
-          {/* Botón toggle sidebar - SOLO visible cuando sidebar está cerrado */}
           {!isSidebarOpen && (
             <button
               onClick={onToggleSidebar}
               className="topbar-toggle"
               title="Abrir barra lateral"
             >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-                <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden
+              >
+                <path
+                  d="M4 6h16M4 12h16M4 18h16"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
             </button>
           )}
@@ -98,8 +110,6 @@ export default function Topbar({ onToggleSidebar, isSidebarOpen }: TopbarProps) 
 
           {/* Selector de tema */}
           <ThemeToggle />
-
-          {/* Usuario */}
           <UserDropdown />
         </div>
       </div>

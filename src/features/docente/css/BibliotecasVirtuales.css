@@ -1,0 +1,56 @@
+/* Contenedor principal */
+.bibliotecas-virtuales-container {
+    width: auto;
+    margin: 20px 0px;
+    padding: 20px;
+}
+
+/* Modo Dark */
+.dark .bibliotecas-virtuales-container {
+    color: #E4E6EB; /* Color del texto en modo oscuro */
+}
+
+/* Card principal */
+.bibliotecas-card {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Card items */
+.bibliotecas-card-items {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* Modo responsive */
+@media (max-width: 1024px) {
+    .bibliotecas-card-items {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Ajustar tamaño de los items */
+        gap: 15px; /* Reducir espacio entre items */
+    }
+}
+
+@media (max-width: 768px) {
+    .bibliotecas-virtuales-container {
+        padding: 15px; /* Reducir padding para pantallas medianas */
+    }
+
+    .bibliotecas-card-items {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Ajustar tamaño de los items */
+        gap: 15px; /* Reducir espacio entre items */
+    }
+}
+
+@media (max-width: 480px) {
+    .bibliotecas-virtuales-container {
+        padding: 10px; /* Reducir padding para pantallas pequeñas */
+    }
+
+    .bibliotecas-card-items {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Ajustar tamaño de los items */
+        gap: 10px; /* Reducir espacio entre items */
+    }
+}

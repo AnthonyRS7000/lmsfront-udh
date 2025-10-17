@@ -9,7 +9,8 @@ import {
   IconAcademico,
   IconServicio,
   IconTitulacion,
-  IconSoporte
+  IconSoporte,
+  IconCarpeta
 } from '../icons/LmsIcons';
 import { useTheme } from '../../hooks/useTheme';
 import FlechaIcon from '../../assets/icons/flecha.svg';
@@ -34,9 +35,11 @@ const getCurrentRole = (pathname: string): string => {
 const getUserDataFromLocalStorage = () => {
   const usuario = JSON.parse(localStorage.getItem("usuario") || "{}");
   const foto = localStorage.getItem("foto");
+  const nombre= usuario.nombres.split(' ')[0];
 
   return {
-    full_name: `${usuario.nombres} ${usuario.apellidos}`,
+    nombre: `${nombre}`,
+    apellidos: `${usuario.apellidos}`,
     role: usuario.rol,
     image: foto || '',
   };
@@ -182,33 +185,41 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
       case 'docente':
         return [
           {
-            name: 'GestionDocente',
-            label: 'Gestión Docente',
-            icon: IconProyecto,
+            name: 'AulaVirtual',
+            label: 'Aula Virtual',
+            icon: IconAcademico,
             submenus: [
-              { name: 'docente', label: 'Principal', path: '/docente' },
-              { name: 'asignacion-cursos', label: 'Asignación de cursos', path: '/docente/asignacion-cursos' },
-              { name: 'gestion-horarios', label: 'Gestión de horarios', path: '/docente/gestion-horarios' },
-              { name: 'reportes-actividad', label: 'Reportes de actividad', path: '/docente/reportes-actividad' },
+              { name: 'bibliotecas-virtuales', label: 'Bibliotecas Virtuales', path: '/docente/bibliotecas-virtuales' },
+              { name: 'mi-perfil', label: 'Mi Perfil', path: '/docente/mi-perfil' },
+              { name: 'carpetas-digitales', label: 'Carpetas Digitales', path: '/docente/carpetas-digitales' },
             ],
           },
           {
-            name: 'RegistroAcademico',
-            label: 'Registro Académico',
-            icon: IconInforme,
+            name: 'Academico',
+            label: 'Académico',
+            icon: IconTitulacion,
+            submenus: [
+              { name: 'actividad-docente', label: 'Actividad Docente', path: '/docente/actividad-docente' },
+              { name: 'control-asistencia-estudiantes', label: 'Control de Asistencia - Estudiantes', path: '/docente/control-asistencia-estudiantes' },
+              { name: 'registro-curso-nivelacion', label: 'Registro - Curso de Nivelación', path: '/docente/registro-curso-nivelacion' },
+              { name: 'registro-electronico', label: 'Registro Electrónico', path: '/docente/registro-electronico' },
+            ],
+          },
+          {
+            name: 'Laboral',
+            label: 'Laboral',
+            icon: IconCarpeta,
             submenus: [
               { name: 'registro-calificaciones', label: 'Registro de calificaciones', path: '/docente/registro-calificaciones' },
               { name: 'firma-actas', label: 'Firma de Actas', path: '/docente/firma-actas' },
             ],
           },
           {
-            name: 'AprendizajeVirtual',
-            label: 'Aprendizaje Virtual',
-            icon: IconEjecucion,
+            name: 'Mantenimiento',
+            label: 'Mantenimiento',
+            icon: IconSoporte,
             submenus: [
-              { name: 'gestion-cursos', label: 'Gestión de cursos', path: '/docente/gestion-cursos' },
-              { name: 'evaluaciones', label: 'Evaluaciones', path: '/docente/evaluaciones' },
-              { name: 'seguimiento-estudiantes', label: 'Seguimiento de estudiantes', path: '/docente/seguimiento-estudiantes' },
+              { name: 'cambio-contrasena', label: 'Cambio de contraseña', path: '/docente/cambio-contrasena' },
             ],
           },
         ];
@@ -423,7 +434,7 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
               <div className="user-avatar-copiloto">
                 <img
                   src={currentUser.image}
-                  alt={currentUser.full_name}
+                  alt={currentUser.nombre}
                   className="user-avatar-image"
                 />
               </div>
@@ -431,7 +442,9 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
               {/* Información del usuario */}
               <div className="user-info-text">
                 <h2 className="user-name-copiloto">
-                  {currentUser.full_name}
+                  {currentUser.nombre}
+                  <br/>
+                  {currentUser.apellidos}
                 </h2>
                 <p className="user-role-copiloto">
                   {currentUser.role}
@@ -464,14 +477,15 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
                       <span className="nav-section-label-copiloto group-hover:translate-x-2 transition-transform duration-300">
                         {section.label}
                       </span>
+                      {section.submenus.length > 0 && (
+                        openSections.includes(section.name) ? (
+                          <ChevronDownIcon className="nav-chevron-copiloto rotate-180 transition-transform duration-300" />
+                        ) : (
+                          <ChevronRightIcon className="nav-chevron-copiloto transition-transform duration-300" />
+                        )
+                      )}
                     </div>
-                    {section.submenus.length > 0 && (
-                      openSections.includes(section.name) ? (
-                        <ChevronDownIcon className="nav-chevron-copiloto rotate-180 transition-transform duration-300" />
-                      ) : (
-                        <ChevronRightIcon className="nav-chevron-copiloto transition-transform duration-300" />
-                      )
-                    )}
+                    
                   </button>
 
                   {/* Submenús - ANIMACIÓN COPILOTO */}

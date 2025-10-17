@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../css/ProfilePage.css';
+import TituloPage from './TituloPage';
 
 const ProfilePage = () => {
   const [userData, setUserData] = useState<any>(null);
@@ -21,6 +22,7 @@ const ProfilePage = () => {
 
   setUserData(usuario);
   setUdhData(datosUdh);
+  
   // inicializar foto si existe en usuario o datos_udh
   const foto = usuario?.foto || datosUdh?.foto || null;
   if (foto) setPhoto(foto);
@@ -90,13 +92,10 @@ const ProfilePage = () => {
     }
   };
   const [apellido_paterno, apellido_materno] = userData.apellidos.split(' ');
-  
 
   return (
     <div className="profile-container">
-      <div className="profile-root">
-        <h1 className="profile-title">Mi Perfil</h1>
-      </div>
+      <TituloPage titulo="Mi Perfil" />
 
       {/* Contenido principal del perfil */}
       <div className="profile-content">
@@ -154,7 +153,7 @@ const ProfilePage = () => {
               <input 
                 type="text" 
                 className="profile-form-input" 
-                value={udhData.codfac || ""}
+                value={udhData.facultad || ""}
                 readOnly
               />
             </div>
@@ -198,7 +197,7 @@ const ProfilePage = () => {
               <input 
                 type="text" 
                 className="profile-form-input" 
-                value={udhData.sedalu || "Huanuco"}
+                value={udhData.sedalu ===1 ? "HUÁNUCO" : udhData.sedalu ===2 ? "TINGO MARÍA" : ""}
                 readOnly
               />
             </div>

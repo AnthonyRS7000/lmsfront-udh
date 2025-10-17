@@ -3,6 +3,8 @@ import { Outlet } from "react-router-dom";
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 import '../css/Layout.css';
+import '../css/ContenidoSidebar.css';
+//import '../css/ScrollbarSidebar.css';
 
 export default function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(true);

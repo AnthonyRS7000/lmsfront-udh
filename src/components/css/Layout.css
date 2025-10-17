@@ -31,14 +31,14 @@
 
 /* Modo oscuro para sidebar - TRANSICIÓN RÁPIDA */
 .dark .admin-sidebar {
-  background-color: #1f2937;
+  background-color: #15171C;
   /* border-right: 1px solid #374151; ELIMINADO */
   box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* CLASES ESPECÍFICAS PARA FORZAR TEMA INMEDIATO */
 .admin-sidebar.theme-dark {
-  background-color: #1f2937 !important;
+  background-color: #15171C !important;
   /* border-right: 1px solid #374151 !important; ELIMINADO */
   box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.3) !important;
 }
@@ -64,14 +64,14 @@
   }
   
   .dark .admin-sidebar-desktop {
-    background-color: #1f2937;
+    background-color: #15171C;
     /* border-right: 1px solid #374151; ELIMINADO */
     box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.3);
   }
 
   /* CLASES ESPECÍFICAS PARA FORZAR TEMA INMEDIATO - DESKTOP */
   .admin-sidebar-desktop.theme-dark {
-    background-color: #1f2937 !important;
+    background-color: #15171C !important;
     /* border-right: 1px solid #374151 !important; ELIMINADO */
     box-shadow: 2px 0px 8px rgba(0, 0, 0, 0.3) !important;
   }
@@ -137,8 +137,8 @@
 }
 
 .dark .admin-topbar {
-  background-color: #1f2937;
-  border-bottom: 1px solid #374151;
+  background-color: #1B1E24;
+  border-bottom: 1px solid #2B2E34;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -150,7 +150,7 @@
 }
 
 .dark .admin-content {
-  background-color: #111827;
+  background-color: #0F1115;
 }
 
 /* User info section - EXACTO COMO UDH */
@@ -353,149 +353,6 @@
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
 }
 
-/* Topbar styles - EXACTOS COMO UDH */
-.topbar-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.topbar-left {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.topbar-toggle {
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  color: #6b7280;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.topbar-toggle:hover {
-  color: #111827;
-  background-color: #f3f4f6;
-}
-
-.dark .topbar-toggle:hover {
-  color: #f9fafb;
-  background-color: #374151;
-}
-
-.topbar-toggle:focus {
-  outline: 2px solid #39B49E;
-  outline-offset: 2px;
-}
-
-.topbar-title {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: #111827;
-  margin-bottom: 0.125rem;
-  transition: color 0.1s ease;
-}
-
-.dark .topbar-title {
-  color: #f9fafb;
-}
-
-.topbar-subtitle {
-  font-size: 0.875rem;
-  color: #6b7280;
-  transition: color 0.1s ease;
-}
-
-.dark .topbar-subtitle {
-  color: #9ca3af;
-}
-
-.topbar-right {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem; /* Reducido de 0.75rem a 0.5rem para juntar más como Copiloto */
-}
-
-.topbar-notification {
-  position: relative;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  color: #6b7280;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.topbar-notification:hover {
-  color: #111827;
-  background-color: #f3f4f6;
-}
-
-.dark .topbar-notification:hover {
-  color: #f9fafb;
-  background-color: #374151;
-}
-
-.notification-dot {
-  position: absolute;
-  top: 0.25rem;
-  right: 0.25rem;
-  display: block;
-  height: 0.5rem;
-  width: 0.5rem;
-  border-radius: 50%;
-  background-color: #ef4444;
-  border: 1px solid #ffffff;
-}
-
-.topbar-user {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0rem 0rem;
-  border-radius: 0.5rem;
-  transition: background-color 0.1s ease;
-}
-
-.topbar-user:hover {
-  background-color: #f9fafb;
-}
-
-.dark .topbar-user:hover {
-  background-color: #374151;
-}
-
-.topbar-user-avatar {
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-  overflow: hidden;
-  background-color: #e5e7eb;
-  border: 2px solid #ffffff;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-}
-
-.topbar-user-name {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #374151;
-  transition: color 0.1s ease;
-}
-
-.dark .topbar-user-name {
-  color: #d1d5db;
-}
-
 /* Botón de colapsar - CÍRCULO PERFECTO como imagen 1 */
 .sidebar-collapse-button {
   position: fixed !important;
@@ -513,8 +370,9 @@
   border-radius: 50% !important;
   
   /* Colores para tema CLARO como Copiloto - gris muy claro */
-  background: #d1d2d3 !important; /* Gris muy claro como en Copiloto tema claro */
-  border: none !important;
+  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%) !important; /* Gris muy claro como en Copiloto tema claro */
+  border: 1px solid !important;
+  border-color: transparent !important;
   color: #374151 !important; /* Ícono más oscuro para contraste */
   
   /* Centrar el ícono perfectamente */
@@ -559,7 +417,7 @@
 }
 
 .sidebar-collapse-button:hover {
-  background: #6b7280 !important; /* Al hover se vuelve el gris anterior */
+  background: linear-gradient(135deg, #f1cc7a 0%, #d6b459 100%) !important; /* Al hover se vuelve el gris anterior */
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
   transform: scale(1.08) !important;
 }
@@ -599,12 +457,13 @@
 
 /* Tema oscuro - también más oscuro */
 .dark .sidebar-collapse-button {
-  background: #576e8f !important; /* Aún más oscuro en tema oscuro */
+  background: linear-gradient(135deg, #2A2A2A 0%, #111827 100%)!important; /* Aún más oscuro en tema oscuro */
   color: #f3f4f6 !important;
+  border-color: #3A3A3A !important;
 }
 
 .dark .sidebar-collapse-button:hover {
-  background: #456492 !important; /* Hover más claro pero aún oscuro */
+  background: linear-gradient(135deg, #3b4753 0%, #0f1720 100%) !important; /* Hover más claro pero aún oscuro */
 }
 
 /* SCROLLBAR ELIMINADO - REEMPLAZADO POR VERSIÓN MINIMALISTA MÁS ABAJO */
@@ -742,362 +601,6 @@
   }
 }
 
-/* ===================================== */
-/* ESTILOS COPILOTO PARA SIDEBAR */
-/* ===================================== */
 
-/* Información del usuario - DISEÑO COPILOTO */
-.user-info-copiloto {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 1.5rem;
-  margin-bottom: 0.25rem;
-  padding: 0 1rem;
-}
 
-.user-avatar-copiloto {
-  width: 96px;
-  height: 96px;
-  margin-bottom: 1rem;
-  overflow: hidden;
-  border-radius: 50%;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease-in-out;
-}
 
-.user-avatar-copiloto:hover {
-  transform: scale(1.05);
-}
-
-.user-avatar-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.user-info-text {
-  width: 100%;
-  max-width: auto;
-  text-align: center;
-}
-
-.user-name-copiloto {
-  font-size: 1.125rem;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-  margin-top: 0;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-  word-break: break-words;
-  color: #3d3c3b;
-  transition: color 0.15s ease;
-  line-height: 1.2;
-}
-
-.dark .user-name-copiloto {
-  color: #f9fafb;
-}
-
-.user-role-copiloto {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin: 0 auto;
-  font-size: 20px;
-  font-weight: 500;
-  color: #48A6A7;
-  border-bottom: 4px solid #EFB036;
-  padding-bottom: 0.25rem;
-  text-transform: capitalize;
-  transition: color 0.15s ease, border-color 0.15s ease;
-}
-
-.dark .user-role-copiloto {
-  color: #ffffff;
-}
-
-/* Navegación - DISEÑO COPILOTO */
-.nav-container-copiloto {
-  margin-top: 0rem;
-  margin-bottom: 2.5rem;
-  margin-left: 0.25rem;
-  margin-right: 0.25rem;
-}
-
-.nav-section-copiloto {
-  margin-bottom: 1rem;
-}
-
-.nav-section-header-copiloto {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  padding: 0.5rem 0.625rem;
-  margin-top: 0.5rem;
-  cursor: pointer;
-  border-radius: 0.375rem;
-  border: none;
-  background: transparent;
-  transition: background-color 0.15s ease, color 0.15s ease;
-}
-
-.nav-section-header-copiloto:hover {
-  background-color: #e6f2ef;
-}
-
-.dark .nav-section-header-copiloto:hover {
-  background-color: #374151;
-}
-
-.nav-section-header-copiloto.active {
-  background-color: #e6f2ef;
-}
-
-.dark .nav-section-header-copiloto.active {
-  background-color: #374151;
-  color: #ffffff;
-}
-
-.nav-section-content-copiloto {
-  display: flex;
-  align-items: center;
-  flex: 1;
-  transition: transform 0.25s cubic-bezier(0.4,0,0.2,1), background 0.2s;
-}
-
-.nav-section-content-copiloto:hover {
-  transform: translateX(15px);
-}
-
-.nav-section-content-copiloto:hover .nav-section-icon-copiloto {
-  color: #111827; /* negro */
-}
-
-.nav-section-icon-copiloto {
-  width: 2rem;
-  height: 2rem;
-  flex-shrink: 0;
-  transition: color 0.25s cubic-bezier(0.4,0,0.2,1);
-  /* Color para tema CLARO - similar a Copiloto */
-  color: #5a9e8d; /* Azul claro como Copiloto */
-}
-
-/* Tema oscuro - íconos blancos */
-.dark .nav-section-icon-copiloto {
-  color: #ffffff;
-}
-
-.nav-section-label-copiloto {
-  margin-left: 1rem;
-  text-align: left;
-  font-family: 'Quicksand', sans-serif;
-  font-weight: 600;
-  color: #111827;
-  transition: transform 0.3s ease;
-}
-
-.dark .nav-section-label-copiloto {
-  color: #ffffff;
-}
-
-.nav-chevron-copiloto {
-  width: 1.5rem;
-  height: 1rem;
-  margin-left: auto;
-  color: #6b7280;
-  transition: transform 0.3s ease;
-}
-
-.dark .nav-chevron-copiloto {
-  color: #9ca3af;
-}
-
-.dark .nav-section-content-copiloto:hover .nav-section-icon-copiloto {
-  color: #5a9e8d;
-}
-
-/* Submenús - ANIMACIÓN COPILOTO */
-.nav-submenu-copiloto {
-  overflow: hidden;
-  transition: all 0.7s ease-out;
-  transform-origin: top;
-}
-
-.nav-submenu-copiloto.open {
-  max-height: 24rem;
-  opacity: 1;
-}
-
-.nav-submenu-copiloto.closed {
-  max-height: 0;
-  opacity: 0;
-}
-
-.nav-submenu-list {
-  padding-left: 1.25rem;
-  margin-top: 0.5rem;
-  margin-left: 0.25rem;
-  margin-right: 0.25rem;
-  list-style: none;
-}
-
-.nav-submenu-item-wrapper {
-  display: flex;
-  align-items: center;
-  margin-bottom: 0.5rem;
-  transition: all 0.5s ease;
-}
-
-.nav-submenu-link-copiloto {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 0.5rem 0.75rem;
-  font-size: 0.875rem;
-  border-radius: 0.375rem;
-  text-decoration: none;
-  transition: background-color 0.15s ease, color 0.15s ease;
-  gap: 0.25rem;
-  margin: 0;
-  box-sizing: border-box;
-  color: #27374D;
-}
-
-.dark .nav-submenu-link-copiloto {
-  color: #cbd5e1;
-}
-
-.nav-submenu-link-copiloto:hover {
-  background-color: #e6f2ef;
-  color: #4d8579;
-}
-
-.dark .nav-submenu-link-copiloto:hover {
-  background-color: #374151;
-  color: #f0f2f3;
-}
-
-.nav-submenu-link-copiloto.active {
-  background-color: #e6f2ef;
-  color: #4d8579;
-  font-weight: 500;
-}
-
-.dark .nav-submenu-link-copiloto.active {
-  background-color: #5a9e8d;
-  color: #ffffff;
-}
-
-.nav-submenu-text {
-  flex: 1;
-}
-
-.nav-badge-copiloto {
-  background-color: #ef4444;
-  color: #ffffff;
-  border-radius: 50%;
-  width: 1.25rem;
-  height: 1.25rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75rem;
-  font-weight: 600;
-  min-width: 1.25rem;
-}
-
-/* Animaciones suaves */
-@keyframes slideInFromLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-40px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInFromTop {
-  0% {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Fuente Quicksand para labels */
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
-
-/* SCROLLBAR ESPECÍFICO PARA SIDEBAR - COMO COPILOTO */
-.admin-sidebar, .admin-sidebar-desktop {
-  scrollbar-width: thin !important;
-  scrollbar-color: rgba(204, 204, 204, 0.3) transparent !important;
-}
-
-.admin-sidebar::-webkit-scrollbar, 
-.admin-sidebar-desktop::-webkit-scrollbar {
-  width: 10px !important;
-  background: transparent !important;
-}
-
-.admin-sidebar::-webkit-scrollbar-track, 
-.admin-sidebar-desktop::-webkit-scrollbar-track {
-  background: transparent !important;
-  border: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-.admin-sidebar::-webkit-scrollbar-thumb, 
-.admin-sidebar-desktop::-webkit-scrollbar-thumb {
-  background: rgba(204, 204, 204, 0.1) !important;
-  border-radius: 0.5px !important;
-  border: none !important;
-}
-
-.admin-sidebar::-webkit-scrollbar-thumb:hover, 
-.admin-sidebar-desktop::-webkit-scrollbar-thumb:hover {
-  background: rgba(204, 204, 204, 0.2) !important;
-}
-
-/* ELIMINAR TODOS LOS BOTONES DEL SCROLLBAR DEL SIDEBAR */
-.admin-sidebar::-webkit-scrollbar-button, 
-.admin-sidebar-desktop::-webkit-scrollbar-button,
-.admin-sidebar::-webkit-scrollbar-button:single-button:vertical:decrement,
-.admin-sidebar::-webkit-scrollbar-button:single-button:vertical:increment,
-.admin-sidebar-desktop::-webkit-scrollbar-button:single-button:vertical:decrement,
-.admin-sidebar-desktop::-webkit-scrollbar-button:single-button:vertical:increment {
-  display: none !important;
-  height: 0 !important;
-  width: 0 !important;
-}
-
-.admin-sidebar::-webkit-scrollbar-corner, 
-.admin-sidebar-desktop::-webkit-scrollbar-corner {
-  display: none !important;
-  background: transparent !important;
-}
-
-/* Para modo oscuro */
-.dark .admin-sidebar::-webkit-scrollbar-thumb,
-.dark .admin-sidebar-desktop::-webkit-scrollbar-thumb {
-  background: rgba(156, 163, 175, 0.1) !important;
-}
-
-.dark .admin-sidebar::-webkit-scrollbar-thumb:hover,
-.dark .admin-sidebar-desktop::-webkit-scrollbar-thumb:hover {
-  background: rgba(156, 163, 175, 0.2) !important;
-}
-
-/* Estilos para íconos del ThemeToggle */
-/* Tema oscuro - ícono invertido para contraste como Copiloto */
-.dark .theme-icon-dark {
-  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%) !important;
-}

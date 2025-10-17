@@ -1,0 +1,71 @@
+.button-secundario {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 5px 10px;
+    background-color: #5a9e8d;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-secundario:hover,
+.button-secundario:active{
+    background-color: #417265;
+}
+
+.button-secundario-icon{
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+.button-secundario-text {
+    display: inline-block;
+}
+
+.dark .button-secundario {
+    background-color: #3C7E6E;
+    color: #fff;
+}
+
+.dark .button-secundario:hover,
+.dark .button-secundario:active {
+    background-color: #417265;
+}
+
+@media (max-width: 768px) {
+    .button-secundario {
+        padding: 8px 12px; /* Aumenta el padding para pantallas pequeñas */
+        font-size: 0.9rem; /* Reduce el tamaño de fuente */
+        gap: 6px; /* Reduce el espacio entre el texto y el ícono */
+    }
+
+    .button-secundario-icon {
+        width: 18px; /* Reduce el tamaño del ícono */
+        height: 18px;
+        font-size: 1rem; /* Ajusta el tamaño del ícono */
+    }
+}
+
+@media (max-width: 480px) {
+    .button-secundario {
+        display: inline-flex;
+        padding: 6px 10px;
+        font-size: 0.8rem; 
+        gap: 4px; 
+    }
+
+    .button-secundario-icon {
+        width: 16px; 
+        height: 16px;
+        font-size: 0.9rem; 
+    }
+}

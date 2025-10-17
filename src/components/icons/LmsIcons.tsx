@@ -8,7 +8,8 @@ import {
   AcademicCapIcon,
   BookOpenIcon,
   IdentificationIcon,
-  BuildingLibraryIcon
+  BuildingLibraryIcon,
+  BriefcaseIcon
 } from '@heroicons/react/24/outline';
 
 export const IconProyecto = ({ className = "w-6 h-6" }: { className?: string }) => 
@@ -40,3 +41,6 @@ export const IconAcademico = ({ className = "w-6 h-6" }: { className?: string })
 
 export const IconServicio = ({ className = "w-6 h-6" }: { className?: string }) => 
   <IdentificationIcon className={className} />;
+
+export const IconCarpeta = ({ className = "w-6 h-6" }: { className?: string }) => 
+  <BriefcaseIcon className={className} />;

@@ -1,0 +1,138 @@
+/* Contenedor principal */
+.registro-electronico-container {
+  margin: 40px;
+  width: auto;
+}
+
+/* Header */
+.registro-electronico-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.registro-electronico-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #374151;
+}
+
+.registro-electronico-subtitle {
+  font-size: 1.2rem;
+  color: #6b7280;
+}
+
+.registro-electronico-semestre {
+  font-size: 1rem;
+  color: #6b7280;
+}
+
+/* Botones */
+.registro-electronico-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* Card */
+.registro-electronico-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+  margin-bottom: 20px;
+}
+
+.aviso {
+  background-color: #e0f2fe;
+  color: #2563eb;
+  border-left: 0px solid #5A9E8D;
+}
+
+.info-importante {
+  background-color: #e0f2fe;
+  color: #2563eb;
+  border-left: 5px solid #2563eb;
+}
+
+.aviso-urgente {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  border-left: 5px solid #b91c1c;
+}
+
+/* Cronograma */
+.registro-electronico-cronograma {
+  margin-top: 20px;
+}
+
+.registro-electronico-section-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #374151;
+  margin-bottom: 10px;
+}
+
+.registro-electronico-load-sem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.registro-electronico-select {
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #374151;
+}
+
+/* Modo Dark */
+.dark .registro-electronico-card {
+  background-color: #1E2127;
+  color: #E4E6EB;
+}
+
+.dark .registro-electronico-title,
+.dark .registro-electronico-section-title {
+  color: #E4E6EB;
+}
+
+.dark .aviso {
+  background-color: #1E2127;
+  color: #2A9D8F;
+}
+
+.dark .info-importante {
+  background-color: #1E2127;
+  color: #2A9D8F;
+}
+
+.dark .aviso-urgente {
+  background-color: #232323;
+  color: #E53E3E;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .registro-electronico-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .registro-electronico-load-sem {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .registro-electronico-title {
+    font-size: 1.5rem;
+  }
+
+  .registro-electronico-section-title {
+    font-size: 1.2rem;
+  }
+}
