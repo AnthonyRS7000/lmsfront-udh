@@ -46,15 +46,15 @@
 }
 
 .dark .tabla tr:nth-child(even) {
-  background-color: #232323;
+  background-color: #1D2124;
 }
 
 .dark .tabla tr:nth-child(odd) {
-  background-color: #2A2A2A;
+  background-color: #222629;
 }
 
 .dark .tabla tr:hover {
-  background-color: #343434;
+  background-color: #2C3236;
 }
 
 @media (max-width: 768px) {

@@ -1,0 +1,107 @@
+/* Contenedor principal */
+.actividad-docente-container {
+  margin: 40px auto;
+  width: auto;
+}
+
+/* Header */
+.actividad-docente-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.actividad-docente-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #374151;
+}
+
+.actividad-docente-subtitle {
+  font-size: 1.2rem;
+  color: #6b7280;
+}
+
+.actividad-docente-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Card */
+.actividad-docente-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.actividad-docente-section-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #374151;
+  margin-bottom: 10px;
+}
+
+.actividad-docente-info p {
+  font-size: 1rem;
+  color: #6b7280;
+}
+
+.actividad-docente-summary {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #374151;
+}
+
+/* Evaluaciones y Registro de Asistencias */
+.actividad-docente-evaluaciones-asistencias {
+  display: flex;
+  gap: 20px;
+}
+
+/* Footer */
+.actividad-docente-footer {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-top: 20px;
+}
+
+/* Modo Dark */
+.dark .actividad-docente-card {
+  background-color: #1E2127;
+  color: #E4E6EB;
+}
+
+.dark .actividad-docente-title,
+.dark .actividad-docente-section-title {
+  color: #E4E6EB;
+}
+
+.dark .actividad-docente-info p,
+.dark .actividad-docente-summary {
+  color: #CFCFCF;
+}
+
+.dark .actividad-docente-footer {
+  color: #CFCFCF;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .actividad-docente-evaluaciones-asistencias {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .actividad-docente-title {
+    font-size: 1.5rem;
+  }
+
+  .actividad-docente-section-title {
+    font-size: 1.2rem;
+  }
+}

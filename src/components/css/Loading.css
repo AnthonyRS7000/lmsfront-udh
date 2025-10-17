@@ -14,7 +14,13 @@
   animation: spin 1s linear infinite;
 }
 
+/* Modo Dark */
+.dark .spinner {
+  border: 0.4rem solid #15171C; /* Color del borde externo en modo oscuro */
+  border-top: 0.4rem solid #3C7E6E; /* Color del borde superior en modo oscuro */
+}
 
+/* Animación */
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -24,6 +30,7 @@
   }
 }
 
+/* Texto oculto para accesibilidad */
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -33,4 +40,19 @@
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   border: 0;
+}
+
+/* Modo Responsive */
+@media (max-width: 768px) {
+  .spinner {
+    width: 2.5rem; /* Reducir tamaño del spinner para pantallas medianas */
+    height: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .spinner {
+    width: 2rem; /* Reducir tamaño del spinner para pantallas pequeñas */
+    height: 2rem;
+  }
 }

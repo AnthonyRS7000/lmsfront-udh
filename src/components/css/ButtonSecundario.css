@@ -1,28 +1,25 @@
-.button-principal {
+.button-secundario {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 10px 15px;
+    padding: 5px 10px;
     background-color: #5a9e8d;
     color: #fff;
     border: none;
-    border-radius: 15px;
+    border-radius: 10px;
     font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-.button-principal:hover {   
+.button-secundario:hover,
+.button-secundario:active{
     background-color: #417265;
 }
 
-.button-principal:active {
-    background-color: #417265;
-}
-
-.button-icon {
+.button-secundario-icon{
     width: 20px;
     height: 20px;
     display: flex;
@@ -30,31 +27,28 @@
     font-size: 1.2rem;
 }
 
-.button-text {
+.button-secundario-text {
     display: inline-block;
 }
 
-.dark .button-principal {
+.dark .button-secundario {
     background-color: #3C7E6E;
     color: #fff;
 }
 
-.dark .button-principal:hover {   
-    background-color: #417265;
-}
-
-.dark .button-principal:active {
+.dark .button-secundario:hover,
+.dark .button-secundario:active {
     background-color: #417265;
 }
 
 @media (max-width: 768px) {
-    .button-principal {
+    .button-secundario {
         padding: 8px 12px; /* Aumenta el padding para pantallas pequeñas */
         font-size: 0.9rem; /* Reduce el tamaño de fuente */
         gap: 6px; /* Reduce el espacio entre el texto y el ícono */
     }
 
-    .button-icon {
+    .button-secundario-icon {
         width: 18px; /* Reduce el tamaño del ícono */
         height: 18px;
         font-size: 1rem; /* Ajusta el tamaño del ícono */
@@ -62,14 +56,14 @@
 }
 
 @media (max-width: 480px) {
-    .button-principal {
+    .button-secundario {
         display: inline-flex;
         padding: 6px 10px;
         font-size: 0.8rem; 
         gap: 4px; 
     }
 
-    .button-icon {
+    .button-secundario-icon {
         width: 16px; 
         height: 16px;
         font-size: 0.9rem; 

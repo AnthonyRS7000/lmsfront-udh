@@ -7,7 +7,6 @@
 
 /* Modo Dark */
 .dark .bibliotecas-virtuales-container {
-    background-color: #1E2127; /* Fondo oscuro */
     color: #E4E6EB; /* Color del texto en modo oscuro */
 }
 
@@ -18,20 +17,12 @@
     gap: 20px;
 }
 
-.dark .bibliotecas-card {
-    background-color: #232323; /* Fondo oscuro para el card principal */
-}
-
 /* Card items */
 .bibliotecas-card-items {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
-}
-
-.dark .bibliotecas-card-items {
-    background-color: #1E2127; /* Fondo oscuro para los items */
 }
 
 /* Modo responsive */

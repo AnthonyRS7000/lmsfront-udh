@@ -13,22 +13,3 @@
   box-shadow: 0 4px 6px rgba(234, 234, 234, 0.1);
   border-left: 7px solid #3C7E6E;
 }
-
-/******    ********
-.nav-section-header-copiloto:hover {
-  background-color: #e6f2ef;
-}
-
-.dark .nav-section-header-copiloto:hover {
-  background-color: #A5CEC0;
-}
-
-.nav-section-header-copiloto.active {
-  background-color: #e6f2ef;
-}
-
-.dark .nav-section-header-copiloto.active {
-  background-color: #5A9E8D;
-  color: #ffffff;
-}
-*/

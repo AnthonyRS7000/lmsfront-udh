@@ -9,6 +9,7 @@ import Tablas from "../../../../components/pages/Tablas";
 import Card from "../../../../components/pages/Card";
 import { EyeIcon, PrinterIcon } from "@heroicons/react/24/outline";
 import ButtonPrincipal from "../../../../components/pages/ButtonPrincipal";
+import ButtonSecundario from "../../../../components/pages/ButtonSecundario";
 
 const calcularSemestre = (): string => {
   const fechaActual = new Date();
@@ -194,7 +195,7 @@ const MiAsistencia: React.FC = () => {
             onChange={(e) => setSemestre(e.target.value)}
             className="asistencia-input-semestre"
           />
-          <ButtonPrincipal
+          <ButtonSecundario
             icon={<EyeIcon />}
             text="Mostrar"
             onClick={handleMostrar}

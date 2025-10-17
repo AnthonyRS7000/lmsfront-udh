@@ -1,0 +1,110 @@
+/* Contenedor principal */
+.carpetas-digitales-container {
+  margin: 40px auto;
+  max-width: 1200px;
+  padding: 20px;
+}
+
+/* Card principal */
+.carpetas-digitales-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+/* Modo Dark para el card principal */
+.dark .carpetas-digitales-card {
+  background-color: #1E2127; /* Fondo oscuro */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Sombra más intensa */
+}
+
+/* Header */
+.carpetas-digitales-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.carpetas-digitales-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #374151;
+}
+
+.dark .carpetas-digitales-title {
+  color: #E4E6EB; /* Color del título en modo oscuro */
+}
+
+.carpetas-digitales-subtitle {
+  font-size: 1.2rem;
+  color: #6b7280;
+}
+
+.dark .carpetas-digitales-subtitle {
+  color: #CFCFCF; /* Color del subtítulo en modo oscuro */
+}
+
+/* Footer */
+.carpetas-digitales-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #e0f2fe;
+  color: #2563eb;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.dark .carpetas-digitales-footer {
+  background-color: #1E2127; /* Fondo oscuro para el footer */
+  color: #2A9D8F; /* Color del texto en modo oscuro */
+}
+
+.carpetas-digitales-footer-icon {
+  width: 50px;
+  height: 50px;
+}
+
+.dark .carpetas-digitales-footer-icon {
+  color: #2A9D8F; /* Color del ícono en modo oscuro */
+}
+
+/* Modo Responsive */
+@media (max-width: 768px) {
+    .carpetas-digitales-header {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .carpetas-digitales-title {
+        font-size: 1.8rem; /* Reducir tamaño del título */
+    }
+
+    .carpetas-digitales-subtitle {
+        font-size: 1rem; /* Reducir tamaño del subtítulo */
+    }
+}
+
+@media (max-width: 480px) {
+    .carpetas-digitales-title {
+        font-size: 1.5rem; /* Reducir tamaño del título */
+    }
+
+    .carpetas-digitales-subtitle {
+        font-size: 0.9rem; /* Reducir tamaño del subtítulo */
+    }
+
+    .carpetas-digitales-footer {
+        flex-direction: column; 
+        padding: 10px; /* Reducir padding para pantallas pequeñas */
+        gap: 0px;
+    }
+
+    .carpetas-digitales-footer-icon {
+        width: 35px;
+        height: 35px;
+    }
+}

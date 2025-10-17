@@ -64,7 +64,16 @@ import {
   ConsentimientoInformado,
 } from './features/students/soporte-defensoria';
 
+//Vistas del Docente
 import BibliotecasVirtuales from "./features/docente/pages/BibliotecasVirtuales";
+import MiPerfil from "./features/docente/pages/MiPerfil";
+import CarpetasDigitales from "./features/docente/pages/CarpetasDigitales";
+import ActividadDocente from "./features/docente/pages/ActividadDocente";
+import ControlAsistenciasEstudiantes from "./features/docente/pages/ControlAsistenciaEstudiantes";
+
+import RegistroElectronico from "./features/docente/pages/RegistroElectronico";
+
+
 
 import PlanificacionCursos from "./features/administrativo/pages/PlanificacionCursos";
 import AsignacionDocentes from "./features/administrativo/pages/AsignacionDocentes";
@@ -149,6 +158,12 @@ function App() {
             <Route path="/docente" element={<DocenteDashboard />} />
             {/* Rutas para docente */}
             <Route path="/docente/bibliotecas-virtuales" element={<BibliotecasVirtuales />} />
+            <Route path="/docente/mi-perfil" element={<MiPerfil />} />
+            <Route path="/docente/carpetas-digitales" element={<CarpetasDigitales />} />
+            <Route path="/docente/actividad-docente" element={<ActividadDocente />} />
+            <Route path="/docente/control-asistencia-estudiantes" element={<ControlAsistenciasEstudiantes />} />
+
+            <Route path="/docente/registro-electronico" element={<RegistroElectronico />} />
           </Route>
 
           <Route element={

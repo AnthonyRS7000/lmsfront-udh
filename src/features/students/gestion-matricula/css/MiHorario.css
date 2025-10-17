@@ -10,17 +10,25 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .filter-group {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .filter-group label {
   margin-right: 10px;
   font-weight: bold;
   color: #3d3c3b;
+}
+
+/* Modo dark para label */
+.dark .filter-group label {
+  color: #E4E6EB;
 }
 
 .mi-horario-input {
@@ -31,6 +39,7 @@
   background-color: #fff;
   color: #3d3c3b;
   margin-right: 7px;
+  transition: background 0.3s, color 0.3s, border 0.3s;
 }
 
 .mi-horario-input:focus {
@@ -39,52 +48,35 @@
   box-shadow: 0 0 0 1px rgba(90, 158, 141, 0.5);
 }
 
-.mi-horario-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 5px 10px 5px 10px;;
-    background-color: #5a9e8d;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+/* Modo dark para input */
+.dark .mi-horario-input {
+  background-color: #0f1115;
+  color: #E4E6EB;
+  border: 1px solid #3C7E6E;
 }
 
-.mi-horario-btn:hover {   
-    background-color: #417265;
+.dark .mi-horario-input:focus {
+  border-color: #3C7E6E;
+  box-shadow: 0 0 0 1px rgba(60, 126, 110, 0.5);
 }
 
-.mi-horario-btn:active {
-    background-color: #417265;
-}
-
-.mi-horario-icon {
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    font-size: 1.2rem;
-}
-
-.button-text {
-    display: inline-block;
+/* Responsive */
+@media (max-width: 768px) {
+  .mi-horario-filters {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .filter-group {
+    width: 100%;
+    margin-bottom: 8px;
+  }
 }
 
 @media (max-width: 480px) {
-    .mi-horario-btn {
-        padding: 6px 10px;
-        font-size: 0.8rem; 
-        gap: 4px; 
-    }
-
-    .mi-horario-icon {
-        width: 16px; 
-        height: 16px;
-        font-size: 0.9rem; 
-    }
+  .mi-horario-input {
+    width: 40px;
+    padding: 4px 8px;
+    font-size: 0.9rem;
+  }
 }

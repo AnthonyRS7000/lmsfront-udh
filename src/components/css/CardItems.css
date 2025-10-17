@@ -36,8 +36,8 @@
 }
 
 .card-items-image {
-    width: 100%; /* La imagen ocupa todo el ancho disponible */
-    height: auto; /* Mantiene la proporción de la imagen */
+    width: 200px; /* La imagen ocupa todo el ancho disponible */
+    height: 200px; /* Mantiene la proporción de la imagen */
     object-fit: contain; /* Ajusta la imagen dentro del espacio disponible */
     margin-bottom: 10px;
 }

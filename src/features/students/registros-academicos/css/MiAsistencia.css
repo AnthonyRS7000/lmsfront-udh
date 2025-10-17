@@ -18,6 +18,10 @@
   color: #3d3c3b;
 }
 
+.dark .asistencia-nombre-estudiante {
+  color: #E4E6EB; /* Color del texto en modo oscuro */
+}
+
 .asistencia-estudiante-info {
   display: flex;
   gap: 32px;
@@ -27,12 +31,20 @@
   color: #3d3c3b;
 }
 
+.dark .asistencia-estudiante-info {
+  color: #CFCFCF; /* Color del texto en modo oscuro */
+}
+
 .asistencia-estudiante-semestre {
   display: flex;
   align-items: center;
   gap: 8px;
   justify-content: flex-start;
   color: #3d3c3b;
+}
+
+.dark .asistencia-estudiante-semestre {
+  color: #E4E6EB; /* Color del texto en modo oscuro */
 }
 
 .asistencia-input-semestre {
@@ -52,6 +64,17 @@
   box-shadow: 0 0 0 2px rgba(90, 158, 141, 0.3);
 }
 
+.dark .asistencia-input-semestre {
+  background-color: #0f1115; /* Fondo oscuro */
+  color: #E4E6EB; /* Color del texto en modo oscuro */
+  border: 1px solid #3C7E6E; /* Borde en modo oscuro */
+}
+
+.dark .asistencia-input-semestre:focus {
+  border-color: #3C7E6E;
+  box-shadow: 0 0 0 2px rgba(60, 126, 110, 0.3);
+}
+
 .asistencia-titulo-cursos {
   font-size: 1.2rem;
   font-weight: 700;
@@ -59,6 +82,11 @@
   margin-bottom: 12px;
   text-align: center;
 }
+
+.dark .asistencia-titulo-cursos {
+  color: #3C7E6E; /* Color del título en modo oscuro */
+}
+
 
 .asistencia-btn-ver {
   display: inline-flex;
@@ -78,6 +106,16 @@
   background: #fff;
   color: #5a9e8d;
   border-color: #5a9e8d;
+}
+
+.dark .asistencia-btn-ver {
+  background: #3C7E6E; /* Fondo oscuro */
+  border-color: #3C7E6E;
+}
+
+.dark .asistencia-btn-ver:hover {
+  background: #417265; /* Hover en modo oscuro */
+  color: #fff;
 }
 
 .asistencia-icono-ojo {
@@ -103,6 +141,10 @@
   flex-direction: column; 
 }
 
+.dark .asistencia-resumen-asistencia{
+  color: #E4E6EB;
+}
+
 .asistencia-btn-imprimir {
   width: 135px;
   margin-top: 12px;
@@ -123,9 +165,70 @@
   background: #e0e0e0;
 }
 
+.dark .asistencia-btn-imprimir {
+  background: #232323; /* Fondo oscuro */
+  color: #E4E6EB; /* Color del texto en modo oscuro */
+}
+
+.dark .asistencia-btn-imprimir:hover {
+  background: #343434; /* Hover en modo oscuro */
+}
+
 .asistencia-icono-impresora {
   width: 20px;
   height: 20px;
+}
+
+/* Modo Responsive */
+@media (max-width: 768px) {
+  .asistencia-container {
+    padding: 0 16px; /* Reducir padding para pantallas medianas */
+  }
+
+  .asistencia-estudiante-info {
+    flex-direction: column; /* Colocar la información en una columna */
+    gap: 16px; /* Reducir espacio entre elementos */
+  }
+
+  .asistencia-input-semestre {
+    width: 100%; /* Asegurar que el input ocupe todo el ancho disponible */
+    font-size: 0.9rem; /* Reducir tamaño de fuente */
+  }
+
+  .asistencia-btn-ver {
+    font-size: 0.9rem; /* Reducir tamaño de fuente para pantallas medianas */
+    padding: 6px 12px; /* Reducir padding */
+  }
+
+  .asistencia-btn-imprimir {
+    font-size: 0.9rem; /* Reducir tamaño de fuente para pantallas medianas */
+    padding: 6px 12px; /* Reducir padding */
+  }
+}
+
+@media (max-width: 480px) {
+  .asistencia-container {
+    padding: 0 8px; /* Reducir padding para pantallas pequeñas */
+  }
+
+  .asistencia-estudiante-info {
+    gap: 12px; /* Reducir espacio entre elementos */
+  }
+
+  .asistencia-input-semestre {
+    font-size: 0.8rem; /* Reducir tamaño de fuente */
+    padding: 4px 8px; /* Reducir padding */
+  }
+
+  .asistencia-btn-ver {
+    font-size: 0.8rem; /* Reducir tamaño de fuente para pantallas pequeñas */
+    padding: 4px 10px; /* Reducir padding */
+  }
+
+  .asistencia-btn-imprimir {
+    font-size: 0.8rem; /* Reducir tamaño de fuente para pantallas pequeñas */
+    padding: 4px 10px; /* Reducir padding */
+  }
 }
 
 /* Impresión */

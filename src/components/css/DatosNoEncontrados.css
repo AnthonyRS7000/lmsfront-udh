@@ -8,12 +8,49 @@
   text-align: center;
 }
 
+/* Modo Dark */
+.dark .error-container {
+  background-color: #1E2127; /* Fondo oscuro */
+  color: #E4E6EB; /* Color del texto en modo oscuro */
+}
+
 .error-image {
   max-width: 150px; /* Ajusta el tamaño de la imagen */
   margin-bottom: 20px;
 }
 
+/* Modo Dark para imagen */
+.dark .error-image {
+  filter: brightness(0.8); /* Oscurecer la imagen en modo oscuro */
+}
+
 .error-message {
   font-size: 1.2rem;
   color: #3d3c3b;
+}
+
+/* Modo Dark para mensaje */
+.dark .error-message {
+  color: #E4E6EB; /* Color del texto en modo oscuro */
+}
+
+/* Modo Responsive */
+@media (max-width: 768px) {
+  .error-image {
+    max-width: 120px; /* Reducir tamaño de la imagen para pantallas medianas */
+  }
+
+  .error-message {
+    font-size: 1rem; /* Reducir tamaño de fuente para pantallas medianas */
+  }
+}
+
+@media (max-width: 480px) {
+  .error-image {
+    max-width: 100px; /* Reducir tamaño de la imagen para pantallas pequeñas */
+  }
+
+  .error-message {
+    font-size: 0.9rem; /* Reducir tamaño de fuente para pantallas pequeñas */
+  }
 }
