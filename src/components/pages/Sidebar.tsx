@@ -14,6 +14,7 @@ import {
 } from '../icons/LmsIcons';
 import { useTheme } from '../../hooks/useTheme';
 import FlechaIcon from '../../assets/icons/flecha.svg';
+import DocenteSimuladoPhoto from '../../assets/soporte.png';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -35,7 +36,18 @@ const getCurrentRole = (pathname: string): string => {
 const getUserDataFromLocalStorage = () => {
   const usuario = JSON.parse(localStorage.getItem("usuario") || "{}");
   const foto = localStorage.getItem("foto");
-  const nombre= usuario.nombres.split(' ')[0];
+  
+  // Si no hay datos de usuario, retornar datos simulados del docente para permitir acceso sin autenticación
+  if (!usuario || !usuario.nombres) {
+    return {
+      nombre: 'Aldo Ramirez',
+      apellidos: 'Chaupis',
+      role: 'Docente', // Rol por defecto para acceso sin autenticación
+      image: DocenteSimuladoPhoto,
+    };
+  }
+  
+  const nombre = usuario.nombres.split(' ')[0];
 
   return {
     nombre: `${nombre}`,

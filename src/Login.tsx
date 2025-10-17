@@ -214,6 +214,20 @@ function Login() {
                 </svg>
                 <span className="login-google-text">Acceder con Google</span>
               </button>
+
+              <p className="login-subtitle">
+                Si usted es Docente{" "}
+                <span className="login-domain">Inicie sesion AQUI</span>
+              </p>
+
+              <button
+                className="login-docente-btn"
+                onClick={() => navigate('/docente')}
+                aria-label="Acceso docente"
+              >
+                DOCENTE
+              </button>
+
               <p className="login-help">
                 ¿Necesitas ayuda?{" "}
                 <a href="#" className="login-help-link">

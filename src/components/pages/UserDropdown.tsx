@@ -2,11 +2,20 @@ import { useState, useRef, useEffect } from 'react';
 import '../css/UserDropdown.css';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from "../../context/AuthContext";
+import DocenteSimuladoPhoto from '../../assets/soporte.png';
 
 // Datos del usuario desde localStorage
 const getUserDataFromLocalStorage = () => {
   const usuario = JSON.parse(localStorage.getItem("usuario") || "{}");
   const foto = localStorage.getItem("foto");
+
+  // Si no hay datos de usuario, retornar datos simulados del docente para permitir acceso sin autenticación
+  if (!usuario || !usuario.nombres) {
+    return {
+      full_name: "Aldo Ramirez Chaupis",
+      image: DocenteSimuladoPhoto,
+    };
+  }
 
   return {
     full_name: `${usuario.nombres} ${usuario.apellidos}`,
