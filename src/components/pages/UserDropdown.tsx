@@ -2,11 +2,20 @@ import { useState, useRef, useEffect } from 'react';
 import '../css/UserDropdown.css';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from "../../context/AuthContext";
+import DocenteSimuladoPhoto from '../../assets/soporte.png';
 
-// Datos del usuario mock
+// Datos del usuario desde localStorage
 const getUserDataFromLocalStorage = () => {
   const usuario = JSON.parse(localStorage.getItem("usuario") || "{}");
   const foto = localStorage.getItem("foto");
+
+  // Si no hay datos de usuario, retornar datos simulados del docente para permitir acceso sin autenticación
+  if (!usuario || !usuario.nombres) {
+    return {
+      full_name: "Aldo Ramirez Chaupis",
+      image: DocenteSimuladoPhoto,
+    };
+  }
 
   return {
     full_name: `${usuario.nombres} ${usuario.apellidos}`,
@@ -21,10 +30,9 @@ const UserDropdown = () => {
   const navigate = useNavigate();
   const { logout } = useAuth();
 
-  // Obtener datos del usuario desde localStorage
   const userData = getUserDataFromLocalStorage();
 
-  // Manejar clics fuera del dropdown para cerrarlo
+  // Cerrar el dropdown al hacer clic fuera
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -36,35 +44,29 @@ const UserDropdown = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Manejar navegación al perfil
+  // Navegar al perfil
   const handleProfile = () => {
     setIsOpen(false);
     navigate('/estudiante/perfil');
   };
 
-  // 🚪 Manejar cierre de sesión con sincronización
+  // Cerrar sesión sincronizado
   const handleLogout = async () => {
     setIsLoggingOut(true);
     setIsOpen(false);
 
     try {
-      // 📢 Notificar al Aula Virtual que cierre sesión
       const aulavirtualWindow = (window as any).aulavirtualWindow;
       
       if (aulavirtualWindow && !aulavirtualWindow.closed) {
-        console.log("📢 Enviando LOGOUT al Aula Virtual");
-        
-        // Enviar mensaje de logout
         aulavirtualWindow.postMessage(
           { type: "LOGOUT" },
           "http://localhost:5174"
         );
 
-        // Esperar confirmación o timeout de 2 segundos
         await new Promise((resolve) => {
           const handleConfirm = (e: MessageEvent) => {
             if (e.origin === "http://localhost:5174" && e.data?.type === "LOGOUT_CONFIRMED") {
-              console.log("✅ Confirmación de logout recibida desde Aula Virtual");
               window.removeEventListener("message", handleConfirm);
               resolve(true);
             }
@@ -72,29 +74,19 @@ const UserDropdown = () => {
 
           window.addEventListener("message", handleConfirm);
 
-          // Timeout de 2 segundos
           setTimeout(() => {
             window.removeEventListener("message", handleConfirm);
-            console.log("⏱️ Timeout esperando confirmación de logout");
             resolve(false);
           }, 2000);
         });
 
-        // Cerrar la ventana del Aula Virtual
         try {
           aulavirtualWindow.close();
           (window as any).aulavirtualWindow = null;
-          console.log("🔒 Ventana de Aula Virtual cerrada");
-        } catch (error) {
-          console.warn("No se pudo cerrar la ventana del Aula Virtual:", error);
-        }
-      } else {
-        console.log("ℹ️ Aula Virtual no está abierta o ya fue cerrada");
+        } catch {}
       }
-    } catch (error) {
-      console.error("❌ Error durante logout sincronizado:", error);
-    } finally {
-      // Hacer logout local en el proyecto principal
+    } catch {}
+    finally {
       logout();
       navigate("/login");
       setIsLoggingOut(false);

@@ -97,7 +97,6 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
           <Route path="/auth/callback" element={<AuthCallback />} />
-
           {/* Rutas protegidas por rol */}
           <Route element={
             <RutaProtegidaPorRol rolPermitido="estudiante">

@@ -73,6 +73,7 @@ function Login() {
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
+      console.log('message recibido desde popup:', event.origin, event.data);
       const allowedOrigins = [
         "http://127.0.0.1:8000",
         "http://localhost:5173",
@@ -96,21 +97,33 @@ function Login() {
       }
 
       if (event.data.type === "google-auth-success") {
-        const { token, usuario, datos_udh, foto } = event.data;
+        const { token, google_token, usuario, datos_udh, foto } = event.data;
+        const google_scopes = Array.isArray(event.data.google_scopes) ? event.data.google_scopes : (event.data.google_scopes ? JSON.parse(event.data.google_scopes) : []);
 
         if (!token || !usuario || !usuario.rol || !datos_udh) {
           alert("Datos de autenticación incompletos");
           return;
         }
 
-        localStorage.setItem("token", token);
+        // Guardar tokens
+        localStorage.setItem("auth_token", token);
+        if (google_token) {
+          localStorage.setItem("google_token", google_token);
+        }
+
+        // Guardar scopes permisos (todos) y filtrar permisos de Classroom
+        localStorage.setItem("google_scopes", JSON.stringify(google_scopes));
+        const classroomScopes = google_scopes.filter((s: string) => s.includes("classroom"));
+        localStorage.setItem("google_classroom_scopes", JSON.stringify(classroomScopes));
+        
+        // Guardar datos de usuario
         localStorage.setItem("usuario", JSON.stringify(usuario));
         localStorage.setItem("datos_udh", JSON.stringify(datos_udh));
         localStorage.setItem("foto", foto);
         localStorage.setItem("rol", usuario.rol);
         
         login(token, usuario);
-
+        
         switch (usuario.rol?.toLowerCase()) {
           case "estudiante":
             navigate("/estudiante");
@@ -201,6 +214,20 @@ function Login() {
                 </svg>
                 <span className="login-google-text">Acceder con Google</span>
               </button>
+
+              <p className="login-subtitle">
+                Si usted es Docente{" "}
+                <span className="login-domain">Inicie sesion AQUI</span>
+              </p>
+
+              <button
+                className="login-docente-btn"
+                onClick={() => navigate('/docente')}
+                aria-label="Acceso docente"
+              >
+                DOCENTE
+              </button>
+
               <p className="login-help">
                 ¿Necesitas ayuda?{" "}
                 <a href="#" className="login-help-link">

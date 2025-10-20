@@ -1,3 +1,4 @@
+// src/context/AuthContext.tsx (Puerto 5173)
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 type AuthContextType = {
@@ -17,8 +18,19 @@ const AuthContext = createContext<AuthContextType>({
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem("token"));
+  // Validar si viene de logout (URL contiene /login)
+  const isLoginPage = window.location.pathname.includes('/login');
+  
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    if (isLoginPage) {
+      localStorage.clear(); // Limpiar al entrar a login
+      return false;
+    }
+    return !!localStorage.getItem("token");
+  });
+
   const [rol, setRol] = useState(() => {
+    if (isLoginPage) return "";
     const usuario = localStorage.getItem("usuario");
     return usuario ? JSON.parse(usuario).rol?.toLowerCase() || "" : "";
   });
@@ -28,11 +40,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     localStorage.setItem("usuario", JSON.stringify(usuario));
     setIsAuthenticated(true);
     setRol(usuario.rol?.toLowerCase() || "");
-
-  // Disparar eventos para actualizar otros componentes
-  window.dispatchEvent(new Event("storage"));
-  window.dispatchEvent(new Event("user-updated")); // 👈 Nuevo
-};
+  };
 
   const logout = () => {
     localStorage.removeItem("usuario");
@@ -42,17 +50,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     localStorage.removeItem("datos_udh");
     setIsAuthenticated(false);
     setRol("");
-
-    window.dispatchEvent(new Event("storage"));
   };
 
   useEffect(() => {
-    const handleStorageChange = () => {
-      const token = localStorage.getItem("token");
-      const usuario = localStorage.getItem("usuario");
-
-      setIsAuthenticated(!!token);
-      setRol(usuario ? JSON.parse(usuario).rol?.toLowerCase() || "" : "");
+    // Detectar logout desde 5174
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === '_logout_flag') {
+        logout();
+      }
     };
 
     window.addEventListener("storage", handleStorageChange);

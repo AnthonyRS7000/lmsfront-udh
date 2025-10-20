@@ -360,6 +360,41 @@
   color: #fff;
 }
 
+.login-docente-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #059669;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(5, 150, 105, 0.3);
+}
+
+.login-docente-btn:hover {
+  background: #ECC138;
+  color: #23272f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(236, 193, 56, 0.4);
+}
+
+.login-card.dark .login-docente-btn {
+  background: #059669;
+  color: #fff;
+}
+
+.login-card.dark .login-docente-btn:hover {
+  background: #ECC138;
+  color: #23272f;
+}
+
 .login-help {
   text-align: center;
   font-size: 0.95rem;
