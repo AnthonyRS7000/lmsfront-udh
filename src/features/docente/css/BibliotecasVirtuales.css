@@ -23,7 +23,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
-}
+}   
 
 /* Modo responsive */
 @media (max-width: 1024px) {
@@ -46,11 +46,11 @@
 
 @media (max-width: 480px) {
     .bibliotecas-virtuales-container {
-        padding: 10px; /* Reducir padding para pantallas pequeñas */
+        padding: 10px 40px; /* Reducir padding para pantallas pequeñas */
     }
 
     .bibliotecas-card-items {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Ajustar tamaño de los items */
-        gap: 10px; /* Reducir espacio entre items */
+        grid-template-columns: 1fr; /* Un card por fila */
+        gap: 30px; /* Reducir espacio entre items */
     }
 }

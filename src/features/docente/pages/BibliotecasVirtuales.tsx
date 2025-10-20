@@ -41,14 +41,6 @@ const BibliotecasVirtuales = () => {
         ),
         },
         {
-        title: "Biblioteca Virtual: ENI Training",
-        image: Eni,
-        description: "Regístrate con tu correo institucional para ingresar",
-        buttons: [
-            { text: "Ingresar", icon: <ArrowRightCircleIcon />, onClick: () => alert("Aquí") },
-        ],
-        },
-        {
         title: "Biblioteca Virtual",
         image: Digitalia,
         description: "Regístrate con tu correo institucional para ingresar",
@@ -85,6 +77,14 @@ const BibliotecasVirtuales = () => {
                 </div>
             </>
         ),
+        },
+        {
+        title: "Biblioteca Virtual: ENI Training",
+        image: Eni,
+        description: "Regístrate con tu correo institucional para ingresar",
+        buttons: [
+            { text: "Ingresar", icon: <ArrowRightCircleIcon />, onClick: () => alert("Aquí") },
+        ],
         },
         {
         title: "Bibliotecas de Acceso Libre",
