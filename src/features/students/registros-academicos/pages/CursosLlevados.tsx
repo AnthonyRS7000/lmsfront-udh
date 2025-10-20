@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { cache } from "../../../../components/pages/Cache";
 import { ApiService } from "../../../../components/pages/ApiService";
 import "../css/CursosLlevados.css";
 import TituloPage from "../../../../components/pages/TituloPage";
@@ -32,9 +31,6 @@ const CursosLlevados: React.FC = () => {
     const [cicloFiltro, setCicloFiltro] = useState<string>("");
     const [busqueda, setBusqueda] = useState<string>("");
 
-    const CACHE_KEY = "cursosLlevados";
-    const CACHE_EXPIRATION_MINUTES = 10;
-
     useEffect(() => {
         const usuario = JSON.parse(localStorage.getItem("usuario") || "{}");
         const datos_udh = JSON.parse(localStorage.getItem("datos_udh") || "{}");
@@ -48,13 +44,7 @@ const CursosLlevados: React.FC = () => {
 
     useEffect(() => {
         if (udhData && udhData.codigo) {
-            const cachedData = cache.get(CACHE_KEY);
-            if (cachedData) {
-                setCursos(cachedData);
-                setError(false);
-            } else {
-                fetchCursos();
-            }
+            fetchCursos();
         }
     }, [udhData]);
 
@@ -76,7 +66,6 @@ const CursosLlevados: React.FC = () => {
         } else {
             setCursos(data_cursos.data);
             setError(false);
-            cache.set(CACHE_KEY, data_cursos.data, CACHE_EXPIRATION_MINUTES);
             setUltimaConsulta(obtenerFechaHora());
         }
         } catch (error) {

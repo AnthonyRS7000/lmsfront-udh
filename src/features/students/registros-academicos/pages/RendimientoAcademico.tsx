@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef  } from 'react';
-import { cache } from "../../../../components/pages/Cache";
 import { ApiService } from "../../../../components/pages/ApiService";
 import '../css/RendimientoAcademico.css';
 import TituloPage from "../../../../components/pages/TituloPage";
@@ -39,11 +38,6 @@ const RendimientoAcademico: React.FC = () => {
 
   const detalleRef = useRef<HTMLDivElement>(null);
 
-  const CACHE_KEY_RENDIMIENTO = "rendimientoAcademico";
-  const CACHE_KEY_DETALLE = (semestre: string) => `detalle_${semestre}`;
-  const CACHE_KEY_RANKING = (semestre: string) => `ranking_${semestre}`;
-  const CACHE_EXPIRATION_MINUTES = 30;
-
   useEffect(() => {
     const datosUdh = JSON.parse(localStorage.getItem("datos_udh") || "{}");
     const datosUser = JSON.parse(localStorage.getItem("usuario") || "{}");
@@ -53,13 +47,7 @@ const RendimientoAcademico: React.FC = () => {
 
   useEffect(() => {
       if (udhData && udhData.codigo) {
-        const cachedRendimiento = cache.get(CACHE_KEY_RENDIMIENTO); // Verificar si los datos están en caché
-        if (cachedRendimiento) {
-          setRendimiento(cachedRendimiento);
-          setError(false);
-        } else {
-          fetchRendimiento();
-        }
+        fetchRendimiento();
       }
   }, [udhData]);
 
@@ -74,7 +62,6 @@ const RendimientoAcademico: React.FC = () => {
       } else {
         setRendimiento(data_rendimiento.data.data);
         setError(false);
-        cache.set(CACHE_KEY_RENDIMIENTO, data_rendimiento.data.data, CACHE_EXPIRATION_MINUTES);
       }
     } catch (error) {
       console.error("Error al cargar los datos de rendimiento:", error);
@@ -85,13 +72,6 @@ const RendimientoAcademico: React.FC = () => {
   };
 
   const fetchDetalle = async (semestre: string) => {
-    const cacheKey = CACHE_KEY_DETALLE(semestre);
-    const cachedDetalle = cache.get(cacheKey);
-    if (cachedDetalle) {
-      setDetalle(cachedDetalle);
-      setError(false);
-      return;
-    }
     try {
       setLoadingDetalles(true);
       const codigoAlumno = udhData?.codigo;
@@ -103,7 +83,6 @@ const RendimientoAcademico: React.FC = () => {
       } else {
         setDetalle(data_detalle.data.data);
         setError(false);
-        cache.set(cacheKey, data_detalle.data.data, CACHE_EXPIRATION_MINUTES);
       }
     } catch (error) {
       console.error("Error al cargar los datos de detalle:", error);
@@ -114,13 +93,6 @@ const RendimientoAcademico: React.FC = () => {
   };
 
   const fetchRanking = async (semestre: string) => {
-    const cacheKey = CACHE_KEY_RANKING(semestre);
-    const cachedRanking = cache.get(cacheKey); // Verificar si los datos están en caché
-    if (cachedRanking) {
-      setRanking(cachedRanking);
-      setError(false);
-      return;
-    }
     try {
       setLoadingRanking(true);
       const codigoAlumno = udhData?.codigo;
@@ -133,7 +105,6 @@ const RendimientoAcademico: React.FC = () => {
       } else {
         setError(false);
         setRanking(data_ranking.data.data);
-        cache.set(cacheKey, data_ranking.data.data, CACHE_EXPIRATION_MINUTES);
         setUltimaConsulta(obtenerFechaHora());
       }
     } catch (error) {

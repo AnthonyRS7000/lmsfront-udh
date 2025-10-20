@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import { cache } from "../../../../components/pages/Cache";
 import { ApiService } from "../../../../components/pages/ApiService";
 import "../css/MiAsistencia.css";
 import TituloPage from "../../../../components/pages/TituloPage";
@@ -8,7 +7,6 @@ import Loading from "../../../../components/pages/Loading";
 import Tablas from "../../../../components/pages/Tablas";
 import Card from "../../../../components/pages/Card";
 import { EyeIcon, PrinterIcon } from "@heroicons/react/24/outline";
-import ButtonPrincipal from "../../../../components/pages/ButtonPrincipal";
 import ButtonSecundario from "../../../../components/pages/ButtonSecundario";
 
 const calcularSemestre = (): string => {
@@ -42,11 +40,6 @@ const MiAsistencia: React.FC = () => {
   const cardCursosRef = useRef<HTMLDivElement>(null);
   const cardAsistenciaRef = useRef<HTMLDivElement>(null);
 
-  const CACHE_KEY_CURSOS = `cursos_${semestre}`;
-  const CACHE_KEY_ASISTENCIA = (codigoCurso: string, seccion: string, codigoPeriodo: string) =>
-    `asistencia_${semestre}_${codigoCurso}_${seccion}_${codigoPeriodo}`;
-  const CACHE_EXPIRATION_MINUTES = 10;
-
   useEffect(() => {
     const datosUdh = JSON.parse(localStorage.getItem("datos_udh") || "{}");
     const nombresUser = JSON.parse(localStorage.getItem("usuario") || "{}");
@@ -55,13 +48,6 @@ const MiAsistencia: React.FC = () => {
   }, []);
 
   const fetchCursos = async () => {
-    const cachedCursos = cache.get(CACHE_KEY_CURSOS);
-    if (cachedCursos) {
-      setCursos(cachedCursos);
-      setError(false);
-      return;
-    }
-
     try {
       setLoading(true);
       const codigoAlumno = udhData?.codigo;
@@ -72,7 +58,6 @@ const MiAsistencia: React.FC = () => {
       } else {
         setCursos(data_cursos.horario);
         setError(false);
-        cache.set(CACHE_KEY_CURSOS, data_cursos.horario, CACHE_EXPIRATION_MINUTES);
       }
     } catch (error) {
       console.error("Error al cargar los cursos:", error);
@@ -83,14 +68,6 @@ const MiAsistencia: React.FC = () => {
   };
 
   const fetchAsistencia = async (codigoCurso: string, seccion: string, codigoPeriodo: string) => {
-    const cacheKey = CACHE_KEY_ASISTENCIA(codigoCurso, seccion, codigoPeriodo);
-    const cachedAsistencia = cache.get(cacheKey);
-    if (cachedAsistencia) {
-      setAsistencia(cachedAsistencia);
-      setError(false);
-      return;
-    }
-
     try {
       setLoadingAsistencia(true);
       const codigoAlumno = udhData?.codigo;
@@ -103,7 +80,6 @@ const MiAsistencia: React.FC = () => {
       } else {
         setAsistencia(data_asistencia.data.data);
         setError(false);
-        cache.set(cacheKey, data_asistencia.data.data, CACHE_EXPIRATION_MINUTES);
       }
     } catch (error) {
       console.error("Error al cargar la asistencia:", error);
@@ -159,7 +135,7 @@ const MiAsistencia: React.FC = () => {
       <EyeIcon className="asistencia-icono-ojo" />
       Ver
     </button>,
-    /*<ButtonPrincipal
+    /*<ButtonSecundario
       icon={<EyeIcon/>}
       text="Ver"
       onClick={() => handleVerAsistencia(curso.codigo_curso, curso.seccion, curso.codper)}

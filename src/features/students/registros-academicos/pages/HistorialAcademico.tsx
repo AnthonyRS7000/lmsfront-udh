@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { cache } from "../../../../components/pages/Cache";
 import { ApiService } from "../../../../components/pages/ApiService";
 import "../css/HistorialAcademico.css";
 import TituloPage from "../../../../components/pages/TituloPage";
@@ -32,9 +31,6 @@ const HistorialAcademico: React.FC = () => {
     const [cicloFiltro, setCicloFiltro] = useState<string>("");
     const [busqueda, setBusqueda] = useState<string>("");
 
-    const CACHE_KEY = "historialAcademico";
-    const CACHE_EXPIRATION_MINUTES = 10;
-
     useEffect(() => {
         const usuario = JSON.parse(localStorage.getItem("usuario") || "{}");
         const datos_udh = JSON.parse(localStorage.getItem("datos_udh") || "{}");
@@ -48,13 +44,7 @@ const HistorialAcademico: React.FC = () => {
 
     useEffect(() => {
         if (udhData && udhData.codigo) {
-            const cachedData = cache.get(CACHE_KEY);
-            if (cachedData) {
-                setHistorial(cachedData);
-                setError(false);
-            } else {
-                fetchHistorial();
-            }
+            fetchHistorial();
         }
     }, [udhData]);
 
@@ -76,7 +66,6 @@ const HistorialAcademico: React.FC = () => {
         } else {
             setHistorial(data_historial.data.data);
             setError(false);
-            cache.set(CACHE_KEY, data_historial.data.data, CACHE_EXPIRATION_MINUTES);
             setUltimaConsulta(obtenerFechaHora());
         }
         } catch (error) {
