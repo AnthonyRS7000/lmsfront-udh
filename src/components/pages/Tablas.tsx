@@ -5,12 +5,12 @@ interface TablasProps {
   headers: string[]; // Encabezados de la tabla
   rows: any[][];
   //rows: Array<Array<string | JSX.Element>>; // Filas de la tabla
-  //className?: string; // Clase adicional para estilos personalizados
+  className?: string; // Clase adicional para estilos personalizados
 }
 
-const Tablas: React.FC<TablasProps> = ({ headers, rows }) => {
+const Tablas: React.FC<TablasProps> = ({ headers, rows, className }) => {
   return (
-    <div className="tabla-container">
+    <div className={`tabla-container ${className}`}>
       <table className="tabla">
         <thead>
           <tr>

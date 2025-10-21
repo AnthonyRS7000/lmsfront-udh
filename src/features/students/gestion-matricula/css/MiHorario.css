@@ -48,6 +48,86 @@
   box-shadow: 0 0 0 1px rgba(90, 158, 141, 0.5);
 }
 
+.mi-horario-botones {
+  display: flex;
+  gap: 10px;
+}
+
+.mi-horario-boton-modo {
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  background: #fff;
+  color: #3C7E6E;
+  border: 1px solid #3C7E6E;
+}
+
+.mi-horario-boton-modo:hover,
+.mi-horario-boton-modo:focus,
+.mi-horario-boton-modo.activo {
+  background: #3C7E6E;
+  color: #fff;
+}
+
+.dark .mi-horario-boton-modo {
+  background: #0f1115;
+  color: #fff;
+}
+
+.dark .mi-horario-boton-modo:hover,
+.dark .mi-horario-boton-modo:focus,
+.dark .mi-horario-boton-modo.activo {
+  background: #3C7E6E;
+  color: #fff;
+}
+
+
+.mi-horario-curso-celda {
+  font-size: 0.9rem;
+  color: #3d3c3b;
+  font-weight: normal;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.tipo-A {
+  justify-content: end;
+  font-weight: bold;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.tipo-B {
+  justify-content: start;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* Estilos específicos para la tabla de MiHorario */
+.mi-horario-tabla {
+  width: 100%;
+  border-collapse: collapse; /* Eliminar espacios entre bordes */
+}
+
+.mi-horario-tabla td:first-child {
+  padding: 5px; /* Padding específico para la columna "HORA" */
+  width: 60px; /* Ancho automático para la columna "HORA" */
+}
+
+.mi-horario-tabla td {
+  padding: 0; /* Eliminar padding de las celdas */
+  width: 50px; /* Ancho fijo para las celdas */
+  height: 50px; /* Altura fija para las celdas */
+}
+
+.mi-horario-tabla td div {
+  width: auto; /* Tomar todo el ancho disponible */
+  height: 100%; /* Tomar toda la altura disponible */
+  margin: 0px 1px;
+}
+
 /* Modo dark para input */
 .dark .mi-horario-input {
   background-color: #0f1115;
@@ -60,23 +140,84 @@
   box-shadow: 0 0 0 1px rgba(60, 126, 110, 0.5);
 }
 
-/* Responsive */
+.dark .curso-celda {
+    color: #3d3c3b; /* Texto blanco para modo oscuro */
+}
+/* Responsive para pantallas medianas */
 @media (max-width: 768px) {
-  .mi-horario-filters {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 12px;
+  .mi-horario-container {
+    margin: 20px 0px; /* Reducir margen */
+    padding: 10px; /* Agregar padding */
   }
+
+  .mi-horario-filters {
+    flex-direction: column; /* Cambiar a columna */
+    align-items: stretch; /* Estirar elementos */
+    gap: 12px; /* Espaciado entre filtros */
+  }
+
   .filter-group {
-    width: 100%;
-    margin-bottom: 8px;
+    width: 100%; /* Ocupa todo el ancho */
+    margin-bottom: 8px; /* Espaciado inferior */
+  }
+
+  .mi-horario-tabla {
+    font-size: 0.9rem; /* Reducir tamaño de fuente */
+  }
+
+  .mi-horario-tabla td {
+    width: 40px; /* Reducir ancho de las celdas */
+    height: 40px; /* Reducir altura de las celdas */
+  }
+
+  .mi-horario-tabla td div {
+    font-size: 0.8rem; /* Reducir tamaño de texto */
   }
 }
 
+/* Responsive para pantallas pequeñas */
 @media (max-width: 480px) {
+  .mi-horario-container {
+    margin: 10px 0px; /* Reducir margen */
+    padding: 5px; /* Reducir padding */
+  }
+
+  .mi-horario-filters {
+    flex-direction: column; /* Cambiar a columna */
+    align-items: stretch; /* Estirar elementos */
+    gap: 10px; /* Espaciado entre filtros */
+  }
+
+  .filter-group {
+    width: 100%; /* Ocupa todo el ancho */
+    margin-bottom: 6px; /* Espaciado inferior */
+  }
+
   .mi-horario-input {
-    width: 40px;
-    padding: 4px 8px;
-    font-size: 0.9rem;
+    width: 45px; /* Reducir ancho */
+    padding: 4px 8px; /* Reducir padding */
+    font-size: 0.8rem; /* Reducir tamaño de fuente */
+  }
+
+  .mi-horario-botones {
+    justify-content: center; /* Centrar botones */
+  }
+
+  .mi-horario-boton-modo {
+    padding: 6px 10px; /* Reducir tamaño de los botones */
+    font-size: 0.7rem; /* Reducir tamaño de fuente */
+  }
+
+  .mi-horario-tabla {
+    font-size: 0.8rem; /* Reducir tamaño de fuente */
+  }
+
+  .mi-horario-tabla td {
+    width: 35px; /* Reducir ancho de las celdas */
+    height: 35px; /* Reducir altura de las celdas */
+  }
+
+  .mi-horario-tabla td div {
+    font-size: 0.7rem; /* Reducir tamaño de texto */
   }
 }

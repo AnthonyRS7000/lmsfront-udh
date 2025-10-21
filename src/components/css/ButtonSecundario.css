@@ -11,12 +11,17 @@
     font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.button-secundario:hover,
+.button-secundario:hover{
+    background-color: #417265;
+    transform: translateY(-3px); 
+}
+
 .button-secundario:active{
     background-color: #417265;
+    transform: translateY(0);
 }
 
 .button-secundario-icon{

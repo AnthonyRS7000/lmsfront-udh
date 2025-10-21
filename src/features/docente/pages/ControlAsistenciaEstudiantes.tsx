@@ -23,7 +23,7 @@ const ControlAsistenciaEstudiantes: React.FC = () => {
 
       {/* Filtros */}
       <div className="control-asistencia-filters">
-        <div className="filter-group">
+        <div className="control-asistencia-filter-group">
           <label htmlFor="asignatura-select">Asignaturas</label>
           <select id="asignatura-select" className="control-asistencia-select">
             <option>- Seleccione una asignatura -</option>
@@ -32,7 +32,7 @@ const ControlAsistenciaEstudiantes: React.FC = () => {
             <option>Química</option>
           </select>
         </div>
-        <div className="filter-group">
+        <div className="control-asistencia-filter-group">
           <label htmlFor="fecha-input">Fecha</label>
           <div className="control-asistencia-date">
             <input

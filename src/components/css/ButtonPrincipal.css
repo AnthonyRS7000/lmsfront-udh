@@ -11,15 +11,17 @@
     font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .button-principal:hover {   
     background-color: #417265;
+    transform: translateY(-3px);
 }
 
 .button-principal:active {
     background-color: #417265;
+    transform: translateY(0); 
 }
 
 .button-icon {

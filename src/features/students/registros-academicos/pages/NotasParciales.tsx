@@ -11,19 +11,19 @@ import DatosNoEncontrados from "../../../../components/pages/DatosNoEncontrados"
 import Loading from "../../../../components/pages/Loading";
 
 const calcularSemestre = (): string => {
-  const fechaActual = new Date();
-  const año = fechaActual.getFullYear();
-  const mes = fechaActual.getMonth() + 1;
+    const fechaActual = new Date();
+    const año = fechaActual.getFullYear();
+    const mes = fechaActual.getMonth() + 1;
 
-  if (mes >= 1 && mes <= 3) {
-    return `${año}-0`;
-  } else if (mes >= 4 && mes <= 7) {
-    return `${año}-1`;
-  } else if (mes >= 8 && mes <= 11) {
-    return `${año}-2`;
-  } else {
-    return `${año}-2`;
-  }
+    if (mes >= 1 && mes <= 3) {
+        return `${año}-0`;
+    } else if (mes >= 4 && mes <= 7) {
+        return `${año}-1`;
+    } else if (mes >= 8 && mes <= 11) {
+        return `${año}-2`;
+    } else {
+        return `${año}-2`;
+    }
 };
 
 const NotasParciales: React.FC = () => {
@@ -40,7 +40,7 @@ const NotasParciales: React.FC = () => {
     const advertenciaRef = useRef<HTMLDivElement>(null);
 
     const CACHE_KEY = `notasParciales_${semestre}`;
-    const CACHE_EXPIRATION_MINUTES = 10;
+    const CACHE_EXPIRATION_MINUTES = 30;
 
     useEffect(() => {
         const datosUdh = JSON.parse(localStorage.getItem("datos_udh") || "{}");

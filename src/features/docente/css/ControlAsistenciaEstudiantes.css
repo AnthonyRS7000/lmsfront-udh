@@ -25,13 +25,13 @@
   margin-bottom: 20px;
 }
 
-.filter-group {
+.control-asistencia-filter-group {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
-.filter-group label {
+.control-asistencia-filter-group label {
   font-size: 1rem;
   font-weight: bold;
   color: #374151;
@@ -100,7 +100,7 @@
   color: #E4E6EB;
 }
 
-.dark .filter-group label {
+.dark .control-asistencia-filter-group label {
   color: #E4E6EB;
 }
 
@@ -141,7 +141,7 @@
     font-size: 1.5rem;
   }
 
-  .filter-group label {
+  .control-asistencia-filter-group label {
     font-size: 0.9rem;
   }
 
