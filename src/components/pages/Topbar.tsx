@@ -1,6 +1,9 @@
 import ThemeToggle from './ThemeToggle';
 import '../css/Topbar.css';
+import '../css/ToastOverrides.css';
 import UserDropdown from './UserDropdown';
+import { ToastContainer, toast,Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface TopbarProps {
   onToggleSidebar: () => void;
@@ -13,8 +16,8 @@ const handleAbrirAula = () => {
   const token = localStorage.getItem("auth_token") || localStorage.getItem("token");
   const google_token = localStorage.getItem("google_token");
   
-  let usuario = null;
-  let datos_udh = null;
+  let usuario: any = null;
+  let datos_udh: any = null;
 
   try {
     usuario = JSON.parse(localStorage.getItem("usuario") || "null");
@@ -23,12 +26,40 @@ const handleAbrirAula = () => {
     console.error("Error parseando datos del usuario:", e);
   }
 
+  const getCurrentSemester = (): string => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth(); // 0 = enero ... 11 = diciembre
+    let term = "0";
+    if (month >= 0 && month <= 1) {
+      term = "0"; // Ene-Feb -> 0
+    } else if (month >= 2 && month <= 6) {
+      term = "1"; // Mar-Jul -> 1
+    } else {
+      term = "2"; // Ago-Dic -> 2
+    }
+    return `${year}-${term}`;
+  };
+
+  // Validación de matrícula en el último semestre (frontend)
+  const ultMat = datos_udh?.ult_sem ?? usuario?.ult_sem ?? null;
+  const latestSem = getCurrentSemester();
+
+  if (!ultMat) {
+    toast.error("No se encontró información de matrícula. No puede abrir el Aula Virtual.");
+    return;
+  }
+
+  if (ultMat !== latestSem) {
+    toast.error("Usted no está matriculado en el último semestre académico.");
+    return;
+  }
+
   const foto = localStorage.getItem("foto") || usuario?.foto || usuario?.image || null;
   const rol = localStorage.getItem("rol") || usuario?.rol || usuario?.role || "Estudiante";
 
-  // Validar que tenemos al menos el token
   if (!token) {
-    alert("No estás autenticado. Por favor, inicia sesión primero.");
+    toast.error("No estás autenticado. Por favor, inicia sesión primero.");
     return;
   }
 
@@ -45,18 +76,30 @@ const handleAbrirAula = () => {
     const encoded = btoa(JSON.stringify(payload));
     const fullUrl = `${targetUrl}#${encoded}`;
     
-    console.log("➡️ Redirigiendo a Aula Virtual con datos:", {
-      tiene_token: !!token,
-      tiene_google_token: !!google_token,
-      tiene_usuario: !!usuario,
-      url: fullUrl.substring(0, 50) + "..."
-    });
 
-    window.location.href = fullUrl;
+    // opcional: mostrar toast de éxito antes de redirigir
+    toast.success("Abriendo Aula Virtual");
+    setTimeout(() => {
+      window.location.href = fullUrl;
+    }, 600);
   } catch (error) {
-    console.error("Error al redirigir:", error);
-    alert("Error al abrir el Aula Virtual");
+    toast.error("Error al abrir el Aula Virtual");
   }
+};
+
+// Custom close button para react-toastify
+const ToastCloseButton = ({ closeToast }: any) => {
+  const isDark = document.documentElement.classList.contains('dark') || document.body.classList.contains('dark');
+  return (
+    <button
+      onClick={closeToast}
+      className={`toast-close-btn ${isDark ? 'dark' : 'light'}`}
+      aria-label="Cerrar notificación"
+      title="Cerrar"
+    >
+      ×
+    </button>
+  );
 };
 
 export default function Topbar({ onToggleSidebar, isSidebarOpen }: TopbarProps) {
@@ -113,6 +156,23 @@ export default function Topbar({ onToggleSidebar, isSidebarOpen }: TopbarProps) 
           <UserDropdown />
         </div>
       </div>
+
+      {/* Toast container centrado y con close button personalizado */}
+      <ToastContainer
+        className="toast-center-container"
+        toastClassName="toast-custom"
+        position="bottom-right" /* se sobreescribe por CSS para centrar verticalmente */
+        closeButton={<ToastCloseButton />}
+        hideProgressBar
+        autoClose={3000}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        transition={Bounce}
+      />
     </header>
   );
 }

@@ -1,0 +1,85 @@
+.alert-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.5); /* semi-transparente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1200;
+  padding: 1rem;
+}
+
+.alert-box {
+  width: 100%;
+  max-width: 480px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(2,6,23,0.2);
+  overflow: hidden;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+.alert-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #eef2f7;
+}
+
+.alert-title {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.alert-close {
+  background: transparent;
+  border: none;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #374151;
+}
+
+.alert-body {
+  padding: 1rem;
+  color: #334155;
+  font-size: 0.95rem;
+}
+
+.alert-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid #eef2f7;
+}
+
+.alert-ok,
+.alert-action {
+  padding: 0.5rem 0.9rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.alert-ok {
+  background: #111827;
+  color: #fff;
+}
+
+.alert-action {
+  background: transparent;
+  color: #111827;
+  border: 1px solid #e6edf3;
+}
+
+/* color variants */
+.alert-info .alert-header { background: linear-gradient(90deg,#f8fafc,#ffffff); }
+.alert-success .alert-header { background: linear-gradient(90deg,#ecfdf5,#ffffff); }
+.alert-error .alert-header { background: linear-gradient(90deg,#fff1f2,#ffffff); }
+
+.alert-info .alert-title { color: #0f172a; }
+.alert-success .alert-title { color: #065f46; }
+.alert-error .alert-title { color: #7f1d1d; }

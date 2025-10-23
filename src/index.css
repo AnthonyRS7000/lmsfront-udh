@@ -168,7 +168,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #39B49E;
+ /*  background-color: #39B49E; */
   color: white;
   cursor: pointer;
   transition: all 0.1s;

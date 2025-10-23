@@ -7,11 +7,15 @@ import udh_img2 from "./assets/3.jpg";
 import udh_img3 from "./assets/4.jpg";
 import udh_logo from "./assets/logo.png";
 import { MoonIcon, SunIcon } from "@heroicons/react/24/solid";
+import { useThemeContext } from "./context/ThemeContext";
 
 function Login() {
   const navigate = useNavigate();
   const { login, isAuthenticated, rol } = useAuth();
-  const [darkMode, setDarkMode] = useState(false);
+
+   const { theme, toggleTheme, isDark } = useThemeContext();
+
+
   const images = [udh_img2, udh_img, udh_img3];
   const [currentImg, setCurrentImg] = useState(0);
   const [sliding, setSliding] = useState(false);
@@ -38,7 +42,6 @@ function Login() {
     const left = window.screenX + (window.outerWidth - width) / 2;
     const top = window.screenY + (window.outerHeight - height) / 2;
 
-    // ✅ Mandamos el dominio actual en el state
     const state = btoa(
       JSON.stringify({
         timestamp: Date.now(),
@@ -73,7 +76,6 @@ function Login() {
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
-      console.log('message recibido desde popup:', event.origin, event.data);
       const allowedOrigins = [
         "http://127.0.0.1:8000",
         "http://localhost:5173",
@@ -123,7 +125,7 @@ function Login() {
         localStorage.setItem("rol", usuario.rol);
         
         login(token, usuario);
-        
+
         switch (usuario.rol?.toLowerCase()) {
           case "estudiante":
             navigate("/estudiante");
@@ -145,10 +147,10 @@ function Login() {
   }, [login, navigate]);
 
   return (
-    <div className={`login-row-container${darkMode ? " dark" : ""}`}>
+    <div className={`login-row-container${isDark ? " dark" : ""}`}>
       {/* Columna imagen */}
       <div className="login-col-img">
-        <div className={`login-logo-container${darkMode ? " dark" : ""}`}>
+        <div className={`login-logo-container${isDark ? " dark" : ""}`}>
           <img src={udh_logo} alt="Logo_light" className="login-logo-img" />
         </div>
         <div className="login-bg-img">
@@ -156,14 +158,14 @@ function Login() {
             <img
               src={images[currentImg]}
               alt={`Campus universitario ${currentImg + 1}`}
-              className={`login-bg-img-real${darkMode ? " grayscale" : ""} slide-img`}
+              className={`login-bg-img-real${isDark ? " grayscale" : ""} slide-img`}
               style={{ left: 0, zIndex: 1 }}
             />
             {sliding && (
               <img
                 src={images[nextImg]}
                 alt={`Campus universitario ${nextImg + 1}`}
-                className={`login-bg-img-real${darkMode ? " grayscale" : ""} slide-img`}
+                className={`login-bg-img-real${isDark ? " grayscale" : ""} slide-img`}
                 style={{
                   left: sliding ? "-100%" : "0",
                   zIndex: 2,
@@ -177,7 +179,7 @@ function Login() {
 
       {/* Columna card */}
       <div className="login-col-card">
-        <div className={`login-card${darkMode ? " dark" : ""}`}>
+        <div className={`login-card${isDark ? " dark" : ""}`}>
           <div className="login-card-borders">
             <div className="login-card-content">
               <h2 className="login-title">Iniciar sesión</h2>
@@ -241,15 +243,16 @@ function Login() {
         </div>
         <button
           className="login-darkmode-btn-screen"
-          onClick={() => setDarkMode(!darkMode)}
-          title={darkMode ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+          onClick={() => toggleTheme()}
+          title={isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
         >
-          {darkMode ? (
+          {isDark ? (
             <SunIcon style={{ width: 24, height: 24 }} />
           ) : (
             <MoonIcon style={{ width: 24, height: 24 }} />
           )}
         </button>
+
       </div>
     </div>
   );
