@@ -93,26 +93,55 @@ const MiHorario: React.FC = () => {
         }
     };
 
+     // Función para formatear el contenido del horario
+    const formatHorario = (dia: string): JSX.Element | string => {
+        if (!dia || typeof dia !== "string") return ""; // Si no hay contenido, devolver vacío
+
+        const texto = dia.trim();
+        if (texto === "") return "";
+
+        // Intentar separar por '->' (hora -> detalles)
+        const partes = texto.split("->");
+        if (partes.length < 2) return ""; // Formato inesperado
+
+        // extraer la parte izquierda donde está la hora (p. ej. "Lunes: 09:30-11:00" o "09:30-11:00")
+        const izquierda = partes[0].trim();
+        // Buscar patrón de hora "HH:MM-HH:MM"
+        const horaMatch = izquierda.match(/(\d{1,2}:\d{2}\s*-\s*\d{1,2}:\d{2})/);
+        const hora = horaMatch ? horaMatch[1].replace(/\s+/g, "") : izquierda.replace(/^[A-Za-zÁÉÍÓÚáéíóúÑñ:\s]*/g, "").trim();
+
+        // detalles (ubicación y modalidad) pueden venir con espacios múltiples
+        const detalles = partes[1].trim();
+        const tokens = detalles.split(/\s+/).filter(Boolean);
+        const ubicacion = tokens.length > 0 ? tokens[0] : "";
+        const modalidad = tokens.length > 1 ? tokens.slice(1).join(" ") : "";
+
+        return (
+            <div className="mi-horario-datos-celda">
+                <label>{hora}</label>
+                <br />
+                <label>{ubicacion}</label>
+                <br />
+                <label>{modalidad}</label>
+            </div>
+        );
+    };
+
     // Encabezados de la tabla
-    const headersModo1 = ["CÓDIGO", "CURSO", "CICLO", "CRÉD.", "HORARIO", "SEC."];
+    const headersModo1 = ["CÓDIGO", "CURSO", "SEC.", "CICLO", "LUNES", "MARTES", "MIÉRCOLES", "JUEVES", "VIERNES", "SÁBADO", "DOMINGO"];
 
     const rowsModo1 = miHorario.map((horario) => [
         horario.codigo_curso,
         horario.nombre_curso,
-        horario.ciclo,
-        horario.creditos,
-        [
-        horario.lunes,
-        horario.martes,
-        horario.miercoles,
-        horario.jueves,
-        horario.viernes,
-        horario.sabado,
-        horario.domingo,
-        ]
-        .filter((dia) => dia)
-        .map((dia, i) => <div key={i}>{dia}</div>),
         horario.seccion,
+        horario.ciclo,
+        formatHorario(horario.lunes),
+        formatHorario(horario.martes),
+        formatHorario(horario.miercoles),
+        formatHorario(horario.jueves),
+        formatHorario(horario.viernes),
+        formatHorario(horario.sabado),
+        formatHorario(horario.domingo),
     ]);
 
     const headersModo2 = ["HORA", "LUNES", "MARTES", "MIÉRCOLES", "JUEVES", "VIERNES", "SÁBADO", "DOMINGO"];
@@ -291,7 +320,7 @@ const MiHorario: React.FC = () => {
                 ) : error ? (
                     <DatosNoEncontrados />
                 ) : modo === 1 ? (
-                    <Tablas headers={headersModo1} rows={rowsModo1} className="mi-horario-tabla" />
+                    <Tablas headers={headersModo1} rows={rowsModo1} />
                 ) : (
                     <Tablas headers={headersModo2} rows={rowsModo2} className="mi-horario-tabla" />
                 )}

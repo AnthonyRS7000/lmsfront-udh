@@ -1,7 +1,11 @@
 /* Contenedor principal */
 .historial-container {
-  margin: 40px auto;
-  padding: 0px 20px;
+  margin: 40px 0px;
+  width: auto;
+}
+
+.dark .historial-container {
+  color: #E4E6EB;
 }
 
 /* Barra superior y filtros */
@@ -17,7 +21,7 @@
   display: flex;
   justify-content: space-between; /* Distribuir los elementos horizontalmente */
   align-items: center; /* Alinear verticalmente */
-  gap: 20px; /* Espaciado entre los filtros */
+  gap: 10px; /* Espaciado entre los filtros */
   flex-wrap: wrap; /* Permitir que los elementos se ajusten si no caben */
 }
 
@@ -34,6 +38,10 @@
   color: #3d3c3b;
 }
 
+.dark .historial-nombre-usuario label {
+  color: #E4E6EB; /* Texto claro en modo oscuro */
+}
+
 /* Estilo para los inputs y selects */
 .historial-filtros-row input,
 .historial-filtros-row select {
@@ -45,11 +53,30 @@
   color: #3d3c3b;
 }
 
+.dark .historial-filtros-row input,
+.dark .historial-filtros-row select {
+  background-color: #1E2127; /* Fondo del select en modo oscuro */
+  color: #E4E6EB; /* Color del texto en el select en modo oscuro */
+  border: 1px solid #3C7E6E;
+}
+
+.dark .ver-horario-select option {
+  background-color: #232323; /* Fondo de las opciones en modo oscuro */
+  color: #E4E6EB; /* Color del texto de las opciones en modo oscuro */
+  border: 1px solid #3C7E6E;
+}
+
 .historial-filtros-row input:focus,
 .historial-filtros-row select:focus {
   border-color: #5a9e8d;
   outline: none;
   box-shadow: 0 0 0 1px rgba(90, 158, 141, 0.5);
+}
+
+.dark .historial-filtros-row input:focus,
+.dark .historial-filtros-row select:focus {
+  border-color: #3C7E6E;
+  box-shadow: 0 0 0 1px rgba(60, 126, 110, 0.5);
 }
 
 .historial-footer {
@@ -61,4 +88,81 @@
   flex-direction: column;
   align-items: center;
   gap: 10px;
+}
+
+.dark .historial-footer {
+  color: #E4E6EB;
+}
+
+/* Modo Responsive */
+
+/* Pantallas medianas */
+@media (max-width: 768px) {
+  .historial-container {
+    padding: 10px 15px; /* Reducir padding */
+  }
+
+  .historial-barra-superior {
+    flex-direction: column; /* Colocar la barra superior en una columna */
+    gap: 10px; /* Espaciado entre elementos */
+  }
+
+  .historial-filtros-row {
+    flex-direction: column; /* Colocar los filtros en una columna */
+    gap: 10px; /* Espaciado entre filtros */
+  }
+
+  .historial-nombre-usuario {
+    flex-direction: column; /* Colocar el label y el input en una columna */
+    gap: 8px; /* Reducir espacio entre elementos */
+  }
+
+  .historial-filtros-row label {
+    font-size: 0.9rem; /* Reducir tamaño de fuente */
+  }
+
+  .historial-filtros-row input,
+  .historial-filtros-row select {
+    font-size: 0.9rem; /* Reducir tamaño de fuente */
+    padding: 6px 10px; /* Reducir padding */
+  }
+
+  .historial-footer {
+    font-size: 0.9rem; /* Reducir tamaño de fuente */
+    gap: 8px; /* Reducir espacio entre elementos */
+  }
+}
+
+/* Pantallas pequeñas */
+@media (max-width: 480px) {
+  .historial-container {
+    padding: 8px 10px; /* Reducir padding */
+  }
+
+  .historial-barra-superior {
+    gap: 8px; /* Reducir espaciado entre elementos */
+  }
+
+  .historial-filtros-row {
+    gap: 8px; /* Reducir espaciado entre filtros */
+  }
+
+  .historial-nombre-usuario {
+    gap: 6px; /* Reducir espacio entre elementos */
+  }
+
+  .historial-filtros-row label {
+    font-size: 0.8rem; /* Reducir tamaño de fuente */
+  }
+
+  .historial-filtros-row input,
+  .historial-filtros-row select {
+    font-size: 0.8rem; /* Reducir tamaño de fuente */
+    padding: 5px 8px; /* Reducir padding */
+  }
+
+  .historial-footer {
+    font-size: 0.8rem; /* Reducir tamaño de fuente */
+    gap: 6px; /* Reducir espacio entre elementos */
+  }
 }

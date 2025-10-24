@@ -126,24 +126,26 @@ const CursosLlevados: React.FC = () => {
             <Card>
                 <div className="cursos-llevados-barra-superior">
                     <div className="cursos-llevados-filtros-row">
-                        <div>
+                        <div className="cursos-llevados-row">
                             <label>
                                 Apellidos y Nombres:
                             </label>
                             {nombre}
                         </div>
-                        <div>
+                        <div className="cursos-llevados-row-2">
                             <label htmlFor="busqueda">Buscar:</label>
                             <input
                                 id="busqueda"
                                 type="text"
                                 placeholder="Buscar curso, código..."
+                                className="cursos-llevados-input"
                                 value={busqueda}
                                 onChange={(e) => setBusqueda(e.target.value)}
                             />
                             <label htmlFor="filtro-ciclo">Ciclo:</label>
                             <select
                                 id="filtro-ciclo"
+                                className="cursos-llevados-select"
                                 value={cicloFiltro}
                                 onChange={(e) => setCicloFiltro(e.target.value)}
                             >

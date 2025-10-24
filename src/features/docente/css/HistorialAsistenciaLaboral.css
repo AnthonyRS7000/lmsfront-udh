@@ -1,0 +1,139 @@
+/* Página principal */
+.historial-asistencia-page {
+  margin: 40px 0px;
+  width: auto;
+}
+
+.historial-asistencia-titulo {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.historial-asistencia-subtitulo {
+  font-size: 1rem;
+  color: #6b7280;
+  margin: 16px 30px;
+}
+
+/* Card principal */
+.historial-asistencia-card {
+  margin-top: 16px;
+  padding: 24px;
+}
+
+/* Filtros */
+.historial-asistencia-filtros {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.historial-asistencia-filtro {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.historial-asistencia-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.historial-asistencia-input-wrap {
+  position: relative;
+}
+
+.historial-asistencia-input,
+.historial-asistencia-select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.historial-asistencia-icon {
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b7280;
+    font-size: 1.2rem;
+}
+
+/* Tabla */
+.estado {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  width: auto;
+}
+
+.estado-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.estado-presente {
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+
+.estado-ausente {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+.estado-justificado {
+  background-color: #fef9c3;
+  color: #ca8a04;
+}
+
+.historial-asistencia-btn-detalles-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.historial-asistencia-btn-detalles {
+  padding: 6px 12px;
+}
+
+/* Card de detalles */
+.historial-detalles-card {
+  margin-top: 24px;
+  padding: 24px;
+}
+
+.historial-detalles-titulo {
+    text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.historial-detalles-subtitulo {
+  font-size: 1rem;
+  color: #6b7280;
+  margin-bottom: 16px;
+}
+
+.historial-detalles-notas {
+  margin-top: 16px;
+  background: #f9fafb;
+  padding: 12px;
+  border-radius: 4px;
+}
+
+.historial-detalles-btn-cerrar {
+  margin-top: 16px;
+  padding: 8px 16px;
+}

@@ -144,6 +144,12 @@ function Login() {
     return () => window.removeEventListener("message", handleMessage);
   }, [login, navigate]);
 
+  //Eliminar cuando este listo la API para Login Docente con google
+  const handleDocenteLogin = () => {
+    navigate('/docente');
+    localStorage.setItem("rol", "docente");
+  }
+
   return (
     <div className={`login-row-container${darkMode ? " dark" : ""}`}>
       {/* Columna imagen */}
@@ -222,7 +228,7 @@ function Login() {
 
               <button
                 className="login-docente-btn"
-                onClick={() => navigate('/docente')}
+                onClick={handleDocenteLogin}
                 aria-label="Acceso docente"
               >
                 DOCENTE

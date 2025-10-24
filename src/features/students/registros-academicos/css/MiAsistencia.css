@@ -1,14 +1,13 @@
 .asistencia-container {
-  max-width: auto;
-  margin: 32px auto;
-  padding: 0 32px;
+  margin: 40px 0px;
+  width: auto;
 }
 
 .asistencia-estudiante-header {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 15px;
 }
 
 .asistencia-nombre-estudiante {
@@ -25,9 +24,8 @@
 .asistencia-estudiante-info {
   display: flex;
   gap: 32px;
-  margin-bottom: 8px;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   color: #3d3c3b;
 }
 
@@ -55,7 +53,6 @@
   font-size: 1rem;
   background: #fff;
   color: #333;
-  margin-right: 10px;
 }
 
 .asistencia-input-semestre:focus {
@@ -79,7 +76,7 @@
   font-size: 1.2rem;
   font-weight: 700;
   color: #5a9e8d;
-  margin-bottom: 12px;
+  margin: 0px auto;
   text-align: center;
 }
 
@@ -90,9 +87,9 @@
 
 .asistencia-btn-ver {
   display: inline-flex;
-  background: #5a9e8d;
-  border: 1px solid #fff;
-  color: #fff;
+  background: #fff;
+  border: 1px solid #5a9e8d;
+  color: #5a9e8d;
   border-radius: 5px;
   padding: 4px 14px 4px 8px;
   font-weight: 600;
@@ -102,18 +99,21 @@
   transition: background 0.2s, color 0.2s;
 }
 
-.asistencia-btn-ver:hover {
-  background: #fff;
-  color: #5a9e8d;
+.asistencia-btn-ver:hover,
+.asistencia-btn-ver:focus,
+.asistencia-btn-ver.activo {
+  background: #5a9e8d;
+  color: #fff;
   border-color: #5a9e8d;
 }
 
 .dark .asistencia-btn-ver {
-  background: #3C7E6E; /* Fondo oscuro */
-  border-color: #3C7E6E;
+  background: #0f1115; /* Fondo oscuro */
 }
 
-.dark .asistencia-btn-ver:hover {
+.dark .asistencia-btn-ver:hover,
+.dark .asistencia-btn-ver:focus,
+.dark .asistencia-btn-ver.activo  {
   background: #417265; /* Hover en modo oscuro */
   color: #fff;
 }
@@ -127,7 +127,7 @@
   font-size: 1.2rem;
   font-weight: 700;
   color: #5a9e8d;
-  margin-bottom: 12px;
+  margin: 0px auto;
   text-align: center;
 }
 
@@ -145,38 +145,22 @@
   color: #E4E6EB;
 }
 
-.asistencia-btn-imprimir {
-  width: 135px;
-  margin-top: 12px;
-  padding: auto;
-  font-size: 16px;
-  border-radius: 5px;
-  border: 1px solid #888;
-  background: #fff;
-  color: #222;
-  cursor: pointer;
-  transition: background 0.2s;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+.asistencia-curso-nombre {
+  width: auto;
 }
 
-.asistencia-btn-imprimir:hover {
-  background: #e0e0e0;
+.asistencia-curso-nombre-principal {
+  font-weight: 700;
+  margin-bottom: 6px;
 }
 
-.dark .asistencia-btn-imprimir {
-  background: #232323; /* Fondo oscuro */
-  color: #E4E6EB; /* Color del texto en modo oscuro */
+.asistencia-curso-horario {
+  font-size: 0.9rem;
+  color: #555;
 }
 
-.dark .asistencia-btn-imprimir:hover {
-  background: #343434; /* Hover en modo oscuro */
-}
-
-.asistencia-icono-impresora {
-  width: 20px;
-  height: 20px;
+.dark .asistencia-curso-horario {
+  color: #CFCFCF;
 }
 
 /* Modo Responsive */
@@ -185,9 +169,23 @@
     padding: 0 16px; /* Reducir padding para pantallas medianas */
   }
 
+  .asistencia-estudiante-header {
+    margin-bottom: 10px; /* Reducir margen inferior */
+  }
+
+  .asistencia-nombre-estudiante {
+    font-size: 1rem; /* Reducir tamaño de fuente */
+  }
+
   .asistencia-estudiante-info {
     flex-direction: column; /* Colocar la información en una columna */
     gap: 16px; /* Reducir espacio entre elementos */
+  }
+
+  .asistencia-estudiante-semestre {
+    flex-direction: column; /* Colocar los elementos en una columna */
+    gap: 8px; /* Reducir espacio entre elementos */
+    align-items: center; /* Centrar contenido */
   }
 
   .asistencia-input-semestre {
@@ -195,12 +193,22 @@
     font-size: 0.9rem; /* Reducir tamaño de fuente */
   }
 
-  .asistencia-btn-ver {
-    font-size: 0.9rem; /* Reducir tamaño de fuente para pantallas medianas */
-    padding: 6px 12px; /* Reducir padding */
+  .asistencia-titulo-cursos {
+    font-size: 1rem; /* Reducir tamaño de fuente */
+    margin-bottom: 8px; /* Reducir margen inferior */
   }
 
-  .asistencia-btn-imprimir {
+  .asistencia-titulo-asistencia {
+    font-size: 1rem; /* Reducir tamaño de fuente */
+    margin-bottom: 8px; /* Reducir margen inferior */
+  }
+
+  .asistencia-resumen-asistencia {
+    font-size: 0.9rem; /* Reducir tamaño de fuente */
+    gap: 8px; /* Reducir espacio entre elementos */
+  }
+
+  .asistencia-btn-ver {
     font-size: 0.9rem; /* Reducir tamaño de fuente para pantallas medianas */
     padding: 6px 12px; /* Reducir padding */
   }
@@ -211,106 +219,61 @@
     padding: 0 8px; /* Reducir padding para pantallas pequeñas */
   }
 
+  .asistencia-estudiante-header {
+    margin-bottom: 8px; /* Reducir margen inferior */
+  }
+
+  .asistencia-nombre-estudiante {
+    font-size: 0.9rem; /* Reducir tamaño de fuente */
+  }
+
   .asistencia-estudiante-info {
     gap: 12px; /* Reducir espacio entre elementos */
+    align-items: start;
+    font-size: 0.9rem;
+  }
+
+  .asistencia-estudiante-semestre {
+    flex-direction: row; /* Colocar los elementos en una columna */
+    gap: 6px; /* Reducir espacio entre elementos */
+    align-items: center;
   }
 
   .asistencia-input-semestre {
     font-size: 0.8rem; /* Reducir tamaño de fuente */
     padding: 4px 8px; /* Reducir padding */
+    width: 40px;
+  }
+
+  .asistencia-titulo-cursos {
+    font-size: 0.9rem; /* Reducir tamaño de fuente */
+    margin-bottom: 6px; /* Reducir margen inferior */
+  }
+
+  .asistencia-titulo-asistencia {
+    font-size: 0.9rem; /* Reducir tamaño de fuente */
+    margin-bottom: 6px; /* Reducir margen inferior */
+  }
+
+  .asistencia-resumen-asistencia {
+    font-size: 0.8rem; /* Reducir tamaño de fuente */
+    gap: 6px; /* Reducir espacio entre elementos */
   }
 
   .asistencia-btn-ver {
     font-size: 0.8rem; /* Reducir tamaño de fuente para pantallas pequeñas */
     padding: 4px 10px; /* Reducir padding */
+    margin: auto auto; /* Centrar el botón */
   }
 
-  .asistencia-btn-imprimir {
-    font-size: 0.8rem; /* Reducir tamaño de fuente para pantallas pequeñas */
-    padding: 4px 10px; /* Reducir padding */
+  .asistencia-curso-nombre {
+    font-size: 10px;
+    width: 230px;
+  }
+
+  .asistencia-curso-horario {
+    display: flex;
+    flex-direction: column;
+    font-size: 10px;
   }
 }
-
-/* Impresión */
-@media print {
-  html, body {
-    width: 210mm;
-    height: 297mm;
-    margin: 0;
-    padding: 0;
-    background: #fff !important;
-  }
-
-  body * {
-    visibility: hidden !important;
-  }
-
-  .asistencia-print, 
-  .asistencia-print * {
-    visibility: visible !important;
-  }
-
-  /* Elimina bordes, fondo y sombra de los cards */
-  .asistencia-card, .asistencia-card-estudiante, .asistencia-card-cursos, .asistencia-card-asistencia {
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    border: none !important;
-    background: none !important;
-    padding: 0 !important;
-    margin: 0 0 12px 0 !important;
-  }
-
-  /* Oculta la línea vertical decorativa */
-  .asistencia-card::before,
-  .asistencia-card-estudiante::before,
-  .asistencia-card-cursos::before,
-  .asistencia-card-asistencia::before {
-    display: none !important;
-  }
-
-  /* Ajusta el ancho del área imprimible */
-  .asistencia-print {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 190mm !important;
-    margin: 0 auto !important;
-    padding: 0 !important;
-    background: none !important;
-    box-shadow: none !important;
-  }
-
-  /* Ajusta tablas */
-  .asistencia-tabla-cursos, .asistencia-tabla-asistencia {
-    width: 100% !important;
-    font-size: 0.95rem !important;
-    background: none !important;
-  }
-
-  /* Oculta todos los botones */
-  .asistencia-btn-imprimir,
-  .asistencia-btn-ver,
-  .asistencia-btn-mostrar {
-    display: none !important;
-  }
-
-  /* Solo muestra la fila seleccionada en la tabla de cursos */
-  .asistencia-print .asistencia-card-cursos .asistencia-tabla-cursos tbody tr {
-    display: none;
-  }
-  .asistencia-print .asistencia-card-cursos .asistencia-tabla-cursos tbody tr.selected {
-    display: table-row;
-  }
-
-  /* Quita bordes y fondo de inputs y checkboxes */
-  input[type="text"], input[type="checkbox"] {
-    border: none !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    color: #222 !important;
-    outline: none !important;
-    padding: 0 !important;
-    font-size: 1rem !important;
-  }
-}
-

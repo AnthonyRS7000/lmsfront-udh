@@ -128,6 +128,10 @@
   margin: 0px 1px;
 }
 
+.mi-horario-datos-celda {
+    width: 100px;
+  }
+
 /* Modo dark para input */
 .dark .mi-horario-input {
   background-color: #0f1115;
@@ -189,7 +193,7 @@
   }
 
   .filter-group {
-    width: 100%; /* Ocupa todo el ancho */
+    width: 165px; /* Ocupa todo el ancho */
     margin-bottom: 6px; /* Espaciado inferior */
   }
 
@@ -219,5 +223,9 @@
 
   .mi-horario-tabla td div {
     font-size: 0.7rem; /* Reducir tamaño de texto */
+  }
+
+  .mi-horario-datos-celda {
+    width: 70px;
   }
 }

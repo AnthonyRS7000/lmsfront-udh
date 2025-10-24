@@ -1,0 +1,97 @@
+/* Página principal */
+.horario-page {
+  padding: 24px;
+}
+
+/* Filtros */
+.horario-filtros {
+  display: flex;
+  gap: 12px;
+  justify-content: end;
+}
+
+.horario-filtros-group {
+  display: flex;
+  background: #f3f4f6;
+  border-radius: 8px;
+}
+
+.horario-filtro-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background-color: #f3f4f6;
+  color: #374151;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.horario-filtro-btn.activo {
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+
+.horario-filtro-btn:hover {
+  background-color: #e5e7eb;
+}
+
+.horario-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+/* Tabla */
+.table-row {
+  text-align: center;
+}
+
+/* Modo Dark */
+.dark .horario-card {
+  background-color: #1f2937;
+  color: #e5e7eb;
+}
+
+.dark .horario-filtro-btn {
+  background-color: #374151;
+  color: #e5e7eb;
+  border: 1px solid #4b5563;
+}
+
+.dark .horario-filtro-btn.activo {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.dark .horario-filtro-btn:hover {
+  background-color: #4b5563;
+}
+
+.dark .horario-filtro-btn-exportar {
+  background-color: #374151;
+  color: #e5e7eb;
+  border: 1px solid #4b5563;
+}
+
+.dark .horario-filtro-btn-exportar:hover {
+  background-color: #4b5563;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .horario-filtros {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .horario-filtro-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .horario-filtro-btn-exportar {
+    width: 100%;
+    text-align: center;
+  }
+}

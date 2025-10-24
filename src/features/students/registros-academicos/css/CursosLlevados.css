@@ -1,7 +1,7 @@
 /* Contenedor principal */
 .cursos-llevados-container {
-  margin: 40px auto;
-  padding: 0px 20px;
+  margin: 40px 0px;
+  width: auto;
 }
 
 /* Modo Dark */
@@ -78,27 +78,32 @@
   box-shadow: 0 0 0 1px rgba(60, 126, 110, 0.5);
 }
 
-/* Estilo para el input de "Apellidos y Nombres" */
-.cursos-llevados-input-disabled {
-  border: none;
+/* Estilo para las opciones del select */
+.cursos-llevados-filtros-row select option {
+  background-color: #f9f9f9; /* Fondo de las opciones */
+  color: #3d3c3b; /* Color del texto de las opciones */
+  border: 1px solid #5a9e8d;
   border-radius: 5px;
-  padding: 5px 10px;
-  font-size: 1rem;
-  background-color: #f9f9f9;
-  color: #3d3c3b;
-  width: 100%;
-  max-width: 300px;
 }
 
-.dark .cursos-llevados-input-disabled {
-  background-color: #0f1115; /* Fondo oscuro */
-  color: #5A5D62; /* Color del texto en modo oscuro */
+.dark .cursos-llevados-filtros-row select option {
+  background-color: #232323; /* Fondo de las opciones en modo oscuro */
+  color: #E4E6EB; /* Color del texto de las opciones en modo oscuro */
+  border: 1px solid #3C7E6E;
+}
+
+.cursos-llevados-filtros-row select option:hover {
+  background-color: #5a9e8d; /* Fondo al pasar el cursor sobre una opción */
+  cursor: pointer;
+}
+
+.dark .cursos-llevados-filtros-row select option:hover {
+  background-color: #3C7E6E; /* Fondo al pasar el cursor sobre una opción en modo oscuro */
 }
 
 /* Footer */
 .cursos-llevados-footer {
   margin-top: 10px;
-  margin-bottom: 20px;
   font-size: 15px;
   color: #222;
   display: flex;
@@ -123,8 +128,18 @@
     gap: 10px; /* Espaciado entre filtros */
   }
 
-  .cursos-llevados-input-disabled {
-    max-width: 100%; /* Asegurar que el input ocupe todo el ancho disponible */
+  .cursos-llevados-filtros-row label {
+    font-size: 12px; /* Reducir tamaño de fuente para pantallas medianas */
+  }
+
+  .cursos-llevados-filtros-row select,
+  .cursos-llevados-filtros-row input {
+    width: 100%; /* Asegurar que el select ocupe todo el ancho disponible */
+    font-size: 12px; /* Reducir tamaño de fuente para pantallas medianas */
+  }
+
+  .cursos-llevados-row {
+    font-size: 0.9rem; /* Reducir tamaño de fuente para el nombre */
   }
 }
 
@@ -139,10 +154,38 @@
 
   .cursos-llevados-filtros-row {
     gap: 8px; /* Reducir espaciado entre filtros */
+    align-items: flex-start;
   }
 
-  .cursos-llevados-input-disabled {
-    font-size: 0.9rem; /* Reducir tamaño de fuente para pantallas pequeñas */
-    padding: 4px 8px; /* Reducir padding para pantallas pequeñas */
+  .cursos-llevados-filtros-row label {
+    font-size: 10px; /* Ajustar tamaño de fuente para pantallas muy pequeñas */
+    margin: 0px;
+  }
+
+  .cursos-llevados-filtros-row select,
+  .cursos-llevados-filtros-row input {
+    width: auto;
+    font-size: 10px; /* Ajustar tamaño de fuente para pantallas muy pequeñas */
+    padding: 4px 8px; /* Reducir padding para pantallas muy pequeñas */
+  }
+
+  .cursos-llevados-row {
+    font-size: 0.6rem; /* Reducir tamaño de fuente para el nombre */
+    flex-direction: column;
+    display: flex;
+    gap: 4px;
+  }
+  .cursos-llevados-row-2{
+    font-size: 0.6rem; /* Reducir tamaño de fuente para el nombre */
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .cursos-llevados-footer {
+    font-size: 12px; /* Ajustar tamaño de fuente para pantallas muy pequeñas */
+    margin-top: 8px;
+    text-align: center;
   }
 }

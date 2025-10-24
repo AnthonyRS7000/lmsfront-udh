@@ -1,0 +1,206 @@
+/* Página principal */
+.solicitud-adelanto-page {
+  padding: 24px;
+}
+
+.solicitud-adelanto-titulo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.solicitud-adelanto-subtitulo {
+  font-size: 1rem;
+  color: #6b7280;
+  margin-bottom: 16px;
+}
+
+/* Contenido */
+.solicitud-adelanto-contenido {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+/* Formulario principal */
+.solicitud-adelanto-formulario {
+  flex: 1;
+  padding: 24px;
+}
+
+.solicitud-adelanto-form-group {
+  margin-bottom: 16px;
+}
+
+.solicitud-adelanto-form-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.solicitud-adelanto-form-input {
+  width: 100%; /* Asegura que el input ocupe todo el ancho disponible */
+  max-width: 400px; /* Limita el ancho máximo del input */
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  box-sizing: border-box;
+}
+
+.solicitud-adelanto-form-input-wrap {
+  position: relative;
+  max-width: 400px;
+}
+
+.solicitud-adelanto-form-input-icon {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  color: #6b7280;
+}
+
+.solicitud-adelanto-form-condiciones {
+  background-color: #f3f4f6;
+  padding: 12px;
+  border-radius: 4px;
+  margin-top: 16px;
+}
+
+.solicitud-adelanto-form-condiciones h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.solicitud-adelanto-form-condiciones ul {
+  list-style: disc;
+  padding-left: 20px;
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+.solicitud-adelanto-form-acciones {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.solicitud-adelanto-form-link {
+  display: block;
+  margin-top: 16px;
+  font-size: 0.9rem;
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.solicitud-adelanto-form-link:hover {
+  text-decoration: underline;
+}
+
+/* Detalles del solicitante */
+.solicitud-adelanto-detalles {
+  flex: 0.4;
+  padding: 24px;
+}
+
+.solicitud-adelanto-detalles h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.solicitud-adelanto-detalles p {
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.solicitud-adelanto-proceso-aprobacion {
+  list-style: none;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+.solicitud-adelanto-proceso-paso {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.solicitud-adelanto-proceso-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.solicitud-adelanto-proceso-icon.aprobado {
+  color: #10b981; /* Verde para aprobado */
+}
+
+.solicitud-adelanto-proceso-icon.pendiente {
+  color: #6b7280; /* Gris para pendiente */
+}
+
+.solicitud-adelanto-proceso-paso strong {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.solicitud-adelanto-proceso-paso p {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* Modo Dark */
+.dark .solicitud-adelanto-formulario,
+.dark .solicitud-adelanto-detalles {
+  background-color: #1f2937;
+  color: #e5e7eb;
+}
+
+.dark .solicitud-adelanto-form-input {
+  background-color: #374151;
+  color: #e5e7eb;
+  border: 1px solid #4b5563;
+}
+
+.dark .solicitud-adelanto-form-condiciones {
+  background-color: #374151;
+  color: #e5e7eb;
+}
+
+.dark .solicitud-adelanto-form-link {
+  color: #2563eb;
+}
+
+.dark .solicitud-adelanto-form-link:hover {
+  text-decoration: underline;
+}
+
+.dark .solicitud-adelanto-proceso-icon.aprobado {
+  color: #22c55e; /* Verde más brillante para modo oscuro */
+}
+
+.dark .solicitud-adelanto-proceso-icon.pendiente {
+  color: #9ca3af; /* Gris claro para modo oscuro */
+}
+
+.dark .solicitud-adelanto-proceso-paso p {
+  color: #cbd5e1; /* Texto claro para modo oscuro */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .solicitud-adelanto-contenido {
+    flex-direction: column;
+  }
+
+  .solicitud-adelanto-detalles {
+    flex: 1;
+  }
+}

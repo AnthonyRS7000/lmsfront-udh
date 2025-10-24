@@ -103,10 +103,11 @@
 }
 
 .perfil-save-btn {
+  display: flex;
   background-color: #5a9e8d;
   color: #fff;
   padding: 10px 20px;
-  border-radius: 8px;
+  border-radius: 15px;
   border: none;
   cursor: pointer;
   font-weight: bold;
@@ -114,6 +115,7 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .perfil-save-btn-icon {
@@ -126,6 +128,7 @@
 
 .perfil-save-btn:hover {
   background-color: #417265;
+  transform: translateY(-3px);
 }
 
 .dark .perfil-save-btn {
@@ -235,11 +238,16 @@
     gap: 15px;
   }
 
-  .perfil-save-btn,
-  .perfil-photo-btn,
-  .perfil-ficha-btn {
-    font-size: 12px;
-    padding: 8px 12px;
+  .perfil-save-btn {
+    padding: 8px 12px; /* Aumenta el padding para pantallas pequeñas */
+    font-size: 0.9rem; /* Reduce el tamaño de fuente */
+    gap: 6px; 
+  }
+
+  .perfil-save-btn-icon {
+    width: 18px;
+    height: 18px;
+    font-size: 1rem; 
   }
 }
 
@@ -252,10 +260,15 @@
     gap: 10px;
   }
 
-  .perfil-save-btn,
-  .perfil-photo-btn,
-  .perfil-ficha-btn {
-    font-size: 12px;
-    padding: 6px 10px;
+  .perfil-save-btn {
+    display: inline-flex;
+    font-size: 0.9rem; 
+    gap: 4px; 
+  }
+
+  .perfil-save-btn-icon {
+    width: 16px; 
+    height: 16px;
+    font-size: 0.9rem; 
   }
 }

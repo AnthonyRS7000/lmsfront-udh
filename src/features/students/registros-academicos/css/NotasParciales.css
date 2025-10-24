@@ -1,9 +1,6 @@
 .notas-container {
+  margin: 40px 0px;
   width: auto;
-  margin: 32px auto;
-  padding: 0px 20px;
-  font-family: "Inter", sans-serif;
-  color: #3d3c3b;
 }
 
 /* Filtros alineados en línea */
@@ -74,8 +71,6 @@
   margin-bottom: 0.5rem;
 }
 
-.notas-datos {
-}
 
 /* Inputs y labels */
 .notas-label-semestre {
@@ -201,4 +196,166 @@
   padding: 1.2rem 1.5rem 1.2rem 1.5rem;
   font-size: 1rem;
   color: #222;
+}
+
+/* Modo Dark */
+
+.dark .notas-datos-row label {
+  color: #E4E6EB;
+}
+
+.dark .notas-datos-row input,
+.dark .notas-datos-row select {
+  background-color: #333;
+  color: #E4E6EB;
+  border: 1px solid #444;
+}
+
+.dark .notas-datos-row input:focus,
+.dark .notas-datos-row select:focus {
+  border-color: #3C7E6E;
+  box-shadow: 0 0 0 1px rgba(60, 126, 110, 0.5);
+}
+
+.dark .notas-alerta {
+  background: #2E2E2E;
+  border: 1px solid #444;
+  color: #E4E6EB;
+}
+
+.dark .notas-modal {
+  background: #333;
+  color: #E4E6EB;
+}
+
+.dark .notas-modal-close {
+  color: #E4E6EB;
+}
+
+.dark .notas-modal-saber-mas {
+  background: #444;
+  color: #E4E6EB;
+}
+
+.dark .notas-modal-saber-mas:hover {
+  background: #555;
+}
+
+.dark .notas-advertencia-header {
+  background: #444;
+  color: #E4E6EB;
+}
+
+.dark .notas-advertencia-body {
+  background: #333;
+  color: #E4E6EB;
+}
+
+.dark .notas-info-extra-header {
+  background: #555;
+  color: #E4E6EB;
+}
+
+.dark .notas-info-extra-body {
+  background: #333;
+  color: #E4E6EB;
+}
+
+/* Modo Responsive */
+
+/* Pantallas medianas */
+@media (max-width: 768px) {
+  .notas-container {
+    padding: 10px 15px; /* Reducir padding */
+  }
+
+  .notas-datos-row {
+    flex-direction: column; /* Colocar los filtros en una columna */
+    gap: 10px; /* Espaciado entre filtros */
+  }
+
+  .notas-datos-row label {
+    font-size: 0.9rem; /* Reducir tamaño de fuente */
+  }
+
+  .notas-datos-row input,
+  .notas-datos-row select {
+    font-size: 0.9rem; /* Reducir tamaño de fuente */
+    padding: 6px 10px; /* Reducir padding */
+  }
+
+  .notas-alerta {
+    font-size: 0.9rem; /* Reducir tamaño de fuente */
+    padding: 0.8rem; /* Reducir padding */
+  }
+
+  .notas-modal {
+    max-width: 400px; /* Reducir ancho máximo */
+    padding: 1.5rem; /* Reducir padding */
+  }
+
+  .notas-modal-saber-mas {
+    font-size: 0.9rem; /* Reducir tamaño de fuente */
+    padding: 5px 15px; /* Reducir padding */
+  }
+
+  .notas-advertencia-header,
+  .notas-info-extra-header {
+    font-size: 1rem; /* Reducir tamaño de fuente */
+    padding: 0.6rem 1rem; /* Reducir padding */
+  }
+
+  .notas-advertencia-body,
+  .notas-info-extra-body {
+    font-size: 0.9rem; /* Reducir tamaño de fuente */
+    padding: 1rem; /* Reducir padding */
+  }
+}
+
+/* Pantallas pequeñas */
+@media (max-width: 480px) {
+  .notas-container {
+    padding: 8px 10px; /* Reducir padding */
+  }
+
+  .notas-datos-row {
+    gap: 8px; /* Reducir espaciado entre filtros */
+  }
+
+  .notas-datos-row label {
+    font-size: 0.8rem; /* Reducir tamaño de fuente */
+  }
+
+  .notas-datos-row input,
+  .notas-datos-row select {
+    font-size: 0.8rem; /* Reducir tamaño de fuente */
+    padding: 5px 8px; /* Reducir padding */
+  }
+
+  .notas-alerta {
+    font-size: 0.8rem; /* Reducir tamaño de fuente */
+    padding: 0.6rem; /* Reducir padding */
+  }
+
+  .notas-modal {
+    max-width: 300px; /* Reducir ancho máximo */
+    padding: 1rem; /* Reducir padding */
+  }
+
+  .notas-modal-saber-mas {
+    font-size: 0.8rem; /* Reducir tamaño de fuente */
+    padding: 4px 12px; /* Reducir padding */
+  }
+
+  .notas-advertencia-header,
+  .notas-info-extra-header {
+    font-size: 0.9rem; /* Reducir tamaño de fuente */
+    padding: 0.5rem 0.8rem; /* Reducir padding */
+  }
+
+  .notas-advertencia-body,
+  .notas-info-extra-body {
+    font-size: 0.8rem; /* Reducir tamaño de fuente */
+    padding: 0.8rem; /* Reducir padding */
+  }
 }

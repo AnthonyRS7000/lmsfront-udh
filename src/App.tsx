@@ -65,13 +65,18 @@ import {
 } from './features/students/soporte-defensoria';
 
 //Vistas del Docente
-import BibliotecasVirtuales from "./features/docente/pages/BibliotecasVirtuales";
-import MiPerfil from "./features/docente/pages/MiPerfil";
 import CarpetasDigitales from "./features/docente/pages/CarpetasDigitales";
 import ActividadDocente from "./features/docente/pages/ActividadDocente";
 import ControlAsistenciasEstudiantes from "./features/docente/pages/ControlAsistenciaEstudiantes";
 
 import RegistroElectronico from "./features/docente/pages/RegistroElectronico";
+import AsistenciaLaboral from "./features/docente/pages/AsistenciaLaboral";
+import HistorialAsistenciaLaboral from "./features/docente/pages/HistorialAsistenciaLaboral";
+import Horario from "./features/docente/pages/Horario";
+import SolicitudAdelantoSueldo from "./features/docente/pages/SolicitudAdelantoSueldo";
+import ManualAdelanto from "./features/docente/pages/ManualAdelanto";
+import ManualDocente from "./features/docente/pages/ManualDocente";
+import CambiarContrasena from "./features/docente/pages/CambiarContrasena";
 
 
 
@@ -87,6 +92,7 @@ import Perfiles from "./features/administrativo/pages/Perfiles";
 import Roles from "./features/administrativo/pages/Roles";
 import Usuarios from "./features/administrativo/pages/Usuarios";
 import PageNotFound from "./components/pages/PageNotFound";
+import MiPerfil from "./features/docente/pages/MiPerfil";
 
 function App() {
   return (
@@ -156,13 +162,19 @@ function App() {
           }>
             <Route path="/docente" element={<DocenteDashboard />} />
             {/* Rutas para docente */}
-            <Route path="/docente/bibliotecas-virtuales" element={<BibliotecasVirtuales />} />
-            <Route path="/docente/mi-perfil" element={<MiPerfil />} />
+            <Route path="/docente/perfil" element={<MiPerfil />} />
             <Route path="/docente/carpetas-digitales" element={<CarpetasDigitales />} />
             <Route path="/docente/actividad-docente" element={<ActividadDocente />} />
             <Route path="/docente/control-asistencia-estudiantes" element={<ControlAsistenciasEstudiantes />} />
 
             <Route path="/docente/registro-electronico" element={<RegistroElectronico />} />
+            <Route path="/docente/asistencia-laboral" element={<AsistenciaLaboral />} />
+            <Route path="/docente/historial-asistencia-laboral" element={<HistorialAsistenciaLaboral />} />
+            <Route path="/docente/horario" element={<Horario />} />
+            <Route path="/docente/solicitud-adelanto-sueldo" element={<SolicitudAdelantoSueldo />} />
+            <Route path="/docente/manual-adelanto" element={<ManualAdelanto />} />
+            <Route path="/docente/manual-docente" element={<ManualDocente />} />
+            <Route path="/docente/cambio-contrasena" element={<CambiarContrasena />} />
           </Route>
 
           <Route element={

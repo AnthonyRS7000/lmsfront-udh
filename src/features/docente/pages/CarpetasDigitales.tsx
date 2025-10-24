@@ -2,11 +2,12 @@ import React from "react";
 import "../css/CarpetasDigitales.css";
 import ButtonPrincipal from "../../../components/pages/ButtonPrincipal";
 import { ArrowTopRightOnSquareIcon, InformationCircleIcon } from "@heroicons/react/24/outline";
+import Card from "../../../components/pages/Card";
 
 const CarpetasDigitales: React.FC = () => {
     return (
         <div className="carpetas-digitales-container">
-            <div className="carpetas-digitales-card">
+            <Card className="carpetas-digitales-card">
                 {/* Header */}
                 <div className="carpetas-digitales-header">
                 <div>
@@ -31,7 +32,7 @@ const CarpetasDigitales: React.FC = () => {
                     Al hacer clic en el enlace, serás redirigido a una nueva pestaña donde podrás visualizar todods los archivos digitales.
                 </p>
                 </div>
-            </div>
+            </Card>
         </div>
     );
 };

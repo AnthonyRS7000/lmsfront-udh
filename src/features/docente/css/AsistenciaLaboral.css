@@ -1,0 +1,190 @@
+/* Contenedor general */
+.asistencia-laboral-page {
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* Card */
+.asistencia-laboral-card {
+  width: 520px;
+  max-width: calc(100% - 32px);
+  padding: 28px;
+  box-sizing: border-box;
+}
+
+/* Header */
+.asistencia-laboral-header {
+  text-align: center;
+  margin-bottom: 18px;
+}
+.asistencia-laboral-universidad {
+  color: #5a9e8d;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.05;
+  font-size: 1.8rem;
+}
+.asistencia-laboral-subtitulo {
+  margin: 6px 0 0;
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+/* Reloj grande */
+.asistencia-laboral-reloj-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 18px 0;
+}
+.asistencia-laboral-reloj {
+  background: #f3f4f6;
+  padding: 18px 36px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 3rem;
+  color: #111827;
+  min-width: 320px;
+  text-align: center;
+}
+
+/* Fecha */
+.asistencia-laboral-fecha {
+  text-align: center;
+  color: #6b7280;
+  margin-top: 12px;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+}
+
+/* Formulario */
+.asistencia-laboral-form {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.asistencia-laboral-label {
+  font-weight: 600;
+  color: #374151;
+}
+
+/* Input con icono */
+.asistencia-laboral-input-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.asistencia-laboral-input-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.asistencia-laboral-input {
+  width: 100%;
+  padding: 12px 14px 12px 50px; /* Espacio para el ícono a la derecha */
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #111827;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+}
+
+.asistencia-laboral-input:focus {
+  outline: none;
+  border-color: #5a9e8d;
+  box-shadow: 0 0 0 3px rgba(90, 158, 141, 0.08);
+}
+
+.asistencia-laboral-input-icon {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 12px; /* Alineado al lado derecho */
+    font-size: 1.2rem;
+    color: #9ca3af;
+    pointer-events: none; /* Evitar interacción con el ícono */
+}
+
+/* Terminos */
+.asistencia-laboral-terminos {
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+/* Acciones / botones */
+.asistencia-laboral-acciones {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+/* Botones */
+.asistencia-laboral-btn.marcar {
+  min-width: 120px;
+}
+.asistencia-laboral-btn.consultar {
+  min-width: 120px;
+}
+
+/* Dark mode */
+.dark .asistencia-laboral-card {
+  background-color: #0f1115;
+  color: #E4E6EB;
+}
+.dark .asistencia-laboral-universidad {
+  color: #3C7E6E;
+}
+.dark .asistencia-laboral-subtitulo,
+.dark .asistencia-laboral-fecha,
+.dark .asistencia-laboral-label,
+.dark .asistencia-laboral-terminos {
+  color: #cbd5e1;
+}
+.dark .asistencia-laboral-reloj {
+  background: #111213;
+  color: #e6eef8;
+  border: 1px solid #222;
+}
+.dark .asistencia-laboral-input {
+  background: #0f1115;
+  color: #e4e6eb;
+  border: 1px solid #2b2b2b;
+}
+.dark .asistencia-laboral-input:focus {
+  box-shadow: 0 0 0 3px rgba(60,126,110,0.08);
+}
+.dark .asistencia-laboral-input-icon {
+  color: #9ca3af;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .asistencia-laboral-card {
+    padding: 18px;
+  }
+  .asistencia-laboral-universidad {
+    font-size: 1.3rem;
+  }
+  .asistencia-laboral-reloj-wrap {
+    margin: 12px 12px;
+  }
+  .asistencia-laboral-reloj {
+    font-size: 2.2rem;
+    padding: 12px 22px;
+    width: 100%;
+    min-width: 0;
+  }
+  .asistencia-laboral-acciones {
+    flex-direction: column;
+  }
+  .asistencia-laboral-btn.marcar,
+  .asistencia-laboral-btn.consultar {
+    width: 100%;
+    min-width: 0;
+  }
+}

@@ -1,4 +1,4 @@
-.notas-container {
+/*.notas-control-container {
   padding: 2rem;
   max-width: 1200px;
   margin: auto;
@@ -133,6 +133,7 @@
 }
 
 /* MODO OSCURO */
+/*
 .dark .notas-container {
   background: #0f172a;
 }
@@ -181,3 +182,4 @@
 .dark .texto-vacio {
   color: #cbd5e1;
 }
+*/

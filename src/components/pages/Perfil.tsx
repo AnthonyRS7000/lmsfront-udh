@@ -229,8 +229,13 @@ const Perfil = () => {
                     </div>
                 </div>
                 <div className="perfil-photo-actions">
-                    <button className="perfil-photo-btn" onClick={() => setPhotoModalOpen(true)}><ArrowUpTrayIcon className='perfil-save-btn-icon'/> Subir Fotografía</button>
+                    <ButtonPrincipal
+                        icon={<ArrowUpTrayIcon className='perfil-save-btn-icon'/>}
+                        text="Subir Fotografía"
+                        onClick={() => setPhotoModalOpen(true)}
+                    />
                 </div>
+                
                 </Card>
 
                 {/* Sección Ficha Socioeconómica */}
@@ -243,7 +248,11 @@ const Perfil = () => {
                     </div>
                 </div>
                 <div className="perfil-ficha-actions">
-                    <button className="perfil-ficha-btn" onClick={() => navigate('/estudiante/ficha-socioeconomica')}><PencilSquareIcon className='perfil-save-btn-icon'/>Completar ficha</button>
+                    <ButtonPrincipal
+                        icon={<PencilSquareIcon className='perfil-save-btn-icon'/>}
+                        text="Completar Ficha"
+                        onClick={() => navigate('/estudiante/ficha-socioeconomica')}
+                    />
                 </div>
                 </Card>
             </div>

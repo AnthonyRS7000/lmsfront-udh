@@ -36,6 +36,8 @@ const MiAsistencia: React.FC = () => {
   const [semestre, setSemestre] = useState(calcularSemestre());
   const [mostrarTabla, setMostrarTabla] = useState(false);
   const [mostrarTabla1, setMostrarTabla1] = useState(false);
+  const [cursoSeleccionado, setCursoSeleccionado] = useState("");
+  const [botonActivo, setBotonActivo] = useState(""); 
 
   const cardCursosRef = useRef<HTMLDivElement>(null);
   const cardAsistenciaRef = useRef<HTMLDivElement>(null);
@@ -46,6 +48,13 @@ const MiAsistencia: React.FC = () => {
     setUdhData(datosUdh);
     setNombreEstudiante(`${nombresUser.apellidos}, ${nombresUser.nombres}`);
   }, []);
+
+  useEffect(() => {
+      if (udhData && udhData.codigo) {
+          fetchCursos();
+          setMostrarTabla(true);
+      }
+  }, [udhData]);
 
   const fetchCursos = async () => {
     try {
@@ -100,8 +109,10 @@ const MiAsistencia: React.FC = () => {
     }
   }, [loading, mostrarTabla]);
 
-  const handleVerAsistencia = (codigoCurso: string, seccion: string, codigoPeriodo: string) => {
+  const handleVerAsistencia = (codigoCurso: string, seccion: string, codigoPeriodo: string, nombreCurso: string) => {
     setMostrarTabla1(true);
+    setCursoSeleccionado(nombreCurso);
+    setBotonActivo(codigoCurso);
     fetchAsistencia(codigoCurso, seccion, codigoPeriodo);
   };
 
@@ -111,16 +122,12 @@ const MiAsistencia: React.FC = () => {
     }
   }, [loadingAsistencia, mostrarTabla1]);
 
-  const handleImprimir = () => {
-    window.print();
-  };
-
   const headersCursos = ["CÓDIGO", "CURSO", "CICLO", "CRÉD.", "SEC.", "ASISTENCIA"];
   const rowsCursos = cursos.map((curso: any) => [
     curso.codigo_curso,
-    <div className="curso-nombre">
-      <div className="curso-nombre-principal">{curso.nombre_curso.split("\n")[0]}</div>
-      <div className="curso-horario">
+    <div className="asistencia-curso-nombre">
+      <div className="asistencia-curso-nombre-principal">{curso.nombre_curso.split("\n")[0]}</div>
+      <div className="asistencia-curso-horario">
         {[curso.lunes, curso.martes, curso.miercoles, curso.jueves, curso.viernes, curso.sabado, curso.domingo]
           .filter((dia) => dia)
           .map((dia, i) => (
@@ -131,15 +138,10 @@ const MiAsistencia: React.FC = () => {
     curso.ciclo,
     curso.creditos,
     curso.seccion,
-    <button className="asistencia-btn-ver" onClick={() => handleVerAsistencia(curso.codigo_curso, curso.seccion, curso.codper)}>
+    <button className={`asistencia-btn-ver ${botonActivo === curso.codigo_curso ? "activo" : ""}`}onClick={() => handleVerAsistencia(curso.codigo_curso, curso.seccion, curso.codper, curso.nombre_curso)}>
       <EyeIcon className="asistencia-icono-ojo" />
       Ver
-    </button>,
-    /*<ButtonSecundario
-      icon={<EyeIcon/>}
-      text="Ver"
-      onClick={() => handleVerAsistencia(curso.codigo_curso, curso.seccion, curso.codper)}
-    />*/
+    </button>
   ]);
 
   const headersAsistencia = ["Fecha", "Día", "Entrada", "Salida", "¿Asistió?"];
@@ -152,7 +154,7 @@ const MiAsistencia: React.FC = () => {
   ]);
 
   return (
-    <div className="asistencia-container asistencia-print">
+    <div className="asistencia-container">
       <TituloPage titulo="Mi Asistencia" />
       <Card>
         <div className="asistencia-estudiante-header">
@@ -161,22 +163,22 @@ const MiAsistencia: React.FC = () => {
         <div className="asistencia-estudiante-info">
           <div><b>CÓDIGO:</b> {udhData?.codigo}</div>
           <div><b>SEDE:</b> {udhData?.sedalu === 1 ? "HUÁNUCO" : udhData?.sedalu === 2 ? "TINGO MARÍA" : ""}</div>
-          <div><b>PLAN:</b> 2021*</div>
+          <div className="asistencia-estudiante-semestre">
+            <b>SEMESTRE:</b>
+            <input
+              type="text"
+              value={semestre}
+              onChange={(e) => setSemestre(e.target.value)}
+              className="asistencia-input-semestre"
+            />
+            <ButtonSecundario
+              icon={<EyeIcon />}
+              text="Mostrar"
+              onClick={handleMostrar}
+            />
+          </div>
         </div>
-        <div className="asistencia-estudiante-semestre">
-          <b>SEMESTRE:</b>
-          <input
-            type="text"
-            value={semestre}
-            onChange={(e) => setSemestre(e.target.value)}
-            className="asistencia-input-semestre"
-          />
-          <ButtonSecundario
-            icon={<EyeIcon />}
-            text="Mostrar"
-            onClick={handleMostrar}
-          />
-        </div>
+        
       </Card>
 
       {mostrarTabla && (
@@ -188,14 +190,13 @@ const MiAsistencia: React.FC = () => {
 
       {mostrarTabla1 && (
         <Card ref={cardAsistenciaRef}>
-          <h3 className="asistencia-titulo-asistencia">REPORTE DE ASISTENCIA</h3>
+          <h3 className="asistencia-titulo-asistencia">REPORTE DE ASISTENCIA DE <br/>{cursoSeleccionado}</h3>
           {loadingAsistencia ? (
             <Loading />
           ) : error ? (
             <DatosNoEncontrados />
           ) : (
             <>
-              <Tablas headers={headersAsistencia} rows={rowsAsistencia} />
               <div className="asistencia-resumen-asistencia">
                 <span>
                   TOTAL: {String(asistencia[0]?.Total)}  Asistencias: {String(asistencia[0]?.Asist)} 
@@ -203,11 +204,8 @@ const MiAsistencia: React.FC = () => {
                   Inasistencias: {String(asistencia[0]?.Inasi)}  Inasist.%:{" "}
                   {((asistencia[0]?.Inasi / asistencia[0]?.Total) * 100).toFixed(2)}%
                 </span>
-                <button className="asistencia-btn-imprimir" onClick={handleImprimir}>
-                  <PrinterIcon className="asistencia-icono-impresora" />
-                  Imprimir
-                </button>
               </div>
+              <Tablas headers={headersAsistencia} rows={rowsAsistencia} />
             </>
           )}
         </Card>

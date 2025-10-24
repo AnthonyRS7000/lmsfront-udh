@@ -197,23 +197,14 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
       case 'docente':
         return [
           {
-            name: 'AulaVirtual',
-            label: 'Aula Virtual',
-            icon: IconAcademico,
-            submenus: [
-              { name: 'bibliotecas-virtuales', label: 'Bibliotecas Virtuales', path: '/docente/bibliotecas-virtuales' },
-              { name: 'mi-perfil', label: 'Mi Perfil', path: '/docente/mi-perfil' },
-              { name: 'carpetas-digitales', label: 'Carpetas Digitales', path: '/docente/carpetas-digitales' },
-            ],
-          },
-          {
             name: 'Academico',
             label: 'Académico',
             icon: IconTitulacion,
             submenus: [
               { name: 'actividad-docente', label: 'Actividad Docente', path: '/docente/actividad-docente' },
+              { name: 'carpetas-digitales', label: 'Carpetas Digitales', path: '/docente/carpetas-digitales' },
               { name: 'control-asistencia-estudiantes', label: 'Control de Asistencia - Estudiantes', path: '/docente/control-asistencia-estudiantes' },
-              { name: 'registro-curso-nivelacion', label: 'Registro - Curso de Nivelación', path: '/docente/registro-curso-nivelacion' },
+              /*{ name: 'registro-curso-nivelacion', label: 'Registro - Curso de Nivelación', path: '/docente/registro-curso-nivelacion' },*/
               { name: 'registro-electronico', label: 'Registro Electrónico', path: '/docente/registro-electronico' },
             ],
           },
@@ -222,8 +213,19 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
             label: 'Laboral',
             icon: IconCarpeta,
             submenus: [
-              { name: 'registro-calificaciones', label: 'Registro de calificaciones', path: '/docente/registro-calificaciones' },
-              { name: 'firma-actas', label: 'Firma de Actas', path: '/docente/firma-actas' },
+              { name: 'asistencia-laboral', label: 'Asistencia Laboral', path: '/docente/asistencia-laboral' },
+              { name: 'historial-asistencia-laboral', label: 'Historial de Asistencia Laboral', path: '/docente/historial-asistencia-laboral' },
+              { name: 'horario', label: 'Horario', path: '/docente/horario' },
+              { name: 'solicitud-adelanto-sueldo', label: 'Solicitud de Adelanto de Sueldo', path: '/docente/solicitud-adelanto-sueldo' },
+            ],
+          },
+          {
+            name: 'Manuales',
+            label: 'Manuales',
+            icon: IconProyecto,
+            submenus: [
+              { name: 'manual-adelanto', label: 'Manual de Adelanto', path: '/docente/manual-adelanto' },
+              { name: 'manual-docente', label: 'Manual del Docente', path: '/docente/manual-docente' },
             ],
           },
           {

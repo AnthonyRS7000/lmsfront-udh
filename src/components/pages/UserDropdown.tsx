@@ -47,7 +47,22 @@ const UserDropdown = () => {
   // Navegar al perfil
   const handleProfile = () => {
     setIsOpen(false);
-    navigate('/estudiante/perfil');
+    const rol = localStorage.getItem("rol");
+    // Navegar según el rol
+    switch (rol) {
+      case "estudiante":
+        navigate('/estudiante/perfil');
+        break;
+      case "docente":
+        navigate('/docente/perfil');
+        break;
+      case "administrativo":
+        navigate('/administrativo/perfil');
+        break;
+      default:
+        navigate('/login'); // Redirigir al login si el rol no está definido
+        break;
+    }
   };
 
   // Cerrar sesión sincronizado
