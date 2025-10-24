@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
@@ -12,9 +13,9 @@ import {
   IconSoporte,
   IconCarpeta
 } from '../icons/LmsIcons';
-import { useTheme } from '../../hooks/useTheme';
 import FlechaIcon from '../../assets/icons/flecha.svg';
 import DocenteSimuladoPhoto from '../../assets/soporte.png';
+import { useThemeContext } from '../../context/ThemeContext';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -63,7 +64,7 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
   const [isDesktop, setIsDesktop] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
   const [currentTheme, setCurrentTheme] = useState<'light' | 'dark'>('light');
-  const { isLoading: themeLoading } = useTheme();
+  const { isLoading: themeLoading } = useThemeContext();
 
   // Detectar rol actual basado en la ruta
   const currentRole = getCurrentRole(location.pathname);

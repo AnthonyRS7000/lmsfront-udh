@@ -1,0 +1,60 @@
+
+/* Estilo de cada toast (clase aplicada por toastClassName) */
+.toast-custom {
+  border-radius: 12px !important;
+  padding: 12px 16px !important;
+  box-shadow: 0 8px 24px rgba(15,23,42,0.18) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  min-height: 48px !important;
+}
+
+/* Cuerpo del toast (texto) */
+.toast-body {
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #0f172a;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* Close button personalizado */
+.toast-close-btn {
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 8px;
+  margin-left: auto;
+  color: #0f172a;
+  transition: background 120ms, color 120ms;
+}
+
+/* Light mode styles */
+.toast-custom { background: #ffffff; color: #000000; }
+.toast-close-btn.light:hover { background: rgba(15,23,42,0.06); }
+
+/* Dark mode overrides (usa clase .dark en <html> o <body>) */
+.dark .toast-custom {
+  background: #15171C;
+  color: #e6eef8;
+}
+.dark .toast-body { color: #e6eef8; }
+.dark .toast-close-btn {
+  color: #e6eef8;
+}
+.toast-close-btn.dark:hover { background: rgba(255,255,255,0.06); }
+
+/* Ajustes para tipos (info/success/error) si quieres colores */
+.Toastify__toast--success.toast-custom { border-left: 6px solid #059669; }
+.Toastify__toast--error.toast-custom { border-left: 6px solid #dc2626; }
+.Toastify__toast--info.toast-custom { border-left: 6px solid #2563eb; }
+
+/* Compatibilidad móvil: reducir tamaño y centrar correctamente */
+@media (max-width: 480px) {
+  .toast-center-container { left: 50% !important; top: 50% !important; transform: translate(-50%,-50%) !important; width: calc(100% - 32px) !important; max-width: calc(100% - 32px); }
+  .toast-custom { padding: 10px 12px !important; }
+}

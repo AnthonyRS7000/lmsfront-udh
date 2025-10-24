@@ -1,18 +1,9 @@
-import { useTheme } from '../../hooks/useTheme';
+import { useThemeContext } from '../../context/ThemeContext';
 import TemaClaro from '../../assets/icons/temaClaro.svg';
 import TemaOscuro from '../../assets/icons/temaOscuro.svg';
 
 export default function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
-
-  // Toggle simple entre light y dark
-  const toggleTheme = () => {
-    if (theme === 'light') {
-      setTheme('dark');
-    } else {
-      setTheme('light');
-    }
-  };
+  const { theme, toggleTheme } = useThemeContext();
 
   return (
     <button
