@@ -11,7 +11,7 @@ interface TopbarProps {
 }
 
 const handleAbrirAula = () => {
-  const targetUrl = "http://localhost:5174/sso/receive";
+  const targetUrl = import.meta.env.VITE_FRONTEND_URL ;
   //https://aula.sistemasudh.com/
 
   const token = localStorage.getItem("auth_token") || localStorage.getItem("token");
