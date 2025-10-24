@@ -76,12 +76,13 @@ const UserDropdown = () => {
       if (aulavirtualWindow && !aulavirtualWindow.closed) {
         aulavirtualWindow.postMessage(
           { type: "LOGOUT" },
-          "http://localhost:5174"
+          "https://aulavirtual.sistemasudh.com"
+        
         );
-
+  //http://localhost:5174
         await new Promise((resolve) => {
           const handleConfirm = (e: MessageEvent) => {
-            if (e.origin === "http://localhost:5174" && e.data?.type === "LOGOUT_CONFIRMED") {
+            if (e.origin === "https://aulavirtual.sistemasudh.com" && e.data?.type === "LOGOUT_CONFIRMED") {
               window.removeEventListener("message", handleConfirm);
               resolve(true);
             }

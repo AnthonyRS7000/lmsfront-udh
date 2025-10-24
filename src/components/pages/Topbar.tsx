@@ -12,6 +12,7 @@ interface TopbarProps {
 
 const handleAbrirAula = () => {
   const targetUrl = "http://localhost:5174/sso/receive";
+  //https://aula.sistemasudh.com/
 
   const token = localStorage.getItem("auth_token") || localStorage.getItem("token");
   const google_token = localStorage.getItem("google_token");
@@ -74,7 +75,7 @@ const handleAbrirAula = () => {
 
   try {
     const encoded = btoa(JSON.stringify(payload));
-    const fullUrl = `${targetUrl}#${encoded}`;
+    const fullUrl = `${targetUrl}?auth_payload=${encodeURIComponent(encoded)}`;
     
 
     // opcional: mostrar toast de éxito antes de redirigir
