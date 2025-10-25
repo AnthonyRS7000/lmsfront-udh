@@ -11,8 +11,10 @@ interface TopbarProps {
 }
 
 const handleAbrirAula = () => {
-  const targetUrl = import.meta.env.VITE_FRONTEND_URL ;
-  //https://aula.sistemasudh.com/
+  // normalizar FRONTEND_URL y añadir /sso/receive
+  const rawTarget = import.meta.env.VITE_FRONTEND_URL || "http://localhost:5174";
+  const ssoPath = "/sso/receive";
+  const targetUrl = rawTarget + ssoPath;
 
   const token = localStorage.getItem("auth_token") || localStorage.getItem("token");
   const google_token = localStorage.getItem("google_token");
@@ -30,19 +32,14 @@ const handleAbrirAula = () => {
   const getCurrentSemester = (): string => {
     const now = new Date();
     const year = now.getFullYear();
-    const month = now.getMonth(); // 0 = enero ... 11 = diciembre
+    const month = now.getMonth();
     let term = "0";
-    if (month >= 0 && month <= 1) {
-      term = "0"; // Ene-Feb -> 0
-    } else if (month >= 2 && month <= 6) {
-      term = "1"; // Mar-Jul -> 1
-    } else {
-      term = "2"; // Ago-Dic -> 2
-    }
+    if (month >= 0 && month <= 1) term = "0";
+    else if (month >= 2 && month <= 6) term = "1";
+    else term = "2";
     return `${year}-${term}`;
   };
 
-  // Validación de matrícula en el último semestre (frontend)
   const ultMat = datos_udh?.ult_sem ?? usuario?.ult_sem ?? null;
   const latestSem = getCurrentSemester();
 
@@ -64,21 +61,11 @@ const handleAbrirAula = () => {
     return;
   }
 
-  const payload = {
-    token,
-    google_token,
-    usuario,
-    datos_udh,
-    foto,
-    rol
-  };
+  const payload = { token, google_token, usuario, datos_udh, foto, rol };
 
   try {
     const encoded = btoa(JSON.stringify(payload));
     const fullUrl = `${targetUrl}?auth_payload=${encodeURIComponent(encoded)}`;
-    
-
-    // opcional: mostrar toast de éxito antes de redirigir
     toast.success("Abriendo Aula Virtual");
     setTimeout(() => {
       window.location.href = fullUrl;
