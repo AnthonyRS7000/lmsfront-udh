@@ -10,6 +10,7 @@
   align-items: center;
   gap: 2px;
   flex-wrap: wrap;
+  margin-bottom: 10px;
 }
 
 .notas-filter-group {
@@ -24,9 +25,10 @@
   color: #3d3c3b;
 }
 
-/* Estilo para los inputs y selects */
-.notas-datos-row input,
-.notas-datos-row select {
+/* Estilo para el input*/
+.notas-datos-row input {
+  width: 50px;
+  height: 20px;
   padding: 5px 10px;
   border: 1px solid #d1d5db;
   border-radius: 5px;
@@ -34,27 +36,13 @@
   background-color: #fff;
   color: #3d3c3b;
   margin-right: 10px;
+  border: 1px solid #5a9e8d;
 }
 
-.notas-datos-row input:focus,
-.notas-datos-row select:focus {
+.notas-datos-row input:focus {
   border-color: #5a9e8d;
   outline: none;
   box-shadow: 0 0 0 1px rgba(90, 158, 141, 0.5);
-}
-
-/* Input y botón */
-.notas-input-semestre {
-  width: 50px;
-  height: 20px;
-}
-
-
-.promedio-container {
-  display: flex; /* Usar flexbox para alinear los elementos */
-  flex-direction: row; /* Asegurar que los elementos estén en fila */
-  align-items: center; /* Centrar verticalmente los elementos */
-  gap: 5px; /* Espaciado entre los elementos */
 }
 
 /* Alerta */
@@ -148,6 +136,8 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   border-bottom: 6px solid #3d3c3b;
   border-right: 6px solid #3d3c3b;
+  border-left: 0px solid #3d3c3b;
+  padding: 0px;
 }
 
 .notas-advertencia-header {
@@ -160,7 +150,6 @@
   font-size: 1.1rem;
   padding: 0.8rem 1.2rem;
   border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
 }
 
 .notas-advertencia-body {
@@ -171,12 +160,12 @@
 
 .notas-info-extra {
   margin-top: 2rem;
-  background: #fff;
-  border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   border-bottom: 6px solid #ecc138;
   border-right: 6px solid #ecc138;
+  border-left: 0px solid #ecc138;
+  padding: 0px;
 }
 
 .notas-info-extra-header {
@@ -189,7 +178,6 @@
   font-size: 1.1rem;
   padding: 0.8rem 1.2rem;
   border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
 }
 
 .notas-info-extra-body {
@@ -198,23 +186,28 @@
   color: #222;
 }
 
+.notas-span {
+  color: #444; /* Color normal */
+}
+
 /* Modo Dark */
 
+.dark .notas-container {
+  color: #E4E6EB;
+}
 .dark .notas-datos-row label {
   color: #E4E6EB;
 }
 
-.dark .notas-datos-row input,
-.dark .notas-datos-row select {
-  background-color: #333;
+.dark .notas-datos-row input {
+  background-color: #0f1115;
   color: #E4E6EB;
-  border: 1px solid #444;
+  border: 1px solid #3C7E6E;
 }
 
-.dark .notas-datos-row input:focus,
-.dark .notas-datos-row select:focus {
+.dark .notas-datos-row input:focus {
   border-color: #3C7E6E;
-  box-shadow: 0 0 0 1px rgba(60, 126, 110, 0.5);
+  box-shadow: 0 0 0 2px rgba(60, 126, 110, 0.3);
 }
 
 .dark .notas-alerta {
@@ -240,9 +233,14 @@
 .dark .notas-modal-saber-mas:hover {
   background: #555;
 }
+.dark .notas-advertencia {
+  border-bottom: 6px solid #3C7E6E;
+  border-right: 6px solid #3C7E6E;
+  border-left: 0px solid #ecc138;
+}
 
 .dark .notas-advertencia-header {
-  background: #444;
+  background: #3C7E6E;
   color: #E4E6EB;
 }
 
@@ -251,9 +249,8 @@
   color: #E4E6EB;
 }
 
-.dark .notas-info-extra-header {
-  background: #555;
-  color: #E4E6EB;
+.dark .notas-info-extra {
+  border-left: 0px solid #ecc138;
 }
 
 .dark .notas-info-extra-body {
@@ -261,16 +258,16 @@
   color: #E4E6EB;
 }
 
+.dark .notas-span {
+  color: #aaa;
+}
+
 /* Modo Responsive */
 
 /* Pantallas medianas */
 @media (max-width: 768px) {
-  .notas-container {
-    padding: 10px 15px; /* Reducir padding */
-  }
 
   .notas-datos-row {
-    flex-direction: column; /* Colocar los filtros en una columna */
     gap: 10px; /* Espaciado entre filtros */
   }
 
@@ -314,16 +311,16 @@
 
 /* Pantallas pequeñas */
 @media (max-width: 480px) {
-  .notas-container {
-    padding: 8px 10px; /* Reducir padding */
-  }
 
   .notas-datos-row {
-    gap: 8px; /* Reducir espaciado entre filtros */
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 6px;
   }
 
   .notas-datos-row label {
-    font-size: 0.8rem; /* Reducir tamaño de fuente */
+    font-size: 0.8rem;
+    margin-left: 0px;
   }
 
   .notas-datos-row input,
@@ -357,5 +354,10 @@
   .notas-info-extra-body {
     font-size: 0.8rem; /* Reducir tamaño de fuente */
     padding: 0.8rem; /* Reducir padding */
+  }
+
+  .notas-filter-group {
+    flex-direction: row;
+    align-items: center;
   }
 }

@@ -26,7 +26,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 2px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
@@ -139,44 +139,41 @@
   }
 
   .cursos-llevados-row {
-    font-size: 0.9rem; /* Reducir tamaño de fuente para el nombre */
+    font-size: 0.9rem;
+    text-align: center;
   }
 }
 
 @media (max-width: 480px) {
-  .cursos-llevados-container {
-    padding: 10px; /* Reducir padding para pantallas pequeñas */
-  }
-
   .cursos-llevados-barra-superior {
     gap: 8px; /* Reducir espaciado para pantallas pequeñas */
   }
 
   .cursos-llevados-filtros-row {
-    gap: 8px; /* Reducir espaciado entre filtros */
-    align-items: flex-start;
+    gap: 8px;
   }
 
   .cursos-llevados-filtros-row label {
-    font-size: 10px; /* Ajustar tamaño de fuente para pantallas muy pequeñas */
+    font-size: 12px; /* Ajustar tamaño de fuente para pantallas muy pequeñas */
     margin: 0px;
   }
 
   .cursos-llevados-filtros-row select,
   .cursos-llevados-filtros-row input {
     width: auto;
-    font-size: 10px; /* Ajustar tamaño de fuente para pantallas muy pequeñas */
+    font-size: 11px; /* Ajustar tamaño de fuente para pantallas muy pequeñas */
     padding: 4px 8px; /* Reducir padding para pantallas muy pequeñas */
+    margin-right: 2px;
   }
 
   .cursos-llevados-row {
-    font-size: 0.6rem; /* Reducir tamaño de fuente para el nombre */
     flex-direction: column;
     display: flex;
     gap: 4px;
   }
   .cursos-llevados-row-2{
-    font-size: 0.6rem; /* Reducir tamaño de fuente para el nombre */
+    width: auto;
+    font-size: 0.8rem; /* Reducir tamaño de fuente para el nombre */
     flex-direction: row;
     display: flex;
     align-items: center;

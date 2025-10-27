@@ -44,7 +44,6 @@ const Reglamento: React.FC = () => {
     <div className="reglamento-container">
       <TituloPage titulo="Reglamento Del Estudiante" />
       <Card>
-        <div className="reglamento-info">
           {loading ? (
             <Loading />
           ) : error ? (
@@ -68,7 +67,6 @@ const Reglamento: React.FC = () => {
               />
             </div>
           )}
-        </div>
       </Card>
     </div>
   );

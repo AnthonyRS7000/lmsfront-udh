@@ -6,7 +6,7 @@ import DatosNoEncontrados from "../../../../components/pages/DatosNoEncontrados"
 import Loading from "../../../../components/pages/Loading";
 import Tablas from "../../../../components/pages/Tablas";
 import Card from "../../../../components/pages/Card";
-import { EyeIcon, PrinterIcon } from "@heroicons/react/24/outline";
+import { EyeIcon } from "@heroicons/react/24/outline";
 import ButtonSecundario from "../../../../components/pages/ButtonSecundario";
 
 const calcularSemestre = (): string => {

@@ -1,75 +1,21 @@
 .malla-container {
+  margin: 40px 0px;
   width: auto;
-  margin: 32px auto;
-  padding: 0 16px;
-}
-
-.malla-title {
-  color: #5a9e8d;
-  font-size: 2.2rem;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 26px;
-  letter-spacing: 1px;
-}
-
-.malla-card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(44, 62, 80, 0.08);
-  padding: 32px 24px 24px 24px;
-  margin: 0 auto;
-  border-left: 7px solid #5a9e8d;
 }
 
 .malla-carrera {
   font-size: 1.5rem;
   font-weight: 600;
-  color: #3d3c3b;
+  color: #5a9e8d;
   margin-top: 0px;
   margin-bottom: 20px;
   text-align: center;
 }
 
-.malla-pdf-viewer {
-  width: 100%;
-  height: 100vw;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 1px 6px rgba(44, 62, 80, 0.06);
+.malla-mensaje {
+  color: #1f2937;
 }
 
-.malla-cargando {
-  text-align: center;
-  color: #888;
-  font-size: 1.1rem;
-  padding: 40px 0;
-}
-
-.estudiante-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 8px;
-}
-
-.nombre-estudiante {
-  font-size: 1.2rem;
-  font-weight: 700;
-  text-align: center;
-}
-
-.estudiante-info {
-  display: flex;
-  gap: 32px;
-  margin-bottom: 8px;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.estudiante-semestre {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  justify-content: flex-start;
+.dark .malla-mensaje {
+  color: #d1d5db;
 }

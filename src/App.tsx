@@ -96,132 +96,132 @@ import MiPerfil from "./features/docente/pages/MiPerfil";
 
 function App() {
   return (
-        <ThemeProvider>
-          <BrowserRouter>
-          <AuthProvider>
-            <Routes>
-              {/* Rutas públicas */}
-              <Route path="/" element={<Login />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/auth/callback" element={<AuthCallback />} />
-              {/* Rutas protegidas por rol */}
-              <Route element={
-                <RutaProtegidaPorRol rolPermitido="estudiante">
-                  <Layout />
-                </RutaProtegidaPorRol>
-              }>
-                <Route path="/estudiante" element={<EstudianteDashboard />} />
-                {/* Gestión de Matrícula */}
-                <Route path="/perfil" element={<ProfilePage />} />
-                <Route path="/estudiante/perfil" element={<Perfil />} />
-                <Route path="/estudiante/matricula" element={<Matricula />} />
-                <Route path="/estudiante/ver-horario" element={<VerHorario />} />
-                <Route path="/estudiante/mi-horario" element={<MiHorario />} />
-                <Route path="/estudiante/reglamento" element={<Reglamento />} />
-                <Route path="/estudiante/progreso_academico" element={<div />} />
+    <ThemeProvider>
+      <BrowserRouter>
+        <AuthProvider>
+          <Routes>
+            {/* Rutas públicas */}
+            <Route path="/" element={<Login />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/auth/callback" element={<AuthCallback />} />
+            {/* Rutas protegidas por rol */}
+            <Route element={
+              <RutaProtegidaPorRol rolPermitido="estudiante">
+                <Layout />
+              </RutaProtegidaPorRol>
+            }>
+              <Route path="/estudiante" element={<EstudianteDashboard />} />
+              {/* Gestión de Matrícula */}
+              <Route path="/perfil" element={<ProfilePage />} />
+              <Route path="/estudiante/perfil" element={<Perfil />} />
+              <Route path="/estudiante/matricula" element={<Matricula />} />
+              <Route path="/estudiante/ver-horario" element={<VerHorario />} />
+              <Route path="/estudiante/mi-horario" element={<MiHorario />} />
+              <Route path="/estudiante/reglamento" element={<Reglamento />} />
+              <Route path="/estudiante/progreso_academico" element={<div />} />
 
-                {/* Registros Académicos */}
-                <Route path="/estudiante/cursos-llevados" element={<CursosLlevados />} />
-                <Route path="/estudiante/mi-asistencia" element={<MiAsistencia />} />
-                <Route path="/estudiante/notas-parciales" element={<NotasParciales />} />
-                <Route path="/estudiante/historial-academico" element={<HistorialAcademico />} />
-                <Route path="/estudiante/plan-de-estudios" element={<PlanDeEstudios />} />
-                <Route path="/estudiante/malla-curricular" element={<MallaCurricular />} />
-                <Route path="/estudiante/rendimiento-academico" element={<RendimientoAcademico />} />
+              {/* Registros Académicos */}
+              <Route path="/estudiante/cursos-llevados" element={<CursosLlevados />} />
+              <Route path="/estudiante/mi-asistencia" element={<MiAsistencia />} />
+              <Route path="/estudiante/notas-parciales" element={<NotasParciales />} />
+              <Route path="/estudiante/historial-academico" element={<HistorialAcademico />} />
+              <Route path="/estudiante/plan-de-estudios" element={<PlanDeEstudios />} />
+              <Route path="/estudiante/malla-curricular" element={<MallaCurricular />} />
+              <Route path="/estudiante/rendimiento-academico" element={<RendimientoAcademico />} />
 
-                {/* Titulación y Grados */}
-                <Route path="/estudiante/titulacion/consulta-grados" element={<ConsultaRegistroGradosTitulos />} />
-                <Route path="/estudiante/titulacion/ficha-inscripcion" element={<FichaInscripcionTitulacion />} />
-                <Route path="/estudiante/titulacion/inscripcion-taller" element={<InscripcionTallerTrabInv />} />
-                <Route path="/estudiante/titulacion/tramite-grados" element={<TramiteGradosTitulosTitulacion />} />
+              {/* Titulación y Grados */}
+              <Route path="/estudiante/titulacion/consulta-grados" element={<ConsultaRegistroGradosTitulos />} />
+              <Route path="/estudiante/titulacion/ficha-inscripcion" element={<FichaInscripcionTitulacion />} />
+              <Route path="/estudiante/titulacion/inscripcion-taller" element={<InscripcionTallerTrabInv />} />
+              <Route path="/estudiante/titulacion/tramite-grados" element={<TramiteGradosTitulosTitulacion />} />
 
-                {/* Servicios Universitarios */}
-                <Route path="/estudiante/servicios/carnet-sunedu" element={<CarnetSunedu />} />
-                <Route path="/estudiante/servicios/tarjeta-virtual" element={<TarjetaIdentificacionVirtual />} />
-                <Route path="/estudiante/servicios/bolsa-trabajo" element={<BolsaTrabajoUDH />} />
-                <Route path="/estudiante/servicios/inscripcion-idioma" element={<InscripcionIdiomaExtranjero />} />
-                <Route path="/estudiante/servicios/educacion-distancia" element={<EducacionDistancia />} />
-                <Route path="/estudiante/servicios/congresos-otros" element={<CongresosOtros />} />
+              {/* Servicios Universitarios */}
+              <Route path="/estudiante/servicios/carnet-sunedu" element={<CarnetSunedu />} />
+              <Route path="/estudiante/servicios/tarjeta-virtual" element={<TarjetaIdentificacionVirtual />} />
+              <Route path="/estudiante/servicios/bolsa-trabajo" element={<BolsaTrabajoUDH />} />
+              <Route path="/estudiante/servicios/inscripcion-idioma" element={<InscripcionIdiomaExtranjero />} />
+              <Route path="/estudiante/servicios/educacion-distancia" element={<EducacionDistancia />} />
+              <Route path="/estudiante/servicios/congresos-otros" element={<CongresosOtros />} />
 
-                {/* Trámite */}
-                <Route path="/estudiante/tramite/generar" element={<TramiteGenerar />} />
-                <Route path="/estudiante/tramite/seguimiento" element={<TramiteSeguimiento />} />
+              {/* Trámite */}
+              <Route path="/estudiante/tramite/generar" element={<TramiteGenerar />} />
+              <Route path="/estudiante/tramite/seguimiento" element={<TramiteSeguimiento />} />
 
-                {/* Ficha socioeconómica */}
-                <Route path="/estudiante/ficha-socioeconomica" element={<FichaSocioeconomica />} />
+              {/* Ficha socioeconómica */}
+              <Route path="/estudiante/ficha-socioeconomica" element={<FichaSocioeconomica />} />
 
-                {/* Soporte y Defensoría */}
-                <Route path="/estudiante/soporte/consultas-quejas" element={<ConsultasQuejas />} />
-                <Route path="/estudiante/soporte/consentimiento-informado" element={<ConsentimientoInformado />} />
-              </Route>
+              {/* Soporte y Defensoría */}
+              <Route path="/estudiante/soporte/consultas-quejas" element={<ConsultasQuejas />} />
+              <Route path="/estudiante/soporte/consentimiento-informado" element={<ConsentimientoInformado />} />
+            </Route>
 
-          <Route element={
-            /*<RutaProtegidaPorRol rolPermitido="docente">
+            <Route element={
+              /*<RutaProtegidaPorRol rolPermitido="docente">
+                <Layout />
+              </RutaProtegidaPorRol>*/
               <Layout />
-            </RutaProtegidaPorRol>*/
-            <Layout />
-          }>
-            <Route path="/docente" element={<DocenteDashboard />} />
-            {/* Rutas para docente */}
-            <Route path="/docente/perfil" element={<MiPerfil />} />
-            <Route path="/docente/carpetas-digitales" element={<CarpetasDigitales />} />
-            <Route path="/docente/actividad-docente" element={<ActividadDocente />} />
-            <Route path="/docente/control-asistencia-estudiantes" element={<ControlAsistenciasEstudiantes />} />
+            }>
+              <Route path="/docente" element={<DocenteDashboard />} />
+              {/* Rutas para docente */}
+              <Route path="/docente/perfil" element={<MiPerfil />} />
+              <Route path="/docente/carpetas-digitales" element={<CarpetasDigitales />} />
+              <Route path="/docente/actividad-docente" element={<ActividadDocente />} />
+              <Route path="/docente/control-asistencia-estudiantes" element={<ControlAsistenciasEstudiantes />} />
 
-            <Route path="/docente/registro-electronico" element={<RegistroElectronico />} />
-            <Route path="/docente/asistencia-laboral" element={<AsistenciaLaboral />} />
-            <Route path="/docente/historial-asistencia-laboral" element={<HistorialAsistenciaLaboral />} />
-            <Route path="/docente/horario" element={<Horario />} />
-            <Route path="/docente/solicitud-adelanto-sueldo" element={<SolicitudAdelantoSueldo />} />
-            <Route path="/docente/manual-adelanto" element={<ManualAdelanto />} />
-            <Route path="/docente/manual-docente" element={<ManualDocente />} />
-            <Route path="/docente/cambio-contrasena" element={<CambiarContrasena />} />
-          </Route>
+              <Route path="/docente/registro-electronico" element={<RegistroElectronico />} />
+              <Route path="/docente/asistencia-laboral" element={<AsistenciaLaboral />} />
+              <Route path="/docente/historial-asistencia-laboral" element={<HistorialAsistenciaLaboral />} />
+              <Route path="/docente/horario" element={<Horario />} />
+              <Route path="/docente/solicitud-adelanto-sueldo" element={<SolicitudAdelantoSueldo />} />
+              <Route path="/docente/manual-adelanto" element={<ManualAdelanto />} />
+              <Route path="/docente/manual-docente" element={<ManualDocente />} />
+              <Route path="/docente/cambio-contrasena" element={<CambiarContrasena />} />
+            </Route>
 
-              <Route element={
-                <RutaProtegidaPorRol rolPermitido="administrativo">
-                  <Layout />
-                </RutaProtegidaPorRol>
-              }>
-                <Route path="/administrativo" element={<AdministrativoDashboard />} />
-                {/* Rutas para administrativo */}
-                <Route path="/administrativo/planificacion-cursos" element={<PlanificacionCursos />} />
-                <Route path="/administrativo/asignacion-docentes" element={<AsignacionDocentes />} />
-                <Route path="/administrativo/gestion-horarios-aulas" element={<GestionHorariosAulas />} />
-                <Route path="/administrativo/matricula-estudiantes" element={<MatriculaEstudiantes />} />
-                <Route path="/administrativo/control-notas" element={<ControlNotas />} />
-                <Route path="/administrativo/seguimiento-academico" element={<SeguimientoAcademico />} />
-                <Route path="/administrativo/evaluacion-docente" element={<EvaluacionDocente />} />
-                <Route path="/administrativo/monitoreo" element={<Monitoreo />} />
-                <Route path="/administrativo/perfiles" element={<Perfiles />} />
-                <Route path="/administrativo/roles" element={<Roles />} />
-                <Route path="/administrativo/usuarios" element={<Usuarios />} />
-                <Route path="/administrativo" element={<AdministrativoDashboard />} />
-              </Route>
+            <Route element={
+              <RutaProtegidaPorRol rolPermitido="administrativo">
+                <Layout />
+              </RutaProtegidaPorRol>
+            }>
+              <Route path="/administrativo" element={<AdministrativoDashboard />} />
+              {/* Rutas para administrativo */}
+              <Route path="/administrativo/planificacion-cursos" element={<PlanificacionCursos />} />
+              <Route path="/administrativo/asignacion-docentes" element={<AsignacionDocentes />} />
+              <Route path="/administrativo/gestion-horarios-aulas" element={<GestionHorariosAulas />} />
+              <Route path="/administrativo/matricula-estudiantes" element={<MatriculaEstudiantes />} />
+              <Route path="/administrativo/control-notas" element={<ControlNotas />} />
+              <Route path="/administrativo/seguimiento-academico" element={<SeguimientoAcademico />} />
+              <Route path="/administrativo/evaluacion-docente" element={<EvaluacionDocente />} />
+              <Route path="/administrativo/monitoreo" element={<Monitoreo />} />
+              <Route path="/administrativo/perfiles" element={<Perfiles />} />
+              <Route path="/administrativo/roles" element={<Roles />} />
+              <Route path="/administrativo/usuarios" element={<Usuarios />} />
+              <Route path="/administrativo" element={<AdministrativoDashboard />} />
+            </Route>
 
-              <Route element={
-                <RutaProtegidaPorRol rolPermitido="escuela">
-                  <Layout />
-                </RutaProtegidaPorRol>
-              }>
-                <Route path="/escuela" element={<EscuelaDashboard />} />
-                <Route path="/escuela/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área de Escuela</h2><p>Módulo en desarrollo</p></div>} />
-              </Route>
+            <Route element={
+              <RutaProtegidaPorRol rolPermitido="escuela">
+                <Layout />
+              </RutaProtegidaPorRol>
+            }>
+              <Route path="/escuela" element={<EscuelaDashboard />} />
+              <Route path="/escuela/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área de Escuela</h2><p>Módulo en desarrollo</p></div>} />
+            </Route>
 
-              <Route element={
-                <RutaProtegidaPorRol rolPermitido="facultad">
-                  <Layout />
-                </RutaProtegidaPorRol>
-              }>
-                <Route path="/facultad" element={<FacultadDashboard />} />
-                <Route path="/facultad/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área de Facultad</h2><p>Módulo en desarrollo</p></div>} />
-              </Route>
+            <Route element={
+              <RutaProtegidaPorRol rolPermitido="facultad">
+                <Layout />
+              </RutaProtegidaPorRol>
+            }>
+              <Route path="/facultad" element={<FacultadDashboard />} />
+              <Route path="/facultad/*" element={<div className="p-6"><h2 className="text-2xl font-bold">Área de Facultad</h2><p>Módulo en desarrollo</p></div>} />
+            </Route>
 
-              {/* Página no encontrada */}
-              <Route path="*" element={<PageNotFound />} />
-            </Routes>
-          </AuthProvider>
-    </BrowserRouter>
+            {/* Página no encontrada */}
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </AuthProvider>
+      </BrowserRouter>
     </ThemeProvider>
 
   );

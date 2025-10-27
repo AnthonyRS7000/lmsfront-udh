@@ -9,6 +9,7 @@ import ButtonPrincipal from "../../../../components/pages/ButtonPrincipal";
 import Tablas from "../../../../components/pages/Tablas";
 import DatosNoEncontrados from "../../../../components/pages/DatosNoEncontrados";
 import Loading from "../../../../components/pages/Loading";
+import ButtonSecundario from "../../../../components/pages/ButtonSecundario";
 
 const calcularSemestre = (): string => {
     const fechaActual = new Date();
@@ -233,7 +234,7 @@ const NotasParciales: React.FC = () => {
                 )}
             </Card>
             {/* Card info advertencia */}
-            <div className="notas-card notas-info-extra">
+            <Card className="notas-info-extra">
                 <div className="notas-info-extra-header">
                     <InformationCircleIcon style={{ marginRight: 8, width: 30, height: 30}} /> ESTIMADO ESTUDIANTE CUMPLIMOS CON INFORMAR LO SIGUIENTE
                 </div>
@@ -243,7 +244,7 @@ const NotasParciales: React.FC = () => {
                         <br />
                         La desaprobación de una misma materia por <span style={{ color: "#dc2626", fontWeight: 600 }}>tres veces</span> da lugar a que el estudiante sea separado temporalmente por un año de la universidad. Al término de este plazo, el estudiante solo se podrá matricular en la materia que desaprobó anteriormente, para retornar de manera regular a sus estudios en el ciclo siguiente. Si desaprueba por <span style={{ color: "#dc2626", fontWeight: 600 }}>cuarta vez</span> procede su retiro definitivo.
                         <br />
-                        <span style={{ color: "#444" }}>
+                        <span className="notas-span">
                             (El presente Art. entrará en vigencia a partir del 2016-2 con la aplicación del nuevo Reglamento General de Estudios. Es decir, los cursos desaprobados se contabilizarán a partir del 2016-2.)
                         </span>
                     </div>
@@ -253,10 +254,10 @@ const NotasParciales: React.FC = () => {
                         El alumno, que tiene más de <span style={{ color: "#dc2626", fontWeight: 600 }}>30 por ciento</span> de inasistencias, sobre el total de horas programadas para una asignatura, estará impedido de rendir las evaluaciones.
                     </div>
                 </div>
-            </div>
+            </Card>
 
             {/* Card de info evaluacion*/}
-            <div className="notas-card notas-advertencia" ref={advertenciaRef}>
+            <Card className="notas-advertencia" ref={advertenciaRef}>
                 <div className="notas-advertencia-header">
                    <ClipboardIcon style={{ marginRight: 8, width: 24, height: 24, textAlign: "center" }} /> SISTEMA DE EVALUACIÓN PARA PRESENCIAL - SEMIPRESENCIAL
                 </div>
@@ -271,10 +272,10 @@ const NotasParciales: React.FC = () => {
                         <b>Examen de Fin de Curso:</b> EFC
                     </div>
                     <div>
-                        <b>Examen Sustitutorio:</b> SUS <span style={{ color: "#444" }}>(Sustituye a la nota más baja del EMC o EFC)</span>
+                        <b>Examen Sustitutorio:</b> SUS <span className="notas-span">(Sustituye a la nota más baja del EMC o EFC)</span>
                     </div>
                     <div>
-                        <b>PTA = (TA1+TA2+TA3+TA4) / 4</b> <span style={{ color: "#444" }}>(Promedio de Tareas Académicas)</span>
+                        <b>PTA = (TA1+TA2+TA3+TA4) / 4</b> <span className="notas-span">(Promedio de Tareas Académicas)</span>
                     </div>
                     <div style={{ margin: "10px 0" }}>
                         <b>Promedio Final :</b> = (PTA + EMC + EFC) / 3
@@ -291,7 +292,7 @@ const NotasParciales: React.FC = () => {
                         NOTA APROBATORIA: <span style={{ fontSize: "1.2em" }}>11.00</span>
                     </div>
                 </div>
-            </div>
+            </Card>
         </div>
     );
 };

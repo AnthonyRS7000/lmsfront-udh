@@ -149,10 +149,6 @@
 }
 /* Responsive para pantallas medianas */
 @media (max-width: 768px) {
-  .mi-horario-container {
-    margin: 20px 0px; /* Reducir margen */
-    padding: 10px; /* Agregar padding */
-  }
 
   .mi-horario-filters {
     flex-direction: column; /* Cambiar a columna */
@@ -181,10 +177,6 @@
 
 /* Responsive para pantallas pequeñas */
 @media (max-width: 480px) {
-  .mi-horario-container {
-    margin: 10px 0px; /* Reducir margen */
-    padding: 5px; /* Reducir padding */
-  }
 
   .mi-horario-filters {
     flex-direction: column; /* Cambiar a columna */

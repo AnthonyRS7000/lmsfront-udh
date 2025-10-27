@@ -67,3 +67,63 @@
   text-align: center;
   font-size: 1rem;
 }
+
+/* Modo Dark */
+.dark .rend-acad-label {
+  color: #e5e7eb; /* Texto claro */
+}
+
+.dark .rend-acad-input {
+  background: transparent; /* Fondo oscuro */
+  color: #e5e7eb; /* Texto claro */
+}
+
+.dark .rend-acad-table-title {
+  color: #e5e7eb; /* Texto claro */
+}
+
+.dark .rend-acad-btn-ver {
+  background: #2563eb; /* Azul oscuro */
+  color: #ffffff; /* Texto blanco */
+}
+
+.dark .rend-acad-btn-ver:hover {
+  background: #1d4ed8; /* Azul más oscuro */
+}
+
+.dark .rend-acad-table-foot {
+  color: #e5e7eb; /* Texto claro */
+}
+
+.dark .rend-acad-alert {
+  border: 2px solid #4b5563; /* Borde oscuro */
+  background: #1f2937; /* Fondo oscuro */
+  color: #e5e7eb; /* Texto claro */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .rend-acad-row {
+    flex-direction: column; /* Ajusta las filas en pantallas pequeñas */
+    align-items: flex-start; /* Alinea los elementos a la izquierda */
+  }
+
+  .rend-acad-input {
+    padding: 0px 0px;
+    margin-top: 4px;
+    font-size: 0.9rem;
+  }
+  .rend-acad-label {
+    margin-bottom: 4px; /* Espaciado entre etiqueta e input */
+  }
+
+  .rend-acad-btn-ver {
+    width: 100%; /* Botón ocupa todo el ancho */
+    justify-content: center; /* Centra el contenido del botón */
+  }
+
+  .rend-acad-alert {
+    font-size: 0.9rem; /* Reduce el tamaño del texto */
+    padding: 8px 12px; /* Ajusta el padding */
+  }
+}

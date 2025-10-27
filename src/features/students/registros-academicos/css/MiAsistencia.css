@@ -165,9 +165,6 @@
 
 /* Modo Responsive */
 @media (max-width: 768px) {
-  .asistencia-container {
-    padding: 0 16px; /* Reducir padding para pantallas medianas */
-  }
 
   .asistencia-estudiante-header {
     margin-bottom: 10px; /* Reducir margen inferior */
@@ -215,9 +212,6 @@
 }
 
 @media (max-width: 480px) {
-  .asistencia-container {
-    padding: 0 8px; /* Reducir padding para pantallas pequeñas */
-  }
 
   .asistencia-estudiante-header {
     margin-bottom: 8px; /* Reducir margen inferior */

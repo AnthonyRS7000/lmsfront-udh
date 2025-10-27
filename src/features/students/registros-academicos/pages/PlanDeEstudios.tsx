@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import '../css/PlanDeEstudios.css';
+import TituloPage from '../../../../components/pages/TituloPage';
+import Card from '../../../../components/pages/Card';
+import ButtonPrincipal from '../../../../components/pages/ButtonPrincipal';
+import { EyeIcon } from '@heroicons/react/24/outline';
+import ButtonSecundario from '../../../../components/pages/ButtonSecundario';
 
 const PROGRAMAS = [
   "INGENIERÍA DE SISTEMAS E INFORMÁTICA",
@@ -64,11 +69,8 @@ const PlanDeEstudios: React.FC = () => {
 
   return (
     <div className="plan-estudios-root">
-      {/* Usar estilos de TituloPage */}
-      <div className="titulo-page-container">
-        <h1 className="titulo-page">Plan de Estudios</h1>
-      </div>
-      <div className="plan-estudios-card">
+      <TituloPage titulo="Plan de Estudios" />
+      <Card className="plan-estudios-card">
         <div className="plan-estudios-filtros">
           <label htmlFor="programa" className="plan-estudios-label">Programa:</label>
           <select
@@ -88,17 +90,17 @@ const PlanDeEstudios: React.FC = () => {
           >
             {ANIOS.map(a => <option key={a}>{a}</option>)}
           </select>
-          <button
+          <ButtonSecundario
+            icon={<EyeIcon />}
             className="plan-estudios-btn"
+            text="Mostrar"
             onClick={() => setMostrar(true)}
-          >
-            Mostrar
-          </button>
+          />
         </div>
         <div className="plan-estudios-link">
           * También puede acceder a la página de <a href="http://www.udh.edu.pe/mallacurricular.aspx" target="_blank" rel="noopener noreferrer">Transparencia Institucional</a> para obtener diseño y malla curricular.
         </div>
-      </div>
+      </Card>
 
       {mostrar && (
           <div className="plan-estudios-tabla-wrapper">

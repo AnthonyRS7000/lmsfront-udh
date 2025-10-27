@@ -25,6 +25,11 @@
   flex-wrap: wrap; /* Permitir que los elementos se ajusten si no caben */
 }
 
+.historial-filtros {
+  display: flex;
+  gap: 20px;
+}
+
 
 .historial-nombre-usuario {
   display: flex;
@@ -98,9 +103,6 @@
 
 /* Pantallas medianas */
 @media (max-width: 768px) {
-  .historial-container {
-    padding: 10px 15px; /* Reducir padding */
-  }
 
   .historial-barra-superior {
     flex-direction: column; /* Colocar la barra superior en una columna */
@@ -135,9 +137,6 @@
 
 /* Pantallas pequeñas */
 @media (max-width: 480px) {
-  .historial-container {
-    padding: 8px 10px; /* Reducir padding */
-  }
 
   .historial-barra-superior {
     gap: 8px; /* Reducir espaciado entre elementos */
@@ -164,5 +163,6 @@
   .historial-footer {
     font-size: 0.8rem; /* Reducir tamaño de fuente */
     gap: 6px; /* Reducir espacio entre elementos */
+    text-align: center;
   }
 }

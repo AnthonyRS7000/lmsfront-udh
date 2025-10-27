@@ -116,13 +116,6 @@
   transition: background 0.18s, color 0.18s;
 }
 
-body.dark .plan-estudios-tabla th,
-html.dark .plan-estudios-tabla th,
-:root.dark .plan-estudios-tabla th {
-  background: #5a9e8d !important;
-  color: #fff !important;
-}
-
 .plan-estudios-tabla td {
   padding: 8px 4px;
   border-bottom: 1px solid #e0e0e0;
@@ -133,29 +126,6 @@ html.dark .plan-estudios-tabla th,
   transition: background 0.18s, color 0.18s;
 }
 
-body.dark .plan-estudios-tabla td,
-html.dark .plan-estudios-tabla td,
-:root.dark .plan-estudios-tabla td {
-  background: #0f1724 !important;
-  color: #e6eef3 !important;
-  border-bottom: 1px solid #27303a !important;
-}
-
 .plan-estudios-row-par {
   background: #f5f9f8;
-}
-
-body.dark .plan-estudios-row-par,
-html.dark .plan-estudios-row-par,
-:root.dark .plan-estudios-row-par {
-  background: #1a2530 !important;
-}
-}
-
-@media (max-width: 700px) {
-  .plan-estudios-filtros {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
-  }
 }
