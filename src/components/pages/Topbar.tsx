@@ -40,28 +40,39 @@ const handleAbrirAula = () => {
     return `${year}-${term}`;
   };
 
-  const ultMat = datos_udh?.ult_sem ?? usuario?.ult_sem ?? null;
-  const latestSem = getCurrentSemester();
+  // detectar rol de forma robusta
+  const rolStored = (localStorage.getItem("rol") || usuario?.rol || usuario?.role || "").toString();
+  const roleLower = rolStored.toLowerCase();
+  const isDocente = roleLower === 'docente' || roleLower.includes('docente') || roleLower.includes('teacher') || roleLower.includes('doc');
 
-  if (!ultMat) {
-    toast.error("No se encontró información de matrícula. No puede abrir el Aula Virtual.");
-    return;
-  }
+  // PARA ESTUDIANTES: validar matrícula en último semestre
+  if (!isDocente) {
+    const ultMat = datos_udh?.ult_sem ?? usuario?.ult_sem ?? null;
+    const latestSem = getCurrentSemester();
 
-  if (ultMat !== latestSem) {
-    toast.error("Usted no está matriculado en el último semestre académico.");
-    return;
+    if (!ultMat) {
+      toast.error("No se encontró información de matrícula. No puede abrir el Aula Virtual.");
+      return;
+    }
+
+    if (ultMat !== latestSem) {
+      toast.error("Usted no está matriculado en el último semestre académico.");
+      return;
+    }
   }
 
   const foto = localStorage.getItem("foto") || usuario?.foto || usuario?.image || null;
-  const rol = localStorage.getItem("rol") || usuario?.rol || usuario?.role || "Estudiante";
+  const rol = rolStored || "estudiante";
 
   if (!token) {
     toast.error("No estás autenticado. Por favor, inicia sesión primero.");
     return;
   }
 
-  const payload = { token, google_token, usuario, datos_udh, foto, rol };
+  // asegurar datos_udh vacío para docentes si no existe
+  const datosUdhPayload = isDocente ? (datos_udh || {}) : (datos_udh || usuario?.datos_udh || {});
+
+  const payload = { token, google_token, usuario, datos_udh: datosUdhPayload, foto, rol };
 
   try {
     const encoded = btoa(JSON.stringify(payload));
