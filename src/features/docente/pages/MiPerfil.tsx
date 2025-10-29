@@ -197,6 +197,45 @@ const Perfil = () => {
                 </div>
                 </Card>
 
+                {photoModalOpen && (
+                <div className="modal-overlay" role="dialog" aria-modal="true">
+                    <div className="photo-modal">
+                        <div className="photo-modal-header">
+                        <h3>Cargar Fotografía</h3>
+                        <button className="close-modal" onClick={() => { setPhotoModalOpen(false); setPhotoPreview(null); }}>×</button>
+                        </div>
+                        <div className="photo-modal-body">
+                        <div className="photo-preview">
+                            {photoPreview ? (
+                            <img src={photoPreview} alt="Preview" />
+                            ) : photo ? (
+                            <img src={photo} alt="Foto actual" />
+                            ) : (
+                            <div className="photo-placeholder">Vista previa</div>
+                            )}
+                        </div>
+                        <div className="photo-controls">
+                            <input type="file" accept="image/*" onChange={onPhotoSelected} />
+                            <div className="photo-hint">Selecciona una imagen desde tu dispositivo. Recomendado: 3:4, rostro centrado.</div>
+                            {photoError && <div className="photo-error">{photoError}</div>}
+                            <div className="photo-actions">
+                            <button className="btn-primary" onClick={() => {
+                                if (!photoFile) return;
+                                // Simular subida
+                                console.log('Subiendo foto', photoFile);
+                                if (photoPreview) URL.revokeObjectURL(photoPreview);
+                                setPhotoPreview(null);
+                                setPhotoFile(null);
+                                setPhotoModalOpen(false);
+                            }} disabled={!photoFile}>Guardar</button>
+                            <button className="btn-secondary" onClick={() => { if (photoPreview) URL.revokeObjectURL(photoPreview); setPhotoModalOpen(false); setPhotoPreview(null); setPhotoFile(null); setPhotoError(null); }}>Cancelar</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                )}
+                
                 {/* Sección Fotografía */}
                 <Card className="perfil-photo-card">
                 <div className="perfil-photo-left">

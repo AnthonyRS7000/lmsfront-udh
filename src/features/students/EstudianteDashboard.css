@@ -1,0 +1,191 @@
+/* Página principal */
+.estudiante-dash-root {
+  padding: 2rem;
+  min-height: 100%;
+  background-color: transparent;
+}
+
+.estudiante-dash-stat-icon-svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.estudiante-dash-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.estudiante-dash-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.estudiante-dash-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #3C7E6E;
+  margin-bottom: 1rem;
+}
+
+.estudiante-dash-subtitle {
+  font-size: 1.125rem;
+  color: #6b7280;
+}
+
+/* Estadísticas principales */
+.estudiante-dash-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.estudiante-dash-stat-card {
+  background-color: white;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.estudiante-dash-stat-content {
+  display: flex;
+  align-items: center;
+}
+
+.estudiante-dash-stat-icon {
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+}
+
+.estudiante-dash-stat-text {
+  margin-left: 1rem;
+}
+
+.estudiante-dash-stat-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6b7280;
+  margin-bottom: 0.25rem;
+}
+
+.estudiante-dash-stat-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1f2937;
+}
+
+/* Secciones principales */
+.estudiante-dash-sections {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+}
+
+.estudiante-dash-section-card {
+  background-color: white;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.estudiante-dash-section-title {
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+
+.estudiante-dash-section-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.estudiante-dash-section-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem;
+  background-color: #f9fafb;
+  border-radius: 0.5rem;
+}
+
+.estudiante-dash-section-item-name {
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.estudiante-dash-section-item-link {
+  font-size: 0.875rem;
+  color: #2563eb;
+  cursor: pointer;
+}
+
+.estudiante-dash-section-item-link:hover {
+  text-decoration: underline;
+}
+
+/* Botón */
+.estudiante-dash-button {
+  font-size: 0.875rem;
+  background-color: #3C7E6E;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+}
+
+.estudiante-dash-button:hover {
+  background: #ffc874;
+  color: #222;
+  transform: translateY(-3px);
+}
+
+/* Calendario de próximos eventos */
+.estudiante-dash-calendar {
+  margin-top: 2rem;
+  background-color: white;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.estudiante-dash-calendar-title {
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+
+.estudiante-dash-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.estudiante-dash-calendar-item {
+  padding: 1rem;
+  background-color: #f9fafb;
+  border-radius: 0.5rem;
+}
+
+.estudiante-dash-calendar-item-title {
+  font-weight: 500;
+  color: #1f2937;
+  margin-bottom: 0.25rem;
+}
+
+.estudiante-dash-calendar-item-date {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-bottom: 0.25rem;
+}
+
+.estudiante-dash-calendar-item-time {
+  font-size: 0.875rem;
+  color: #2563eb;
+}

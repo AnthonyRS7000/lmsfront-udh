@@ -47,8 +47,10 @@
   transition: background 0.2s;
   font-size: 0.97rem;
 }
+
 .rend-acad-btn-ver:hover {
-  background: #417265;
+  background: #ffc874; /* Azul más oscuro */
+  color: #222; /* Color del texto */
 }
 
 .rend-acad-table-foot {
@@ -83,12 +85,13 @@
 }
 
 .dark .rend-acad-btn-ver {
-  background: #2563eb; /* Azul oscuro */
+  background: #417265; /* Azul oscuro */
   color: #ffffff; /* Texto blanco */
 }
 
 .dark .rend-acad-btn-ver:hover {
-  background: #1d4ed8; /* Azul más oscuro */
+  background: #ffc874;
+  color: #222;
 }
 
 .dark .rend-acad-table-foot {

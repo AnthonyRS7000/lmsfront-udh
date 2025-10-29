@@ -15,7 +15,8 @@
 }
 
 .button-principal:hover {   
-    background-color: #417265;
+    background: #ffc874;
+    color: #222;
     transform: translateY(-3px);
 }
 

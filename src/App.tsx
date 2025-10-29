@@ -8,14 +8,13 @@ import { AuthProvider } from "./context/AuthContext";
 import AuthCallback from "./context/AuthCallback";
 
 // Importar dashboards por rol
-import EstudianteDashboard from "./features/estudiante/pages/EstudianteDashboard";
+import EstudianteDashboard from "./features/students/EstudianteDashboard";
 import DocenteDashboard from "./features/docente/pages/DocenteDashboard";
 import EscuelaDashboard from "./features/escuela/pages/EscuelaDashboard";
 import FacultadDashboard from "./features/facultad/pages/FacultadDashboard";
 import AdministrativoDashboard from "./features/administrativo/pages/AdministrativoDashboard";
 
 // Importar páginas del módulo Gestión de Matrícula
-import ProfilePage from "./components/pages/ProfilePage";
 import Perfil from "./components/pages/Perfil"
 import {
   Matricula,
@@ -112,7 +111,6 @@ function App() {
             }>
               <Route path="/estudiante" element={<EstudianteDashboard />} />
               {/* Gestión de Matrícula */}
-              <Route path="/perfil" element={<ProfilePage />} />
               <Route path="/estudiante/perfil" element={<Perfil />} />
               <Route path="/estudiante/matricula" element={<Matricula />} />
               <Route path="/estudiante/ver-horario" element={<VerHorario />} />

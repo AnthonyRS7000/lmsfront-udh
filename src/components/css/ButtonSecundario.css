@@ -15,12 +15,13 @@
 }
 
 .button-secundario:hover{
-    background-color: #417265;
+    background: #EFB036; /* Azul más oscuro */
+    color: #222; /* Color del texto */
     transform: translateY(-3px); 
 }
 
 .button-secundario:active{
-    background-color: #417265;
+    background-color: #EFB036;
     transform: translateY(0);
 }
 
@@ -43,7 +44,8 @@
 
 .dark .button-secundario:hover,
 .dark .button-secundario:active {
-    background-color: #417265;
+    background: #ffc874;
+    color: #222;
 }
 
 @media (max-width: 768px) {

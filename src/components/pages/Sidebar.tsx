@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
@@ -11,7 +12,8 @@ import {
   IconServicio,
   IconTitulacion,
   IconSoporte,
-  IconCarpeta
+  IconCarpeta,
+  IconHome
 } from '../icons/LmsIcons';
 import FlechaIcon from '../../assets/icons/flecha.svg';
 import DocenteSimuladoPhoto from '../../assets/soporte.png';
@@ -59,6 +61,7 @@ const getUserDataFromLocalStorage = () => {
 };
 
 export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
+  const navigate = useNavigate();
   const location = useLocation();
   const [openSections, setOpenSections] = useState<string[]>([]);
   const [isDesktop, setIsDesktop] = useState(false);
@@ -122,6 +125,13 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
     switch (role) {
       case 'estudiante':
         return [
+          {
+            name: 'Inicio',
+            label: 'Inicio',
+            icon: IconHome,
+            submenus: [],
+            path: '/estudiante',
+          },
           {
             name: 'GestionMatricula',
             label: 'Gestión de Matrícula',
@@ -197,6 +207,13 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
 
       case 'docente':
         return [
+          {
+            name: 'Inicio',
+            label: 'Inicio',
+            icon: IconHome,
+            submenus: [],
+            path: '/docente',
+          },
           {
             name: 'Academico',
             label: 'Académico',
@@ -484,7 +501,13 @@ export default function Sidebar({ isOpen, onClose, onToggle }: SidebarProps) {
                 >
                   {/* Header de la sección - ESTILO COPILOTO */}
                   <button
-                    onClick={() => toggleSubmenu(section.name)}
+                    onClick={() => {
+                      if (section.submenus.length === 0) {
+                        navigate(section.path);
+                      } else {
+                        toggleSubmenu(section.name);
+                      }
+                    }}
                     className={`nav-section-header-copiloto group ${isSectionActive(section) ? 'active' : ''}`}
                   >
                     <div className="nav-section-content-copiloto">

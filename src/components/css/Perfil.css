@@ -220,6 +220,116 @@
   background-color: #417265;
 }
 
+/* Modal para subir foto (estilo tarjeta centrada) */
+.modal-overlay { 
+  position: fixed; 
+  inset :0; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  background: rgba(0,0,0,0.45); 
+  z-index: 1200; 
+}
+
+.photo-modal { 
+  width: 520px; 
+  max-width: 94%; 
+  background: #fff; 
+  border-radius: 12px; 
+  box-shadow: 0 12px 40px rgba(2,6,23,0.45); 
+  padding: 18px; 
+  border: 1px solid #d1d5db; 
+}
+
+.photo-modal-header { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  gap: 12px; 
+}
+.photo-modal-header h3 { 
+  margin: 0; 
+  color: #111827; 
+}
+
+.close-modal { 
+  background: transparent; 
+  border: none; 
+  font-size: 20px; 
+  cursor: pointer; 
+}
+
+.photo-modal-body { 
+  display: flex; 
+  gap: 18px; 
+  margin-top: 12px; 
+}
+
+.photo-preview { 
+  width: 220px; 
+  height: 264px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  border-radius: 8px; 
+  background: #fff; 
+  box-shadow: 0 6px 18px rgba(2,6,23,0.15); 
+  border: 1px solid rgba(0,0,0,0.06); 
+}
+
+.photo-preview img { 
+  max-width: 100%; 
+  max-height: 100%; 
+  border-radius: 6px; 
+}
+
+.photo-placeholder { 
+  color: #6b7280; 
+  font-size: 14px; 
+}
+
+.photo-controls { 
+  flex: 1; 
+  display: flex; 
+  flex-direction: column; 
+  gap: 8px; 
+}
+
+.photo-hint { 
+  font-size: 12px; 
+  color: #9ca3af; 
+}
+
+.photo-actions { 
+  display: flex; 
+  gap: 10px; 
+  margin-top: 8px; 
+}
+
+.btn-primary { 
+  background: #5a9e8d;
+  color: #fff;
+  padding: 8px 12px; 
+  border-radius: 8px; 
+  border: none; 
+  cursor: pointer; 
+}
+
+.btn-secondary { 
+  background: transparent; 
+  color: #111827; 
+  border: 1px solid #d1d5db; 
+  padding: 8px 12px; 
+  border-radius: 8px; 
+  cursor: pointer; 
+}
+
+.photo-error { 
+  color: #b00020; 
+  font-size: 12px; 
+  margin-top: 6px; 
+}
+
 /* Responsivo */
 @media (max-width: 768px) {
   .perfil-row {

@@ -50,13 +50,13 @@ const UserDropdown = () => {
     const rol = localStorage.getItem("rol");
     // Navegar según el rol
     switch (rol) {
-      case "estudiante":
+      case "Estudiante":
         navigate('/estudiante/perfil');
         break;
-      case "docente":
+      case "Docente":
         navigate('/docente/perfil');
         break;
-      case "administrativo":
+      case "Administrativo":
         navigate('/administrativo/perfil');
         break;
       default:

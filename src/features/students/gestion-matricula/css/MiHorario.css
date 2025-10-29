@@ -56,16 +56,15 @@
 .mi-horario-boton-modo {
   padding: 8px 12px;
   font-size: 0.9rem;
-  background: #fff;
-  color: #3C7E6E;
-  border: 1px solid #3C7E6E;
+  background: #3C7E6E;
+  color: #fff;
 }
 
 .mi-horario-boton-modo:hover,
 .mi-horario-boton-modo:focus,
 .mi-horario-boton-modo.activo {
-  background: #3C7E6E;
-  color: #fff;
+  background: #ffc874;
+  color: #222;
 }
 
 .dark .mi-horario-boton-modo {
@@ -76,8 +75,9 @@
 .dark .mi-horario-boton-modo:hover,
 .dark .mi-horario-boton-modo:focus,
 .dark .mi-horario-boton-modo.activo {
-  background: #3C7E6E;
-  color: #fff;
+  background: #ffc874;
+  color: #222;
+;
 }
 
 

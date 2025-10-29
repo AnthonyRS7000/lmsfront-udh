@@ -4,23 +4,10 @@
   padding: 32px 12px;
 }
 
-.plan-estudios-title {
-  text-align: center;
-  color: #5a9e8d;
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 24px;
-}
-
 .plan-estudios-card {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(44, 62, 80, 0.08);
-  padding: 24px 24px 18px 24px;
-  margin-bottom: 24px;
   display: flex;
   flex-direction: column;
-  border-left: 7px solid #5a9e8d;
+  align-items: center;
 }
 
 .plan-estudios-filtros {
@@ -54,19 +41,8 @@
 }
 
 .plan-estudios-btn {
-  background: #5a9e8d;
-  color: #fff;
   font-weight: 600;
-  border: none;
-  border-radius: 6px;
-  padding: 7px 22px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.plan-estudios-btn:hover {
-  background: #417265;
+  padding: 7px;
 }
 
 .plan-estudios-link {
@@ -128,4 +104,14 @@
 
 .plan-estudios-row-par {
   background: #f5f9f8;
+}
+
+.dark .plan-estudios-label {  
+  color: #d1d5db;
+}
+
+.dark .plan-estudios-select {
+  background: #374151;
+  color: #d1d5db;
+  border-color: #4b5563;
 }

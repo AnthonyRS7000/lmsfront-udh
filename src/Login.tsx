@@ -150,7 +150,7 @@ function Login() {
   //Eliminar cuando este listo la API para Login Docente con google
   const handleDocenteLogin = () => {
     navigate('/docente');
-    localStorage.setItem("rol", "docente");
+    localStorage.setItem("rol", "Docente");
   }
 
   return (

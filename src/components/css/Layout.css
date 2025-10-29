@@ -417,7 +417,7 @@
 }
 
 .sidebar-collapse-button:hover {
-  background: linear-gradient(135deg, #f1cc7a 0%, #d6b459 100%) !important; /* Al hover se vuelve el gris anterior */
+  background: linear-gradient(135deg, #fcfcfc 0%, #e4e4e4 100%)!important; /* Al hover se vuelve el gris anterior */
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15) !important;
   transform: scale(1.08) !important;
 }
