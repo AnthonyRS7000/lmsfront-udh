@@ -1,0 +1,69 @@
+/* Contenedor de datos personales */
+.ficha-socio-section-body {
+  padding: 16px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.ficha-socio-section-body-header-icon{
+  width: 30px;
+  height: 30px;
+  color: #3C7E6E;
+  margin-right: 10px;
+}
+
+.ficha-socio-divider {
+  width: 100%;
+  height: 2px;
+  background-color: #3C7E6E;
+  margin: 16px 0;
+}
+
+/* Filas y campos */
+.ficha-socio-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.ficha-socio-field {
+  flex: 1;
+}
+
+.ficha-socio-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.ficha-socio-direccion {
+  display: inline-flex;
+  flex-direction: row;
+  gap: 15px;
+  width: 100%;
+}
+
+.ficha-socio-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  box-sizing: border-box;
+}
+
+.ficha-socio-input-disabled {
+  background-color: #f3f4f6;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+.ficha-socio-select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  box-sizing: border-box;
+}

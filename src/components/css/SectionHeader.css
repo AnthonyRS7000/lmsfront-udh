@@ -1,0 +1,12 @@
+.section-header-body {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.section-header-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #3C7E6E;
+    margin: 5px 0px;
+}

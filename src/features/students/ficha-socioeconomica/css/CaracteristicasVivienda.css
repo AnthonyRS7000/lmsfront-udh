@@ -1,0 +1,40 @@
+/* Checkbox group */
+.ficha-socio-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ficha-socio-checkbox-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  /*justify-content: space-between;*/
+}
+
+.ficha-socio-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  color: #374151;
+}
+
+.ficha-socio-checkbox-input {
+  display: none; /* Oculta el checkbox predeterminado */
+}
+
+.ficha-socio-checkbox-circle {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #d1d5db;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: transparent;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.ficha-socio-checkbox-input:checked + .ficha-socio-checkbox-circle {
+  background-color: #10b981; /* Color verde */
+  border-color: #10b981;
+}

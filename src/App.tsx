@@ -42,7 +42,6 @@ import {
   TramiteGradosTitulos as TramiteGradosTitulosTitulacion
 } from "./features/students/titulacion-graduados";
 
-import FichaSocioeconomica from './components/FichaSocioeconomica';
 
 // Servicios Universitarios
 import {
@@ -53,6 +52,8 @@ import {
   EducacionDistancia,
   CongresosOtros
 } from './features/students/servicio-universitario';
+
+import FichaSocioeconomica from "./features/students/ficha-socioeconomica/page/FichaSocioeconomica";
 
 // Trámite (nuevo módulo)
 import { TramiteGenerar, TramiteSeguimiento} from './features/students/tramite-documentario';
@@ -76,7 +77,6 @@ import SolicitudAdelantoSueldo from "./features/docente/pages/SolicitudAdelantoS
 import ManualAdelanto from "./features/docente/pages/ManualAdelanto";
 import ManualDocente from "./features/docente/pages/ManualDocente";
 import CambiarContrasena from "./features/docente/pages/CambiarContrasena";
-
 
 
 import PlanificacionCursos from "./features/administrativo/pages/PlanificacionCursos";
